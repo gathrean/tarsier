@@ -34,6 +34,10 @@ final class UserProfile {
     var lastCompletedDate: Date?
     var createdAt: Date
     var motivations: [String]
+    var totalXP: Int
+    var hearts: Int
+    var lastHeartRefill: Date?
+    var isPremium: Bool
 
     init(
         skillLevel: SkillLevel = .beginner,
@@ -42,7 +46,10 @@ final class UserProfile {
         currentStreak: Int = 0,
         longestStreak: Int = 0,
         lastCompletedDate: Date? = nil,
-        motivations: [String] = []
+        motivations: [String] = [],
+        totalXP: Int = 0,
+        hearts: Int = 5,
+        isPremium: Bool = false
     ) {
         self.id = UUID()
         self.skillLevel = skillLevel
@@ -53,5 +60,35 @@ final class UserProfile {
         self.lastCompletedDate = lastCompletedDate
         self.createdAt = Date()
         self.motivations = motivations
+        self.totalXP = totalXP
+        self.hearts = hearts
+        self.lastHeartRefill = nil
+        self.isPremium = isPremium
+    }
+
+    /// Refill hearts based on elapsed time (1 heart per 30 minutes, max 5)
+    func refillHearts() {
+        guard !isPremium, hearts < 5 else { return }
+        let refillInterval: TimeInterval = 30 * 60 // 30 minutes
+        let lastRefill = lastHeartRefill ?? createdAt
+        let elapsed = Date().timeIntervalSince(lastRefill)
+        let heartsToAdd = Int(elapsed / refillInterval)
+        if heartsToAdd > 0 {
+            hearts = min(5, hearts + heartsToAdd)
+            lastHeartRefill = Date()
+        }
+    }
+
+    /// Lose a heart (returns false if already at 0)
+    @discardableResult
+    func loseHeart() -> Bool {
+        guard !isPremium else { return true }
+        guard hearts > 0 else { return false }
+        hearts -= 1
+        return true
+    }
+
+    func addXP(_ amount: Int) {
+        totalXP += amount
     }
 }

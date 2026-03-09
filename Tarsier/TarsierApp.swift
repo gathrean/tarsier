@@ -7,6 +7,12 @@ struct TarsierApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: [UserProfile.self, LessonResult.self, ChatMessage.self])
+        .modelContainer(for: [
+            UserProfile.self,
+            LessonResult.self,
+            ChatMessage.self,
+            ChapterProgress.self,
+            WordBankEntry.self,
+        ])
     }
 }

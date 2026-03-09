@@ -36,6 +36,7 @@ struct HomeView: View {
             lessons = LessonService.shared.loadAllLessons()
             if let profile {
                 StreakService.validateStreak(for: profile)
+                profile.refillHearts()
             }
         }
     }
@@ -58,7 +59,7 @@ struct HomeView: View {
             HStack(spacing: 4) {
                 Image(systemName: "star.fill")
                     .foregroundStyle(TarsierColors.functionalPurple)
-                Text("0")
+                Text("\(profile?.totalXP ?? 0)")
                     .font(TarsierFonts.heading(18))
                     .foregroundStyle(TarsierColors.functionalPurple)
             }
@@ -66,7 +67,10 @@ struct HomeView: View {
             Spacer()
 
             // Hearts
-            HeartDisplay(current: 5, max: 5)
+            HeartDisplay(
+                current: profile?.hearts ?? 5,
+                isPremium: profile?.isPremium ?? false
+            )
         }
         .font(.system(size: 18, weight: .bold, design: .rounded))
         .padding(.vertical, 12)

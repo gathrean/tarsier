@@ -5,15 +5,19 @@ import SwiftData
 final class LessonResult {
     var id: UUID
     var lessonID: Int
+    var chapterId: String
     var score: Int
     var totalQuestions: Int
+    var xpEarned: Int
     var completedAt: Date
 
-    init(lessonID: Int, score: Int, totalQuestions: Int) {
+    init(lessonID: Int, chapterId: String = "", score: Int, totalQuestions: Int, xpEarned: Int = 15) {
         self.id = UUID()
         self.lessonID = lessonID
+        self.chapterId = chapterId
         self.score = score
         self.totalQuestions = totalQuestions
+        self.xpEarned = xpEarned
         self.completedAt = Date()
     }
 }

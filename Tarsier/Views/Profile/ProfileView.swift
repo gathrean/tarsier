@@ -115,7 +115,7 @@ struct ProfileView: View {
             )
             statItem(
                 icon: "star.fill",
-                value: "0",
+                value: "\(profile?.totalXP ?? 0)",
                 label: "XP",
                 color: TarsierColors.functionalPurple
             )
