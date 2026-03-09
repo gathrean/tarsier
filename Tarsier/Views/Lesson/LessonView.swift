@@ -159,6 +159,8 @@ struct LessonContainerView: View {
             TeachingSlideView(slide: slide)
         case .vocabulary(let word):
             VocabularySlideView(word: word)
+        case .sentenceBreakdown(let sentence):
+            SentenceBreakdownSlideView(sentence: sentence)
         case .alamMoBa(let slide):
             AlamMoBaSlideView(slide: slide)
         case .quiz(let question, _):

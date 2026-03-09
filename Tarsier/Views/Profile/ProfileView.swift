@@ -6,6 +6,8 @@ struct ProfileView: View {
     @Environment(\.modelContext) private var modelContext
     @State private var showResetConfirmation = false
     @State private var showSkillLevelChange = false
+    @AppStorage("notificationsEnabled") private var notificationsEnabled = true
+    @AppStorage("soundEnabled") private var soundEnabled = true
 
     private var profile: UserProfile? { profiles.first }
 
@@ -37,13 +39,17 @@ struct ProfileView: View {
 
             // MARK: - Preferences
             Section("Preferences") {
-                // Placeholder for notifications/sound toggles
-                Text("Notifications")
-                    .font(TarsierFonts.body())
-                    .foregroundStyle(TarsierColors.textSecondary)
-                Text("Sound")
-                    .font(TarsierFonts.body())
-                    .foregroundStyle(TarsierColors.textSecondary)
+                Toggle(isOn: $notificationsEnabled) {
+                    Text("Notifications")
+                        .font(TarsierFonts.body())
+                }
+                .tint(TarsierColors.functionalPurple)
+
+                Toggle(isOn: $soundEnabled) {
+                    Text("Sound Effects")
+                        .font(TarsierFonts.body())
+                }
+                .tint(TarsierColors.functionalPurple)
             }
 
             // MARK: - Subscription

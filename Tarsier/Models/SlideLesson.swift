@@ -44,6 +44,7 @@ enum SlideType: String, Codable {
     case culturalContext = "cultural_context"
     case teaching
     case vocabulary
+    case sentenceBreakdown = "sentence_breakdown"
     case alamMoBa = "alam_mo_ba"
     case quiz
     case lessonSummary = "lesson_summary"
@@ -70,6 +71,9 @@ struct LessonSlide: Codable, Identifiable {
     // Vocabulary
     let words: [SlideVocabWord]?
 
+    // Sentence Breakdown
+    let sentences: [SlideSentence]?
+
     // Quiz
     let costsHeart: Bool?
     let questions: [SlideQuestion]?
@@ -92,6 +96,7 @@ struct LessonSlide: Codable, Identifiable {
         case type, title, body
         case taglishNote = "taglish_note"
         case image, examples, rules, words
+        case sentences
         case costsHeart = "costs_heart"
         case questions
         case keyWords = "key_words"
@@ -170,6 +175,36 @@ struct SlideVocabWord: Codable, Identifiable {
     }
 }
 
+struct SlideSentence: Codable, Identifiable {
+    let tagalog: String
+    let english: String
+    let taglishVariant: String?
+    let words: [SentenceWord]
+
+    var id: String { tagalog }
+
+    enum CodingKeys: String, CodingKey {
+        case tagalog, english, words
+        case taglishVariant = "taglish_variant"
+    }
+}
+
+struct SentenceWord: Codable, Identifiable {
+    let word: String
+    let role: String
+    let hasAffix: Bool?
+    let affix: String?
+    let root: String?
+    let meaning: String?
+
+    var id: String { word }
+
+    enum CodingKeys: String, CodingKey {
+        case word, role, affix, root, meaning
+        case hasAffix = "has_affix"
+    }
+}
+
 struct SlideQuestion: Codable, Identifiable {
     let questionId: String
     let type: SlideQuestionType
@@ -201,6 +236,7 @@ enum LessonPage: Identifiable {
     case culturalContext(slide: LessonSlide)
     case teaching(slide: LessonSlide)
     case vocabulary(word: SlideVocabWord)
+    case sentenceBreakdown(sentence: SlideSentence)
     case alamMoBa(slide: LessonSlide)
     case quiz(question: SlideQuestion, costsHeart: Bool)
     case summary(slide: LessonSlide)
@@ -210,12 +246,12 @@ enum LessonPage: Identifiable {
         case .culturalContext(let slide): "cc_\(slide.slideId)"
         case .teaching(let slide): "teach_\(slide.slideId)"
         case .vocabulary(let word): "vocab_\(word.word)"
+        case .sentenceBreakdown(let sentence): "sb_\(sentence.tagalog)"
         case .alamMoBa(let slide): "amb_\(slide.slideId)"
         case .quiz(let question, _): "quiz_\(question.questionId)"
         case .summary(let slide): "sum_\(slide.slideId)"
         }
     }
-
 }
 
 extension SlideLesson {
@@ -231,6 +267,10 @@ extension SlideLesson {
             case .vocabulary:
                 for word in slide.words ?? [] {
                     pages.append(.vocabulary(word: word))
+                }
+            case .sentenceBreakdown:
+                for sentence in slide.sentences ?? [] {
+                    pages.append(.sentenceBreakdown(sentence: sentence))
                 }
             case .alamMoBa:
                 pages.append(.alamMoBa(slide: slide))

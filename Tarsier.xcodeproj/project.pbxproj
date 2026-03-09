@@ -10,7 +10,6 @@
 		0CA0DE6E23037B1B5828FE93 /* SlideLesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E49CB69516AE4DEACD6DF11 /* SlideLesson.swift */; };
 		0D972B3DC8A45B6F4BFE5E94 /* GoogleGenerativeAI in Frameworks */ = {isa = PBXBuildFile; productRef = 487AE1EA67AE2C89550C201E /* GoogleGenerativeAI */; };
 		0E2A1AC42AFC3393EC0C58C6 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6893FBD2AC772885B02341C /* ChatMessage.swift */; };
-		10D77C9E2A33CCBA1F04CD05 /* Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BD490189370121D90333B4 /* Lesson.swift */; };
 		17350FDC627F90A02A885754 /* TarsierFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A26B178D0C63849F2ED9DD0 /* TarsierFonts.swift */; };
 		24E401C768B2C1C765C0C224 /* AlamMoBaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84481B94748743EF30B1CA8 /* AlamMoBaView.swift */; };
 		2A1DCDAAE8CC4B50EC2CDB86 /* SuperwallKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1B254C39B45831DB5B47D10D /* SuperwallKit */; };
@@ -38,8 +37,8 @@
 		899ED672F57F9DEBD72AC21D /* TeachingSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E884EC6CD0545836C650F824 /* TeachingSlideView.swift */; };
 		8A31076D4816001DB0BCA2E3 /* WordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB4DC90868E5BB58F66337F /* WordsView.swift */; };
 		9136ABD7F4E245A61EA03A69 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E180A31160DC805B3530AE /* ContentView.swift */; };
+		926E640A4E5D322B0622A863 /* SentenceBreakdownSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9582414F5DC607B862B929 /* SentenceBreakdownSlideView.swift */; };
 		93FF10A316B84CFF7BCD38DD /* lesson_001.json in Resources */ = {isa = PBXBuildFile; fileRef = 80B9F7B563B311E2B064C6E9 /* lesson_001.json */; };
-		9AE127FA28B5C2D10B69E7DD /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C891FB919113F25F9232361F /* QuizView.swift */; };
 		A96817343CAD57D4AF7418B6 /* StreakService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BAE3455847B83FA3F5BA1A /* StreakService.swift */; };
 		AC81B93BFE985CB5A30EB7A8 /* OnboardingFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCD8CCAC476282D791517EC /* OnboardingFlow.swift */; };
 		ACD9E409F56D77268197A74E /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C5B7D17C0C9BF896E2DC8 /* ProgressBarView.swift */; };
@@ -50,7 +49,6 @@
 		E1DA712511C05A355B29C6EC /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D1A21E9377CE216B63B7CC /* Color+Hex.swift */; };
 		E9CE3A331A87A7416558A37B /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 2924F4C7AF12EDD42E4E929E /* RevenueCat */; };
 		EF95B6FD5683A0DD0E7BE53A /* AffixBreakdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D68AE60916444BBAE35788 /* AffixBreakdownView.swift */; };
-		F66ED763BF1377515BAC4B2C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF75EB353DC7E014733A29FA /* SettingsView.swift */; };
 		F80EBF2D8BC153F6DABDF33A /* Chapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65F1555E6D8F9F929B15CC2 /* Chapter.swift */; };
 		FCA8603AFA84A9234CA55825 /* CulturalContextSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFF9FF1B25E7CA9C7A20582 /* CulturalContextSlideView.swift */; };
 		FE3E7E9604967CD6CE5EE6AC /* TaglishCallout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC53468AD1B9C1EB0B4C798 /* TaglishCallout.swift */; };
@@ -76,8 +74,8 @@
 		63AFCD23BA6B7D51D993A567 /* TarsierCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TarsierCard.swift; sourceTree = "<group>"; };
 		66D68AE60916444BBAE35788 /* AffixBreakdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffixBreakdownView.swift; sourceTree = "<group>"; };
 		6E3FB2F04B2A708D6E5E6B01 /* Tarsier.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Tarsier.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E9582414F5DC607B862B929 /* SentenceBreakdownSlideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentenceBreakdownSlideView.swift; sourceTree = "<group>"; };
 		80B9F7B563B311E2B064C6E9 /* lesson_001.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lesson_001.json; sourceTree = "<group>"; };
-		80BD490189370121D90333B4 /* Lesson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lesson.swift; sourceTree = "<group>"; };
 		8981091307BFE192BF3F036D /* WordBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordBank.swift; sourceTree = "<group>"; };
 		89AA407504A6746AA18FB8E6 /* TarsierApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TarsierApp.swift; sourceTree = "<group>"; };
 		91A9FACB6D20AB766F5171B6 /* LessonResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonResult.swift; sourceTree = "<group>"; };
@@ -88,9 +86,7 @@
 		A3C11C7907CF608BDB708F91 /* TarsierSpacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TarsierSpacing.swift; sourceTree = "<group>"; };
 		A8581456384E417293FA851E /* VocabularySlideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularySlideView.swift; sourceTree = "<group>"; };
 		A9508A59AD298CD0D5AD18F0 /* LessonService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonService.swift; sourceTree = "<group>"; };
-		AF75EB353DC7E014733A29FA /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C6D1A21E9377CE216B63B7CC /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
-		C891FB919113F25F9232361F /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
 		CEB1EE9F22C3F12C82F5081F /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		D5DEC845066A52A8B91AB249 /* QuizSlideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSlideView.swift; sourceTree = "<group>"; };
 		D65F1555E6D8F9F929B15CC2 /* Chapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter.swift; sourceTree = "<group>"; };
@@ -205,7 +201,6 @@
 				D65F1555E6D8F9F929B15CC2 /* Chapter.swift */,
 				161EAC20196EEF34D268F9BA /* ChapterProgress.swift */,
 				E6893FBD2AC772885B02341C /* ChatMessage.swift */,
-				80BD490189370121D90333B4 /* Lesson.swift */,
 				91A9FACB6D20AB766F5171B6 /* LessonResult.swift */,
 				1E49CB69516AE4DEACD6DF11 /* SlideLesson.swift */,
 				9CB36CA5AEFE730DF998C96E /* UserProfile.swift */,
@@ -220,14 +215,6 @@
 				5DBDA1C707656B8210F73F70 /* Tarsier */,
 				F548B8DF818289D9611187BD /* Products */,
 			);
-			sourceTree = "<group>";
-		};
-		7BC7DD4AA34056DDD8F10F0C /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				AF75EB353DC7E014733A29FA /* SettingsView.swift */,
-			);
-			path = Settings;
 			sourceTree = "<group>";
 		};
 		81A594220476B0720D182E35 /* Lesson */ = {
@@ -269,6 +256,7 @@
 				E6E72BEC1D80589A020F8928 /* AlamMoBaSlideView.swift */,
 				DDFF9FF1B25E7CA9C7A20582 /* CulturalContextSlideView.swift */,
 				D5DEC845066A52A8B91AB249 /* QuizSlideView.swift */,
+				6E9582414F5DC607B862B929 /* SentenceBreakdownSlideView.swift */,
 				E936295E608B17FCEC93192A /* SummarySlideView.swift */,
 				E884EC6CD0545836C650F824 /* TeachingSlideView.swift */,
 				A8581456384E417293FA851E /* VocabularySlideView.swift */,
@@ -295,19 +283,9 @@
 				21830710E4350CFEC27F504B /* Onboarding */,
 				091C8289E73EFF41B7211E73 /* Practice */,
 				2E1CC7E3EB61DFFE4AC103F8 /* Profile */,
-				B710E1463D5648BBA547D22B /* Quiz */,
-				7BC7DD4AA34056DDD8F10F0C /* Settings */,
 				8E22C7BC02A45FDD66F8756C /* Words */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		B710E1463D5648BBA547D22B /* Quiz */ = {
-			isa = PBXGroup;
-			children = (
-				C891FB919113F25F9232361F /* QuizView.swift */,
-			);
-			path = Quiz;
 			sourceTree = "<group>";
 		};
 		D0CFA5C932BCFB5E4570228F /* Home */ = {
@@ -416,7 +394,6 @@
 				7A77214E9AC313D7F5A7FCB1 /* HeartDisplay.swift in Sources */,
 				73B4EF8347ED1E3EE9888501 /* HeartsEmptySheet.swift in Sources */,
 				4F00245F54EA1F869D7A71E0 /* HomeView.swift in Sources */,
-				10D77C9E2A33CCBA1F04CD05 /* Lesson.swift in Sources */,
 				7551A64F3FF1AE22C73F537E /* LessonResult.swift in Sources */,
 				88C0B9BF90E95AE3194205DD /* LessonService.swift in Sources */,
 				4D0C62DE6CFF07894F308CC4 /* LessonView.swift in Sources */,
@@ -427,9 +404,8 @@
 				41D5C642375D7E1868452670 /* ProfileView.swift in Sources */,
 				ACD9E409F56D77268197A74E /* ProgressBarView.swift in Sources */,
 				8321D4A500B59C5323B6BEBD /* QuizSlideView.swift in Sources */,
-				9AE127FA28B5C2D10B69E7DD /* QuizView.swift in Sources */,
 				7605F8A7C446D7D3AFEAB646 /* SecondaryButton.swift in Sources */,
-				F66ED763BF1377515BAC4B2C /* SettingsView.swift in Sources */,
+				926E640A4E5D322B0622A863 /* SentenceBreakdownSlideView.swift in Sources */,
 				0CA0DE6E23037B1B5828FE93 /* SlideLesson.swift in Sources */,
 				A96817343CAD57D4AF7418B6 /* StreakService.swift in Sources */,
 				48820DF673129AA61BEB46F6 /* SummarySlideView.swift in Sources */,
