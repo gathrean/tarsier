@@ -77,6 +77,9 @@ struct LessonContainerView: View {
                 },
                 onGetPremium: {
                     // TODO: Superwall paywall trigger
+                },
+                onLeaveLesson: {
+                    dismiss()
                 }
             )
         }

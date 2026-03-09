@@ -3,6 +3,7 @@ import SwiftUI
 struct HeartsEmptySheet: View {
     let onWatchAd: () -> Void
     let onGetPremium: () -> Void
+    let onLeaveLesson: () -> Void
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
@@ -48,12 +49,22 @@ struct HeartsEmptySheet: View {
                     onGetPremium()
                     dismiss()
                 }
+
+                Button {
+                    dismiss()
+                    onLeaveLesson()
+                } label: {
+                    Text("Leave Lesson")
+                        .font(TarsierFonts.body())
+                        .foregroundStyle(TarsierColors.textSecondary)
+                }
             }
             .padding(.horizontal, TarsierSpacing.screenPadding)
             .padding(.bottom, 24)
         }
         .background(TarsierColors.warmWhite.ignoresSafeArea())
         .presentationDetents([.medium])
-        .presentationDragIndicator(.visible)
+        .presentationDragIndicator(.hidden)
+        .interactiveDismissDisabled()
     }
 }
