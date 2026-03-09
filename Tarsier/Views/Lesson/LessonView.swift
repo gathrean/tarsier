@@ -12,6 +12,7 @@ struct LessonContainerView: View {
     @State private var showCloseConfirmation = false
     @State private var quizScore = 0
     @State private var quizTotal = 0
+    @State private var quizState = QuizState()
 
     private var profile: UserProfile? { profiles.first }
     private var currentPage: LessonPage? {
@@ -40,26 +41,22 @@ struct LessonContainerView: View {
             .padding(.top, 8)
             .padding(.bottom, 4)
 
-            // Slide content
+            // Slide content (scrollable)
             if let page = currentPage {
                 ScrollView {
                     slideContent(for: page)
                         .padding(.horizontal, TarsierSpacing.screenPadding)
                         .padding(.top, 16)
-                        .padding(.bottom, page.showsContinueButton ? 80 : 16)
+                        .padding(.bottom, 80)
                 }
+                .scrollDismissesKeyboard(.interactively)
+                .id(page.id)
             }
 
             Spacer(minLength: 0)
 
-            // Continue button (hidden for quiz & summary — they have their own)
-            if let page = currentPage, page.showsContinueButton {
-                PrimaryButton("Continue") {
-                    advancePage()
-                }
-                .padding(.horizontal, TarsierSpacing.screenPadding)
-                .padding(.bottom, 16)
-            }
+            // Bottom button — pinned to bottom of screen
+            bottomButton
         }
         .background(TarsierColors.warmWhite.ignoresSafeArea())
         .navigationBarBackButtonHidden()
@@ -73,6 +70,63 @@ struct LessonContainerView: View {
         }
         .onAppear {
             pages = lesson.expandToPages()
+        }
+        .onChange(of: currentPageIndex) {
+            quizState.reset()
+        }
+    }
+
+    // MARK: - Bottom Button (always pinned to bottom)
+
+    @ViewBuilder
+    private var bottomButton: some View {
+        if let page = currentPage {
+            switch page {
+            case .summary:
+                EmptyView()
+
+            case .quiz(let question, let costsHeart):
+                if quizState.isChecked {
+                    PrimaryButton("Continue") {
+                        advancePage()
+                    }
+                    .padding(.horizontal, TarsierSpacing.screenPadding)
+                    .padding(.bottom, 16)
+                } else {
+                    PrimaryButton("Check") {
+                        checkQuizAnswer(question: question, costsHeart: costsHeart)
+                    }
+                    .disabled(!quizState.hasSelection)
+                    .padding(.horizontal, TarsierSpacing.screenPadding)
+                    .padding(.bottom, 16)
+                }
+
+            default:
+                PrimaryButton("Continue") {
+                    advancePage()
+                }
+                .padding(.horizontal, TarsierSpacing.screenPadding)
+                .padding(.bottom, 16)
+            }
+        }
+    }
+
+    // MARK: - Quiz Check
+
+    private func checkQuizAnswer(question: SlideQuestion, costsHeart: Bool) {
+        let isCorrect: Bool
+        switch question.type {
+        case .multipleChoice:
+            isCorrect = quizState.checkMultipleChoice(question: question)
+        case .fillInBlank:
+            isCorrect = quizState.checkFillInBlank(question: question)
+        }
+
+        quizTotal += 1
+        if isCorrect {
+            quizScore += 1
+        } else if costsHeart {
+            profile?.loseHeart()
         }
     }
 
@@ -89,20 +143,8 @@ struct LessonContainerView: View {
             VocabularySlideView(word: word)
         case .alamMoBa(let slide):
             AlamMoBaSlideView(slide: slide)
-        case .quiz(let question, let costsHeart):
-            QuizSlideView(
-                question: question,
-                costsHeart: costsHeart,
-                onAnswer: { isCorrect in
-                    quizTotal += 1
-                    if isCorrect {
-                        quizScore += 1
-                    } else if costsHeart {
-                        profile?.loseHeart()
-                    }
-                },
-                onContinue: { advancePage() }
-            )
+        case .quiz(let question, _):
+            QuizSlideView(question: question, state: quizState)
         case .summary(let slide):
             SummarySlideView(
                 slide: slide,

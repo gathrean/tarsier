@@ -173,5 +173,6 @@ struct OnboardingFlow: View {
             motivations: Array(selectedMotivations)
         )
         modelContext.insert(profile)
+        try? modelContext.save()
     }
 }

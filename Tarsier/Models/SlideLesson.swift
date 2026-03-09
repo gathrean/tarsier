@@ -216,12 +216,6 @@ enum LessonPage: Identifiable {
         }
     }
 
-    var showsContinueButton: Bool {
-        switch self {
-        case .quiz, .summary: false
-        default: true
-        }
-    }
 }
 
 extension SlideLesson {

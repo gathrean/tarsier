@@ -16,6 +16,8 @@ settings:
     INFOPLIST_KEY_CFBundleDisplayName: "Tarsier"
     INFOPLIST_KEY_LSApplicationCategoryType: "public.app-category.education"
     SWIFT_STRICT_CONCURRENCY: complete
+    ENABLE_USER_SCRIPT_SANDBOXING: true
+    SWIFT_EMIT_LOC_STRINGS: true
 
 packages:
   GoogleGenerativeAI:

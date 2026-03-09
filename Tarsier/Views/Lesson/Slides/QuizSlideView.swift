@@ -1,18 +1,51 @@
 import SwiftUI
+import Observation
 
-struct QuizSlideView: View {
-    let question: SlideQuestion
-    let costsHeart: Bool
-    let onAnswer: (Bool) -> Void
-    let onContinue: () -> Void
+// MARK: - Quiz State (shared between QuizSlideView and LessonContainerView)
 
-    @State private var selectedOption: Int?
-    @State private var textAnswer = ""
-    @State private var answerState: AnswerState = .unanswered
+@Observable
+class QuizState {
+    var selectedOption: Int?
+    var textAnswer: String = ""
+    var answerState: AnswerState = .unanswered
 
     enum AnswerState {
         case unanswered, correct, incorrect
     }
+
+    var hasSelection: Bool {
+        selectedOption != nil || !textAnswer.trimmingCharacters(in: .whitespaces).isEmpty
+    }
+
+    var isChecked: Bool { answerState != .unanswered }
+
+    func reset() {
+        selectedOption = nil
+        textAnswer = ""
+        answerState = .unanswered
+    }
+
+    func checkMultipleChoice(question: SlideQuestion) -> Bool {
+        guard let selected = selectedOption else { return false }
+        let isCorrect = selected == question.correctAnswer
+        answerState = isCorrect ? .correct : .incorrect
+        return isCorrect
+    }
+
+    func checkFillInBlank(question: SlideQuestion) -> Bool {
+        let trimmed = textAnswer.trimmingCharacters(in: .whitespaces).lowercased()
+        let accepted = (question.correctAnswers ?? []).map { $0.lowercased() }
+        let isCorrect = accepted.contains(trimmed)
+        answerState = isCorrect ? .correct : .incorrect
+        return isCorrect
+    }
+}
+
+// MARK: - Quiz Slide View (content only — no bottom button)
+
+struct QuizSlideView: View {
+    let question: SlideQuestion
+    @Bindable var state: QuizState
 
     var body: some View {
         VStack(spacing: 20) {
@@ -28,7 +61,7 @@ struct QuizSlideView: View {
                 fillInBlankInput
             }
 
-            if answerState != .unanswered {
+            if state.isChecked {
                 feedbackSection
             }
         }
@@ -40,9 +73,8 @@ struct QuizSlideView: View {
         VStack(spacing: 10) {
             ForEach(Array((question.options ?? []).enumerated()), id: \.offset) { index, option in
                 Button {
-                    guard answerState == .unanswered else { return }
-                    selectedOption = index
-                    checkMultipleChoice(selected: index)
+                    guard !state.isChecked else { return }
+                    state.selectedOption = index
                 } label: {
                     HStack {
                         Text(option)
@@ -50,11 +82,11 @@ struct QuizSlideView: View {
                             .foregroundStyle(TarsierColors.textPrimary)
                             .multilineTextAlignment(.leading)
                         Spacer()
-                        if answerState != .unanswered {
+                        if state.isChecked {
                             if index == question.correctAnswer {
                                 Image(systemName: "checkmark.circle.fill")
                                     .foregroundStyle(TarsierColors.correctGreen)
-                            } else if index == selectedOption && answerState == .incorrect {
+                            } else if index == state.selectedOption && state.answerState == .incorrect {
                                 Image(systemName: "xmark.circle.fill")
                                     .foregroundStyle(TarsierColors.alertRed)
                             }
@@ -76,16 +108,24 @@ struct QuizSlideView: View {
     }
 
     private func optionBackground(for index: Int) -> Color {
-        guard answerState != .unanswered else { return TarsierColors.cream }
-        if index == question.correctAnswer { return TarsierColors.correctGreen.opacity(0.15) }
-        if index == selectedOption && answerState == .incorrect { return TarsierColors.alertRed.opacity(0.15) }
+        if state.isChecked {
+            if index == question.correctAnswer { return TarsierColors.correctGreen.opacity(0.15) }
+            if index == state.selectedOption && state.answerState == .incorrect { return TarsierColors.alertRed.opacity(0.15) }
+            return TarsierColors.cream
+        }
+        // Not checked yet — highlight selected option
+        if index == state.selectedOption { return TarsierColors.brandPurple.opacity(0.1) }
         return TarsierColors.cream
     }
 
     private func optionBorder(for index: Int) -> Color {
-        guard answerState != .unanswered else { return TarsierColors.cardBorder }
-        if index == question.correctAnswer { return TarsierColors.correctGreen }
-        if index == selectedOption && answerState == .incorrect { return TarsierColors.alertRed }
+        if state.isChecked {
+            if index == question.correctAnswer { return TarsierColors.correctGreen }
+            if index == state.selectedOption && state.answerState == .incorrect { return TarsierColors.alertRed }
+            return TarsierColors.cardBorder
+        }
+        // Not checked yet — highlight selected option
+        if index == state.selectedOption { return TarsierColors.functionalPurple }
         return TarsierColors.cardBorder
     }
 
@@ -93,14 +133,14 @@ struct QuizSlideView: View {
 
     private var fillInBlankInput: some View {
         VStack(spacing: 12) {
-            if let hint = question.hint, answerState == .unanswered {
+            if let hint = question.hint, !state.isChecked {
                 Text("Hint: \(hint)")
                     .font(TarsierFonts.caption())
                     .foregroundStyle(TarsierColors.textSecondary)
                     .italic()
             }
 
-            TextField("Type your answer", text: $textAnswer)
+            TextField("Type your answer", text: $state.textAnswer)
                 .font(TarsierFonts.body())
                 .padding(TarsierSpacing.cardPadding)
                 .background(
@@ -111,26 +151,18 @@ struct QuizSlideView: View {
                     RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
                         .stroke(TarsierColors.cardBorder, lineWidth: 1)
                 )
-                .disabled(answerState != .unanswered)
+                .disabled(state.isChecked)
                 .autocorrectionDisabled()
                 .textInputAutocapitalization(.never)
-
-            if answerState == .unanswered {
-                PrimaryButton("Check Answer") {
-                    checkFillInBlank()
-                }
-                .disabled(textAnswer.trimmingCharacters(in: .whitespaces).isEmpty)
-            }
         }
     }
 
-    // MARK: - Feedback
+    // MARK: - Feedback (shown after checking)
 
     private var feedbackSection: some View {
         VStack(spacing: 12) {
-            // Correct / incorrect header
             HStack(spacing: 6) {
-                if answerState == .correct {
+                if state.answerState == .correct {
                     Image(systemName: "checkmark.circle.fill")
                         .foregroundStyle(TarsierColors.correctGreen)
                     Text("Tama!")
@@ -139,20 +171,18 @@ struct QuizSlideView: View {
                 } else {
                     Image(systemName: "xmark.circle.fill")
                         .foregroundStyle(TarsierColors.alertRed)
-                    Text("Hindi pa")
+                    Text("Mali")
                         .font(TarsierFonts.heading())
                         .foregroundStyle(TarsierColors.alertRed)
                 }
             }
 
-            // Show correct answer for fill-in-blank when wrong
-            if answerState == .incorrect, let answers = question.correctAnswers, let first = answers.first {
+            if state.answerState == .incorrect, let answers = question.correctAnswers, let first = answers.first {
                 Text("Answer: \(first)")
                     .font(TarsierFonts.body())
                     .foregroundStyle(TarsierColors.textSecondary)
             }
 
-            // Explanation
             if let explanation = question.explanation {
                 Text(explanation)
                     .font(TarsierFonts.body(15))
@@ -164,27 +194,7 @@ struct QuizSlideView: View {
                             .fill(TarsierColors.cream)
                     )
             }
-
-            PrimaryButton("Continue") {
-                onContinue()
-            }
         }
         .padding(.top, 8)
-    }
-
-    // MARK: - Answer Checking
-
-    private func checkMultipleChoice(selected: Int) {
-        let isCorrect = selected == question.correctAnswer
-        answerState = isCorrect ? .correct : .incorrect
-        onAnswer(isCorrect)
-    }
-
-    private func checkFillInBlank() {
-        let trimmed = textAnswer.trimmingCharacters(in: .whitespaces).lowercased()
-        let accepted = (question.correctAnswers ?? []).map { $0.lowercased() }
-        let isCorrect = accepted.contains(trimmed)
-        answerState = isCorrect ? .correct : .incorrect
-        onAnswer(isCorrect)
     }
 }
