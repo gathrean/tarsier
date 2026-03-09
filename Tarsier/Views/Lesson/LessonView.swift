@@ -13,6 +13,7 @@ struct LessonContainerView: View {
     @State private var quizScore = 0
     @State private var quizTotal = 0
     @State private var quizState = QuizState()
+    @State private var showHeartsEmpty = false
 
     private var profile: UserProfile? { profiles.first }
     private var currentPage: LessonPage? {
@@ -67,6 +68,17 @@ struct LessonContainerView: View {
             Button("Leave", role: .destructive) { dismiss() }
         } message: {
             Text("Your progress in this lesson won't be saved.")
+        }
+        .sheet(isPresented: $showHeartsEmpty) {
+            HeartsEmptySheet(
+                onWatchAd: {
+                    // TODO: AdMob rewarded video — for now just refill 1 heart
+                    profile?.hearts = min(5, (profile?.hearts ?? 0) + 1)
+                },
+                onGetPremium: {
+                    // TODO: Superwall paywall trigger
+                }
+            )
         }
         .onAppear {
             pages = lesson.expandToPages()
@@ -127,6 +139,9 @@ struct LessonContainerView: View {
             quizScore += 1
         } else if costsHeart {
             profile?.loseHeart()
+            if profile?.hearts == 0 {
+                showHeartsEmpty = true
+            }
         }
     }
 
@@ -200,7 +215,11 @@ struct LessonContainerView: View {
                     root: word.word,
                     meaning: word.meaning,
                     lessonId: lesson.id,
-                    chapterId: lesson.chapterId
+                    chapterId: lesson.chapterId,
+                    pronunciationGuide: word.pronunciationGuide,
+                    exampleSentence: word.exampleSentence,
+                    exampleTranslation: word.exampleTranslation,
+                    taglishVariant: word.taglishVariant
                 )
                 modelContext.insert(entry)
             }

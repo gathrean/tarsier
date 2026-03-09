@@ -34,7 +34,7 @@ struct OnboardingFlow: View {
 
             Image(systemName: "eyes")
                 .font(.system(size: 80))
-                .foregroundStyle(TarsierTheme.brown)
+                .foregroundStyle(TarsierColors.tarsierDark)
 
             VStack(spacing: 8) {
                 Text("Tarsier")
@@ -63,7 +63,7 @@ struct OnboardingFlow: View {
             Spacer()
 
             Text("What's your level?")
-                .font(TarsierTheme.title)
+                .font(TarsierFonts.title())
 
             VStack(spacing: 12) {
                 ForEach(SkillLevel.allCases, id: \.self) { level in
@@ -73,7 +73,7 @@ struct OnboardingFlow: View {
                         HStack {
                             VStack(alignment: .leading, spacing: 4) {
                                 Text(level.displayName)
-                                    .font(TarsierTheme.headline)
+                                    .font(TarsierFonts.heading(17))
                                 Text(level.description)
                                     .font(TarsierFonts.caption())
                                     .foregroundStyle(TarsierColors.textSecondary)
@@ -117,7 +117,7 @@ struct OnboardingFlow: View {
             Spacer()
 
             Text("Why are you learning Tagalog?")
-                .font(TarsierTheme.title)
+                .font(TarsierFonts.title())
                 .multilineTextAlignment(.center)
 
             Text("Pick all that apply (optional)")
@@ -135,7 +135,7 @@ struct OnboardingFlow: View {
                     } label: {
                         HStack {
                             Text(motivation)
-                                .font(TarsierTheme.body)
+                                .font(TarsierFonts.body())
                             Spacer()
                             if selectedMotivations.contains(motivation) {
                                 Image(systemName: "checkmark")

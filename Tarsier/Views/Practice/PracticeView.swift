@@ -42,10 +42,10 @@ struct PracticeView: View {
 
             Image(systemName: "eyes")
                 .font(.system(size: 50))
-                .foregroundStyle(TarsierTheme.brown)
+                .foregroundStyle(TarsierColors.tarsierDark)
 
             Text("Ask Tarsier anything!")
-                .font(TarsierTheme.title3)
+                .font(TarsierFonts.heading())
 
             Text("Try: \"How do I ask my tita if she's eaten yet?\"")
                 .font(TarsierFonts.body(15))
@@ -73,7 +73,7 @@ struct PracticeView: View {
                             ProgressView()
                                 .padding(.horizontal)
                             Text("Tarsier is thinking...")
-                                .font(TarsierTheme.caption)
+                                .font(TarsierFonts.caption())
                                 .foregroundStyle(TarsierColors.textSecondary)
                             Spacer()
                         }
@@ -100,8 +100,8 @@ struct PracticeView: View {
 
             if let error = errorMessage {
                 Text(error)
-                    .font(TarsierTheme.caption)
-                    .foregroundStyle(TarsierTheme.red)
+                    .font(TarsierFonts.caption())
+                    .foregroundStyle(TarsierColors.alertRed)
                     .padding(.horizontal)
                     .padding(.top, 6)
             }
@@ -110,7 +110,7 @@ struct PracticeView: View {
                 TextField("Ask in English or Tagalog...", text: $inputText, axis: .vertical)
                     .textFieldStyle(.roundedBorder)
                     .lineLimit(1...4)
-                    .font(TarsierTheme.body)
+                    .font(TarsierFonts.body())
 
                 Button {
                     sendMessage()
@@ -168,11 +168,11 @@ struct ChatBubble: View {
 
             VStack(alignment: message.isUser ? .trailing : .leading, spacing: 4) {
                 Text(message.content)
-                    .font(TarsierTheme.body)
+                    .font(TarsierFonts.body())
                     .padding(12)
                     .background(
                         RoundedRectangle(cornerRadius: 16)
-                            .fill(message.isUser ? TarsierTheme.blue : TarsierTheme.cream)
+                            .fill(message.isUser ? TarsierColors.functionalPurple : TarsierColors.cream)
                     )
                     .foregroundStyle(message.isUser ? .white : TarsierColors.textPrimary)
             }
