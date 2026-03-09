@@ -12,8 +12,10 @@
 		10D77C9E2A33CCBA1F04CD05 /* Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BD490189370121D90333B4 /* Lesson.swift */; };
 		118FDC4E84229EF29EBADC5A /* lesson_01.json in Resources */ = {isa = PBXBuildFile; fileRef = 982758B382346B26747F4242 /* lesson_01.json */; };
 		17350FDC627F90A02A885754 /* TarsierFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A26B178D0C63849F2ED9DD0 /* TarsierFonts.swift */; };
+		24E401C768B2C1C765C0C224 /* AlamMoBaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84481B94748743EF30B1CA8 /* AlamMoBaView.swift */; };
 		2A1DCDAAE8CC4B50EC2CDB86 /* SuperwallKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1B254C39B45831DB5B47D10D /* SuperwallKit */; };
 		2BC88A23C0F425A717D26757 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBED49AC8802C7A05C79304 /* MainTabView.swift */; };
+		2D2AC7A6FCB5241C821EC71A /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E37117D7A295A82029498 /* PrimaryButton.swift */; };
 		45E9BBBD69941E4D7A1926DE /* PracticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E4C6BD3E168155DBD9D685 /* PracticeView.swift */; };
 		4D0C62DE6CFF07894F308CC4 /* LessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D61E44B983120EE2E25748 /* LessonView.swift */; };
 		4F00245F54EA1F869D7A71E0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091A2D027DE131B1E9BBBC6B /* HomeView.swift */; };
@@ -22,16 +24,22 @@
 		66A11A56C576F747AB7BCB79 /* TarsierTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FECC95432EBF3FD9460E88 /* TarsierTheme.swift */; };
 		6F0020EE3CEE3F36FE04B25B /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB36CA5AEFE730DF998C96E /* UserProfile.swift */; };
 		7551A64F3FF1AE22C73F537E /* LessonResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A9FACB6D20AB766F5171B6 /* LessonResult.swift */; };
+		7605F8A7C446D7D3AFEAB646 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F006D7EB86B96B93700F25C /* SecondaryButton.swift */; };
+		7A77214E9AC313D7F5A7FCB1 /* HeartDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD351D022D43F28267207471 /* HeartDisplay.swift */; };
 		7E5A197B2CF673B5FA0AA57C /* TarsierApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AA407504A6746AA18FB8E6 /* TarsierApp.swift */; };
 		88C0B9BF90E95AE3194205DD /* LessonService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9508A59AD298CD0D5AD18F0 /* LessonService.swift */; };
 		9136ABD7F4E245A61EA03A69 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E180A31160DC805B3530AE /* ContentView.swift */; };
 		9AE127FA28B5C2D10B69E7DD /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C891FB919113F25F9232361F /* QuizView.swift */; };
 		A96817343CAD57D4AF7418B6 /* StreakService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BAE3455847B83FA3F5BA1A /* StreakService.swift */; };
 		AC81B93BFE985CB5A30EB7A8 /* OnboardingFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCD8CCAC476282D791517EC /* OnboardingFlow.swift */; };
+		ACD9E409F56D77268197A74E /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C5B7D17C0C9BF896E2DC8 /* ProgressBarView.swift */; };
+		C5D6215F22D1F140AA8E22C9 /* TarsierCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AFCD23BA6B7D51D993A567 /* TarsierCard.swift */; };
 		C69DC30BBD687FD9DB75105E /* TarsierSpacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C11C7907CF608BDB708F91 /* TarsierSpacing.swift */; };
 		E1DA712511C05A355B29C6EC /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D1A21E9377CE216B63B7CC /* Color+Hex.swift */; };
 		E9CE3A331A87A7416558A37B /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 2924F4C7AF12EDD42E4E929E /* RevenueCat */; };
+		EF95B6FD5683A0DD0E7BE53A /* AffixBreakdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D68AE60916444BBAE35788 /* AffixBreakdownView.swift */; };
 		F66ED763BF1377515BAC4B2C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF75EB353DC7E014733A29FA /* SettingsView.swift */; };
+		FE3E7E9604967CD6CE5EE6AC /* TaglishCallout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC53468AD1B9C1EB0B4C798 /* TaglishCallout.swift */; };
 		FE72AC5A9AF0B93DF346BFFD /* TarsierAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40317D7E75CBD3DE301CED61 /* TarsierAIService.swift */; };
 /* End PBXBuildFile section */
 
@@ -42,16 +50,22 @@
 		18E4C6BD3E168155DBD9D685 /* PracticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeView.swift; sourceTree = "<group>"; };
 		204951829987ECBA0D413D0A /* TarsierColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TarsierColors.swift; sourceTree = "<group>"; };
 		2BC7EB6E074A89D467C03394 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		3E1E37117D7A295A82029498 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		3F006D7EB86B96B93700F25C /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		40317D7E75CBD3DE301CED61 /* TarsierAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TarsierAIService.swift; sourceTree = "<group>"; };
 		44E180A31160DC805B3530AE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		473C5B7D17C0C9BF896E2DC8 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		4A26B178D0C63849F2ED9DD0 /* TarsierFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TarsierFonts.swift; sourceTree = "<group>"; };
-		6E3FB2F04B2A708D6E5E6B01 /* Tarsier.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Tarsier.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		63AFCD23BA6B7D51D993A567 /* TarsierCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TarsierCard.swift; sourceTree = "<group>"; };
+		66D68AE60916444BBAE35788 /* AffixBreakdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffixBreakdownView.swift; sourceTree = "<group>"; };
+		6E3FB2F04B2A708D6E5E6B01 /* Tarsier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tarsier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80BD490189370121D90333B4 /* Lesson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lesson.swift; sourceTree = "<group>"; };
 		89AA407504A6746AA18FB8E6 /* TarsierApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TarsierApp.swift; sourceTree = "<group>"; };
 		91A9FACB6D20AB766F5171B6 /* LessonResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonResult.swift; sourceTree = "<group>"; };
 		982758B382346B26747F4242 /* lesson_01.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lesson_01.json; sourceTree = "<group>"; };
 		9C2378D89C052FCAC09BB170 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9CB36CA5AEFE730DF998C96E /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		9CC53468AD1B9C1EB0B4C798 /* TaglishCallout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaglishCallout.swift; sourceTree = "<group>"; };
 		A3C11C7907CF608BDB708F91 /* TarsierSpacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TarsierSpacing.swift; sourceTree = "<group>"; };
 		A9508A59AD298CD0D5AD18F0 /* LessonService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonService.swift; sourceTree = "<group>"; };
 		AF75EB353DC7E014733A29FA /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -59,7 +73,9 @@
 		C891FB919113F25F9232361F /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
 		DBCD8CCAC476282D791517EC /* OnboardingFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlow.swift; sourceTree = "<group>"; };
 		E6893FBD2AC772885B02341C /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
+		E84481B94748743EF30B1CA8 /* AlamMoBaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamMoBaView.swift; sourceTree = "<group>"; };
 		F6BAE3455847B83FA3F5BA1A /* StreakService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakService.swift; sourceTree = "<group>"; };
+		FD351D022D43F28267207471 /* HeartDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartDisplay.swift; sourceTree = "<group>"; };
 		FDBED49AC8802C7A05C79304 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -135,6 +151,7 @@
 				44E180A31160DC805B3530AE /* ContentView.swift */,
 				2BC7EB6E074A89D467C03394 /* Info.plist */,
 				89AA407504A6746AA18FB8E6 /* TarsierApp.swift */,
+				86DF5A465819EDC3C6E875A6 /* Components */,
 				64BA9AB6E424DEC37F374B9D /* Models */,
 				26AFC2E1B48A05287A53AD91 /* Resources */,
 				A2FB832B26DD3E076AC2E020 /* Services */,
@@ -178,6 +195,21 @@
 				08D61E44B983120EE2E25748 /* LessonView.swift */,
 			);
 			path = Lesson;
+			sourceTree = "<group>";
+		};
+		86DF5A465819EDC3C6E875A6 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				66D68AE60916444BBAE35788 /* AffixBreakdownView.swift */,
+				E84481B94748743EF30B1CA8 /* AlamMoBaView.swift */,
+				FD351D022D43F28267207471 /* HeartDisplay.swift */,
+				3E1E37117D7A295A82029498 /* PrimaryButton.swift */,
+				473C5B7D17C0C9BF896E2DC8 /* ProgressBarView.swift */,
+				3F006D7EB86B96B93700F25C /* SecondaryButton.swift */,
+				9CC53468AD1B9C1EB0B4C798 /* TaglishCallout.swift */,
+				63AFCD23BA6B7D51D993A567 /* TarsierCard.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		A2FB832B26DD3E076AC2E020 /* Services */ = {
@@ -260,9 +292,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1600;
-				TargetAttributes = {
-				};
+				LastUpgradeCheck = 2630;
 			};
 			buildConfigurationList = 3F3D5629C7C4DB09FEC13EC6 /* Build configuration list for PBXProject "Tarsier" */;
 			developmentRegion = en;
@@ -305,9 +335,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF95B6FD5683A0DD0E7BE53A /* AffixBreakdownView.swift in Sources */,
+				24E401C768B2C1C765C0C224 /* AlamMoBaView.swift in Sources */,
 				0E2A1AC42AFC3393EC0C58C6 /* ChatMessage.swift in Sources */,
 				E1DA712511C05A355B29C6EC /* Color+Hex.swift in Sources */,
 				9136ABD7F4E245A61EA03A69 /* ContentView.swift in Sources */,
+				7A77214E9AC313D7F5A7FCB1 /* HeartDisplay.swift in Sources */,
 				4F00245F54EA1F869D7A71E0 /* HomeView.swift in Sources */,
 				10D77C9E2A33CCBA1F04CD05 /* Lesson.swift in Sources */,
 				7551A64F3FF1AE22C73F537E /* LessonResult.swift in Sources */,
@@ -316,11 +349,16 @@
 				2BC88A23C0F425A717D26757 /* MainTabView.swift in Sources */,
 				AC81B93BFE985CB5A30EB7A8 /* OnboardingFlow.swift in Sources */,
 				45E9BBBD69941E4D7A1926DE /* PracticeView.swift in Sources */,
+				2D2AC7A6FCB5241C821EC71A /* PrimaryButton.swift in Sources */,
+				ACD9E409F56D77268197A74E /* ProgressBarView.swift in Sources */,
 				9AE127FA28B5C2D10B69E7DD /* QuizView.swift in Sources */,
+				7605F8A7C446D7D3AFEAB646 /* SecondaryButton.swift in Sources */,
 				F66ED763BF1377515BAC4B2C /* SettingsView.swift in Sources */,
 				A96817343CAD57D4AF7418B6 /* StreakService.swift in Sources */,
+				FE3E7E9604967CD6CE5EE6AC /* TaglishCallout.swift in Sources */,
 				FE72AC5A9AF0B93DF346BFFD /* TarsierAIService.swift in Sources */,
 				7E5A197B2CF673B5FA0AA57C /* TarsierApp.swift in Sources */,
+				C5D6215F22D1F140AA8E22C9 /* TarsierCard.swift in Sources */,
 				5D6751FEA2668CD6CEFDF66E /* TarsierColors.swift in Sources */,
 				17350FDC627F90A02A885754 /* TarsierFonts.swift in Sources */,
 				C69DC30BBD687FD9DB75105E /* TarsierSpacing.swift in Sources */,
@@ -388,6 +426,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -413,6 +452,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_STRICT_CONCURRENCY = complete;
@@ -476,6 +516,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -494,6 +535,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_STRICT_CONCURRENCY = complete;

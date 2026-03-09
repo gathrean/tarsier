@@ -59,55 +59,47 @@ struct LessonView: View {
     // MARK: - Etymology
 
     private var etymologySection: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Label("Word Roots & Patterns", systemImage: "tree.fill")
-                .font(TarsierTheme.headline)
-                .foregroundStyle(TarsierTheme.blue)
-
-            Text(lesson.etymology.focus)
-                .font(TarsierTheme.title3)
-
-            Text(lesson.etymology.explanation)
-                .font(TarsierTheme.body)
-                .foregroundStyle(TarsierColors.textSecondary)
-
-            HStack(spacing: 0) {
-                Text("Pattern: ")
-                    .font(TarsierTheme.callout)
-                    .foregroundStyle(TarsierColors.textSecondary)
-                Text(lesson.etymology.pattern)
-                    .font(TarsierTheme.callout)
-                    .bold()
+        TarsierCard {
+            VStack(alignment: .leading, spacing: 12) {
+                Label("Word Roots & Patterns", systemImage: "tree.fill")
+                    .font(TarsierTheme.headline)
                     .foregroundStyle(TarsierTheme.blue)
-            }
 
-            ForEach(lesson.etymology.examples) { example in
-                HStack {
-                    Text(example.root)
-                        .font(TarsierTheme.body)
+                Text(lesson.etymology.focus)
+                    .font(TarsierTheme.title3)
+
+                Text(lesson.etymology.explanation)
+                    .font(TarsierTheme.body)
+                    .foregroundStyle(TarsierColors.textSecondary)
+
+                HStack(spacing: 0) {
+                    Text("Pattern: ")
+                        .font(TarsierTheme.callout)
                         .foregroundStyle(TarsierColors.textSecondary)
-                    Image(systemName: "arrow.right")
-                        .font(TarsierFonts.caption())
-                        .foregroundStyle(TarsierColors.textSecondary)
-                    Text(example.derived)
-                        .font(TarsierTheme.headline)
+                    Text(lesson.etymology.pattern)
+                        .font(TarsierTheme.callout)
+                        .bold()
                         .foregroundStyle(TarsierTheme.blue)
-                    Text("(\(example.meaning))")
-                        .font(TarsierTheme.caption)
-                        .foregroundStyle(TarsierColors.textSecondary)
+                }
+
+                ForEach(lesson.etymology.examples) { example in
+                    HStack {
+                        Text(example.root)
+                            .font(TarsierTheme.body)
+                            .foregroundStyle(TarsierColors.textSecondary)
+                        Image(systemName: "arrow.right")
+                            .font(TarsierFonts.caption())
+                            .foregroundStyle(TarsierColors.textSecondary)
+                        Text(example.derived)
+                            .font(TarsierTheme.headline)
+                            .foregroundStyle(TarsierTheme.blue)
+                        Text("(\(example.meaning))")
+                            .font(TarsierTheme.caption)
+                            .foregroundStyle(TarsierColors.textSecondary)
+                    }
                 }
             }
         }
-        .padding(TarsierSpacing.cardPadding)
-        .background(
-            RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
-                .fill(TarsierColors.cream)
-                .shadow(color: .black.opacity(0.04), radius: 8, y: 2)
-        )
-        .overlay(
-            RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
-                .stroke(TarsierColors.cardBorder, lineWidth: 1)
-        )
     }
 
     // MARK: - Vocabulary
@@ -140,29 +132,22 @@ struct LessonView: View {
                 .font(TarsierTheme.headline)
 
             ForEach(lesson.sentences) { sentence in
-                VStack(alignment: .leading, spacing: 6) {
-                    Text(sentence.tagalog)
-                        .font(TarsierTheme.headline)
-                        .foregroundStyle(TarsierTheme.blue)
+                TarsierCard {
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text(sentence.tagalog)
+                            .font(TarsierTheme.headline)
+                            .foregroundStyle(TarsierTheme.blue)
 
-                    Text(sentence.english)
-                        .font(TarsierTheme.body)
+                        Text(sentence.english)
+                            .font(TarsierTheme.body)
 
-                    Text(sentence.breakdown)
-                        .font(TarsierTheme.caption)
-                        .foregroundStyle(TarsierColors.textSecondary)
-                        .italic()
+                        Text(sentence.breakdown)
+                            .font(TarsierTheme.caption)
+                            .foregroundStyle(TarsierColors.textSecondary)
+                            .italic()
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
-                .padding(TarsierSpacing.cardPadding)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .background(
-                    RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
-                        .fill(TarsierColors.cream)
-                )
-                .overlay(
-                    RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
-                        .stroke(TarsierColors.cardBorder, lineWidth: 1)
-                )
             }
         }
     }
@@ -170,15 +155,8 @@ struct LessonView: View {
     // MARK: - Quiz Button
 
     private var quizButton: some View {
-        Button {
+        PrimaryButton("Start Quiz", icon: "pencil.and.list.clipboard") {
             showQuiz = true
-        } label: {
-            Label("Start Quiz", systemImage: "pencil.and.list.clipboard")
-                .font(TarsierFonts.button())
-                .foregroundStyle(.white)
-                .frame(maxWidth: .infinity)
-                .frame(height: 52)
-                .background(TarsierColors.functionalPurple, in: RoundedRectangle(cornerRadius: TarsierSpacing.buttonCornerRadius))
         }
         .padding(.top, 8)
     }

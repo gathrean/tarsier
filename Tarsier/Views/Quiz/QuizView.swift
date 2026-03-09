@@ -42,17 +42,7 @@ struct QuizView: View {
     // MARK: - Progress Bar
 
     private var progressBar: some View {
-        GeometryReader { geo in
-            ZStack(alignment: .leading) {
-                Capsule()
-                    .fill(TarsierColors.cardBorder)
-                Capsule()
-                    .fill(TarsierColors.functionalPurple)
-                    .frame(width: geo.size.width * CGFloat(currentIndex) / CGFloat(questions.count))
-                    .animation(.easeInOut(duration: 0.3), value: currentIndex)
-            }
-        }
-        .frame(height: 6)
+        ProgressBarView(current: currentIndex, total: questions.count)
     }
 
     // MARK: - Question View
@@ -159,18 +149,8 @@ struct QuizView: View {
                 .textInputAutocapitalization(.never)
 
             if answerState == .unanswered {
-                Button {
+                PrimaryButton("Check Answer") {
                     checkTextAnswer(question)
-                } label: {
-                    Text("Check Answer")
-                        .font(TarsierFonts.button())
-                        .foregroundStyle(.white)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 52)
-                        .background(
-                            RoundedRectangle(cornerRadius: TarsierSpacing.buttonCornerRadius)
-                                .fill(textAnswer.trimmingCharacters(in: .whitespaces).isEmpty ? Color.gray : TarsierColors.functionalPurple)
-                        )
                 }
                 .disabled(textAnswer.trimmingCharacters(in: .whitespaces).isEmpty)
             }
@@ -210,15 +190,8 @@ struct QuizView: View {
                         )
                 }
 
-                Button {
+                PrimaryButton(currentIndex < questions.count - 1 ? "Next" : "See Results") {
                     nextQuestion()
-                } label: {
-                    Text(currentIndex < questions.count - 1 ? "Next" : "See Results")
-                        .font(TarsierFonts.button())
-                        .foregroundStyle(.white)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 52)
-                        .background(TarsierColors.functionalPurple, in: RoundedRectangle(cornerRadius: TarsierSpacing.buttonCornerRadius))
                 }
             }
         }
@@ -254,15 +227,8 @@ struct QuizView: View {
 
             Spacer()
 
-            Button {
+            PrimaryButton("Continue") {
                 dismiss()
-            } label: {
-                Text("Continue")
-                    .font(TarsierFonts.button())
-                    .foregroundStyle(.white)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 52)
-                    .background(TarsierColors.functionalPurple, in: RoundedRectangle(cornerRadius: TarsierSpacing.buttonCornerRadius))
             }
             .padding(.horizontal, 32)
             .padding(.bottom, 48)

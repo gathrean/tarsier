@@ -48,15 +48,8 @@ struct OnboardingFlow: View {
 
             Spacer()
 
-            Button {
+            PrimaryButton("Get Started") {
                 withAnimation { currentPage = 1 }
-            } label: {
-                Text("Get Started")
-                    .font(TarsierFonts.button())
-                    .foregroundStyle(.white)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 52)
-                    .background(TarsierColors.functionalPurple, in: RoundedRectangle(cornerRadius: TarsierSpacing.buttonCornerRadius))
             }
             .padding(.horizontal, 32)
             .padding(.bottom, 48)
@@ -108,18 +101,8 @@ struct OnboardingFlow: View {
 
             Spacer()
 
-            Button {
+            PrimaryButton("Continue") {
                 withAnimation { currentPage = 2 }
-            } label: {
-                Text("Continue")
-                    .font(TarsierFonts.button())
-                    .foregroundStyle(.white)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 52)
-                    .background(
-                        RoundedRectangle(cornerRadius: TarsierSpacing.buttonCornerRadius)
-                            .fill(selectedSkillLevel == nil ? Color.gray : TarsierColors.functionalPurple)
-                    )
             }
             .disabled(selectedSkillLevel == nil)
             .padding(.horizontal, 32)
@@ -176,15 +159,8 @@ struct OnboardingFlow: View {
 
             Spacer()
 
-            Button {
+            PrimaryButton("Let's Go!") {
                 completeOnboarding()
-            } label: {
-                Text("Let's Go!")
-                    .font(TarsierFonts.button())
-                    .foregroundStyle(.white)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 52)
-                    .background(TarsierColors.functionalPurple, in: RoundedRectangle(cornerRadius: TarsierSpacing.buttonCornerRadius))
             }
             .padding(.horizontal, 32)
             .padding(.bottom, 48)
