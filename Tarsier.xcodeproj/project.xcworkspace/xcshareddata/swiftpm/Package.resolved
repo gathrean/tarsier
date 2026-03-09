@@ -1,0 +1,42 @@
+{
+  "originHash" : "00c01ba8bcb2b72cf811e92252a26b289b10472c4ff80f0802b00b13c5f5d6b2",
+  "pins" : [
+    {
+      "identity" : "generative-ai-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/google/generative-ai-swift",
+      "state" : {
+        "revision" : "44b8ce120425f9cf53ca756f3434ca2c2696f8bd",
+        "version" : "0.5.6"
+      }
+    },
+    {
+      "identity" : "purchases-ios-spm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/RevenueCat/purchases-ios-spm",
+      "state" : {
+        "revision" : "d9303831a73a13178b593f2ec2d2417252542f7c",
+        "version" : "5.61.0"
+      }
+    },
+    {
+      "identity" : "superscript-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/superwall/Superscript-iOS",
+      "state" : {
+        "revision" : "711866edcb62dbd237c24ed3e5fa39fad0db639f",
+        "version" : "1.0.13"
+      }
+    },
+    {
+      "identity" : "superwall-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/superwall/Superwall-iOS",
+      "state" : {
+        "revision" : "aa839af572d9a85f6ec745d693019cc334473673",
+        "version" : "4.14.0"
+      }
+    }
+  ],
+  "version" : 3
+}

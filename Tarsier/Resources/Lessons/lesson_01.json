@@ -1,0 +1,97 @@
+{
+  "id": 1,
+  "tier": "beginner",
+  "topic": "Greetings & Politeness",
+  "cultural_note": "Filipinos greet elders with 'po' and 'opo' — these aren't just formality, they signal respect and warmth. Skipping them with a lola or tito is like calling your boss 'dude'.",
+  "etymology": {
+    "focus": "The root word 'galang' (respect)",
+    "explanation": "Magalang means respectful (mag- + galang). You'll see mag- turn roots into adjectives describing a person's quality. Galang → magalang. Ganda (beauty) → maganda. This pattern unlocks dozens of words.",
+    "pattern": "mag- + root = adjective (describes a quality)",
+    "examples": [
+      {"root": "galang", "derived": "magalang", "meaning": "respectful"},
+      {"root": "ganda", "derived": "maganda", "meaning": "beautiful"},
+      {"root": "bait", "derived": "mabait", "meaning": "kind/good"}
+    ]
+  },
+  "vocabulary": [
+    {
+      "tagalog": "Kumusta",
+      "english": "How are you",
+      "pronunciation": "koo-moo-STA",
+      "example_sentence": "Kumusta ka na?",
+      "example_translation": "How are you now?"
+    },
+    {
+      "tagalog": "Po",
+      "english": "Respect marker (no direct translation)",
+      "pronunciation": "poh",
+      "example_sentence": "Opo, kumain na po ako.",
+      "example_translation": "Yes, I've already eaten. (respectful)"
+    },
+    {
+      "tagalog": "Salamat",
+      "english": "Thank you",
+      "pronunciation": "sa-LA-mat",
+      "example_sentence": "Salamat po!",
+      "example_translation": "Thank you! (respectful)"
+    },
+    {
+      "tagalog": "Magandang umaga",
+      "english": "Good morning",
+      "pronunciation": "ma-gan-DANG oo-MA-ga",
+      "example_sentence": "Magandang umaga po!",
+      "example_translation": "Good morning! (respectful)"
+    },
+    {
+      "tagalog": "Paalam",
+      "english": "Goodbye",
+      "pronunciation": "pa-A-lam",
+      "example_sentence": "Paalam na po, Lola.",
+      "example_translation": "Goodbye, Grandma. (respectful)"
+    }
+  ],
+  "sentences": [
+    {
+      "tagalog": "Kumusta po kayo?",
+      "english": "How are you? (formal/respectful)",
+      "breakdown": "Kumusta (how are you) + po (respect marker) + kayo (you, plural/formal)"
+    },
+    {
+      "tagalog": "Mabuti naman po, salamat.",
+      "english": "I'm fine, thank you. (respectful)",
+      "breakdown": "Mabuti (fine/good) + naman (indeed/also) + po (respect) + salamat (thank you)"
+    },
+    {
+      "tagalog": "Magandang hapon po!",
+      "english": "Good afternoon! (respectful)",
+      "breakdown": "Magandang (beautiful/good) + hapon (afternoon) + po (respect marker)"
+    }
+  ],
+  "quiz": [
+    {
+      "type": "multiple_choice",
+      "question": "What does 'magalang' mean?",
+      "options": ["beautiful", "respectful", "kind", "tall"],
+      "correct_index": 1
+    },
+    {
+      "type": "fill_in_blank",
+      "question": "mag- + ganda = ___",
+      "answer": "maganda",
+      "hint": "It means beautiful"
+    },
+    {
+      "type": "translate",
+      "question": "How do you say 'How are you?' formally?",
+      "answer": "Kumusta po kayo?",
+      "accept_also": ["Kumusta po kayo", "kumusta po kayo"]
+    },
+    {
+      "type": "root_pattern",
+      "question": "If 'bait' means kindness, what does 'mabait' likely mean?",
+      "options": ["unkind", "kind", "kindness itself", "to be kind to someone"],
+      "correct_index": 1,
+      "explanation": "ma- + root = having that quality. Mabait = kind."
+    }
+  ]
+}

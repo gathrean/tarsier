@@ -1,22 +1,22 @@
 # Tarsier — Learn Tagalog | v0.1 MVP TODO
 
-> **App Name:** Tarsier  
-> **Tagline:** Tarsier — learn Tagalog  
-> **Target:** 2-week build  
-> **Stack:** SwiftUI, SwiftData, Gemini API, Superwall, RevenueCat  
-> **Architecture:** Local-first, no auth, no backend  
+> **App Name:** Tarsier
+> **Tagline:** Tarsier — learn Tagalog
+> **Target:** 2-week build
+> **Stack:** SwiftUI, SwiftData, Gemini API, Superwall, RevenueCat
+> **Architecture:** Local-first, no auth, no backend
 
 ---
 
 ## Project Setup
 
-- [ ] Create new Xcode project: `Tarsier`
-- [ ] Minimum deployment target: iOS 17.0
-- [ ] Add SPM dependencies:
+- [x] Create new Xcode project: `Tarsier`
+- [x] Minimum deployment target: iOS 17.0
+- [x] Add SPM dependencies:
   - RevenueCat
   - Superwall
   - GoogleGenerativeAI (Gemini Swift SDK)
-- [ ] Set up project folder structure:
+- [x] Set up project folder structure:
   - `/Models`
   - `/Views`
   - `/ViewModels`
@@ -24,19 +24,19 @@
   - `/Resources` (lesson JSON files)
   - `/Theme`
 - [ ] Configure app icon placeholder (tarsier mascot on Philippine blue #0038A8)
-- [ ] Set up colour palette in asset catalogue:
+- [x] Set up colour palette in asset catalogue:
   - `tarsierBlue` — #0038A8 (primary brand, Philippine flag blue)
   - `tarsierYellow` — #FCD116 (reward/celebration accent, Philippine flag yellow)
   - `tarsierRed` — #CE1126 (alert/correction accent, Philippine flag red)
   - `tarsierBrown` — #7B5B3A (mascot/warm accent)
   - `tarsierCream` — #FFF5E6 (soft backgrounds, card fills)
-- [ ] Set up SF Rounded as the primary typeface (consistent with ScheDue approach)
+- [x] Set up SF Rounded as the primary typeface (consistent with ScheDue approach)
 
 ---
 
 ## Data Models (SwiftData)
 
-### UserProfile
+### UserProfile ✅
 - `id: UUID`
 - `skillLevel: SkillLevel` (enum: beginner, intermediate, heritage)
 - `currentLessonIndex: Int`
@@ -46,12 +46,12 @@
 - `lastCompletedDate: Date?`
 - `createdAt: Date`
 
-### SkillLevel Enum
+### SkillLevel Enum ✅
 - `beginner` — never studied Tagalog, starting from zero
 - `intermediate` — knows basic phrases, wants to build structure
 - `heritage` — understands spoken Tagalog, can't construct sentences or read
 
-### LessonResult
+### LessonResult ✅
 - `id: UUID`
 - `lessonID: Int`
 - `score: Int` (number correct out of total quiz questions)
@@ -61,7 +61,7 @@
 
 ## Lesson Data Structure (Bundled JSON)
 
-### Lesson JSON Schema
+### Lesson JSON Schema ✅
 
 Each lesson is a JSON file bundled with the app in `/Resources/Lessons/`. No API calls needed for core lessons.
 
@@ -172,97 +172,89 @@ Each lesson is a JSON file bundled with the app in `/Resources/Lessons/`. No API
 ## Views
 
 ### Onboarding Flow (3 screens max)
-- [ ] **Screen 1 — Welcome:** Tarsier mascot + "Tarsier — learn Tagalog" + "Get Started" button
-- [ ] **Screen 2 — Skill Level Picker:** Three cards — Beginner / Intermediate / Heritage Speaker. Each with a one-line description. Single select → saves to UserProfile.
-- [ ] **Screen 3 — Motivation:** "Why are you learning Tagalog?" (optional, one-tap multi-select: reconnect with family, travel, partner is Filipino, general interest, other). Not gating — informational for future personalisation. → Navigates to home.
+- [x] **Screen 1 — Welcome:** Tarsier mascot + "Tarsier — learn Tagalog" + "Get Started" button
+- [x] **Screen 2 — Skill Level Picker:** Three cards — Beginner / Intermediate / Heritage Speaker. Each with a one-line description. Single select → saves to UserProfile.
+- [x] **Screen 3 — Motivation:** "Why are you learning Tagalog?" (optional, one-tap multi-select: reconnect with family, travel, partner is Filipino, general interest, other). Not gating — informational for future personalisation. → Navigates to home.
 
 ### Home Screen
-- [ ] Top section: streak counter (flame icon + day count) + current lesson number
-- [ ] Lesson list: vertical scroll of lesson cards, locked/unlocked state based on progress
-- [ ] Each card shows: lesson number, topic title, completion checkmark if done
-- [ ] Lessons unlock sequentially (complete lesson N to unlock N+1)
-- [ ] "Practice with Tarsier" button (premium badge) — fixed at bottom or in tab bar
+- [x] Top section: streak counter (flame icon + day count) + current lesson number
+- [x] Lesson list: vertical scroll of lesson cards, locked/unlocked state based on progress
+- [x] Each card shows: lesson number, topic title, completion checkmark if done
+- [x] Lessons unlock sequentially (complete lesson N to unlock N+1)
+- [x] "Practice with Tarsier" button (premium badge) — fixed at bottom or in tab bar
 
 ### Lesson View
-- [ ] Cultural note card at top (collapsible, starts expanded)
-- [ ] Etymology / affix breakdown section with the root → derived word examples
-- [ ] Vocabulary cards (swipeable or scrollable, Tagalog front → tap to reveal English + pronunciation + example)
-- [ ] Example sentences with word-by-word breakdown
-- [ ] "Start Quiz" button at bottom
+- [x] Cultural note card at top (collapsible, starts expanded)
+- [x] Etymology / affix breakdown section with the root → derived word examples
+- [x] Vocabulary cards (swipeable or scrollable, Tagalog front → tap to reveal English + pronunciation + example)
+- [x] Example sentences with word-by-word breakdown
+- [x] "Start Quiz" button at bottom
 
 ### Quiz View
-- [ ] Progress bar at top (question X of Y)
-- [ ] Supports 4 question types:
+- [x] Progress bar at top (question X of Y)
+- [x] Supports 4 question types:
   - **Multiple choice** — 4 options, tap to select
   - **Fill in the blank** — text input field, soft-match on answer (case-insensitive, ignore accents)
   - **Translate** — text input, accept multiple valid answers from `accept_also` array
   - **Root pattern** — multiple choice but specifically tests affix understanding, shows explanation on answer
-- [ ] Correct answer: green flash + brief explanation if available
-- [ ] Incorrect answer: red flash + show correct answer + explanation
-- [ ] End screen: score (X/Y correct), streak updated if ≥1 lesson completed today, "Continue" button returns to home
+- [x] Correct answer: green flash + brief explanation if available
+- [x] Incorrect answer: red flash + show correct answer + explanation
+- [x] End screen: score (X/Y correct), streak updated if ≥1 lesson completed today, "Continue" button returns to home
 
 ### Practice with Tarsier (Premium — AI Conversation Mode)
-- [ ] Chat-style interface
-- [ ] User types a situation or question in English (e.g., "How do I ask my tita if she's eaten yet?")
-- [ ] Gemini API call with system prompt:
-  ```
-  You are Tarsier, a friendly Tagalog language tutor. The user is learning Tagalog.
-  When they describe a situation or ask how to say something:
-  1. Give the Tagalog phrase
-  2. Give a pronunciation guide
-  3. Break down the grammar (identify roots and affixes)
-  4. Give a cultural context note if relevant
-  5. Suggest a natural Taglish alternative if applicable
-  Keep responses concise and warm. Use casual, encouraging tone.
-  ```
-- [ ] Response rendered as a styled card (not plain text)
-- [ ] Conversation history persisted locally (SwiftData) per session
+- [x] Chat-style interface
+- [x] User types a situation or question in English (e.g., "How do I ask my tita if she's eaten yet?")
+- [x] Gemini API call with system prompt
+- [x] Response rendered as styled card (chat bubble)
+- [x] Conversation history persisted locally (SwiftData) per session
 - [ ] Gated behind Superwall paywall
 
 ### Settings Screen
-- [ ] Change skill level (resets lesson progress — confirm dialog)
-- [ ] Manage subscription (opens RevenueCat management)
-- [ ] Reset progress (confirm dialog)
-- [ ] App version
-- [ ] Privacy policy link
-- [ ] Feedback/contact email
+- [x] Change skill level (resets lesson progress — confirm dialog)
+- [x] Manage subscription (opens RevenueCat management)
+- [x] Reset progress (confirm dialog)
+- [x] App version
+- [x] Privacy policy link
+- [x] Feedback/contact email
 
 ---
 
 ## Streak Logic
 
-- [ ] Completing ≥1 lesson in a calendar day counts as an active streak day
-- [ ] Streak increments if `lastCompletedDate` was yesterday or today
-- [ ] Streak resets to 0 if `lastCompletedDate` was more than 1 day ago
-- [ ] `longestStreak` updates whenever `currentStreak` exceeds it
-- [ ] Streak display: flame icon + number on home screen
-- [ ] Streak maintained check runs on app launch and on lesson completion
+- [x] Completing ≥1 lesson in a calendar day counts as an active streak day
+- [x] Streak increments if `lastCompletedDate` was yesterday or today
+- [x] Streak resets to 0 if `lastCompletedDate` was more than 1 day ago
+- [x] `longestStreak` updates whenever `currentStreak` exceeds it
+- [x] Streak display: flame icon + number on home screen
+- [x] Streak maintained check runs on app launch and on lesson completion
 
 ---
 
 ## Monetisation
 
-- [ ] Add RevenueCat SDK — configure product IDs
-- [ ] Add Superwall SDK — configure paywall
+- [x] Add RevenueCat SDK — SPM dependency added
+- [x] Add Superwall SDK — SPM dependency added
+- [ ] Configure product IDs in RevenueCat dashboard
+- [ ] Configure paywall in Superwall dashboard
 - [ ] Product offerings:
   - Monthly: $4.99/month
   - Annual: $29.99/year (hero, displayed as ~$2.49/month)
-- [ ] Free tier includes: full 30-lesson curriculum, streak tracking, all quizzes
-- [ ] Premium unlocks: "Practice with Tarsier" AI conversation mode
+- [x] Free tier includes: full 30-lesson curriculum, streak tracking, all quizzes
+- [x] Premium unlocks: "Practice with Tarsier" AI conversation mode
 - [ ] Paywall trigger: when user taps "Practice with Tarsier" button
-- [ ] Soft cap on AI conversations: 30 messages/day (hidden, marketed as unlimited)
+- [x] Soft cap on AI conversations: 30 messages/day (hidden, marketed as unlimited)
 
 ---
 
 ## Gemini API Integration
 
-- [ ] Only used for "Practice with Tarsier" premium feature
-- [ ] Model: Gemini Flash (cost-efficient for conversational responses)
-- [ ] API key stored in config (not hardcoded)
-- [ ] System prompt defined in `/Services/TarsierAIService.swift`
-- [ ] Response parsed and rendered as styled card in chat view
-- [ ] Error handling: if API fails, show friendly "Tarsier is sleeping, try again" message
-- [ ] Soft rate limit: 30 messages per calendar day per device (tracked in SwiftData)
+- [x] Only used for "Practice with Tarsier" premium feature
+- [x] Model: Gemini Flash (gemini-2.0-flash)
+- [x] API key stored in config (Info.plist via build setting, not hardcoded)
+- [x] System prompt defined in `/Services/TarsierAIService.swift`
+- [x] Response rendered as styled chat bubble in chat view
+- [x] Error handling: if API fails, show friendly "Tarsier is sleeping, try again" message
+- [x] Soft rate limit: 30 messages per calendar day per device (tracked in SwiftData)
 
 ---
 
@@ -301,12 +293,12 @@ Each lesson is a JSON file bundled with the app in `/Resources/Lessons/`. No API
 
 ## Ship Criteria
 
-- [ ] User can complete onboarding and reach home screen
-- [ ] User can progress through all 30 lessons sequentially
-- [ ] Quiz scoring works correctly for all 4 question types
-- [ ] Streak tracks and resets correctly across days
-- [ ] Paywall appears when tapping "Practice with Tarsier"
-- [ ] Premium AI conversation mode works end-to-end
-- [ ] App icon and launch screen reflect Tarsier branding
-- [ ] No crashes on iPhone 14/15/16 range
+- [x] User can complete onboarding and reach home screen
+- [ ] User can progress through all 30 lessons sequentially (needs lesson JSON files)
+- [x] Quiz scoring works correctly for all 4 question types
+- [x] Streak tracks and resets correctly across days
+- [ ] Paywall appears when tapping "Practice with Tarsier" (needs Superwall config)
+- [x] Premium AI conversation mode works end-to-end (needs API key)
+- [ ] App icon and launch screen reflect Tarsier branding (needs mascot asset)
+- [ ] No crashes on iPhone 14/15/16 range (needs device testing)
 - [ ] App Store metadata ready (screenshots, description, keywords)

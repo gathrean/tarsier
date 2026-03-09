@@ -1,0 +1,557 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0D972B3DC8A45B6F4BFE5E94 /* GoogleGenerativeAI in Frameworks */ = {isa = PBXBuildFile; productRef = 487AE1EA67AE2C89550C201E /* GoogleGenerativeAI */; };
+		0E2A1AC42AFC3393EC0C58C6 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6893FBD2AC772885B02341C /* ChatMessage.swift */; };
+		10D77C9E2A33CCBA1F04CD05 /* Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BD490189370121D90333B4 /* Lesson.swift */; };
+		118FDC4E84229EF29EBADC5A /* lesson_01.json in Resources */ = {isa = PBXBuildFile; fileRef = 982758B382346B26747F4242 /* lesson_01.json */; };
+		2A1DCDAAE8CC4B50EC2CDB86 /* SuperwallKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1B254C39B45831DB5B47D10D /* SuperwallKit */; };
+		2BC88A23C0F425A717D26757 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBED49AC8802C7A05C79304 /* MainTabView.swift */; };
+		45E9BBBD69941E4D7A1926DE /* PracticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E4C6BD3E168155DBD9D685 /* PracticeView.swift */; };
+		4D0C62DE6CFF07894F308CC4 /* LessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D61E44B983120EE2E25748 /* LessonView.swift */; };
+		4F00245F54EA1F869D7A71E0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091A2D027DE131B1E9BBBC6B /* HomeView.swift */; };
+		600FEE600003A090F6F86EB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C2378D89C052FCAC09BB170 /* Assets.xcassets */; };
+		66A11A56C576F747AB7BCB79 /* TarsierTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FECC95432EBF3FD9460E88 /* TarsierTheme.swift */; };
+		6F0020EE3CEE3F36FE04B25B /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB36CA5AEFE730DF998C96E /* UserProfile.swift */; };
+		7551A64F3FF1AE22C73F537E /* LessonResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A9FACB6D20AB766F5171B6 /* LessonResult.swift */; };
+		7E5A197B2CF673B5FA0AA57C /* TarsierApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AA407504A6746AA18FB8E6 /* TarsierApp.swift */; };
+		88C0B9BF90E95AE3194205DD /* LessonService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9508A59AD298CD0D5AD18F0 /* LessonService.swift */; };
+		9136ABD7F4E245A61EA03A69 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E180A31160DC805B3530AE /* ContentView.swift */; };
+		9AE127FA28B5C2D10B69E7DD /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C891FB919113F25F9232361F /* QuizView.swift */; };
+		A96817343CAD57D4AF7418B6 /* StreakService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BAE3455847B83FA3F5BA1A /* StreakService.swift */; };
+		AC81B93BFE985CB5A30EB7A8 /* OnboardingFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCD8CCAC476282D791517EC /* OnboardingFlow.swift */; };
+		E9CE3A331A87A7416558A37B /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 2924F4C7AF12EDD42E4E929E /* RevenueCat */; };
+		F66ED763BF1377515BAC4B2C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF75EB353DC7E014733A29FA /* SettingsView.swift */; };
+		FE72AC5A9AF0B93DF346BFFD /* TarsierAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40317D7E75CBD3DE301CED61 /* TarsierAIService.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		08D61E44B983120EE2E25748 /* LessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonView.swift; sourceTree = "<group>"; };
+		091A2D027DE131B1E9BBBC6B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		09FECC95432EBF3FD9460E88 /* TarsierTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TarsierTheme.swift; sourceTree = "<group>"; };
+		18E4C6BD3E168155DBD9D685 /* PracticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeView.swift; sourceTree = "<group>"; };
+		2BC7EB6E074A89D467C03394 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		40317D7E75CBD3DE301CED61 /* TarsierAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TarsierAIService.swift; sourceTree = "<group>"; };
+		44E180A31160DC805B3530AE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		6E3FB2F04B2A708D6E5E6B01 /* Tarsier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tarsier.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		80BD490189370121D90333B4 /* Lesson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lesson.swift; sourceTree = "<group>"; };
+		89AA407504A6746AA18FB8E6 /* TarsierApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TarsierApp.swift; sourceTree = "<group>"; };
+		91A9FACB6D20AB766F5171B6 /* LessonResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonResult.swift; sourceTree = "<group>"; };
+		982758B382346B26747F4242 /* lesson_01.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lesson_01.json; sourceTree = "<group>"; };
+		9C2378D89C052FCAC09BB170 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9CB36CA5AEFE730DF998C96E /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		A9508A59AD298CD0D5AD18F0 /* LessonService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonService.swift; sourceTree = "<group>"; };
+		AF75EB353DC7E014733A29FA /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		C891FB919113F25F9232361F /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
+		DBCD8CCAC476282D791517EC /* OnboardingFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlow.swift; sourceTree = "<group>"; };
+		E6893FBD2AC772885B02341C /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
+		F6BAE3455847B83FA3F5BA1A /* StreakService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakService.swift; sourceTree = "<group>"; };
+		FDBED49AC8802C7A05C79304 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1DAA9B20FAC0339674A61EC4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0D972B3DC8A45B6F4BFE5E94 /* GoogleGenerativeAI in Frameworks */,
+				E9CE3A331A87A7416558A37B /* RevenueCat in Frameworks */,
+				2A1DCDAAE8CC4B50EC2CDB86 /* SuperwallKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		091C8289E73EFF41B7211E73 /* Practice */ = {
+			isa = PBXGroup;
+			children = (
+				18E4C6BD3E168155DBD9D685 /* PracticeView.swift */,
+			);
+			path = Practice;
+			sourceTree = "<group>";
+		};
+		0F0501CBA9942272DD7F653B /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		21830710E4350CFEC27F504B /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				DBCD8CCAC476282D791517EC /* OnboardingFlow.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		237534944964054160B998AC /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				09FECC95432EBF3FD9460E88 /* TarsierTheme.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		26AFC2E1B48A05287A53AD91 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3953BB8B2EC33EB16E8D5D5E /* Lessons */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		3953BB8B2EC33EB16E8D5D5E /* Lessons */ = {
+			isa = PBXGroup;
+			children = (
+				982758B382346B26747F4242 /* lesson_01.json */,
+			);
+			path = Lessons;
+			sourceTree = "<group>";
+		};
+		5DBDA1C707656B8210F73F70 /* Tarsier */ = {
+			isa = PBXGroup;
+			children = (
+				9C2378D89C052FCAC09BB170 /* Assets.xcassets */,
+				44E180A31160DC805B3530AE /* ContentView.swift */,
+				2BC7EB6E074A89D467C03394 /* Info.plist */,
+				89AA407504A6746AA18FB8E6 /* TarsierApp.swift */,
+				64BA9AB6E424DEC37F374B9D /* Models */,
+				26AFC2E1B48A05287A53AD91 /* Resources */,
+				A2FB832B26DD3E076AC2E020 /* Services */,
+				237534944964054160B998AC /* Theme */,
+				0F0501CBA9942272DD7F653B /* ViewModels */,
+				A9D705B9C6379958BDF9DC87 /* Views */,
+			);
+			path = Tarsier;
+			sourceTree = "<group>";
+		};
+		64BA9AB6E424DEC37F374B9D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E6893FBD2AC772885B02341C /* ChatMessage.swift */,
+				80BD490189370121D90333B4 /* Lesson.swift */,
+				91A9FACB6D20AB766F5171B6 /* LessonResult.swift */,
+				9CB36CA5AEFE730DF998C96E /* UserProfile.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		755F954D6E2F55D9447C9B97 = {
+			isa = PBXGroup;
+			children = (
+				5DBDA1C707656B8210F73F70 /* Tarsier */,
+				F548B8DF818289D9611187BD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7BC7DD4AA34056DDD8F10F0C /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				AF75EB353DC7E014733A29FA /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		81A594220476B0720D182E35 /* Lesson */ = {
+			isa = PBXGroup;
+			children = (
+				08D61E44B983120EE2E25748 /* LessonView.swift */,
+			);
+			path = Lesson;
+			sourceTree = "<group>";
+		};
+		A2FB832B26DD3E076AC2E020 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A9508A59AD298CD0D5AD18F0 /* LessonService.swift */,
+				F6BAE3455847B83FA3F5BA1A /* StreakService.swift */,
+				40317D7E75CBD3DE301CED61 /* TarsierAIService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A9D705B9C6379958BDF9DC87 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FDBED49AC8802C7A05C79304 /* MainTabView.swift */,
+				D0CFA5C932BCFB5E4570228F /* Home */,
+				81A594220476B0720D182E35 /* Lesson */,
+				21830710E4350CFEC27F504B /* Onboarding */,
+				091C8289E73EFF41B7211E73 /* Practice */,
+				B710E1463D5648BBA547D22B /* Quiz */,
+				7BC7DD4AA34056DDD8F10F0C /* Settings */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B710E1463D5648BBA547D22B /* Quiz */ = {
+			isa = PBXGroup;
+			children = (
+				C891FB919113F25F9232361F /* QuizView.swift */,
+			);
+			path = Quiz;
+			sourceTree = "<group>";
+		};
+		D0CFA5C932BCFB5E4570228F /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				091A2D027DE131B1E9BBBC6B /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		F548B8DF818289D9611187BD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6E3FB2F04B2A708D6E5E6B01 /* Tarsier.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		66183142F676C134099C4BFC /* Tarsier */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 221AA9E772766E6A8E26FC9C /* Build configuration list for PBXNativeTarget "Tarsier" */;
+			buildPhases = (
+				6FEA6CD7C8747A4AEC380429 /* Sources */,
+				9EA084B13733688D8D632AC0 /* Resources */,
+				1DAA9B20FAC0339674A61EC4 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tarsier;
+			packageProductDependencies = (
+				487AE1EA67AE2C89550C201E /* GoogleGenerativeAI */,
+				2924F4C7AF12EDD42E4E929E /* RevenueCat */,
+				1B254C39B45831DB5B47D10D /* SuperwallKit */,
+			);
+			productName = Tarsier;
+			productReference = 6E3FB2F04B2A708D6E5E6B01 /* Tarsier.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B31010F103A6B394B8499957 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1600;
+			};
+			buildConfigurationList = 3F3D5629C7C4DB09FEC13EC6 /* Build configuration list for PBXProject "Tarsier" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 755F954D6E2F55D9447C9B97;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				34DE1A5C5278D27BFEFB5BA8 /* XCRemoteSwiftPackageReference "generative-ai-swift" */,
+				29E9652A6648997EEB139F2D /* XCRemoteSwiftPackageReference "purchases-ios-spm" */,
+				93FA03463661C292E0F29BDF /* XCRemoteSwiftPackageReference "Superwall-iOS" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = F548B8DF818289D9611187BD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				66183142F676C134099C4BFC /* Tarsier */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9EA084B13733688D8D632AC0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				600FEE600003A090F6F86EB9 /* Assets.xcassets in Resources */,
+				118FDC4E84229EF29EBADC5A /* lesson_01.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6FEA6CD7C8747A4AEC380429 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0E2A1AC42AFC3393EC0C58C6 /* ChatMessage.swift in Sources */,
+				9136ABD7F4E245A61EA03A69 /* ContentView.swift in Sources */,
+				4F00245F54EA1F869D7A71E0 /* HomeView.swift in Sources */,
+				10D77C9E2A33CCBA1F04CD05 /* Lesson.swift in Sources */,
+				7551A64F3FF1AE22C73F537E /* LessonResult.swift in Sources */,
+				88C0B9BF90E95AE3194205DD /* LessonService.swift in Sources */,
+				4D0C62DE6CFF07894F308CC4 /* LessonView.swift in Sources */,
+				2BC88A23C0F425A717D26757 /* MainTabView.swift in Sources */,
+				AC81B93BFE985CB5A30EB7A8 /* OnboardingFlow.swift in Sources */,
+				45E9BBBD69941E4D7A1926DE /* PracticeView.swift in Sources */,
+				9AE127FA28B5C2D10B69E7DD /* QuizView.swift in Sources */,
+				F66ED763BF1377515BAC4B2C /* SettingsView.swift in Sources */,
+				A96817343CAD57D4AF7418B6 /* StreakService.swift in Sources */,
+				FE72AC5A9AF0B93DF346BFFD /* TarsierAIService.swift in Sources */,
+				7E5A197B2CF673B5FA0AA57C /* TarsierApp.swift in Sources */,
+				66A11A56C576F747AB7BCB79 /* TarsierTheme.swift in Sources */,
+				6F0020EE3CEE3F36FE04B25B /* UserProfile.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		09E547D63D872D3CA36ABE20 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = QH9WULA9FH;
+				INFOPLIST_FILE = Tarsier/Info.plist;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tarsierapp.tarsier;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		53C1E3988C98CBA6E9FB7F0E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Tarsier/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Tarsier;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		79FA340108B89F4FEEE8F633 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = QH9WULA9FH;
+				INFOPLIST_FILE = Tarsier/Info.plist;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tarsierapp.tarsier;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		FF66DC3E8526FD1363DC70F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Tarsier/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Tarsier;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		221AA9E772766E6A8E26FC9C /* Build configuration list for PBXNativeTarget "Tarsier" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09E547D63D872D3CA36ABE20 /* Debug */,
+				79FA340108B89F4FEEE8F633 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		3F3D5629C7C4DB09FEC13EC6 /* Build configuration list for PBXProject "Tarsier" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				53C1E3988C98CBA6E9FB7F0E /* Debug */,
+				FF66DC3E8526FD1363DC70F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		29E9652A6648997EEB139F2D /* XCRemoteSwiftPackageReference "purchases-ios-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios-spm";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		34DE1A5C5278D27BFEFB5BA8 /* XCRemoteSwiftPackageReference "generative-ai-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/generative-ai-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.6;
+			};
+		};
+		93FA03463661C292E0F29BDF /* XCRemoteSwiftPackageReference "Superwall-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/superwall/Superwall-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1B254C39B45831DB5B47D10D /* SuperwallKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 93FA03463661C292E0F29BDF /* XCRemoteSwiftPackageReference "Superwall-iOS" */;
+			productName = SuperwallKit;
+		};
+		2924F4C7AF12EDD42E4E929E /* RevenueCat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29E9652A6648997EEB139F2D /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = RevenueCat;
+		};
+		487AE1EA67AE2C89550C201E /* GoogleGenerativeAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 34DE1A5C5278D27BFEFB5BA8 /* XCRemoteSwiftPackageReference "generative-ai-swift" */;
+			productName = GoogleGenerativeAI;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = B31010F103A6B394B8499957 /* Project object */;
+}
