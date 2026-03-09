@@ -140,7 +140,9 @@ struct LessonContainerView: View {
         quizTotal += 1
         if isCorrect {
             quizScore += 1
+            UIImpactFeedbackGenerator(style: .light).impactOccurred()
         } else if costsHeart {
+            UINotificationFeedbackGenerator().notificationOccurred(.error)
             profile?.loseHeart()
             if profile?.hearts == 0 {
                 showHeartsEmpty = true

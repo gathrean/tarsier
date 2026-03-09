@@ -22,6 +22,7 @@
 		4D0C62DE6CFF07894F308CC4 /* LessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D61E44B983120EE2E25748 /* LessonView.swift */; };
 		4F00245F54EA1F869D7A71E0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091A2D027DE131B1E9BBBC6B /* HomeView.swift */; };
 		5D6751FEA2668CD6CEFDF66E /* TarsierColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204951829987ECBA0D413D0A /* TarsierColors.swift */; };
+		5F18F08CE1EB5139228AFC07 /* PhotoCreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5527708EB3ED2D16E9E9708A /* PhotoCreditsView.swift */; };
 		600FEE600003A090F6F86EB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C2378D89C052FCAC09BB170 /* Assets.xcassets */; };
 		60E230BFDDAD721B76B986D6 /* WordBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8981091307BFE192BF3F036D /* WordBank.swift */; };
 		6F0020EE3CEE3F36FE04B25B /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB36CA5AEFE730DF998C96E /* UserProfile.swift */; };
@@ -70,6 +71,7 @@
 		44E180A31160DC805B3530AE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		473C5B7D17C0C9BF896E2DC8 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		4A26B178D0C63849F2ED9DD0 /* TarsierFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TarsierFonts.swift; sourceTree = "<group>"; };
+		5527708EB3ED2D16E9E9708A /* PhotoCreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCreditsView.swift; sourceTree = "<group>"; };
 		63AFCD23BA6B7D51D993A567 /* TarsierCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TarsierCard.swift; sourceTree = "<group>"; };
 		66D68AE60916444BBAE35788 /* AffixBreakdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffixBreakdownView.swift; sourceTree = "<group>"; };
 		6E3FB2F04B2A708D6E5E6B01 /* Tarsier.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Tarsier.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -162,6 +164,7 @@
 		2E1CC7E3EB61DFFE4AC103F8 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				5527708EB3ED2D16E9E9708A /* PhotoCreditsView.swift */,
 				CEB1EE9F22C3F12C82F5081F /* ProfileView.swift */,
 			);
 			path = Profile;
@@ -399,6 +402,7 @@
 				4D0C62DE6CFF07894F308CC4 /* LessonView.swift in Sources */,
 				2BC88A23C0F425A717D26757 /* MainTabView.swift in Sources */,
 				AC81B93BFE985CB5A30EB7A8 /* OnboardingFlow.swift in Sources */,
+				5F18F08CE1EB5139228AFC07 /* PhotoCreditsView.swift in Sources */,
 				45E9BBBD69941E4D7A1926DE /* PracticeView.swift in Sources */,
 				3CD9D7100A609013145A1B28 /* PremiumGateSheet.swift in Sources */,
 				2D2AC7A6FCB5241C821EC71A /* PrimaryButton.swift in Sources */,

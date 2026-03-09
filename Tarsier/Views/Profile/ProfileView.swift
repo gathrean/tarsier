@@ -84,6 +84,13 @@ struct ProfileView: View {
 
                 Link("Feedback", destination: URL(string: "mailto:hello@tarsierapp.com")!)
                     .font(TarsierFonts.body())
+
+                NavigationLink {
+                    PhotoCreditsView()
+                } label: {
+                    Text("Photo Credits")
+                        .font(TarsierFonts.body())
+                }
             }
         }
         .scrollContentBackground(.hidden)
