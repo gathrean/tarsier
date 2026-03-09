@@ -37,6 +37,7 @@ struct QuizView: View {
         .navigationTitle("Quiz")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
+        .toolbar(.hidden, for: .tabBar)
     }
 
     // MARK: - Progress Bar

@@ -7,21 +7,21 @@ struct MainTabView: View {
                 HomeView()
             }
             .tabItem {
-                Label("Home", systemImage: "house.fill")
+                Label("Learn", systemImage: "book.fill")
             }
 
             NavigationStack {
-                PracticeView()
+                WordsView()
             }
             .tabItem {
-                Label("Practice", systemImage: "bubble.left.and.text.bubble.right.fill")
+                Label("Words", systemImage: "character.book.closed.fill")
             }
 
             NavigationStack {
-                SettingsView()
+                ProfileView()
             }
             .tabItem {
-                Label("Settings", systemImage: "gearshape.fill")
+                Label("Profile", systemImage: "person.fill")
             }
         }
         .tint(TarsierColors.functionalPurple)

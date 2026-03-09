@@ -20,6 +20,7 @@ struct LessonView: View {
         .background(TarsierColors.warmWhite)
         .navigationTitle(lesson.topic)
         .navigationBarTitleDisplayMode(.large)
+        .toolbar(.hidden, for: .tabBar)
         .navigationDestination(isPresented: $showQuiz) {
             QuizView(lesson: lesson)
         }

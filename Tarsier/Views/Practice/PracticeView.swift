@@ -31,6 +31,7 @@ struct PracticeView: View {
         }
         .navigationTitle("Practice with Tarsier")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar(.hidden, for: .tabBar)
     }
 
     // MARK: - Empty State
