@@ -1,220 +1,169 @@
 import SwiftUI
+import SwiftData
 
-struct LessonView: View {
-    let lesson: Lesson
-    @State private var isCulturalNoteExpanded = true
-    @State private var revealedVocab: Set<String> = []
-    @State private var showQuiz = false
+struct LessonContainerView: View {
+    let lesson: SlideLesson
+    @Environment(\.dismiss) private var dismiss
+    @Environment(\.modelContext) private var modelContext
+    @Query private var profiles: [UserProfile]
+
+    @State private var currentPageIndex = 0
+    @State private var pages: [LessonPage] = []
+    @State private var showCloseConfirmation = false
+    @State private var quizScore = 0
+    @State private var quizTotal = 0
+
+    private var profile: UserProfile? { profiles.first }
+    private var currentPage: LessonPage? {
+        guard currentPageIndex < pages.count else { return nil }
+        return pages[currentPageIndex]
+    }
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 24) {
-                culturalNoteSection
-                etymologySection
-                vocabularySection
-                sentencesSection
-                quizButton
+        VStack(spacing: 0) {
+            // Top bar: close button + progress
+            HStack(spacing: 12) {
+                Button {
+                    showCloseConfirmation = true
+                } label: {
+                    Image(systemName: "xmark")
+                        .font(.system(size: 14, weight: .bold))
+                        .foregroundStyle(TarsierColors.textSecondary)
+                        .frame(width: 32, height: 32)
+                        .background(Circle().fill(TarsierColors.cream))
+                        .overlay(Circle().stroke(TarsierColors.cardBorder, lineWidth: 1))
+                }
+
+                ProgressBarView(current: currentPageIndex, total: pages.count)
             }
-            .padding(TarsierSpacing.screenPadding)
+            .padding(.horizontal, TarsierSpacing.screenPadding)
+            .padding(.top, 8)
+            .padding(.bottom, 4)
+
+            // Slide content
+            if let page = currentPage {
+                ScrollView {
+                    slideContent(for: page)
+                        .padding(.horizontal, TarsierSpacing.screenPadding)
+                        .padding(.top, 16)
+                        .padding(.bottom, page.showsContinueButton ? 80 : 16)
+                }
+            }
+
+            Spacer(minLength: 0)
+
+            // Continue button (hidden for quiz & summary — they have their own)
+            if let page = currentPage, page.showsContinueButton {
+                PrimaryButton("Continue") {
+                    advancePage()
+                }
+                .padding(.horizontal, TarsierSpacing.screenPadding)
+                .padding(.bottom, 16)
+            }
         }
-        .background(TarsierColors.warmWhite)
-        .navigationTitle(lesson.topic)
-        .navigationBarTitleDisplayMode(.large)
+        .background(TarsierColors.warmWhite.ignoresSafeArea())
+        .navigationBarBackButtonHidden()
         .toolbar(.hidden, for: .tabBar)
-        .navigationDestination(isPresented: $showQuiz) {
-            QuizView(lesson: lesson)
+        .toolbar(.hidden, for: .navigationBar)
+        .alert("Leave lesson?", isPresented: $showCloseConfirmation) {
+            Button("Stay", role: .cancel) {}
+            Button("Leave", role: .destructive) { dismiss() }
+        } message: {
+            Text("Your progress in this lesson won't be saved.")
+        }
+        .onAppear {
+            pages = lesson.expandToPages()
         }
     }
 
-    // MARK: - Cultural Note
+    // MARK: - Slide Router
 
-    private var culturalNoteSection: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Button {
-                withAnimation { isCulturalNoteExpanded.toggle() }
-            } label: {
-                HStack {
-                    Label("Cultural Note", systemImage: "globe.asia.australia.fill")
-                        .font(TarsierTheme.headline)
-                        .foregroundStyle(TarsierTheme.brown)
-                    Spacer()
-                    Image(systemName: isCulturalNoteExpanded ? "chevron.up" : "chevron.down")
-                        .foregroundStyle(TarsierColors.textSecondary)
-                }
-            }
-            .buttonStyle(.plain)
-
-            if isCulturalNoteExpanded {
-                Text(lesson.culturalNote)
-                    .font(TarsierFonts.body())
-                    .foregroundStyle(TarsierColors.textSecondary)
-                    .padding(TarsierSpacing.cardPadding)
-                    .background(
-                        RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
-                            .fill(TarsierColors.cream)
-                    )
-            }
-        }
-    }
-
-    // MARK: - Etymology
-
-    private var etymologySection: some View {
-        TarsierCard {
-            VStack(alignment: .leading, spacing: 12) {
-                Label("Word Roots & Patterns", systemImage: "tree.fill")
-                    .font(TarsierTheme.headline)
-                    .foregroundStyle(TarsierTheme.blue)
-
-                Text(lesson.etymology.focus)
-                    .font(TarsierTheme.title3)
-
-                Text(lesson.etymology.explanation)
-                    .font(TarsierTheme.body)
-                    .foregroundStyle(TarsierColors.textSecondary)
-
-                HStack(spacing: 0) {
-                    Text("Pattern: ")
-                        .font(TarsierTheme.callout)
-                        .foregroundStyle(TarsierColors.textSecondary)
-                    Text(lesson.etymology.pattern)
-                        .font(TarsierTheme.callout)
-                        .bold()
-                        .foregroundStyle(TarsierTheme.blue)
-                }
-
-                ForEach(lesson.etymology.examples) { example in
-                    HStack {
-                        Text(example.root)
-                            .font(TarsierTheme.body)
-                            .foregroundStyle(TarsierColors.textSecondary)
-                        Image(systemName: "arrow.right")
-                            .font(TarsierFonts.caption())
-                            .foregroundStyle(TarsierColors.textSecondary)
-                        Text(example.derived)
-                            .font(TarsierTheme.headline)
-                            .foregroundStyle(TarsierTheme.blue)
-                        Text("(\(example.meaning))")
-                            .font(TarsierTheme.caption)
-                            .foregroundStyle(TarsierColors.textSecondary)
+    @ViewBuilder
+    private func slideContent(for page: LessonPage) -> some View {
+        switch page {
+        case .culturalContext(let slide):
+            CulturalContextSlideView(slide: slide)
+        case .teaching(let slide):
+            TeachingSlideView(slide: slide)
+        case .vocabulary(let word):
+            VocabularySlideView(word: word)
+        case .alamMoBa(let slide):
+            AlamMoBaSlideView(slide: slide)
+        case .quiz(let question, let costsHeart):
+            QuizSlideView(
+                question: question,
+                costsHeart: costsHeart,
+                onAnswer: { isCorrect in
+                    quizTotal += 1
+                    if isCorrect {
+                        quizScore += 1
+                    } else if costsHeart {
+                        profile?.loseHeart()
                     }
-                }
-            }
-        }
-    }
-
-    // MARK: - Vocabulary
-
-    private var vocabularySection: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Label("Vocabulary", systemImage: "character.book.closed.fill")
-                .font(TarsierTheme.headline)
-
-            ForEach(lesson.vocabulary) { vocab in
-                VocabularyCard(
-                    vocab: vocab,
-                    isRevealed: revealedVocab.contains(vocab.id)
-                ) {
-                    if revealedVocab.contains(vocab.id) {
-                        revealedVocab.remove(vocab.id)
-                    } else {
-                        revealedVocab.insert(vocab.id)
-                    }
-                }
-            }
-        }
-    }
-
-    // MARK: - Sentences
-
-    private var sentencesSection: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Label("Example Sentences", systemImage: "text.quote")
-                .font(TarsierTheme.headline)
-
-            ForEach(lesson.sentences) { sentence in
-                TarsierCard {
-                    VStack(alignment: .leading, spacing: 6) {
-                        Text(sentence.tagalog)
-                            .font(TarsierTheme.headline)
-                            .foregroundStyle(TarsierTheme.blue)
-
-                        Text(sentence.english)
-                            .font(TarsierTheme.body)
-
-                        Text(sentence.breakdown)
-                            .font(TarsierTheme.caption)
-                            .foregroundStyle(TarsierColors.textSecondary)
-                            .italic()
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                }
-            }
-        }
-    }
-
-    // MARK: - Quiz Button
-
-    private var quizButton: some View {
-        PrimaryButton("Start Quiz", icon: "pencil.and.list.clipboard") {
-            showQuiz = true
-        }
-        .padding(.top, 8)
-    }
-}
-
-// MARK: - Vocabulary Card
-
-struct VocabularyCard: View {
-    let vocab: VocabularyItem
-    let isRevealed: Bool
-    let onTap: () -> Void
-
-    var body: some View {
-        Button(action: onTap) {
-            VStack(alignment: .leading, spacing: 8) {
-                HStack {
-                    Text(vocab.tagalog)
-                        .font(TarsierTheme.title3)
-                        .foregroundStyle(TarsierTheme.blue)
-                    Spacer()
-                    Text("tap to reveal")
-                        .font(TarsierTheme.caption)
-                        .foregroundStyle(TarsierColors.textSecondary.opacity(0.6))
-                        .opacity(isRevealed ? 0 : 1)
-                }
-
-                if isRevealed {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(vocab.english)
-                            .font(TarsierTheme.body)
-                        Text(vocab.pronunciation)
-                            .font(TarsierTheme.caption)
-                            .foregroundStyle(TarsierColors.textSecondary)
-                            .italic()
-                        Divider()
-                        Text(vocab.exampleSentence)
-                            .font(TarsierTheme.callout)
-                            .foregroundStyle(TarsierTheme.brown)
-                        Text(vocab.exampleTranslation)
-                            .font(TarsierTheme.caption)
-                            .foregroundStyle(TarsierColors.textSecondary)
-                    }
-                    .transition(.opacity.combined(with: .move(edge: .top)))
-                }
-            }
-            .padding(TarsierSpacing.cardPadding)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(
-                RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
-                    .fill(TarsierColors.cream)
+                },
+                onContinue: { advancePage() }
             )
-            .overlay(
-                RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
-                    .stroke(isRevealed ? TarsierColors.functionalPurple : TarsierColors.cardBorder, lineWidth: isRevealed ? 2 : 1)
+        case .summary(let slide):
+            SummarySlideView(
+                slide: slide,
+                xpReward: lesson.gamification.xpReward,
+                quizScore: quizScore,
+                quizTotal: quizTotal,
+                onContinue: { completeLesson() }
             )
         }
-        .buttonStyle(.plain)
-        .animation(.easeOut(duration: 0.2), value: isRevealed)
+    }
+
+    // MARK: - Navigation
+
+    private func advancePage() {
+        withAnimation(.easeInOut(duration: 0.25)) {
+            if currentPageIndex < pages.count - 1 {
+                currentPageIndex += 1
+            }
+        }
+    }
+
+    // MARK: - Lesson Completion
+
+    private func completeLesson() {
+        if let profile {
+            profile.addXP(lesson.gamification.xpReward)
+
+            if !profile.completedLessonIDs.contains(lesson.id) {
+                profile.completedLessonIDs.append(lesson.id)
+            }
+
+            if lesson.id >= profile.currentLessonIndex {
+                profile.currentLessonIndex = lesson.id + 1
+            }
+
+            StreakService.updateStreak(for: profile)
+        }
+
+        let result = LessonResult(
+            lessonID: lesson.id,
+            chapterId: lesson.chapterId,
+            score: quizScore,
+            totalQuestions: quizTotal,
+            xpEarned: lesson.gamification.xpReward
+        )
+        modelContext.insert(result)
+
+        // Add words to word bank
+        for slide in lesson.slides where slide.type == .vocabulary {
+            for word in slide.words ?? [] {
+                let entry = WordBankEntry(
+                    word: word.word,
+                    root: word.word,
+                    meaning: word.meaning,
+                    lessonId: lesson.id,
+                    chapterId: lesson.chapterId
+                )
+                modelContext.insert(entry)
+            }
+        }
+
+        dismiss()
     }
 }

@@ -4,7 +4,7 @@ import SwiftData
 struct HomeView: View {
     @Query private var profiles: [UserProfile]
     @State private var chapters: [Chapter] = []
-    @State private var lessons: [Lesson] = []
+    @State private var lessons: [SlideLesson] = []
 
     private var profile: UserProfile? { profiles.first }
     private var currentLessonIndex: Int { profile?.currentLessonIndex ?? 1 }
@@ -28,7 +28,7 @@ struct HomeView: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationDestination(for: Int.self) { lessonID in
             if let lesson = LessonService.shared.lesson(for: lessonID) {
-                LessonView(lesson: lesson)
+                LessonContainerView(lesson: lesson)
             }
         }
         .onAppear {

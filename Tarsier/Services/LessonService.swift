@@ -4,12 +4,12 @@ import Foundation
 final class LessonService {
     static let shared = LessonService()
 
-    private var cachedLessons: [Lesson]?
+    private var cachedLessons: [SlideLesson]?
     private var cachedChapters: [Chapter]?
 
     private init() {}
 
-    func loadAllLessons() -> [Lesson] {
+    func loadAllLessons() -> [SlideLesson] {
         if let cached = cachedLessons { return cached }
 
         guard let urls = Bundle.main.urls(forResourcesWithExtension: "json", subdirectory: nil) else {
@@ -17,14 +17,13 @@ final class LessonService {
         }
 
         let decoder = JSONDecoder()
-        var lessons: [Lesson] = []
+        var lessons: [SlideLesson] = []
 
         for url in urls {
-            // Only load lesson files (named like lesson_01.json)
             guard url.lastPathComponent.hasPrefix("lesson_") else { continue }
             do {
                 let data = try Data(contentsOf: url)
-                let lesson = try decoder.decode(Lesson.self, from: data)
+                let lesson = try decoder.decode(SlideLesson.self, from: data)
                 lessons.append(lesson)
             } catch {
                 print("Failed to load lesson from \(url.lastPathComponent): \(error)")
@@ -36,7 +35,7 @@ final class LessonService {
         return lessons
     }
 
-    func lesson(for id: Int) -> Lesson? {
+    func lesson(for id: Int) -> SlideLesson? {
         loadAllLessons().first { $0.id == id }
     }
 
