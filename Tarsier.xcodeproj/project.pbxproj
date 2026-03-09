@@ -15,6 +15,7 @@
 		2A1DCDAAE8CC4B50EC2CDB86 /* SuperwallKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1B254C39B45831DB5B47D10D /* SuperwallKit */; };
 		2BC88A23C0F425A717D26757 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBED49AC8802C7A05C79304 /* MainTabView.swift */; };
 		2D2AC7A6FCB5241C821EC71A /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E37117D7A295A82029498 /* PrimaryButton.swift */; };
+		3CD9D7100A609013145A1B28 /* PremiumGateSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DB9E3078E8948B59F80B23 /* PremiumGateSheet.swift */; };
 		41D5C642375D7E1868452670 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB1EE9F22C3F12C82F5081F /* ProfileView.swift */; };
 		45E9BBBD69941E4D7A1926DE /* PracticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E4C6BD3E168155DBD9D685 /* PracticeView.swift */; };
 		48820DF673129AA61BEB46F6 /* SummarySlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E936295E608B17FCEC93192A /* SummarySlideView.swift */; };
@@ -23,7 +24,6 @@
 		5D6751FEA2668CD6CEFDF66E /* TarsierColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204951829987ECBA0D413D0A /* TarsierColors.swift */; };
 		600FEE600003A090F6F86EB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C2378D89C052FCAC09BB170 /* Assets.xcassets */; };
 		60E230BFDDAD721B76B986D6 /* WordBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8981091307BFE192BF3F036D /* WordBank.swift */; };
-		66A11A56C576F747AB7BCB79 /* TarsierTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FECC95432EBF3FD9460E88 /* TarsierTheme.swift */; };
 		6F0020EE3CEE3F36FE04B25B /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB36CA5AEFE730DF998C96E /* UserProfile.swift */; };
 		73B4EF8347ED1E3EE9888501 /* HeartsEmptySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9749D52F0A93EC1D9163BB9B /* HeartsEmptySheet.swift */; };
 		7551A64F3FF1AE22C73F537E /* LessonResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A9FACB6D20AB766F5171B6 /* LessonResult.swift */; };
@@ -58,7 +58,6 @@
 /* Begin PBXFileReference section */
 		08D61E44B983120EE2E25748 /* LessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonView.swift; sourceTree = "<group>"; };
 		091A2D027DE131B1E9BBBC6B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		09FECC95432EBF3FD9460E88 /* TarsierTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TarsierTheme.swift; sourceTree = "<group>"; };
 		1472B2E8325E8DA300837744 /* chapters.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = chapters.json; sourceTree = "<group>"; };
 		161EAC20196EEF34D268F9BA /* ChapterProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterProgress.swift; sourceTree = "<group>"; };
 		18E4C6BD3E168155DBD9D685 /* PracticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeView.swift; sourceTree = "<group>"; };
@@ -94,6 +93,7 @@
 		DDFF9FF1B25E7CA9C7A20582 /* CulturalContextSlideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CulturalContextSlideView.swift; sourceTree = "<group>"; };
 		E6893FBD2AC772885B02341C /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		E6E72BEC1D80589A020F8928 /* AlamMoBaSlideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamMoBaSlideView.swift; sourceTree = "<group>"; };
+		E7DB9E3078E8948B59F80B23 /* PremiumGateSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumGateSheet.swift; sourceTree = "<group>"; };
 		E84481B94748743EF30B1CA8 /* AlamMoBaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamMoBaView.swift; sourceTree = "<group>"; };
 		E884EC6CD0545836C650F824 /* TeachingSlideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachingSlideView.swift; sourceTree = "<group>"; };
 		E936295E608B17FCEC93192A /* SummarySlideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummarySlideView.swift; sourceTree = "<group>"; };
@@ -147,7 +147,6 @@
 				204951829987ECBA0D413D0A /* TarsierColors.swift */,
 				4A26B178D0C63849F2ED9DD0 /* TarsierFonts.swift */,
 				A3C11C7907CF608BDB708F91 /* TarsierSpacing.swift */,
-				09FECC95432EBF3FD9460E88 /* TarsierTheme.swift */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
@@ -233,6 +232,7 @@
 				E84481B94748743EF30B1CA8 /* AlamMoBaView.swift */,
 				FD351D022D43F28267207471 /* HeartDisplay.swift */,
 				9749D52F0A93EC1D9163BB9B /* HeartsEmptySheet.swift */,
+				E7DB9E3078E8948B59F80B23 /* PremiumGateSheet.swift */,
 				3E1E37117D7A295A82029498 /* PrimaryButton.swift */,
 				473C5B7D17C0C9BF896E2DC8 /* ProgressBarView.swift */,
 				3F006D7EB86B96B93700F25C /* SecondaryButton.swift */,
@@ -400,6 +400,7 @@
 				2BC88A23C0F425A717D26757 /* MainTabView.swift in Sources */,
 				AC81B93BFE985CB5A30EB7A8 /* OnboardingFlow.swift in Sources */,
 				45E9BBBD69941E4D7A1926DE /* PracticeView.swift in Sources */,
+				3CD9D7100A609013145A1B28 /* PremiumGateSheet.swift in Sources */,
 				2D2AC7A6FCB5241C821EC71A /* PrimaryButton.swift in Sources */,
 				41D5C642375D7E1868452670 /* ProfileView.swift in Sources */,
 				ACD9E409F56D77268197A74E /* ProgressBarView.swift in Sources */,
@@ -416,7 +417,6 @@
 				5D6751FEA2668CD6CEFDF66E /* TarsierColors.swift in Sources */,
 				17350FDC627F90A02A885754 /* TarsierFonts.swift in Sources */,
 				C69DC30BBD687FD9DB75105E /* TarsierSpacing.swift in Sources */,
-				66A11A56C576F747AB7BCB79 /* TarsierTheme.swift in Sources */,
 				899ED672F57F9DEBD72AC21D /* TeachingSlideView.swift in Sources */,
 				6F0020EE3CEE3F36FE04B25B /* UserProfile.swift in Sources */,
 				78508A5261C0F6842611828B /* VocabularySlideView.swift in Sources */,

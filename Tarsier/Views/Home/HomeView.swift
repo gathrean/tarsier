@@ -5,6 +5,7 @@ struct HomeView: View {
     @Query private var profiles: [UserProfile]
     @State private var chapters: [Chapter] = []
     @State private var lessons: [SlideLesson] = []
+    @State private var showPremiumGate = false
 
     private var profile: UserProfile? { profiles.first }
     private var currentLessonIndex: Int { profile?.currentLessonIndex ?? 1 }
@@ -30,6 +31,18 @@ struct HomeView: View {
             if let lesson = LessonService.shared.lesson(for: lessonID) {
                 LessonContainerView(lesson: lesson)
             }
+        }
+        .navigationDestination(for: String.self) { route in
+            if route == "practice" {
+                PracticeView()
+            }
+        }
+        .sheet(isPresented: $showPremiumGate) {
+            PremiumGateSheet(
+                onGetPremium: {
+                    // TODO: Superwall paywall trigger
+                }
+            )
         }
         .onAppear {
             chapters = LessonService.shared.loadChapters()
@@ -228,31 +241,54 @@ struct HomeView: View {
 
     private func aiPracticeNode(chapter: Chapter) -> some View {
         let allCompleted = chapter.lessonIDs.allSatisfy { completedIDs.contains($0) }
+        let isPremium = profile?.isPremium ?? false
 
-        return VStack(spacing: 6) {
+        return Group {
+            if allCompleted {
+                if isPremium {
+                    NavigationLink(value: "practice") {
+                        aiPracticeContent(unlocked: true)
+                    }
+                    .buttonStyle(.plain)
+                } else {
+                    Button {
+                        showPremiumGate = true
+                    } label: {
+                        aiPracticeContent(unlocked: true)
+                    }
+                    .buttonStyle(.plain)
+                }
+            } else {
+                aiPracticeContent(unlocked: false)
+            }
+        }
+        .padding(.vertical, 4)
+    }
+
+    private func aiPracticeContent(unlocked: Bool) -> some View {
+        VStack(spacing: 6) {
             ZStack {
                 RoundedRectangle(cornerRadius: 20)
-                    .fill(allCompleted ? TarsierColors.gold.opacity(0.15) : Color(hex: "#EEEAE6"))
+                    .fill(unlocked ? TarsierColors.gold.opacity(0.15) : Color(hex: "#EEEAE6"))
                     .frame(width: 64, height: 64)
                     .overlay(
                         RoundedRectangle(cornerRadius: 20)
                             .stroke(
-                                allCompleted ? TarsierColors.gold : TarsierColors.cardBorder,
+                                unlocked ? TarsierColors.gold : TarsierColors.cardBorder,
                                 style: StrokeStyle(lineWidth: 2, dash: [6, 4])
                             )
                     )
 
                 Image(systemName: "eyes")
                     .font(.system(size: 22, weight: .bold, design: .rounded))
-                    .foregroundStyle(allCompleted ? TarsierColors.gold : TarsierColors.textSecondary)
+                    .foregroundStyle(unlocked ? TarsierColors.gold : TarsierColors.textSecondary)
             }
 
             Text("Practice")
                 .font(TarsierFonts.caption(11))
-                .foregroundStyle(allCompleted ? TarsierColors.textPrimary : TarsierColors.textSecondary)
+                .foregroundStyle(unlocked ? TarsierColors.textPrimary : TarsierColors.textSecondary)
         }
-        .opacity(allCompleted ? 1 : 0.5)
-        .padding(.vertical, 4)
+        .opacity(unlocked ? 1 : 0.5)
     }
 
     // MARK: - Dotted Connector
