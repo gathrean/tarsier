@@ -13,6 +13,7 @@ struct TarsierApp: App {
             ChatMessage.self,
             ChapterProgress.self,
             WordBankEntry.self,
+            SessionProgress.self,
         ])
     }
 }

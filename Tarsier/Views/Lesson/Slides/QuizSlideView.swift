@@ -25,40 +25,50 @@ class QuizState {
         answerState = .unanswered
     }
 
-    func checkMultipleChoice(question: SlideQuestion) -> Bool {
+    /// Check multiple choice against a shuffled correct index
+    func checkMultipleChoice(correctIndex: Int) -> Bool {
         guard let selected = selectedOption else { return false }
-        let isCorrect = selected == question.correctAnswer
+        let isCorrect = selected == correctIndex
         answerState = isCorrect ? .correct : .incorrect
         return isCorrect
     }
 
-    func checkFillInBlank(question: SlideQuestion) -> Bool {
+    /// Check fill-in-blank against accepted answers
+    func checkFillInBlank(acceptedAnswers: [String]) -> Bool {
         let trimmed = textAnswer.trimmingCharacters(in: .whitespaces).lowercased()
-        let accepted = (question.correctAnswers ?? []).map { $0.lowercased() }
+        let accepted = acceptedAnswers.map { $0.lowercased() }
         let isCorrect = accepted.contains(trimmed)
         answerState = isCorrect ? .correct : .incorrect
         return isCorrect
     }
 }
 
-// MARK: - Quiz Slide View (content only — no bottom button)
+// MARK: - Quiz Slide View
 
 struct QuizSlideView: View {
-    let question: SlideQuestion
+    let card: SessionCard
+    /// Shuffled options (or original if no shuffle). Provided by parent.
+    let displayOptions: [String]
+    /// Correct answer index within displayOptions
+    let correctIndex: Int
     @Bindable var state: QuizState
 
     var body: some View {
         VStack(spacing: 20) {
-            Text(question.prompt)
-                .font(TarsierFonts.heading(20))
-                .foregroundStyle(TarsierColors.textPrimary)
-                .multilineTextAlignment(.center)
+            if let prompt = card.prompt {
+                Text(prompt)
+                    .font(TarsierFonts.heading(20))
+                    .foregroundStyle(TarsierColors.textPrimary)
+                    .multilineTextAlignment(.center)
+            }
 
-            switch question.type {
+            switch card.quizType {
             case .multipleChoice:
                 multipleChoiceOptions
             case .fillInBlank:
                 fillInBlankInput
+            case .none:
+                EmptyView()
             }
 
             if state.isChecked {
@@ -71,7 +81,7 @@ struct QuizSlideView: View {
 
     private var multipleChoiceOptions: some View {
         VStack(spacing: 10) {
-            ForEach(Array((question.options ?? []).enumerated()), id: \.offset) { index, option in
+            ForEach(Array(displayOptions.enumerated()), id: \.offset) { index, option in
                 Button {
                     guard !state.isChecked else { return }
                     state.selectedOption = index
@@ -83,7 +93,7 @@ struct QuizSlideView: View {
                             .multilineTextAlignment(.leading)
                         Spacer()
                         if state.isChecked {
-                            if index == question.correctAnswer {
+                            if index == correctIndex {
                                 Image(systemName: "checkmark.circle.fill")
                                     .foregroundStyle(TarsierColors.correctGreen)
                             } else if index == state.selectedOption && state.answerState == .incorrect {
@@ -109,22 +119,20 @@ struct QuizSlideView: View {
 
     private func optionBackground(for index: Int) -> Color {
         if state.isChecked {
-            if index == question.correctAnswer { return TarsierColors.correctGreen.opacity(0.15) }
+            if index == correctIndex { return TarsierColors.correctGreen.opacity(0.15) }
             if index == state.selectedOption && state.answerState == .incorrect { return TarsierColors.alertRed.opacity(0.15) }
             return TarsierColors.cream
         }
-        // Not checked yet — highlight selected option
         if index == state.selectedOption { return TarsierColors.brandPurple.opacity(0.1) }
         return TarsierColors.cream
     }
 
     private func optionBorder(for index: Int) -> Color {
         if state.isChecked {
-            if index == question.correctAnswer { return TarsierColors.correctGreen }
+            if index == correctIndex { return TarsierColors.correctGreen }
             if index == state.selectedOption && state.answerState == .incorrect { return TarsierColors.alertRed }
             return TarsierColors.cardBorder
         }
-        // Not checked yet — highlight selected option
         if index == state.selectedOption { return TarsierColors.functionalPurple }
         return TarsierColors.cardBorder
     }
@@ -133,7 +141,7 @@ struct QuizSlideView: View {
 
     private var fillInBlankInput: some View {
         VStack(spacing: 12) {
-            if let hint = question.hint, !state.isChecked {
+            if let hint = card.hint, !state.isChecked {
                 Text("Hint: \(hint)")
                     .font(TarsierFonts.caption())
                     .foregroundStyle(TarsierColors.textSecondary)
@@ -157,7 +165,7 @@ struct QuizSlideView: View {
         }
     }
 
-    // MARK: - Feedback (shown after checking)
+    // MARK: - Feedback
 
     private var feedbackSection: some View {
         VStack(spacing: 12) {
@@ -177,13 +185,17 @@ struct QuizSlideView: View {
                 }
             }
 
-            if state.answerState == .incorrect, let answers = question.correctAnswers, let first = answers.first {
+            // Show correct answer for fill-in-blank wrong answers
+            if state.answerState == .incorrect,
+               card.quizType == .fillInBlank,
+               let answers = card.correctAnswers,
+               let first = answers.first {
                 Text("Answer: \(first)")
                     .font(TarsierFonts.body())
                     .foregroundStyle(TarsierColors.textSecondary)
             }
 
-            if let explanation = question.explanation {
+            if let explanation = card.explanation {
                 Text(explanation)
                     .font(TarsierFonts.body(15))
                     .foregroundStyle(TarsierColors.textSecondary)

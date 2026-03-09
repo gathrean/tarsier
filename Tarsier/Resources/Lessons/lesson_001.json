@@ -1,272 +1,557 @@
 {
+  "_meta": {
+    "schema_version": "0.5",
+    "last_updated": "2026-03-09",
+    "notes": "Session-based lesson. New in v0.5: alam_mo_ba_inline (contextual tooltips for non-Filipino users) and image (optional, shown above card content) fields on any card type. Both fields are optional. If image is null or absent, render nothing (no placeholder in shipped app)."
+  },
+
   "lesson_id": "001",
-  "title": "Po & Opo — The Heart of Filipino Respect",
+  "title": "Po & Opo",
+  "subtitle": "The Heart of Filipino Respect",
   "chapter_id": "ch01",
   "chapter_title": "Magalang — Respect & Greetings",
+  "position_in_chapter": 1,
+  "difficulty": "beginner",
+  "total_sessions": 5,
 
-  "slides": [
+  "sessions": [
     {
-      "slide_id": "001_s01",
-      "type": "cultural_context",
-      "title": "The word that changes everything",
-      "body": "There's one word in Tagalog that you can start using right now — even in English sentences. It has no direct translation. It's not 'sir' or 'ma'am.' It's a single particle that transforms any sentence from casual to respectful. That word is 'po.'",
-      "taglish_note": null,
-      "image": {
-        "source": "wikimedia_commons",
-        "suggested_query": "Filipino elder respect mano po",
-        "attribution": null,
-        "licence": null
-      }
-    },
-    {
-      "slide_id": "001_s02",
-      "type": "teaching",
-      "title": "What 'po' does",
-      "body": "'Po' is a politeness particle. Add it to any sentence — Tagalog, English, or Taglish — and it becomes respectful. There's no English equivalent. The closest thing is the way Japanese speakers use '-desu' or '-masu' to make speech polite, but po is simpler: just add it.",
-      "examples": [
+      "session_id": "001_s1",
+      "session_number": 1,
+      "title": "What is po?",
+      "cards": [
         {
-          "casual": "I didn't eat yet.",
-          "with_po": "I didn't eat yet po.",
-          "note": "Yes, po works even in full English sentences. Filipinos do this constantly."
+          "card_id": "001_s1_c1",
+          "type": "teach",
+          "body": "There's one word in Tagalog you can start using right now. Even in English sentences.",
+          "highlight": "That word is po.",
+          "image": null
         },
         {
-          "casual": "Oo.",
-          "with_po": "Opo.",
-          "note": "Oo (yes) + po = opo. The most respectful way to say yes."
+          "card_id": "001_s1_c2",
+          "type": "teach",
+          "body": "Po makes any sentence respectful. There's no English equivalent.",
+          "example": {
+            "casual": "I didn't eat yet.",
+            "with_po": "I didn't eat yet po.",
+            "note": "Po works even in full English. Filipinos do this all the time."
+          }
         },
         {
-          "casual": "Thank you.",
-          "with_po": "Thank you po.",
-          "note": "Mixing English and po is completely natural Taglish."
-        }
-      ]
-    },
-    {
-      "slide_id": "001_s03",
-      "type": "teaching",
-      "title": "Who do you use 'po' with?",
-      "body": "The core rule: use po with anyone older than you, anyone you don't know well, or anyone in a position of authority. Drop po with close friends your age, younger people, and in very casual settings.",
-      "rules": [
-        {
-          "use_po": true,
-          "context": "Speaking to your lola or lolo (grandparents)",
-          "example": "Kumain na po kayo?"
+          "card_id": "001_s1_c3",
+          "type": "teach",
+          "body": "Po works in Tagalog, English, and Taglish. Just add it.",
+          "example": {
+            "casual": "Thank you.",
+            "with_po": "Thank you po.",
+            "note": "Mixing English and po is completely natural."
+          },
+          "alam_mo_ba_inline": {
+            "term": "Taglish",
+            "fact": "Taglish is the everyday mix of Tagalog and English that Filipinos speak. It's not slang, it's how the language actually works."
+          }
         },
         {
-          "use_po": true,
-          "context": "Speaking to a stranger (any age)",
-          "example": "Excuse po, saan po ang CR?"
-        },
-        {
-          "use_po": true,
-          "context": "Speaking to your boss or teacher",
-          "example": "Yes po, I'll send it po."
-        },
-        {
-          "use_po": false,
-          "context": "Speaking to a close friend your age",
-          "example": "Oo, g! (casual yes, let's go)"
-        },
-        {
-          "use_po": false,
-          "context": "Speaking to a younger sibling or child",
-          "example": "Kain na! (Eat now!)"
-        }
-      ]
-    },
-    {
-      "slide_id": "001_s04",
-      "type": "teaching",
-      "title": "Where does 'po' go in a sentence?",
-      "body": "Po usually goes after the verb or after the pronoun — not necessarily at the end. But putting it at the end also works and is the safest default for beginners.",
-      "examples": [
-        {
-          "tagalog": "Kumain na po ako.",
-          "translation": "I already ate (respectful).",
-          "po_position": "After 'na' (already), before 'ako' (I)"
-        },
-        {
-          "tagalog": "Salamat po.",
-          "translation": "Thank you (respectful).",
-          "po_position": "End of sentence — simplest placement"
-        },
-        {
-          "tagalog": "Gusto ko po.",
-          "translation": "I want it (respectful).",
-          "po_position": "After 'ko' (I/my)"
-        },
-        {
-          "tagalog": "Saan po ito?",
-          "translation": "Where is this? (respectful)",
-          "po_position": "After 'saan' (where)"
-        }
-      ]
-    },
-    {
-      "slide_id": "001_s05",
-      "type": "teaching",
-      "title": "Mano po — respect you can see",
-      "body": "'Mano po' is a gesture, not just words. When greeting an elder (lola, lolo, tita, tito, ninang, ninong), you take their hand and press the back of it to your forehead. You say 'Mano po' as you do it. This is how Filipinos show respect physically — at family gatherings, you mano every elder when you arrive.",
-      "image": {
-        "source": "wikimedia_commons",
-        "suggested_query": "Filipino mano po gesture elder blessing",
-        "attribution": null,
-        "licence": null
-      }
-    },
-    {
-      "slide_id": "001_s06",
-      "type": "vocabulary",
-      "words": [
-        {
-          "word": "po",
-          "type": "particle",
-          "meaning": "politeness marker (no direct translation)",
-          "example_sentence": "Salamat po.",
-          "example_translation": "Thank you (respectful).",
-          "taglish_variant": "Thank you po.",
-          "pronunciation_guide": "poh",
-          "audio_file": null
-        },
-        {
-          "word": "opo",
-          "type": "particle",
-          "meaning": "yes (respectful) — oo + po",
-          "example_sentence": "Opo, kumain na po ako.",
-          "example_translation": "Yes, I've already eaten (respectful).",
-          "taglish_variant": "Opo, I already ate po.",
-          "pronunciation_guide": "OH-poh",
-          "audio_file": null
-        },
-        {
-          "word": "hindi po",
-          "type": "phrase",
-          "meaning": "no (respectful)",
-          "example_sentence": "Hindi po, okay lang po.",
-          "example_translation": "No, it's okay (respectful).",
-          "taglish_variant": "Hindi po, I'm okay po.",
-          "pronunciation_guide": "HIN-dee poh",
-          "audio_file": null
-        },
-        {
-          "word": "mano po",
-          "type": "phrase",
-          "meaning": "hand blessing gesture + words said while doing it",
-          "example_sentence": "Mano po, Lola.",
-          "example_translation": "Bless me, Grandmother. (while pressing hand to forehead)",
-          "taglish_variant": null,
-          "pronunciation_guide": "MAH-noh poh",
-          "audio_file": null
-        },
-        {
-          "word": "pasensya na po",
-          "type": "phrase",
-          "meaning": "sorry / excuse me (asking for patience, respectful)",
-          "example_sentence": "Pasensya na po, late po ako.",
-          "example_translation": "Sorry, I'm late (respectful).",
-          "taglish_variant": "Sorry po, late po ako.",
-          "pronunciation_guide": "pah-SEN-sha nah poh",
-          "audio_file": null
-        },
-        {
-          "word": "sige po",
-          "type": "phrase",
-          "meaning": "okay / alright (respectful agreement)",
-          "example_sentence": "Sige po, salamat po.",
-          "example_translation": "Okay, thank you (respectful).",
-          "taglish_variant": "Sige po, thanks po.",
-          "pronunciation_guide": "SEE-geh poh",
-          "audio_file": null
-        }
-      ]
-    },
-    {
-      "slide_id": "001_s07",
-      "type": "alam_mo_ba",
-      "title": "Alam Mo Ba?",
-      "body": "'Po' has no direct English translation. It doesn't mean 'sir' or 'ma'am' — it's a particle that changes the entire tone of a sentence from casual to respectful. There's nothing quite like it in English. The closest comparison might be the Japanese politeness levels, but po is simpler — one word does all the work."
-    },
-    {
-      "slide_id": "001_s08",
-      "type": "quiz",
-      "costs_heart": true,
-      "questions": [
-        {
-          "question_id": "001_q1",
-          "type": "multiple_choice",
-          "prompt": "You're meeting your friend's lola for the first time. How do you say 'thank you'?",
-          "options": [
-            "Salamat.",
-            "Salamat po.",
-            "Thanks!",
-            "Salamat naman."
-          ],
+          "card_id": "001_s1_q1",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "prompt": "Which sentence is respectful?",
+          "options": ["Thank you.", "Thank you po.", "Thanks naman.", "Salamat lang."],
           "correct_answer": 1,
-          "explanation": "When speaking to an elder you've just met, 'po' is essential. 'Salamat po' shows respect. Without po, it's too casual for a lola."
+          "explanation": "Adding po makes it respectful. 'Thank you po' is natural Taglish.",
+          "shuffle_options": true
         },
         {
-          "question_id": "001_q2",
-          "type": "multiple_choice",
-          "prompt": "Your coworker (same age, close friend) asks if you want coffee. How do you say yes?",
-          "options": [
-            "Opo.",
-            "Oo, g!",
-            "Yes po.",
-            "Oo po."
-          ],
-          "correct_answer": 1,
-          "explanation": "With a close friend your age, you don't need po. 'Oo, g!' is casual and natural. Using po with close friends your age can sound weirdly formal or even sarcastic."
+          "card_id": "001_s1_c4",
+          "type": "teach",
+          "body": "Oo means 'yes.' Add po and it becomes opo.",
+          "highlight": "Oo + po = Opo",
+          "example": {
+            "casual": "Oo.",
+            "with_po": "Opo.",
+            "note": "The most respectful way to say yes in Tagalog."
+          }
         },
         {
-          "question_id": "001_q3",
-          "type": "multiple_choice",
-          "prompt": "Which of these is natural Taglish?",
-          "options": [
-            "I'm sorry, I'm late.",
-            "Sorry po, late po ako.",
-            "Pasensya na, late na po ako.",
-            "Both B and C sound natural."
-          ],
-          "correct_answer": 3,
-          "explanation": "Both B and C are natural Taglish with po. Filipinos freely mix English and Tagalog while keeping po for respect. Option A is fine English but misses the po that a Filipino context calls for."
-        },
-        {
-          "question_id": "001_q4",
-          "type": "fill_in_blank",
-          "prompt": "Complete the respectful yes: 'O___'",
+          "card_id": "001_s1_q2",
+          "type": "quiz",
+          "quiz_type": "fill_in_blank",
+          "prompt": "Complete the respectful yes: O___",
           "correct_answers": ["Opo", "opo"],
           "hint": "Oo (yes) + po (respect) = ?",
-          "explanation": "Oo + po = opo. The most respectful single-word response in Tagalog."
+          "explanation": "Oo + po = opo."
         },
         {
-          "question_id": "001_q5",
-          "type": "multiple_choice",
-          "prompt": "What is 'mano po'?",
-          "options": [
-            "A greeting you say on the phone",
-            "A gesture where you press an elder's hand to your forehead",
-            "A way to say goodbye",
-            "A formal handshake"
-          ],
+          "card_id": "001_s1_q3",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "prompt": "How do you say 'I didn't eat yet' respectfully?",
+          "options": ["I didn't eat yet.", "I didn't eat yet po.", "Hindi pa ako kumain.", "I didn't eat po yet."],
           "correct_answer": 1,
-          "explanation": "Mano po is both words and a gesture — you take an elder's hand and press the back of it to your forehead as a sign of respect and blessing. You say 'Mano po' as you do it."
+          "explanation": "Just add po. 'I didn't eat yet po' is how Filipinos actually say this in Taglish.",
+          "shuffle_options": true
         }
       ]
     },
+
     {
-      "slide_id": "001_s09",
-      "type": "lesson_summary",
-      "roots_learned": [],
-      "affixes_learned": [],
-      "key_words": ["po", "opo", "hindi po", "mano po", "pasensya na po", "sige po"],
-      "grammar_concept": "Po is a politeness particle with no English equivalent. Add it to any sentence — even English ones — to make it respectful. Use with elders, strangers, and authority figures.",
-      "cultural_takeaway": "Respect is the foundation of Filipino communication. Before learning any grammar, learn po."
+      "session_id": "001_s2",
+      "session_number": 2,
+      "title": "Who do you use po with?",
+      "cards": [
+        {
+          "card_id": "001_s2_c1",
+          "type": "teach",
+          "body": "Use po with anyone older than you.",
+          "example": {
+            "context": "Speaking to your lola (grandmother)",
+            "sentence": "Kumain na po kayo?",
+            "translation": "Have you eaten? (respectful)"
+          },
+          "use_po": true,
+          "alam_mo_ba_inline": {
+            "term": "lola",
+            "fact": "'Lola' means grandmother. 'Lolo' means grandfather. You'll hear these everywhere in Filipino families."
+          }
+        },
+        {
+          "card_id": "001_s2_c2",
+          "type": "teach",
+          "body": "Use po with strangers, even if they look your age.",
+          "example": {
+            "context": "Asking a stranger for directions",
+            "sentence": "Excuse po, saan po ang CR?",
+            "translation": "Excuse me, where's the bathroom?"
+          },
+          "use_po": true,
+          "alam_mo_ba_inline": {
+            "term": "CR",
+            "fact": "'CR' stands for 'comfort room,' the Filipino word for bathroom. You'll see it on signs everywhere in the Philippines."
+          }
+        },
+        {
+          "card_id": "001_s2_q1",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "prompt": "You're asking a stranger where the bathroom is. Which is more appropriate?",
+          "options": ["Saan ang CR?", "Excuse po, saan po ang CR?", "Hey, where's the CR?", "Saan CR?"],
+          "correct_answer": 1,
+          "explanation": "With strangers, po shows respect and politeness.",
+          "shuffle_options": true,
+          "alam_mo_ba_inline": {
+            "term": "CR",
+            "fact": "'CR' stands for 'comfort room.' It's what Filipinos call the bathroom."
+          }
+        },
+        {
+          "card_id": "001_s2_c3",
+          "type": "teach",
+          "body": "Use po with your boss, teacher, or anyone in authority.",
+          "example": {
+            "context": "Replying to your boss",
+            "sentence": "Yes po, I'll send it po.",
+            "translation": "Yes, I'll send it. (respectful)"
+          },
+          "use_po": true
+        },
+        {
+          "card_id": "001_s2_c4",
+          "type": "teach",
+          "body": "Drop po with close friends your age. Using it can sound weirdly formal or even sarcastic.",
+          "example": {
+            "context": "Your friend asks if you want coffee",
+            "sentence": "Oo, g!",
+            "translation": "Yeah, let's go! (casual)"
+          },
+          "use_po": false,
+          "alam_mo_ba_inline": {
+            "term": "g",
+            "fact": "'G' is Filipino slang for 'game' or 'let's go.' It means you're down for something. Texting shorthand that became spoken slang."
+          }
+        },
+        {
+          "card_id": "001_s2_c5",
+          "type": "teach",
+          "body": "Drop po with younger siblings or kids.",
+          "example": {
+            "context": "Telling your little brother to eat",
+            "sentence": "Kain na!",
+            "translation": "Eat now! (casual, direct)"
+          },
+          "use_po": false
+        },
+        {
+          "card_id": "001_s2_q2",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "prompt": "Your coworker (same age, close friend) asks if you want coffee. How do you say yes?",
+          "options": ["Opo.", "Oo, g!", "Yes po.", "Oo po."],
+          "correct_answer": 1,
+          "explanation": "With a close friend your age, po isn't needed. 'Oo, g!' is casual and natural.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "001_s2_q3",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "prompt": "You're meeting your friend's lola for the first time. How do you say 'thank you'?",
+          "options": ["Salamat.", "Salamat po.", "Thanks!", "Salamat naman."],
+          "correct_answer": 1,
+          "explanation": "When speaking to an elder you've just met, po is essential. Without it, too casual for a lola.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "001_s2_q4",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "prompt": "Your little sister asks what's for dinner. Which is natural?",
+          "options": ["Adobo po.", "Adobo!", "Adobo ho.", "Adobo naman po."],
+          "correct_answer": 1,
+          "explanation": "No po needed with younger siblings. Just 'Adobo!' is direct and natural.",
+          "shuffle_options": true,
+          "alam_mo_ba_inline": {
+            "term": "adobo",
+            "fact": "Adobo is the unofficial national dish of the Philippines. Meat braised in vinegar, soy sauce, garlic, and bay leaves. Every family has their own recipe."
+          }
+        }
+      ]
+    },
+
+    {
+      "session_id": "001_s3",
+      "session_number": 3,
+      "title": "Where does po go?",
+      "cards": [
+        {
+          "card_id": "001_s3_c1",
+          "type": "teach",
+          "body": "Po usually goes after the verb or after the pronoun.",
+          "example": {
+            "sentence": "Kumain na po ako.",
+            "translation": "I already ate. (respectful)",
+            "po_position": "After 'na' (already), before 'ako' (I)"
+          }
+        },
+        {
+          "card_id": "001_s3_c2",
+          "type": "teach",
+          "body": "Putting po at the end of a sentence also works. Safest default for beginners.",
+          "example": {
+            "sentence": "Salamat po.",
+            "translation": "Thank you. (respectful)",
+            "po_position": "End of sentence"
+          }
+        },
+        {
+          "card_id": "001_s3_q1",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "prompt": "Where is po placed in 'Kumain na po ako'?",
+          "options": ["At the very end", "After 'na', before 'ako'", "Before 'kumain'", "It replaces 'na'"],
+          "correct_answer": 1,
+          "explanation": "Po sits after 'na' (already) and before 'ako' (I). It nestles into the middle of the sentence.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "001_s3_c3",
+          "type": "teach",
+          "body": "Po goes after the question word in questions.",
+          "example": {
+            "sentence": "Saan po ito?",
+            "translation": "Where is this? (respectful)",
+            "po_position": "After 'saan' (where)"
+          }
+        },
+        {
+          "card_id": "001_s3_c4",
+          "type": "teach",
+          "body": "Po goes after 'ko' (I/my) in want sentences.",
+          "example": {
+            "sentence": "Gusto ko po.",
+            "translation": "I want it. (respectful)",
+            "po_position": "After 'ko' (I/my)"
+          },
+          "alam_mo_ba_inline": {
+            "term": "gusto",
+            "fact": "'Gusto' comes straight from Spanish. The original Tagalog word is 'ibig,' but almost nobody uses it in daily speech anymore."
+          }
+        },
+        {
+          "card_id": "001_s3_q2",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "prompt": "Make this respectful: 'Gusto ko.'",
+          "options": ["Po gusto ko.", "Gusto ko po.", "Gusto po ko.", "Po gusto po ko."],
+          "correct_answer": 1,
+          "explanation": "Po goes after 'ko'. 'Gusto ko po' is clean and natural.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "001_s3_q3",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "prompt": "Make this question respectful: 'Saan ito?'",
+          "options": ["Saan ito po?", "Po saan ito?", "Saan po ito?", "Saan ito, po?"],
+          "correct_answer": 2,
+          "explanation": "Po goes after the question word. 'Saan po ito?' is the natural placement.",
+          "shuffle_options": true
+        }
+      ]
+    },
+
+    {
+      "session_id": "001_s4",
+      "session_number": 4,
+      "title": "Mano po & key phrases",
+      "cards": [
+        {
+          "card_id": "001_s4_c1",
+          "type": "teach",
+          "body": "Mano po is a gesture, not just words. You take an elder's hand and press the back of it to your forehead.",
+          "image": {
+            "filename": "mano_po_gesture.jpg",
+            "alt": "Filipino child pressing elder's hand to forehead",
+            "source": "wikimedia_commons",
+            "attribution": null
+          }
+        },
+        {
+          "card_id": "001_s4_c2",
+          "type": "teach",
+          "body": "You say 'Mano po' as you do the gesture. At family gatherings, you mano every elder when you arrive.",
+          "example": {
+            "sentence": "Mano po, Lola.",
+            "translation": "Bless me, Grandmother."
+          },
+          "image": {
+            "filename": "filipino_family_gathering.jpg",
+            "alt": "Filipino family gathered together",
+            "source": "wikimedia_commons",
+            "attribution": null
+          },
+          "alam_mo_ba_inline": {
+            "term": "mano",
+            "fact": "'Mano' comes from Spanish 'mano' (hand). The gesture predates Spanish colonisation, but the word stuck."
+          }
+        },
+        {
+          "card_id": "001_s4_q1",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "prompt": "What is 'mano po'?",
+          "options": ["A greeting you say on the phone", "A gesture where you press an elder's hand to your forehead", "A way to say goodbye", "A formal handshake"],
+          "correct_answer": 1,
+          "explanation": "You take an elder's hand and press the back of it to your forehead as a sign of respect.",
+          "shuffle_options": true,
+          "image": {
+            "filename": "mano_po_gesture.jpg",
+            "alt": "Filipino mano po gesture",
+            "source": "wikimedia_commons",
+            "attribution": null
+          }
+        },
+        {
+          "card_id": "001_s4_c3",
+          "type": "teach",
+          "body": "Hindi po means 'no' respectfully.",
+          "example": {
+            "sentence": "Hindi po, okay lang po.",
+            "translation": "No, it's okay. (respectful)",
+            "taglish": "Hindi po, I'm okay po."
+          }
+        },
+        {
+          "card_id": "001_s4_c4",
+          "type": "teach",
+          "body": "Pasensya na po means 'sorry' or 'excuse me.' It's asking for patience.",
+          "example": {
+            "sentence": "Pasensya na po, late po ako.",
+            "translation": "Sorry, I'm late. (respectful)",
+            "taglish": "Sorry po, late po ako."
+          },
+          "alam_mo_ba_inline": {
+            "term": "pasensya",
+            "fact": "'Pasensya' comes from Spanish 'paciencia' (patience). You're literally asking someone to have patience with you."
+          }
+        },
+        {
+          "card_id": "001_s4_c5",
+          "type": "teach",
+          "body": "Sige po means 'okay' or 'alright' respectfully.",
+          "example": {
+            "sentence": "Sige po, salamat po.",
+            "translation": "Okay, thank you. (respectful)",
+            "taglish": "Sige po, thanks po."
+          },
+          "alam_mo_ba_inline": {
+            "term": "sige",
+            "fact": "'Sige' may come from Spanish 'sigue' (go on, continue). Filipinos use it for everything: agreement, goodbye, encouragement."
+          }
+        },
+        {
+          "card_id": "001_s4_q2",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "prompt": "How do you say 'no' respectfully?",
+          "options": ["Hindi.", "Hindi po.", "No po.", "Ayaw."],
+          "correct_answer": 1,
+          "explanation": "'Hindi po' is the respectful way to say no.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "001_s4_q3",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "prompt": "You're late to your tita's house. What do you say?",
+          "options": ["Sorry, late ako.", "Pasensya na po, late po ako.", "Late na po.", "Sorry tita."],
+          "correct_answer": 1,
+          "explanation": "'Pasensya na po' asks for patience respectfully. Adding po to 'late po ako' doubles down on the respect.",
+          "shuffle_options": true,
+          "alam_mo_ba_inline": {
+            "term": "tita",
+            "fact": "'Tita' means aunt, but Filipinos use it for any woman a generation older than you. From Spanish 'tia.'"
+          }
+        },
+        {
+          "card_id": "001_s4_q4",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "prompt": "Which is natural Taglish for 'Okay, thank you'?",
+          "options": ["Sige, salamat.", "Sige po, thanks po.", "Okay po, salamat po.", "Both B and C."],
+          "correct_answer": 3,
+          "explanation": "Both work. 'Sige po, thanks po' and 'Okay po, salamat po' are both natural Taglish with po.",
+          "shuffle_options": true
+        }
+      ]
+    },
+
+    {
+      "session_id": "001_s5",
+      "session_number": 5,
+      "title": "Review",
+      "is_review": true,
+      "cards": [
+        {
+          "card_id": "001_s5_q1",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "prompt": "You arrive at a family gathering. What's the first thing you do with your lola?",
+          "options": ["Say 'Hi lola!'", "Mano po", "Wave from across the room", "Say 'Kumusta'"],
+          "correct_answer": 1,
+          "explanation": "Mano po first. You take her hand and press it to your forehead. Then you can greet and chat.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "001_s5_q2",
+          "type": "quiz",
+          "quiz_type": "fill_in_blank",
+          "prompt": "Complete: 'Salamat ___.'",
+          "correct_answers": ["po", "Po"],
+          "hint": "One word that makes it respectful.",
+          "explanation": "Salamat po. One word changes the whole tone."
+        },
+        {
+          "card_id": "001_s5_q3",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "prompt": "Your friend (same age) offers you food. How do you say yes?",
+          "options": ["Opo.", "Sige po.", "Oo, g!", "Yes po."],
+          "correct_answer": 2,
+          "explanation": "Same-age close friend = no po needed. 'Oo, g!' is casual and natural.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "001_s5_q4",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "prompt": "Make respectful: 'Saan ito?'",
+          "options": ["Saan po ito?", "Po saan ito?", "Saan ito po?", "Saan po?"],
+          "correct_answer": 0,
+          "explanation": "Po after the question word. 'Saan po ito?'",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "001_s5_q5",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "prompt": "What does 'pasensya na po' mean?",
+          "options": ["Thank you", "Sorry / excuse me", "Goodbye", "Please"],
+          "correct_answer": 1,
+          "explanation": "'Pasensya na po' asks for patience. It's the respectful way to say sorry or excuse me.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "001_s5_q6",
+          "type": "quiz",
+          "quiz_type": "fill_in_blank",
+          "prompt": "Respectful yes: '___'",
+          "correct_answers": ["Opo", "opo"],
+          "hint": "Oo + po = ?",
+          "explanation": "Opo. The one-word respectful yes."
+        },
+        {
+          "card_id": "001_s5_q7",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "prompt": "You're late to your boss's meeting. What do you say?",
+          "options": ["Sorry, late.", "Pasensya na po, late po ako.", "Late na po.", "Sorry boss."],
+          "correct_answer": 1,
+          "explanation": "'Pasensya na po, late po ako.' Full respect for authority.",
+          "shuffle_options": true
+        }
+      ]
     }
   ],
 
+  "vocabulary": [
+    { "word": "po", "meaning": "politeness marker", "pronunciation": "poh", "type": "particle" },
+    { "word": "opo", "meaning": "yes (respectful)", "pronunciation": "OH-poh", "type": "particle" },
+    { "word": "hindi po", "meaning": "no (respectful)", "pronunciation": "HIN-dee poh", "type": "phrase" },
+    { "word": "mano po", "meaning": "hand blessing gesture", "pronunciation": "MAH-noh poh", "type": "phrase" },
+    { "word": "pasensya na po", "meaning": "sorry / excuse me", "pronunciation": "pah-SEN-sha nah poh", "type": "phrase" },
+    { "word": "sige po", "meaning": "okay / alright (respectful)", "pronunciation": "SEE-geh poh", "type": "phrase" }
+  ],
+
+  "wrong_answer_tracking": {
+    "behaviour": "Wrong answers go to back of current session queue. User must get ALL questions right to complete session. Cannot finish lesson with outstanding wrong answers.",
+    "track_wrong_count": true,
+    "wrong_count_usage": "Feed to Gemini system prompt for AI Practice. E.g., 'User struggled with po placement (3 wrong attempts). Focus practice on sentence construction with po.'"
+  },
+
+  "completion_reward": {
+    "xp": 15,
+    "alam_mo_ba": [
+      "'Po' has no direct English translation. It's a particle that changes the entire tone of a sentence. There's nothing quite like it in English.",
+      "'Mano' comes from Spanish 'mano' (hand). The gesture predates Spanish colonisation, but the word stuck.",
+      "Some Filipino families use 'ho' instead of 'po' in certain regions. Same function, softer sound.",
+      "Kids are taught to say po from the moment they can speak. It's one of the first social rules Filipino children learn.",
+      "Forgetting po with an elder isn't rude like cursing. It's more like forgetting to say 'please.' People notice, but they won't get angry."
+    ],
+    "alam_mo_ba_display": "Show 1 random fun fact on lesson completion screen. On replay, show a different one."
+  },
+
+  "ai_practice": {
+    "description": "End-of-chapter AI practice. Appears after all Chapter 1 lessons are complete.",
+    "availability": {
+      "free_users": "1 session per chapter OR watch rewarded ad for another",
+      "premium_users": "unlimited"
+    },
+    "system_prompt_template": "You are Tarsier, a friendly Tagalog tutor. The user just completed Chapter 1 covering: po/opo (politeness), greetings (kumusta po, magandang umaga/hapon/gabi), basic courtesy (salamat po, pasensya na po, sige po, walang anuman), and pronouns (ako, ikaw, siya, kayo). Keep conversation in Taglish. Simulate a scenario: the user is arriving at a Filipino family gathering and needs to greet elders, respond to questions with po, and use mano po. Keep responses to 2-3 sentences. Be warm and encouraging. {wrong_answer_context}",
+    "wrong_answer_context_example": "The user struggled with po placement in sentences (got it wrong 3 times). Gently practice sentence construction with po in natural positions.",
+    "max_turns": 6
+  },
+
   "gamification": {
-    "xp_reward": 15,
+    "xp_per_lesson": 15,
     "hearts_per_wrong_answer": 1,
-    "streak_eligible": true
+    "streak_eligible": true,
+    "progress_ring": {
+      "total": 5,
+      "display": "Ring animates from X/5 to (X+1)/5 on session completion"
+    },
+    "replay": {
+      "allowed": true,
+      "xp_on_replay": 0
+    }
   }
 }

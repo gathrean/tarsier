@@ -3,6 +3,7 @@ import SwiftData
 
 struct HomeView: View {
     @Query private var profiles: [UserProfile]
+    @Query private var sessionProgresses: [SessionProgress]
     @State private var chapters: [Chapter] = []
     @State private var lessons: [SlideLesson] = []
     @State private var showPremiumGate = false
@@ -27,9 +28,9 @@ struct HomeView: View {
         .background(TarsierColors.warmWhite)
         .navigationTitle("Tarsier")
         .navigationBarTitleDisplayMode(.inline)
-        .navigationDestination(for: Int.self) { lessonID in
-            if let lesson = LessonService.shared.lesson(for: lessonID) {
-                LessonContainerView(lesson: lesson)
+        .navigationDestination(for: LessonNavigation.self) { nav in
+            if let lesson = LessonService.shared.lesson(for: nav.lessonId) {
+                LessonContainerView(lesson: lesson, sessionNumber: nav.sessionNumber, isReplay: nav.isReplay)
             }
         }
         .navigationDestination(for: String.self) { route in
@@ -58,7 +59,6 @@ struct HomeView: View {
 
     private var topBar: some View {
         HStack(spacing: 0) {
-            // Streak
             HStack(spacing: 4) {
                 Image(systemName: "flame.fill")
                     .foregroundStyle(TarsierColors.gold)
@@ -68,7 +68,6 @@ struct HomeView: View {
 
             Spacer()
 
-            // XP
             HStack(spacing: 4) {
                 Image(systemName: "star.fill")
                     .foregroundStyle(TarsierColors.functionalPurple)
@@ -79,7 +78,6 @@ struct HomeView: View {
 
             Spacer()
 
-            // Hearts
             HeartDisplay(
                 current: profile?.hearts ?? 5,
                 isPremium: profile?.isPremium ?? false
@@ -144,12 +142,10 @@ struct HomeView: View {
                 let isCurrent = lessonID == currentLessonIndex
                 let isUnlocked = lessonID <= currentLessonIndex
 
-                // Dotted connector (above each node except the first)
                 if nodeIndex > 0 {
                     dottedConnector(offset: staggerOffset(for: nodeIndex, previous: nodeIndex - 1))
                 }
 
-                // Node
                 lessonNode(
                     lessonID: lessonID,
                     isCompleted: isCompleted,
@@ -174,9 +170,33 @@ struct HomeView: View {
     }
 
     private func nodeX(for index: Int) -> CGFloat {
-        // Stagger pattern: centre, right, centre, left, centre, right...
         let pattern: [CGFloat] = [0, 50, 0, -50]
         return pattern[index % pattern.count]
+    }
+
+    // MARK: - Session Progress Helpers
+
+    private func completedSessionCount(for lessonId: Int) -> Int {
+        let lessonIdStr = String(format: "%03d", lessonId)
+        return sessionProgresses.filter { $0.lessonId == lessonIdStr && $0.isCompleted }.count
+    }
+
+    private func totalSessions(for lessonId: Int) -> Int {
+        lessons.first { $0.id == lessonId }?.totalSessions ?? 5
+    }
+
+    private func nextSessionNumber(for lessonId: Int) -> Int {
+        let lessonIdStr = String(format: "%03d", lessonId)
+        let completedNumbers = Set(
+            sessionProgresses
+                .filter { $0.lessonId == lessonIdStr && $0.isCompleted }
+                .map { $0.sessionNumber }
+        )
+        let total = totalSessions(for: lessonId)
+        for i in 1...total {
+            if !completedNumbers.contains(i) { return i }
+        }
+        return 1 // All done, replay from 1
     }
 
     // MARK: - Lesson Node
@@ -185,15 +205,35 @@ struct HomeView: View {
         let lesson = lessons.first { $0.id == lessonID }
         let topic = lesson?.topic ?? "Lesson \(lessonID)"
         let offset = nodeX(for: nodeIndex)
+        let completed = completedSessionCount(for: lessonID)
+        let total = totalSessions(for: lessonID)
+        let isAllSessionsDone = completed >= total
+        let isReplay = isAllSessionsDone && isCompleted
 
-        return NavigationLink(value: lessonID) {
+        return NavigationLink(
+            value: LessonNavigation(
+                lessonId: lessonID,
+                sessionNumber: nextSessionNumber(for: lessonID),
+                isReplay: isReplay
+            )
+        ) {
             VStack(spacing: 6) {
                 ZStack {
-                    RoundedRectangle(cornerRadius: 20)
+                    // Progress ring behind the node (not for current/active)
+                    if isUnlocked && !isCompleted && !isCurrent && completed > 0 {
+                        ProgressRingView(
+                            completed: completed,
+                            total: total,
+                            size: 72,
+                            lineWidth: 3
+                        )
+                    }
+
+                    RoundedRectangle(cornerRadius: isCurrent ? 22 : 20)
                         .fill(nodeBackground(isCompleted: isCompleted, isCurrent: isCurrent, isUnlocked: isUnlocked))
-                        .frame(width: 64, height: 64)
+                        .frame(width: isCurrent ? 64 : 56, height: isCurrent ? 64 : 56)
                         .overlay(
-                            RoundedRectangle(cornerRadius: 20)
+                            RoundedRectangle(cornerRadius: isCurrent ? 22 : 20)
                                 .stroke(
                                     isCurrent ? TarsierColors.functionalPurple : .clear,
                                     lineWidth: isCurrent ? 3 : 0
@@ -223,6 +263,13 @@ struct HomeView: View {
                     .font(TarsierFonts.caption(11))
                     .foregroundStyle(isUnlocked ? TarsierColors.textPrimary : TarsierColors.textSecondary)
                     .lineLimit(1)
+
+                // Session progress label (e.g. "2/5")
+                if isUnlocked && !isCompleted && completed > 0 {
+                    Text("\(completed)/\(total)")
+                        .font(TarsierFonts.caption(10))
+                        .foregroundStyle(TarsierColors.functionalPurple)
+                }
             }
             .opacity(isUnlocked ? 1 : 0.5)
         }

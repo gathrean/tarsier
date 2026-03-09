@@ -1,288 +1,231 @@
 import Foundation
 
-// MARK: - Top-Level Lesson (v0.3 slide-based schema)
+// MARK: - Top-Level Lesson (v0.4 session-based schema)
 
 struct SlideLesson: Codable, Identifiable {
     let lessonId: String
     let title: String
+    let subtitle: String?
     let chapterId: String
     let chapterTitle: String
-    let slides: [LessonSlide]
-    let gamification: LessonGamification
+    let totalSessions: Int
+    let sessions: [LessonSession]
+    let vocabulary: [LessonVocabulary]
+    let completionReward: CompletionReward
+    let gamification: SessionGamification
+    let wrongAnswerTracking: WrongAnswerTracking?
+    let aiPractice: AIPracticeConfig?
 
-    /// Int ID derived from lessonId string (e.g. "001" -> 1)
     var id: Int { Int(lessonId) ?? 0 }
-    /// Alias used by HomeView
     var topic: String { title }
 
     enum CodingKeys: String, CodingKey {
         case lessonId = "lesson_id"
-        case title
+        case title, subtitle, sessions, vocabulary, gamification
         case chapterId = "chapter_id"
         case chapterTitle = "chapter_title"
-        case slides, gamification
+        case totalSessions = "total_sessions"
+        case completionReward = "completion_reward"
+        case wrongAnswerTracking = "wrong_answer_tracking"
+        case aiPractice = "ai_practice"
     }
 }
 
-// MARK: - Gamification
+// MARK: - Session
 
-struct LessonGamification: Codable {
-    let xpReward: Int
-    let heartsPerWrongAnswer: Int
-    let streakEligible: Bool
+struct LessonSession: Codable, Identifiable {
+    let sessionId: String
+    let sessionNumber: Int
+    let title: String
+    let isReview: Bool?
+    let cards: [SessionCard]
+
+    var id: String { sessionId }
 
     enum CodingKeys: String, CodingKey {
-        case xpReward = "xp_reward"
-        case heartsPerWrongAnswer = "hearts_per_wrong_answer"
-        case streakEligible = "streak_eligible"
+        case sessionId = "session_id"
+        case sessionNumber = "session_number"
+        case title, cards
+        case isReview = "is_review"
     }
 }
 
-// MARK: - Slide Type
+// MARK: - Card
 
-enum SlideType: String, Codable {
-    case culturalContext = "cultural_context"
-    case teaching
-    case vocabulary
-    case sentenceBreakdown = "sentence_breakdown"
-    case alamMoBa = "alam_mo_ba"
+enum CardType: String, Codable {
+    case teach
     case quiz
-    case lessonSummary = "lesson_summary"
 }
 
-// MARK: - Lesson Slide
+struct SessionCard: Codable, Identifiable {
+    let cardId: String
+    let type: CardType
 
-struct LessonSlide: Codable, Identifiable {
-    let slideId: String
-    let type: SlideType
+    // Shared optional fields (v0.5)
+    let image: CardImage?
+    let alamMoBaInline: AlamMoBaInline?
 
-    // Shared
-    let title: String?
+    // Teach fields
     let body: String?
+    let highlight: String?
+    let usePo: Bool?
+    let example: CardExample?
 
-    // Cultural context
-    let taglishNote: String?
-    let image: SlideImage?
-
-    // Teaching
-    let examples: [TeachingExample]?
-    let rules: [TeachingRule]?
-
-    // Vocabulary
-    let words: [SlideVocabWord]?
-
-    // Sentence Breakdown
-    let sentences: [SlideSentence]?
-
-    // Quiz
-    let costsHeart: Bool?
-    let questions: [SlideQuestion]?
-
-    // Summary
-    let keyWords: [String]?
-    let grammarConcept: String?
-    let culturalTakeaway: String?
-    let rootsLearned: [String]?
-    let affixesLearned: [String]?
-
-    // Alam Mo Ba
-    let borrowedWord: String?
-    let originLanguage: String?
-
-    var id: String { slideId }
-
-    enum CodingKeys: String, CodingKey {
-        case slideId = "slide_id"
-        case type, title, body
-        case taglishNote = "taglish_note"
-        case image, examples, rules, words
-        case sentences
-        case costsHeart = "costs_heart"
-        case questions
-        case keyWords = "key_words"
-        case grammarConcept = "grammar_concept"
-        case culturalTakeaway = "cultural_takeaway"
-        case rootsLearned = "roots_learned"
-        case affixesLearned = "affixes_learned"
-        case borrowedWord = "borrowed_word"
-        case originLanguage = "origin_language"
-    }
-}
-
-// MARK: - Slide Sub-Types
-
-struct SlideImage: Codable {
-    let source: String?
-    let suggestedQuery: String?
-    let attribution: String?
-    let licence: String?
-
-    enum CodingKeys: String, CodingKey {
-        case source
-        case suggestedQuery = "suggested_query"
-        case attribution, licence
-    }
-}
-
-struct TeachingExample: Codable {
-    // Format 1: casual/with_po/note
-    let casual: String?
-    let withPo: String?
-    let note: String?
-
-    // Format 2: tagalog/translation/po_position
-    let tagalog: String?
-    let translation: String?
-    let poPosition: String?
-
-    enum CodingKeys: String, CodingKey {
-        case casual, tagalog, translation, note
-        case withPo = "with_po"
-        case poPosition = "po_position"
-    }
-}
-
-struct TeachingRule: Codable {
-    let usePo: Bool
-    let context: String
-    let example: String
-
-    enum CodingKeys: String, CodingKey {
-        case usePo = "use_po"
-        case context, example
-    }
-}
-
-struct SlideVocabWord: Codable, Identifiable {
-    let word: String
-    let type: String
-    let meaning: String
-    let exampleSentence: String
-    let exampleTranslation: String
-    let taglishVariant: String?
-    let pronunciationGuide: String
-    let audioFile: String?
-
-    var id: String { word }
-
-    enum CodingKeys: String, CodingKey {
-        case word, type, meaning
-        case exampleSentence = "example_sentence"
-        case exampleTranslation = "example_translation"
-        case taglishVariant = "taglish_variant"
-        case pronunciationGuide = "pronunciation_guide"
-        case audioFile = "audio_file"
-    }
-}
-
-struct SlideSentence: Codable, Identifiable {
-    let tagalog: String
-    let english: String
-    let taglishVariant: String?
-    let words: [SentenceWord]
-
-    var id: String { tagalog }
-
-    enum CodingKeys: String, CodingKey {
-        case tagalog, english, words
-        case taglishVariant = "taglish_variant"
-    }
-}
-
-struct SentenceWord: Codable, Identifiable {
-    let word: String
-    let role: String
-    let hasAffix: Bool?
-    let affix: String?
-    let root: String?
-    let meaning: String?
-
-    var id: String { word }
-
-    enum CodingKeys: String, CodingKey {
-        case word, role, affix, root, meaning
-        case hasAffix = "has_affix"
-    }
-}
-
-struct SlideQuestion: Codable, Identifiable {
-    let questionId: String
-    let type: SlideQuestionType
-    let prompt: String
+    // Quiz fields
+    let quizType: QuizType?
+    let prompt: String?
     let options: [String]?
     let correctAnswer: Int?
     let correctAnswers: [String]?
     let hint: String?
     let explanation: String?
+    let shuffleOptions: Bool?
 
-    var id: String { questionId }
+    var id: String { cardId }
 
     enum CodingKeys: String, CodingKey {
-        case questionId = "question_id"
-        case type, prompt, options, hint, explanation
+        case cardId = "card_id"
+        case type, body, highlight, image, example
+        case alamMoBaInline = "alam_mo_ba_inline"
+        case usePo = "use_po"
+        case quizType = "quiz_type"
+        case prompt, options, hint, explanation
         case correctAnswer = "correct_answer"
         case correctAnswers = "correct_answers"
+        case shuffleOptions = "shuffle_options"
     }
 }
 
-enum SlideQuestionType: String, Codable {
+// MARK: - Card Sub-Types
+
+enum QuizType: String, Codable {
     case multipleChoice = "multiple_choice"
     case fillInBlank = "fill_in_blank"
 }
 
-// MARK: - Lesson Page (flattened from slides for display)
+struct CardImage: Codable {
+    let filename: String?
+    let alt: String?
+    let source: String?
+    let attribution: String?
+}
 
-enum LessonPage: Identifiable {
-    case culturalContext(slide: LessonSlide)
-    case teaching(slide: LessonSlide)
-    case vocabulary(word: SlideVocabWord)
-    case sentenceBreakdown(sentence: SlideSentence)
-    case alamMoBa(slide: LessonSlide)
-    case quiz(question: SlideQuestion, costsHeart: Bool)
-    case summary(slide: LessonSlide)
+struct AlamMoBaInline: Codable {
+    let term: String
+    let fact: String
+    let emoji: String?
+}
 
-    var id: String {
-        switch self {
-        case .culturalContext(let slide): "cc_\(slide.slideId)"
-        case .teaching(let slide): "teach_\(slide.slideId)"
-        case .vocabulary(let word): "vocab_\(word.word)"
-        case .sentenceBreakdown(let sentence): "sb_\(sentence.tagalog)"
-        case .alamMoBa(let slide): "amb_\(slide.slideId)"
-        case .quiz(let question, _): "quiz_\(question.questionId)"
-        case .summary(let slide): "sum_\(slide.slideId)"
-        }
+struct CardExample: Codable {
+    // Format 1: casual → with_po
+    let casual: String?
+    let withPo: String?
+    let note: String?
+
+    // Format 2: context + sentence
+    let context: String?
+    let sentence: String?
+    let translation: String?
+    let taglish: String?
+    let poPosition: String?
+
+    enum CodingKeys: String, CodingKey {
+        case casual, note, context, sentence, translation, taglish
+        case withPo = "with_po"
+        case poPosition = "po_position"
     }
 }
 
-extension SlideLesson {
-    /// Expand slides into individual pages (one word per page, one question per page)
-    func expandToPages() -> [LessonPage] {
-        var pages: [LessonPage] = []
-        for slide in slides {
-            switch slide.type {
-            case .culturalContext:
-                pages.append(.culturalContext(slide: slide))
-            case .teaching:
-                pages.append(.teaching(slide: slide))
-            case .vocabulary:
-                for word in slide.words ?? [] {
-                    pages.append(.vocabulary(word: word))
-                }
-            case .sentenceBreakdown:
-                for sentence in slide.sentences ?? [] {
-                    pages.append(.sentenceBreakdown(sentence: sentence))
-                }
-            case .alamMoBa:
-                pages.append(.alamMoBa(slide: slide))
-            case .quiz:
-                let costsHeart = slide.costsHeart ?? true
-                for question in slide.questions ?? [] {
-                    pages.append(.quiz(question: question, costsHeart: costsHeart))
-                }
-            case .lessonSummary:
-                pages.append(.summary(slide: slide))
-            }
-        }
-        return pages
+// MARK: - Vocabulary
+
+struct LessonVocabulary: Codable, Identifiable {
+    let word: String
+    let meaning: String
+    let pronunciation: String
+    let type: String
+
+    var id: String { word }
+}
+
+// MARK: - Completion Reward
+
+struct CompletionReward: Codable {
+    let xp: Int
+    let alamMoBa: [String]
+
+    enum CodingKeys: String, CodingKey {
+        case xp
+        case alamMoBa = "alam_mo_ba"
     }
+}
+
+// MARK: - Wrong Answer Tracking
+
+struct WrongAnswerTracking: Codable {
+    let behaviour: String?
+    let trackWrongCount: Bool?
+    let wrongCountUsage: String?
+
+    enum CodingKeys: String, CodingKey {
+        case behaviour
+        case trackWrongCount = "track_wrong_count"
+        case wrongCountUsage = "wrong_count_usage"
+    }
+}
+
+// MARK: - Gamification
+
+struct SessionGamification: Codable {
+    let xpPerLesson: Int
+    let heartsPerWrongAnswer: Int
+    let streakEligible: Bool
+    let progressRing: ProgressRingConfig?
+    let replay: ReplayConfig?
+
+    enum CodingKeys: String, CodingKey {
+        case xpPerLesson = "xp_per_lesson"
+        case heartsPerWrongAnswer = "hearts_per_wrong_answer"
+        case streakEligible = "streak_eligible"
+        case progressRing = "progress_ring"
+        case replay
+    }
+}
+
+struct ProgressRingConfig: Codable {
+    let total: Int
+    let display: String?
+}
+
+struct ReplayConfig: Codable {
+    let allowed: Bool
+    let xpOnReplay: Int
+
+    enum CodingKeys: String, CodingKey {
+        case allowed
+        case xpOnReplay = "xp_on_replay"
+    }
+}
+
+// MARK: - AI Practice Config
+
+struct AIPracticeConfig: Codable {
+    let description: String?
+    let systemPromptTemplate: String?
+    let maxTurns: Int?
+    let wrongAnswerContextExample: String?
+
+    enum CodingKeys: String, CodingKey {
+        case description
+        case systemPromptTemplate = "system_prompt_template"
+        case maxTurns = "max_turns"
+        case wrongAnswerContextExample = "wrong_answer_context_example"
+    }
+}
+
+// MARK: - Navigation
+
+struct LessonNavigation: Hashable {
+    let lessonId: Int
+    let sessionNumber: Int
+    let isReplay: Bool
 }

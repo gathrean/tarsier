@@ -3,27 +3,90 @@ import SwiftData
 
 struct LessonContainerView: View {
     let lesson: SlideLesson
+    let sessionNumber: Int
+    let isReplay: Bool
+
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
     @Query private var profiles: [UserProfile]
 
-    @State private var currentPageIndex = 0
-    @State private var pages: [LessonPage] = []
-    @State private var showCloseConfirmation = false
-    @State private var quizScore = 0
-    @State private var quizTotal = 0
+    // Card queue — wrong quiz answers get moved to back
+    @State private var cardQueue: [SessionCard] = []
+    @State private var initialCardCount = 0
+    @State private var completedCardIds: Set<String> = []
+
+    // Shuffle state for current quiz card
+    @State private var shuffledOptions: [String] = []
+    @State private var shuffledCorrectIndex: Int = 0
+
+    // Quiz state
     @State private var quizState = QuizState()
+    @State private var showCloseConfirmation = false
     @State private var showHeartsEmpty = false
 
+    // Session completion
+    @State private var sessionComplete = false
+    @State private var isLessonComplete = false
+    @State private var completedCountBeforeThis = 0
+
+    // Wrong answer tracking
+    @State private var wrongCounts: [String: Int] = [:]
+
     private var profile: UserProfile? { profiles.first }
-    private var currentPage: LessonPage? {
-        guard currentPageIndex < pages.count else { return nil }
-        return pages[currentPageIndex]
+    private var currentCard: SessionCard? { cardQueue.first }
+
+    private var session: LessonSession? {
+        lesson.sessions.first { $0.sessionNumber == sessionNumber }
     }
 
     var body: some View {
         VStack(spacing: 0) {
-            // Top bar: close button + progress
+            if sessionComplete {
+                SessionCompleteView(
+                    lesson: lesson,
+                    sessionNumber: sessionNumber,
+                    isLessonComplete: isLessonComplete,
+                    isReplay: isReplay,
+                    completedSessionsBefore: completedCountBeforeThis,
+                    onContinue: { dismiss() }
+                )
+            } else {
+                sessionContent
+            }
+        }
+        .background(TarsierColors.warmWhite.ignoresSafeArea())
+        .navigationBarBackButtonHidden()
+        .toolbar(.hidden, for: .tabBar)
+        .toolbar(.hidden, for: .navigationBar)
+        .alert("Leave lesson?", isPresented: $showCloseConfirmation) {
+            Button("Stay", role: .cancel) {}
+            Button("Leave", role: .destructive) { dismiss() }
+        } message: {
+            Text("Your progress in this session won't be saved.")
+        }
+        .sheet(isPresented: $showHeartsEmpty) {
+            HeartsEmptySheet(
+                onWatchAd: {
+                    profile?.hearts = min(5, (profile?.hearts ?? 0) + 1)
+                },
+                onGetPremium: {
+                    // TODO: Superwall paywall trigger
+                },
+                onLeaveLesson: {
+                    dismiss()
+                }
+            )
+        }
+        .onAppear {
+            loadSession()
+        }
+    }
+
+    // MARK: - Session Content (cards)
+
+    private var sessionContent: some View {
+        VStack(spacing: 0) {
+            // Top bar: close + progress
             HStack(spacing: 12) {
                 Button {
                     showCloseConfirmation = true
@@ -36,113 +99,195 @@ struct LessonContainerView: View {
                         .overlay(Circle().stroke(TarsierColors.cardBorder, lineWidth: 1))
                 }
 
-                ProgressBarView(current: currentPageIndex, total: pages.count)
+                ProgressBarView(current: completedCardIds.count, total: initialCardCount)
             }
             .padding(.horizontal, TarsierSpacing.screenPadding)
             .padding(.top, 8)
             .padding(.bottom, 4)
 
-            // Slide content (scrollable)
-            if let page = currentPage {
+            // Session title
+            if let session {
+                Text(session.title)
+                    .font(TarsierFonts.caption())
+                    .foregroundStyle(TarsierColors.textSecondary)
+                    .padding(.bottom, 8)
+            }
+
+            // Card content
+            if let card = currentCard {
                 ScrollView {
-                    slideContent(for: page)
+                    cardContent(for: card)
                         .padding(.horizontal, TarsierSpacing.screenPadding)
                         .padding(.top, 16)
                         .padding(.bottom, 80)
                 }
                 .scrollDismissesKeyboard(.interactively)
-                .id(page.id)
+                .id(card.cardId + "_\(cardQueue.count)")
             }
 
             Spacer(minLength: 0)
 
-            // Bottom button — pinned to bottom of screen
+            // Alam Mo Ba inline tooltip
+            if let inline = currentCard?.alamMoBaInline {
+                alamMoBaInlineView(inline)
+                    .padding(.horizontal, TarsierSpacing.screenPadding)
+                    .padding(.bottom, 8)
+            }
+
+            // Bottom button
             bottomButton
-        }
-        .background(TarsierColors.warmWhite.ignoresSafeArea())
-        .navigationBarBackButtonHidden()
-        .toolbar(.hidden, for: .tabBar)
-        .toolbar(.hidden, for: .navigationBar)
-        .alert("Leave lesson?", isPresented: $showCloseConfirmation) {
-            Button("Stay", role: .cancel) {}
-            Button("Leave", role: .destructive) { dismiss() }
-        } message: {
-            Text("Your progress in this lesson won't be saved.")
-        }
-        .sheet(isPresented: $showHeartsEmpty) {
-            HeartsEmptySheet(
-                onWatchAd: {
-                    // TODO: AdMob rewarded video — for now just refill 1 heart
-                    profile?.hearts = min(5, (profile?.hearts ?? 0) + 1)
-                },
-                onGetPremium: {
-                    // TODO: Superwall paywall trigger
-                },
-                onLeaveLesson: {
-                    dismiss()
-                }
-            )
-        }
-        .onAppear {
-            pages = lesson.expandToPages()
-        }
-        .onChange(of: currentPageIndex) {
-            quizState.reset()
         }
     }
 
-    // MARK: - Bottom Button (always pinned to bottom)
+    // MARK: - Alam Mo Ba Inline Tooltip
+
+    private func alamMoBaInlineView(_ inline: AlamMoBaInline) -> some View {
+        HStack(alignment: .top, spacing: 8) {
+            Text(inline.emoji ?? "💡")
+                .font(.system(size: 14))
+
+            VStack(alignment: .leading, spacing: 2) {
+                Text(inline.term)
+                    .font(TarsierFonts.caption(13))
+                    .fontWeight(.bold)
+                    .foregroundStyle(TarsierColors.functionalPurple)
+                Text(inline.fact)
+                    .font(TarsierFonts.caption(12))
+                    .foregroundStyle(TarsierColors.textSecondary)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 12)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(
+            RoundedRectangle(cornerRadius: 12)
+                .fill(TarsierColors.brandPurple.opacity(0.12))
+        )
+        .fixedSize(horizontal: false, vertical: true)
+    }
+
+    // MARK: - Card Router
+
+    @ViewBuilder
+    private func cardContent(for card: SessionCard) -> some View {
+        switch card.type {
+        case .teach:
+            TeachCardView(card: card)
+        case .quiz:
+            QuizSlideView(
+                card: card,
+                displayOptions: shuffledOptions,
+                correctIndex: shuffledCorrectIndex,
+                state: quizState
+            )
+        }
+    }
+
+    // MARK: - Bottom Button
 
     @ViewBuilder
     private var bottomButton: some View {
-        if let page = currentPage {
-            switch page {
-            case .summary:
-                EmptyView()
+        if let card = currentCard {
+            switch card.type {
+            case .teach:
+                PrimaryButton("Continue") {
+                    advanceTeachCard()
+                }
+                .padding(.horizontal, TarsierSpacing.screenPadding)
+                .padding(.bottom, 16)
 
-            case .quiz(let question, let costsHeart):
+            case .quiz:
                 if quizState.isChecked {
                     PrimaryButton("Continue") {
-                        advancePage()
+                        advanceAfterQuizCheck()
                     }
                     .padding(.horizontal, TarsierSpacing.screenPadding)
                     .padding(.bottom, 16)
                 } else {
                     PrimaryButton("Check") {
-                        checkQuizAnswer(question: question, costsHeart: costsHeart)
+                        checkQuizAnswer(card: card)
                     }
                     .disabled(!quizState.hasSelection)
                     .padding(.horizontal, TarsierSpacing.screenPadding)
                     .padding(.bottom, 16)
                 }
-
-            default:
-                PrimaryButton("Continue") {
-                    advancePage()
-                }
-                .padding(.horizontal, TarsierSpacing.screenPadding)
-                .padding(.bottom, 16)
             }
         }
     }
 
-    // MARK: - Quiz Check
+    // MARK: - Load Session
 
-    private func checkQuizAnswer(question: SlideQuestion, costsHeart: Bool) {
-        let isCorrect: Bool
-        switch question.type {
-        case .multipleChoice:
-            isCorrect = quizState.checkMultipleChoice(question: question)
-        case .fillInBlank:
-            isCorrect = quizState.checkFillInBlank(question: question)
+    private func loadSession() {
+        guard let session else { return }
+        cardQueue = session.cards
+        initialCardCount = session.cards.count
+
+        // Count completed sessions before this one
+        let lessonId = lesson.lessonId
+        let descriptor = FetchDescriptor<SessionProgress>(
+            predicate: #Predicate { $0.lessonId == lessonId && $0.isCompleted == true }
+        )
+        completedCountBeforeThis = (try? modelContext.fetchCount(descriptor)) ?? 0
+
+        prepareCurrentCard()
+    }
+
+    // MARK: - Card Advancement
+
+    private func advanceTeachCard() {
+        guard let card = currentCard else { return }
+        completedCardIds.insert(card.cardId)
+        _ = withAnimation(.easeInOut(duration: 0.25)) {
+            cardQueue.removeFirst()
+        }
+        if cardQueue.isEmpty {
+            completeSession()
+        } else {
+            prepareCurrentCard()
+        }
+    }
+
+    private func advanceAfterQuizCheck() {
+        guard let card = currentCard else { return }
+
+        if quizState.answerState == .correct {
+            completedCardIds.insert(card.cardId)
+            cardQueue.removeFirst()
+        } else {
+            // Move wrong card to back of queue
+            let wrongCard = cardQueue.removeFirst()
+            cardQueue.append(wrongCard)
         }
 
-        quizTotal += 1
+        quizState.reset()
+
+        if cardQueue.isEmpty {
+            completeSession()
+        } else {
+            prepareCurrentCard()
+        }
+    }
+
+    // MARK: - Quiz Answer Checking
+
+    private func checkQuizAnswer(card: SessionCard) {
+        let isCorrect: Bool
+
+        switch card.quizType {
+        case .multipleChoice:
+            isCorrect = quizState.checkMultipleChoice(correctIndex: shuffledCorrectIndex)
+        case .fillInBlank:
+            isCorrect = quizState.checkFillInBlank(acceptedAnswers: card.correctAnswers ?? [])
+        case .none:
+            return
+        }
+
         if isCorrect {
-            quizScore += 1
             UIImpactFeedbackGenerator(style: .light).impactOccurred()
-        } else if costsHeart {
+        } else {
             UINotificationFeedbackGenerator().notificationOccurred(.error)
+            wrongCounts[card.cardId, default: 0] += 1
             profile?.loseHeart()
             if profile?.hearts == 0 {
                 showHeartsEmpty = true
@@ -150,88 +295,92 @@ struct LessonContainerView: View {
         }
     }
 
-    // MARK: - Slide Router
+    // MARK: - Prepare Current Card (shuffle if needed)
 
-    @ViewBuilder
-    private func slideContent(for page: LessonPage) -> some View {
-        switch page {
-        case .culturalContext(let slide):
-            CulturalContextSlideView(slide: slide)
-        case .teaching(let slide):
-            TeachingSlideView(slide: slide)
-        case .vocabulary(let word):
-            VocabularySlideView(word: word)
-        case .sentenceBreakdown(let sentence):
-            SentenceBreakdownSlideView(sentence: sentence)
-        case .alamMoBa(let slide):
-            AlamMoBaSlideView(slide: slide)
-        case .quiz(let question, _):
-            QuizSlideView(question: question, state: quizState)
-        case .summary(let slide):
-            SummarySlideView(
-                slide: slide,
-                xpReward: lesson.gamification.xpReward,
-                quizScore: quizScore,
-                quizTotal: quizTotal,
-                onContinue: { completeLesson() }
-            )
+    private func prepareCurrentCard() {
+        guard let card = currentCard else { return }
+        if card.type == .quiz, card.quizType == .multipleChoice {
+            prepareShuffledOptions(for: card)
+        } else {
+            shuffledOptions = []
+            shuffledCorrectIndex = 0
         }
     }
 
-    // MARK: - Navigation
+    private func prepareShuffledOptions(for card: SessionCard) {
+        guard let options = card.options else {
+            shuffledOptions = []
+            shuffledCorrectIndex = 0
+            return
+        }
 
-    private func advancePage() {
-        withAnimation(.easeInOut(duration: 0.25)) {
-            if currentPageIndex < pages.count - 1 {
-                currentPageIndex += 1
-            }
+        if card.shuffleOptions == true {
+            var indices = Array(0..<options.count)
+            indices.shuffle()
+            shuffledOptions = indices.map { options[$0] }
+            shuffledCorrectIndex = indices.firstIndex(of: card.correctAnswer ?? 0) ?? 0
+        } else {
+            shuffledOptions = options
+            shuffledCorrectIndex = card.correctAnswer ?? 0
         }
     }
 
-    // MARK: - Lesson Completion
+    // MARK: - Session Completion
 
-    private func completeLesson() {
-        if let profile {
-            profile.addXP(lesson.gamification.xpReward)
+    private func completeSession() {
+        isLessonComplete = (completedCountBeforeThis + 1) >= lesson.totalSessions
 
-            if !profile.completedLessonIDs.contains(lesson.id) {
-                profile.completedLessonIDs.append(lesson.id)
-            }
+        // Save session progress
+        let progress = SessionProgress(lessonId: lesson.lessonId, sessionNumber: sessionNumber)
+        progress.wrongCounts = wrongCounts
+        progress.markCompleted()
+        modelContext.insert(progress)
 
-            if lesson.id >= profile.currentLessonIndex {
-                profile.currentLessonIndex = lesson.id + 1
-            }
-
-            StreakService.updateStreak(for: profile)
+        if isLessonComplete && !isReplay {
+            completeLessonFull()
         }
+
+        withAnimation(.easeInOut(duration: 0.3)) {
+            sessionComplete = true
+        }
+    }
+
+    private func completeLessonFull() {
+        guard let profile else { return }
+
+        let xp = lesson.completionReward.xp
+        profile.addXP(xp)
+
+        if !profile.completedLessonIDs.contains(lesson.id) {
+            profile.completedLessonIDs.append(lesson.id)
+        }
+
+        if lesson.id >= profile.currentLessonIndex {
+            profile.currentLessonIndex = lesson.id + 1
+        }
+
+        StreakService.updateStreak(for: profile)
 
         let result = LessonResult(
             lessonID: lesson.id,
             chapterId: lesson.chapterId,
-            score: quizScore,
-            totalQuestions: quizTotal,
-            xpEarned: lesson.gamification.xpReward
+            score: 0,
+            totalQuestions: 0,
+            xpEarned: xp
         )
         modelContext.insert(result)
 
-        // Add words to word bank
-        for slide in lesson.slides where slide.type == .vocabulary {
-            for word in slide.words ?? [] {
-                let entry = WordBankEntry(
-                    word: word.word,
-                    root: word.word,
-                    meaning: word.meaning,
-                    lessonId: lesson.id,
-                    chapterId: lesson.chapterId,
-                    pronunciationGuide: word.pronunciationGuide,
-                    exampleSentence: word.exampleSentence,
-                    exampleTranslation: word.exampleTranslation,
-                    taglishVariant: word.taglishVariant
-                )
-                modelContext.insert(entry)
-            }
+        // Add vocabulary to word bank
+        for vocab in lesson.vocabulary {
+            let entry = WordBankEntry(
+                word: vocab.word,
+                root: vocab.word,
+                meaning: vocab.meaning,
+                lessonId: lesson.id,
+                chapterId: lesson.chapterId,
+                pronunciationGuide: vocab.pronunciation
+            )
+            modelContext.insert(entry)
         }
-
-        dismiss()
     }
 }

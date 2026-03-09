@@ -4,16 +4,18 @@ struct PhotoCreditsView: View {
     private var credits: [ImageCredit] {
         LessonService.shared.loadAllLessons()
             .flatMap { lesson in
-                lesson.slides.compactMap { slide -> ImageCredit? in
-                    guard let image = slide.image,
-                          let attribution = image.attribution,
-                          !attribution.isEmpty else { return nil }
-                    return ImageCredit(
-                        lessonTitle: lesson.title,
-                        attribution: attribution,
-                        licence: image.licence ?? "Unknown",
-                        source: image.source ?? ""
-                    )
+                lesson.sessions.flatMap { session in
+                    session.cards.compactMap { card -> ImageCredit? in
+                        guard let image = card.image,
+                              let filename = image.filename,
+                              !filename.isEmpty else { return nil }
+                        return ImageCredit(
+                            lessonTitle: lesson.title,
+                            filename: filename,
+                            attribution: image.attribution ?? "",
+                            source: image.source ?? ""
+                        )
+                    }
                 }
             }
     }
@@ -51,19 +53,27 @@ struct PhotoCreditsView: View {
                 Section {
                     ForEach(credits) { credit in
                         VStack(alignment: .leading, spacing: 4) {
-                            Text(credit.attribution)
+                            Text(credit.filename)
                                 .font(TarsierFonts.body(15))
                                 .foregroundStyle(TarsierColors.textPrimary)
 
+                            if !credit.attribution.isEmpty {
+                                Text(credit.attribution)
+                                    .font(TarsierFonts.caption(12))
+                                    .foregroundStyle(TarsierColors.textSecondary)
+                            }
+
                             HStack(spacing: 8) {
-                                Text(credit.licence)
-                                    .font(TarsierFonts.caption(11))
-                                    .foregroundStyle(TarsierColors.functionalPurple)
-                                    .padding(.horizontal, 8)
-                                    .padding(.vertical, 2)
-                                    .background(
-                                        Capsule().fill(TarsierColors.brandPurple.opacity(0.15))
-                                    )
+                                if !credit.source.isEmpty {
+                                    Text(credit.source)
+                                        .font(TarsierFonts.caption(11))
+                                        .foregroundStyle(TarsierColors.functionalPurple)
+                                        .padding(.horizontal, 8)
+                                        .padding(.vertical, 2)
+                                        .background(
+                                            Capsule().fill(TarsierColors.brandPurple.opacity(0.15))
+                                        )
+                                }
 
                                 Text(credit.lessonTitle)
                                     .font(TarsierFonts.caption(11))
@@ -87,9 +97,9 @@ struct PhotoCreditsView: View {
 
 private struct ImageCredit: Identifiable {
     let lessonTitle: String
+    let filename: String
     let attribution: String
-    let licence: String
     let source: String
 
-    var id: String { "\(lessonTitle)_\(attribution)" }
+    var id: String { "\(lessonTitle)_\(filename)" }
 }
