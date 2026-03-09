@@ -5,6 +5,7 @@ final class LessonService {
     static let shared = LessonService()
 
     private var cachedLessons: [Lesson]?
+    private var cachedChapters: [Chapter]?
 
     private init() {}
 
@@ -37,5 +38,23 @@ final class LessonService {
 
     func lesson(for id: Int) -> Lesson? {
         loadAllLessons().first { $0.id == id }
+    }
+
+    func loadChapters() -> [Chapter] {
+        if let cached = cachedChapters { return cached }
+
+        guard let url = Bundle.main.url(forResource: "chapters", withExtension: "json") else {
+            return []
+        }
+
+        do {
+            let data = try Data(contentsOf: url)
+            let chapters = try JSONDecoder().decode([Chapter].self, from: data)
+            cachedChapters = chapters
+            return chapters
+        } catch {
+            print("Failed to load chapters: \(error)")
+            return []
+        }
     }
 }

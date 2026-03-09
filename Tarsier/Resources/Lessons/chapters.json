@@ -1,0 +1,56 @@
+[
+  {
+    "id": "ch01",
+    "title": "Magalang",
+    "subtitle": "Respect & Greetings",
+    "lessonIDs": [1, 2, 3, 4]
+  },
+  {
+    "id": "ch02",
+    "title": "Kain!",
+    "subtitle": "Food & Basic Verbs",
+    "lessonIDs": [5, 6, 7, 8]
+  },
+  {
+    "id": "ch03",
+    "title": "Pamilya",
+    "subtitle": "Family & Relationships",
+    "lessonIDs": [9, 10, 11, 12]
+  },
+  {
+    "id": "ch04",
+    "title": "Bilang",
+    "subtitle": "Counting & Money",
+    "lessonIDs": [13, 14]
+  },
+  {
+    "id": "ch05",
+    "title": "Araw-araw",
+    "subtitle": "Daily Routines",
+    "lessonIDs": [15, 16, 17, 18]
+  },
+  {
+    "id": "ch06",
+    "title": "Damdamin",
+    "subtitle": "Feelings & Descriptions",
+    "lessonIDs": [19, 20, 21, 22]
+  },
+  {
+    "id": "ch07",
+    "title": "Lugar",
+    "subtitle": "Places & Getting Around",
+    "lessonIDs": [23, 24, 25, 26]
+  },
+  {
+    "id": "ch08",
+    "title": "Oras",
+    "subtitle": "Time & Planning",
+    "lessonIDs": [27, 28]
+  },
+  {
+    "id": "ch09",
+    "title": "Kwento",
+    "subtitle": "Putting It All Together",
+    "lessonIDs": [29, 30]
+  }
+]
