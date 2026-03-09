@@ -47,8 +47,8 @@ struct PracticeView: View {
                 .font(TarsierTheme.title3)
 
             Text("Try: \"How do I ask my tita if she's eaten yet?\"")
-                .font(TarsierTheme.callout)
-                .foregroundStyle(.secondary)
+                .font(TarsierFonts.body(15))
+                .foregroundStyle(TarsierColors.textSecondary)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 40)
 
@@ -73,7 +73,7 @@ struct PracticeView: View {
                                 .padding(.horizontal)
                             Text("Tarsier is thinking...")
                                 .font(TarsierTheme.caption)
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(TarsierColors.textSecondary)
                             Spacer()
                         }
                         .padding(.horizontal)
@@ -115,8 +115,8 @@ struct PracticeView: View {
                     sendMessage()
                 } label: {
                     Image(systemName: "arrow.up.circle.fill")
-                        .font(.title2)
-                        .foregroundStyle(canSend ? TarsierTheme.blue : .gray)
+                        .font(.system(size: 28, weight: .semibold, design: .rounded))
+                        .foregroundStyle(canSend ? TarsierColors.functionalPurple : TarsierColors.cardBorder)
                 }
                 .disabled(!canSend)
             }
@@ -173,7 +173,7 @@ struct ChatBubble: View {
                         RoundedRectangle(cornerRadius: 16)
                             .fill(message.isUser ? TarsierTheme.blue : TarsierTheme.cream)
                     )
-                    .foregroundStyle(message.isUser ? .white : .primary)
+                    .foregroundStyle(message.isUser ? .white : TarsierColors.textPrimary)
             }
 
             if !message.isUser { Spacer(minLength: 60) }

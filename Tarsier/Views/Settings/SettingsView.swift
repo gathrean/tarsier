@@ -18,7 +18,7 @@ struct SettingsView: View {
                         Text("Skill Level")
                         Spacer()
                         Text(profile.skillLevel.displayName)
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(TarsierColors.textSecondary)
                     }
                     .contentShape(Rectangle())
                     .onTapGesture {
@@ -44,7 +44,7 @@ struct SettingsView: View {
                     Text("Version")
                     Spacer()
                     Text("0.1.0")
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(TarsierColors.textSecondary)
                 }
 
                 Link("Privacy Policy", destination: URL(string: "https://tarsierapp.com/privacy")!)

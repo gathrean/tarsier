@@ -15,7 +15,7 @@ struct HomeView: View {
             }
             .padding()
         }
-        .background(Color(.systemGroupedBackground))
+        .background(TarsierColors.warmWhite)
         .navigationTitle("Tarsier")
         .onAppear {
             lessons = LessonService.shared.loadAllLessons()
@@ -31,26 +31,30 @@ struct HomeView: View {
         HStack(spacing: 16) {
             HStack(spacing: 6) {
                 Image(systemName: "flame.fill")
-                    .foregroundStyle(TarsierTheme.yellow)
-                    .font(.title2)
+                    .foregroundStyle(TarsierColors.gold)
+                    .font(.system(size: 22, weight: .bold, design: .rounded))
                 Text("\(profile?.currentStreak ?? 0)")
-                    .font(TarsierTheme.title2)
+                    .font(TarsierFonts.heading(22))
                 Text("day streak")
-                    .font(TarsierTheme.subheadline)
-                    .foregroundStyle(.secondary)
+                    .font(TarsierFonts.body(15))
+                    .foregroundStyle(TarsierColors.textSecondary)
             }
 
             Spacer()
 
             Text("Lesson \(profile?.currentLessonIndex ?? 1)")
-                .font(TarsierTheme.headline)
-                .foregroundStyle(TarsierTheme.blue)
+                .font(TarsierFonts.button())
+                .foregroundStyle(TarsierColors.functionalPurple)
         }
-        .padding()
+        .padding(TarsierSpacing.cardPadding)
         .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(.background)
-                .shadow(color: .black.opacity(0.05), radius: 8, y: 2)
+            RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
+                .fill(TarsierColors.cream)
+                .shadow(color: .black.opacity(0.04), radius: 8, y: 2)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
+                .stroke(TarsierColors.cardBorder, lineWidth: 1)
         )
     }
 
@@ -91,45 +95,54 @@ struct LessonCard: View {
         HStack(spacing: 14) {
             ZStack {
                 Circle()
-                    .fill(isUnlocked ? TarsierTheme.blue : Color(.systemGray4))
-                    .frame(width: 40, height: 40)
+                    .fill(isCompleted ? TarsierColors.functionalPurple : (isUnlocked ? TarsierColors.cream : TarsierColors.cardBorder))
+                    .frame(width: 44, height: 44)
+                    .overlay(
+                        Circle()
+                            .stroke(isUnlocked && !isCompleted ? TarsierColors.functionalPurple : .clear, lineWidth: 2)
+                    )
 
                 if isCompleted {
                     Image(systemName: "checkmark")
-                        .font(.system(size: 16, weight: .bold))
+                        .font(.system(size: 16, weight: .bold, design: .rounded))
                         .foregroundStyle(.white)
-                } else {
+                } else if isUnlocked {
                     Text("\(lesson.id)")
-                        .font(TarsierTheme.headline)
-                        .foregroundStyle(.white)
+                        .font(TarsierFonts.button())
+                        .foregroundStyle(TarsierColors.functionalPurple)
+                } else {
+                    Image(systemName: "lock.fill")
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundStyle(TarsierColors.textSecondary)
                 }
             }
 
             VStack(alignment: .leading, spacing: 2) {
                 Text(lesson.topic)
-                    .font(TarsierTheme.headline)
-                    .foregroundStyle(isUnlocked ? .primary : .secondary)
+                    .font(TarsierFonts.button())
+                    .foregroundStyle(isUnlocked ? TarsierColors.textPrimary : TarsierColors.textSecondary)
 
                 Text(lesson.tier.capitalized)
-                    .font(TarsierTheme.caption)
-                    .foregroundStyle(.secondary)
+                    .font(TarsierFonts.caption())
+                    .foregroundStyle(TarsierColors.textSecondary)
             }
 
             Spacer()
 
-            if !isUnlocked {
-                Image(systemName: "lock.fill")
-                    .foregroundStyle(.secondary)
-            } else {
+            if isUnlocked && !isCompleted {
                 Image(systemName: "chevron.right")
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(TarsierColors.textSecondary)
             }
         }
-        .padding()
+        .padding(TarsierSpacing.cardPadding)
         .background(
-            RoundedRectangle(cornerRadius: 12)
-                .fill(.background)
-                .shadow(color: .black.opacity(0.04), radius: 4, y: 1)
+            RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
+                .fill(TarsierColors.cream)
+                .shadow(color: .black.opacity(0.04), radius: 8, y: 2)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
+                .stroke(TarsierColors.cardBorder, lineWidth: 1)
         )
         .opacity(isUnlocked ? 1 : 0.6)
     }

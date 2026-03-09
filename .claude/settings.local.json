@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add docs/)",
+      "Bash(git commit:*)",
+      "Bash(git push)",
+      "Bash(brew install xcodegen)",
+      "Bash(xcodegen generate)",
+      "Bash(xcodebuild -project Tarsier.xcodeproj -scheme Tarsier -destination 'platform=iOS Simulator,name=iPhone 16' -quiet build)",
+      "Bash(xcodebuild -project Tarsier.xcodeproj -scheme Tarsier -destination 'platform=iOS Simulator,name=iPhone 17 Pro,OS=26.2' -quiet build)",
+      "Bash(xcodebuild -project Tarsier.xcodeproj -scheme Tarsier -destination 'platform=iOS Simulator,name=iPhone 17 Pro,OS=26.2' build)",
+      "Bash(git add project.yml Tarsier/ Tarsier.xcodeproj/ docs/Tarsier_v0.1_TODO.md)",
+      "Bash(git push origin main)",
+      "Bash(xcodebuild -project Tarsier.xcodeproj -scheme Tarsier -destination 'platform=iOS Simulator,name=iPhone 17 Pro' -quiet build)",
+      "Bash(git status -u)",
+      "Bash(git add CLAUDE.md docs/Tarsier_Roadmap.md docs/Tarsier_Research.md docs/Claude/ docs/Lessons/ docs/OLD/)",
+      "Bash(git rm --cached docs/Tarsier_v0.1_TODO.md docs/v0/v0.1-Foundation.md)",
+      "Bash(git add docs/Tarsier_v0.1_TODO.md docs/v0/v0.1-Foundation.md)",
+      "Bash(git add Tarsier/Theme/TarsierColors.swift Tarsier/Theme/Color+Hex.swift Tarsier/Theme/TarsierFonts.swift Tarsier/Theme/TarsierSpacing.swift Tarsier/Theme/TarsierTheme.swift)",
+      "Bash(git add Tarsier/Views/Onboarding/OnboardingFlow.swift Tarsier/Views/Home/HomeView.swift Tarsier/Views/Lesson/LessonView.swift Tarsier/Views/Quiz/QuizView.swift Tarsier/Views/Practice/PracticeView.swift Tarsier/Views/Settings/SettingsView.swift Tarsier/Views/MainTabView.swift Tarsier.xcodeproj/project.pbxproj .claude/settings.local.json)"
+    ]
+  }
+}

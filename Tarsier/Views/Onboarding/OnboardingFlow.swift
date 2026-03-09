@@ -23,6 +23,7 @@ struct OnboardingFlow: View {
         }
         .tabViewStyle(.page(indexDisplayMode: .never))
         .animation(.easeInOut, value: currentPage)
+        .background(TarsierColors.warmWhite.ignoresSafeArea())
     }
 
     // MARK: - Welcome Page
@@ -37,12 +38,12 @@ struct OnboardingFlow: View {
 
             VStack(spacing: 8) {
                 Text("Tarsier")
-                    .font(TarsierTheme.largeTitle)
-                    .foregroundStyle(TarsierTheme.blue)
+                    .font(TarsierFonts.title(36))
+                    .foregroundStyle(TarsierColors.functionalPurple)
 
-                Text("learn Tagalog")
-                    .font(TarsierTheme.title3)
-                    .foregroundStyle(.secondary)
+                Text("Learn Tagalog")
+                    .font(TarsierFonts.heading(18))
+                    .foregroundStyle(TarsierColors.textSecondary)
             }
 
             Spacer()
@@ -51,12 +52,12 @@ struct OnboardingFlow: View {
                 withAnimation { currentPage = 1 }
             } label: {
                 Text("Get Started")
-                    .font(TarsierTheme.headline)
+                    .font(TarsierFonts.button())
+                    .foregroundStyle(.white)
                     .frame(maxWidth: .infinity)
-                    .padding(.vertical, 16)
+                    .frame(height: 52)
+                    .background(TarsierColors.functionalPurple, in: RoundedRectangle(cornerRadius: TarsierSpacing.buttonCornerRadius))
             }
-            .buttonStyle(.borderedProminent)
-            .tint(TarsierTheme.blue)
             .padding(.horizontal, 32)
             .padding(.bottom, 48)
         }
@@ -81,23 +82,23 @@ struct OnboardingFlow: View {
                                 Text(level.displayName)
                                     .font(TarsierTheme.headline)
                                 Text(level.description)
-                                    .font(TarsierTheme.caption)
-                                    .foregroundStyle(.secondary)
+                                    .font(TarsierFonts.caption())
+                                    .foregroundStyle(TarsierColors.textSecondary)
                             }
                             Spacer()
                             if selectedSkillLevel == level {
                                 Image(systemName: "checkmark.circle.fill")
-                                    .foregroundStyle(TarsierTheme.blue)
+                                    .foregroundStyle(TarsierColors.functionalPurple)
                             }
                         }
-                        .padding()
+                        .padding(TarsierSpacing.cardPadding)
                         .background(
-                            RoundedRectangle(cornerRadius: 12)
-                                .fill(selectedSkillLevel == level ? TarsierTheme.cream : Color(.systemGray6))
+                            RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
+                                .fill(selectedSkillLevel == level ? TarsierColors.cream : TarsierColors.warmWhite)
                         )
                         .overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke(selectedSkillLevel == level ? TarsierTheme.blue : .clear, lineWidth: 2)
+                            RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
+                                .stroke(selectedSkillLevel == level ? TarsierColors.functionalPurple : TarsierColors.cardBorder, lineWidth: selectedSkillLevel == level ? 2 : 1)
                         )
                     }
                     .buttonStyle(.plain)
@@ -111,12 +112,15 @@ struct OnboardingFlow: View {
                 withAnimation { currentPage = 2 }
             } label: {
                 Text("Continue")
-                    .font(TarsierTheme.headline)
+                    .font(TarsierFonts.button())
+                    .foregroundStyle(.white)
                     .frame(maxWidth: .infinity)
-                    .padding(.vertical, 16)
+                    .frame(height: 52)
+                    .background(
+                        RoundedRectangle(cornerRadius: TarsierSpacing.buttonCornerRadius)
+                            .fill(selectedSkillLevel == nil ? Color.gray : TarsierColors.functionalPurple)
+                    )
             }
-            .buttonStyle(.borderedProminent)
-            .tint(TarsierTheme.blue)
             .disabled(selectedSkillLevel == nil)
             .padding(.horizontal, 32)
             .padding(.bottom, 48)
@@ -134,8 +138,8 @@ struct OnboardingFlow: View {
                 .multilineTextAlignment(.center)
 
             Text("Pick all that apply (optional)")
-                .font(TarsierTheme.subheadline)
-                .foregroundStyle(.secondary)
+                .font(TarsierFonts.body(15))
+                .foregroundStyle(TarsierColors.textSecondary)
 
             VStack(spacing: 10) {
                 ForEach(motivations, id: \.self) { motivation in
@@ -152,13 +156,17 @@ struct OnboardingFlow: View {
                             Spacer()
                             if selectedMotivations.contains(motivation) {
                                 Image(systemName: "checkmark")
-                                    .foregroundStyle(TarsierTheme.blue)
+                                    .foregroundStyle(TarsierColors.functionalPurple)
                             }
                         }
-                        .padding()
+                        .padding(TarsierSpacing.cardPadding)
                         .background(
-                            RoundedRectangle(cornerRadius: 12)
-                                .fill(selectedMotivations.contains(motivation) ? TarsierTheme.cream : Color(.systemGray6))
+                            RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
+                                .fill(selectedMotivations.contains(motivation) ? TarsierColors.cream : TarsierColors.warmWhite)
+                        )
+                        .overlay(
+                            RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
+                                .stroke(selectedMotivations.contains(motivation) ? TarsierColors.functionalPurple : TarsierColors.cardBorder, lineWidth: selectedMotivations.contains(motivation) ? 2 : 1)
                         )
                     }
                     .buttonStyle(.plain)
@@ -172,12 +180,12 @@ struct OnboardingFlow: View {
                 completeOnboarding()
             } label: {
                 Text("Let's Go!")
-                    .font(TarsierTheme.headline)
+                    .font(TarsierFonts.button())
+                    .foregroundStyle(.white)
                     .frame(maxWidth: .infinity)
-                    .padding(.vertical, 16)
+                    .frame(height: 52)
+                    .background(TarsierColors.functionalPurple, in: RoundedRectangle(cornerRadius: TarsierSpacing.buttonCornerRadius))
             }
-            .buttonStyle(.borderedProminent)
-            .tint(TarsierTheme.blue)
             .padding(.horizontal, 32)
             .padding(.bottom, 48)
         }

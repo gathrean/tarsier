@@ -15,8 +15,9 @@ struct LessonView: View {
                 sentencesSection
                 quizButton
             }
-            .padding()
+            .padding(TarsierSpacing.screenPadding)
         }
+        .background(TarsierColors.warmWhite)
         .navigationTitle(lesson.topic)
         .navigationBarTitleDisplayMode(.large)
         .navigationDestination(isPresented: $showQuiz) {
@@ -37,19 +38,19 @@ struct LessonView: View {
                         .foregroundStyle(TarsierTheme.brown)
                     Spacer()
                     Image(systemName: isCulturalNoteExpanded ? "chevron.up" : "chevron.down")
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(TarsierColors.textSecondary)
                 }
             }
             .buttonStyle(.plain)
 
             if isCulturalNoteExpanded {
                 Text(lesson.culturalNote)
-                    .font(TarsierTheme.body)
-                    .foregroundStyle(.secondary)
-                    .padding()
+                    .font(TarsierFonts.body())
+                    .foregroundStyle(TarsierColors.textSecondary)
+                    .padding(TarsierSpacing.cardPadding)
                     .background(
-                        RoundedRectangle(cornerRadius: 12)
-                            .fill(TarsierTheme.cream)
+                        RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
+                            .fill(TarsierColors.cream)
                     )
             }
         }
@@ -68,12 +69,12 @@ struct LessonView: View {
 
             Text(lesson.etymology.explanation)
                 .font(TarsierTheme.body)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(TarsierColors.textSecondary)
 
             HStack(spacing: 0) {
                 Text("Pattern: ")
                     .font(TarsierTheme.callout)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(TarsierColors.textSecondary)
                 Text(lesson.etymology.pattern)
                     .font(TarsierTheme.callout)
                     .bold()
@@ -84,24 +85,28 @@ struct LessonView: View {
                 HStack {
                     Text(example.root)
                         .font(TarsierTheme.body)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(TarsierColors.textSecondary)
                     Image(systemName: "arrow.right")
-                        .font(.caption)
-                        .foregroundStyle(.tertiary)
+                        .font(TarsierFonts.caption())
+                        .foregroundStyle(TarsierColors.textSecondary)
                     Text(example.derived)
                         .font(TarsierTheme.headline)
                         .foregroundStyle(TarsierTheme.blue)
                     Text("(\(example.meaning))")
                         .font(TarsierTheme.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(TarsierColors.textSecondary)
                 }
             }
         }
-        .padding()
+        .padding(TarsierSpacing.cardPadding)
         .background(
-            RoundedRectangle(cornerRadius: 12)
-                .fill(Color(.systemBackground))
-                .shadow(color: .black.opacity(0.05), radius: 6, y: 2)
+            RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
+                .fill(TarsierColors.cream)
+                .shadow(color: .black.opacity(0.04), radius: 8, y: 2)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
+                .stroke(TarsierColors.cardBorder, lineWidth: 1)
         )
     }
 
@@ -145,14 +150,18 @@ struct LessonView: View {
 
                     Text(sentence.breakdown)
                         .font(TarsierTheme.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(TarsierColors.textSecondary)
                         .italic()
                 }
-                .padding()
+                .padding(TarsierSpacing.cardPadding)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .background(
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color(.systemGray6))
+                    RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
+                        .fill(TarsierColors.cream)
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
+                        .stroke(TarsierColors.cardBorder, lineWidth: 1)
                 )
             }
         }
@@ -165,12 +174,12 @@ struct LessonView: View {
             showQuiz = true
         } label: {
             Label("Start Quiz", systemImage: "pencil.and.list.clipboard")
-                .font(TarsierTheme.headline)
+                .font(TarsierFonts.button())
+                .foregroundStyle(.white)
                 .frame(maxWidth: .infinity)
-                .padding(.vertical, 16)
+                .frame(height: 52)
+                .background(TarsierColors.functionalPurple, in: RoundedRectangle(cornerRadius: TarsierSpacing.buttonCornerRadius))
         }
-        .buttonStyle(.borderedProminent)
-        .tint(TarsierTheme.blue)
         .padding(.top, 8)
     }
 }
@@ -192,7 +201,7 @@ struct VocabularyCard: View {
                     Spacer()
                     Text("tap to reveal")
                         .font(TarsierTheme.caption)
-                        .foregroundStyle(.tertiary)
+                        .foregroundStyle(TarsierColors.textSecondary.opacity(0.6))
                         .opacity(isRevealed ? 0 : 1)
                 }
 
@@ -202,7 +211,7 @@ struct VocabularyCard: View {
                             .font(TarsierTheme.body)
                         Text(vocab.pronunciation)
                             .font(TarsierTheme.caption)
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(TarsierColors.textSecondary)
                             .italic()
                         Divider()
                         Text(vocab.exampleSentence)
@@ -210,16 +219,20 @@ struct VocabularyCard: View {
                             .foregroundStyle(TarsierTheme.brown)
                         Text(vocab.exampleTranslation)
                             .font(TarsierTheme.caption)
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(TarsierColors.textSecondary)
                     }
                     .transition(.opacity.combined(with: .move(edge: .top)))
                 }
             }
-            .padding()
+            .padding(TarsierSpacing.cardPadding)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(isRevealed ? TarsierTheme.cream : Color(.systemGray6))
+                RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
+                    .fill(TarsierColors.cream)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
+                    .stroke(isRevealed ? TarsierColors.functionalPurple : TarsierColors.cardBorder, lineWidth: isRevealed ? 2 : 1)
             )
         }
         .buttonStyle(.plain)

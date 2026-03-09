@@ -24,6 +24,6 @@ struct MainTabView: View {
                 Label("Settings", systemImage: "gearshape.fill")
             }
         }
-        .tint(TarsierTheme.blue)
+        .tint(TarsierColors.functionalPurple)
     }
 }

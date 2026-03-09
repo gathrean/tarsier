@@ -44,12 +44,12 @@ struct QuizView: View {
     private var progressBar: some View {
         GeometryReader { geo in
             ZStack(alignment: .leading) {
-                Rectangle()
-                    .fill(Color(.systemGray5))
-                Rectangle()
-                    .fill(TarsierTheme.blue)
+                Capsule()
+                    .fill(TarsierColors.cardBorder)
+                Capsule()
+                    .fill(TarsierColors.functionalPurple)
                     .frame(width: geo.size.width * CGFloat(currentIndex) / CGFloat(questions.count))
-                    .animation(.easeInOut, value: currentIndex)
+                    .animation(.easeInOut(duration: 0.3), value: currentIndex)
             }
         }
         .frame(height: 6)
@@ -63,7 +63,7 @@ struct QuizView: View {
             VStack(spacing: 24) {
                 Text("Question \(currentIndex + 1) of \(questions.count)")
                     .font(TarsierTheme.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(TarsierColors.textSecondary)
                     .padding(.top, 16)
 
                 Text(question.question)
@@ -99,25 +99,25 @@ struct QuizView: View {
                     HStack {
                         Text(option)
                             .font(TarsierTheme.body)
-                            .foregroundStyle(.primary)
+                            .foregroundStyle(TarsierColors.textPrimary)
                         Spacer()
                         if answerState != .unanswered {
                             if index == question.correctIndex {
                                 Image(systemName: "checkmark.circle.fill")
-                                    .foregroundStyle(.green)
+                                    .foregroundStyle(TarsierColors.correctGreen)
                             } else if index == selectedOption && answerState == .incorrect {
                                 Image(systemName: "xmark.circle.fill")
-                                    .foregroundStyle(TarsierTheme.red)
+                                    .foregroundStyle(TarsierColors.alertRed)
                             }
                         }
                     }
-                    .padding()
+                    .padding(TarsierSpacing.cardPadding)
                     .background(
-                        RoundedRectangle(cornerRadius: 10)
+                        RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
                             .fill(optionBackground(for: index, question: question))
                     )
                     .overlay(
-                        RoundedRectangle(cornerRadius: 10)
+                        RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
                             .stroke(optionBorder(for: index, question: question), lineWidth: 2)
                     )
                 }
@@ -127,17 +127,17 @@ struct QuizView: View {
     }
 
     private func optionBackground(for index: Int, question: QuizQuestion) -> Color {
-        guard answerState != .unanswered else { return Color(.systemGray6) }
-        if index == question.correctIndex { return .green.opacity(0.1) }
-        if index == selectedOption && answerState == .incorrect { return TarsierTheme.red.opacity(0.1) }
-        return Color(.systemGray6)
+        guard answerState != .unanswered else { return TarsierColors.cream }
+        if index == question.correctIndex { return TarsierColors.correctGreen.opacity(0.15) }
+        if index == selectedOption && answerState == .incorrect { return TarsierColors.alertRed.opacity(0.15) }
+        return TarsierColors.cream
     }
 
     private func optionBorder(for index: Int, question: QuizQuestion) -> Color {
-        guard answerState != .unanswered else { return .clear }
-        if index == question.correctIndex { return .green }
-        if index == selectedOption && answerState == .incorrect { return TarsierTheme.red }
-        return .clear
+        guard answerState != .unanswered else { return TarsierColors.cardBorder }
+        if index == question.correctIndex { return TarsierColors.correctGreen }
+        if index == selectedOption && answerState == .incorrect { return TarsierColors.alertRed }
+        return TarsierColors.cardBorder
     }
 
     // MARK: - Text Input
@@ -147,7 +147,7 @@ struct QuizView: View {
             if let hint = question.hint, answerState == .unanswered {
                 Text("Hint: \(hint)")
                     .font(TarsierTheme.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(TarsierColors.textSecondary)
                     .italic()
             }
 
@@ -159,11 +159,19 @@ struct QuizView: View {
                 .textInputAutocapitalization(.never)
 
             if answerState == .unanswered {
-                Button("Check Answer") {
+                Button {
                     checkTextAnswer(question)
+                } label: {
+                    Text("Check Answer")
+                        .font(TarsierFonts.button())
+                        .foregroundStyle(.white)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 52)
+                        .background(
+                            RoundedRectangle(cornerRadius: TarsierSpacing.buttonCornerRadius)
+                                .fill(textAnswer.trimmingCharacters(in: .whitespaces).isEmpty ? Color.gray : TarsierColors.functionalPurple)
+                        )
                 }
-                .buttonStyle(.borderedProminent)
-                .tint(TarsierTheme.blue)
                 .disabled(textAnswer.trimmingCharacters(in: .whitespaces).isEmpty)
             }
         }
@@ -177,8 +185,8 @@ struct QuizView: View {
             VStack(spacing: 12) {
                 if answerState == .correct {
                     Label("Correct!", systemImage: "star.fill")
-                        .font(TarsierTheme.headline)
-                        .foregroundStyle(.green)
+                        .font(TarsierFonts.button())
+                        .foregroundStyle(TarsierColors.correctGreen)
                 } else {
                     Label("Not quite", systemImage: "arrow.uturn.backward")
                         .font(TarsierTheme.headline)
@@ -187,18 +195,18 @@ struct QuizView: View {
                     if let answer = question.answer {
                         Text("Answer: \(answer)")
                             .font(TarsierTheme.body)
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(TarsierColors.textSecondary)
                     }
                 }
 
                 if let explanation = question.explanation {
                     Text(explanation)
-                        .font(TarsierTheme.callout)
-                        .foregroundStyle(.secondary)
-                        .padding()
+                        .font(TarsierFonts.body(15))
+                        .foregroundStyle(TarsierColors.textSecondary)
+                        .padding(TarsierSpacing.cardPadding)
                         .background(
-                            RoundedRectangle(cornerRadius: 10)
-                                .fill(TarsierTheme.cream)
+                            RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
+                                .fill(TarsierColors.cream)
                         )
                 }
 
@@ -206,12 +214,12 @@ struct QuizView: View {
                     nextQuestion()
                 } label: {
                     Text(currentIndex < questions.count - 1 ? "Next" : "See Results")
-                        .font(TarsierTheme.headline)
+                        .font(TarsierFonts.button())
+                        .foregroundStyle(.white)
                         .frame(maxWidth: .infinity)
-                        .padding(.vertical, 12)
+                        .frame(height: 52)
+                        .background(TarsierColors.functionalPurple, in: RoundedRectangle(cornerRadius: TarsierSpacing.buttonCornerRadius))
                 }
-                .buttonStyle(.borderedProminent)
-                .tint(TarsierTheme.blue)
             }
         }
     }
@@ -223,22 +231,24 @@ struct QuizView: View {
             Spacer()
 
             Image(systemName: score == questions.count ? "star.fill" : "checkmark.circle.fill")
-                .font(.system(size: 60))
-                .foregroundStyle(score == questions.count ? TarsierTheme.yellow : TarsierTheme.blue)
+                .font(.system(size: 60, weight: .bold, design: .rounded))
+                .foregroundStyle(score == questions.count ? TarsierColors.gold : TarsierColors.functionalPurple)
 
             Text("Quiz Complete!")
-                .font(TarsierTheme.largeTitle)
+                .font(TarsierFonts.title(34))
+                .foregroundStyle(TarsierColors.textPrimary)
 
             Text("\(score)/\(questions.count) correct")
-                .font(TarsierTheme.title2)
-                .foregroundStyle(.secondary)
+                .font(TarsierFonts.heading(22))
+                .foregroundStyle(TarsierColors.textSecondary)
 
             if let profile {
                 HStack(spacing: 6) {
                     Image(systemName: "flame.fill")
-                        .foregroundStyle(TarsierTheme.yellow)
+                        .foregroundStyle(TarsierColors.gold)
                     Text("\(profile.currentStreak) day streak")
-                        .font(TarsierTheme.headline)
+                        .font(TarsierFonts.button())
+                        .foregroundStyle(TarsierColors.textPrimary)
                 }
             }
 
@@ -248,15 +258,16 @@ struct QuizView: View {
                 dismiss()
             } label: {
                 Text("Continue")
-                    .font(TarsierTheme.headline)
+                    .font(TarsierFonts.button())
+                    .foregroundStyle(.white)
                     .frame(maxWidth: .infinity)
-                    .padding(.vertical, 16)
+                    .frame(height: 52)
+                    .background(TarsierColors.functionalPurple, in: RoundedRectangle(cornerRadius: TarsierSpacing.buttonCornerRadius))
             }
-            .buttonStyle(.borderedProminent)
-            .tint(TarsierTheme.blue)
             .padding(.horizontal, 32)
             .padding(.bottom, 48)
         }
+        .background(TarsierColors.warmWhite.ignoresSafeArea())
     }
 
     // MARK: - Logic
