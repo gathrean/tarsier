@@ -1,26 +1,25 @@
 import SwiftUI
 
+/// Legacy bridge — maps old TarsierTheme references to the new
+/// TarsierColors / TarsierFonts system. Existing views continue to compile
+/// while we migrate them to use TarsierColors / TarsierFonts directly.
 enum TarsierTheme {
-    // MARK: - Colors
-    static let blue = Color("tarsierBlue")
-    static let yellow = Color("tarsierYellow")
-    static let red = Color("tarsierRed")
-    static let brown = Color("tarsierBrown")
-    static let cream = Color("tarsierCream")
+    // MARK: - Color Aliases (old → new)
+    static let blue = TarsierColors.functionalPurple
+    static let yellow = TarsierColors.gold
+    static let red = TarsierColors.alertRed
+    static let brown = TarsierColors.tarsierDark
+    static let cream = TarsierColors.cream
 
-    // MARK: - Typography (SF Rounded)
-    static func rounded(_ style: Font.TextStyle, weight: Font.Weight = .regular) -> Font {
-        .system(style, design: .rounded, weight: weight)
-    }
-
-    static let largeTitle = Font.system(.largeTitle, design: .rounded, weight: .bold)
-    static let title = Font.system(.title, design: .rounded, weight: .bold)
-    static let title2 = Font.system(.title2, design: .rounded, weight: .semibold)
-    static let title3 = Font.system(.title3, design: .rounded, weight: .semibold)
-    static let headline = Font.system(.headline, design: .rounded, weight: .semibold)
-    static let body = Font.system(.body, design: .rounded)
-    static let callout = Font.system(.callout, design: .rounded)
-    static let subheadline = Font.system(.subheadline, design: .rounded)
-    static let footnote = Font.system(.footnote, design: .rounded)
-    static let caption = Font.system(.caption, design: .rounded)
+    // MARK: - Typography Aliases (old → new)
+    static let largeTitle = TarsierFonts.title(34)
+    static let title = TarsierFonts.title()
+    static let title2 = TarsierFonts.heading(22)
+    static let title3 = TarsierFonts.heading()
+    static let headline = TarsierFonts.button()
+    static let body = TarsierFonts.body()
+    static let callout = TarsierFonts.body(15)
+    static let subheadline = TarsierFonts.body(15)
+    static let footnote = TarsierFonts.caption(14)
+    static let caption = TarsierFonts.caption()
 }
