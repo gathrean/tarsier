@@ -81,6 +81,12 @@ struct SessionCard: Codable, Identifiable {
     let explanation: String?
     let shuffleOptions: Bool?
 
+    // Word-order quiz fields
+    let givenSentence: String?
+    let wordPieces: [String]?
+    let correctOrders: [[String]]?
+    let bestOrder: [String]?
+
     var id: String { cardId }
 
     enum CodingKeys: String, CodingKey {
@@ -93,6 +99,10 @@ struct SessionCard: Codable, Identifiable {
         case correctAnswer = "correct_answer"
         case correctAnswers = "correct_answers"
         case shuffleOptions = "shuffle_options"
+        case givenSentence = "given_sentence"
+        case wordPieces = "word_pieces"
+        case correctOrders = "correct_orders"
+        case bestOrder = "best_order"
     }
 }
 
@@ -101,6 +111,7 @@ struct SessionCard: Codable, Identifiable {
 enum QuizType: String, Codable {
     case multipleChoice = "multiple_choice"
     case fillInBlank = "fill_in_blank"
+    case wordOrder = "word_order"
 }
 
 struct CardImage: Codable {

@@ -19,6 +19,10 @@ struct LessonContainerView: View {
     @State private var shuffledOptions: [String] = []
     @State private var shuffledCorrectIndex: Int = 0
 
+    // Word-order state
+    @State private var shuffledWordPieces: [String] = []
+    @State private var wordOrderShakeCount: Int = 0
+
     // Quiz state
     @State private var quizState = QuizState()
     @State private var showCloseConfirmation = false
@@ -179,6 +183,7 @@ struct LessonContainerView: View {
                 card: card,
                 displayOptions: shuffledOptions,
                 correctIndex: shuffledCorrectIndex,
+                shuffledWordPieces: shuffledWordPieces,
                 state: quizState
             )
         }
@@ -209,6 +214,7 @@ struct LessonContainerView: View {
                         checkQuizAnswer(card: card)
                     }
                     .disabled(!quizState.hasSelection)
+                    .modifier(ShakeModifier(animatableData: CGFloat(wordOrderShakeCount)))
                     .padding(.horizontal, TarsierSpacing.screenPadding)
                     .padding(.bottom, 16)
                 }
@@ -279,6 +285,9 @@ struct LessonContainerView: View {
             isCorrect = quizState.checkMultipleChoice(correctIndex: shuffledCorrectIndex)
         case .fillInBlank:
             isCorrect = quizState.checkFillInBlank(acceptedAnswers: card.correctAnswers ?? [])
+        case .wordOrder:
+            checkWordOrder(card: card)
+            return
         case .none:
             return
         }
@@ -295,15 +304,60 @@ struct LessonContainerView: View {
         }
     }
 
+    private func checkWordOrder(card: SessionCard) {
+        let placedWords = quizState.placedIndices.map { shuffledWordPieces[$0] }
+        let correctOrders = card.correctOrders ?? []
+        let bestOrder = card.bestOrder ?? []
+
+        let isCorrect = quizState.checkWordOrder(
+            placedWords: placedWords,
+            correctOrders: correctOrders,
+            bestOrder: bestOrder
+        )
+
+        if isCorrect {
+            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        } else {
+            UINotificationFeedbackGenerator().notificationOccurred(.error)
+            // Only lose a heart on the first wrong attempt
+            let isFirstWrong = wrongCounts[card.cardId] == nil
+            wrongCounts[card.cardId, default: 0] += 1
+            if isFirstWrong {
+                profile?.loseHeart()
+                if profile?.hearts == 0 {
+                    showHeartsEmpty = true
+                }
+            }
+            // Shake the check button, then reset placed indices after animation
+            withAnimation(.linear(duration: 0.4)) {
+                wordOrderShakeCount += 1
+            }
+            quizState.answerState = .unanswered
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.45) {
+                quizState.placedIndices = []
+            }
+        }
+    }
+
     // MARK: - Prepare Current Card (shuffle if needed)
 
     private func prepareCurrentCard() {
         guard let card = currentCard else { return }
         if card.type == .quiz, card.quizType == .multipleChoice {
             prepareShuffledOptions(for: card)
+            shuffledWordPieces = []
+            quizState.totalWordPieces = 0
+        } else if card.type == .quiz, card.quizType == .wordOrder {
+            shuffledOptions = []
+            shuffledCorrectIndex = 0
+            let pieces = card.wordPieces ?? []
+            shuffledWordPieces = pieces.shuffled()
+            quizState.totalWordPieces = pieces.count
         } else {
             shuffledOptions = []
             shuffledCorrectIndex = 0
+            shuffledWordPieces = []
+            quizState.totalWordPieces = 0
         }
     }
 
@@ -342,6 +396,17 @@ struct LessonContainerView: View {
 
         withAnimation(.easeInOut(duration: 0.3)) {
             sessionComplete = true
+        }
+    }
+
+    // MARK: - Shake Modifier (word_order wrong answer)
+
+    struct ShakeModifier: GeometryEffect {
+        var animatableData: CGFloat
+
+        func effectValue(size: CGSize) -> ProjectionTransform {
+            let offset = sin(animatableData * .pi * 6) * 8
+            return ProjectionTransform(CGAffineTransform(translationX: offset, y: 0))
         }
     }
 
