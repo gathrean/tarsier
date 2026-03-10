@@ -1,8 +1,8 @@
 {
   "_meta": {
-    "schema_version": "0.5",
+    "schema_version": "0.6",
     "last_updated": "2026-03-09",
-    "notes": "Session-based lesson. New in v0.5: alam_mo_ba_inline (contextual tooltips for non-Filipino users) and image (optional, shown above card content) fields on any card type. Both fields are optional. If image is null or absent, render nothing (no placeholder in shipped app)."
+    "notes": "v0.6: Added word_order quiz type for po placement questions. Converted 4 multiple_choice placement quizzes to word_order. All 'g' slang removed, replaced with pare/mare/sige/siyempre."
   },
 
   "lesson_id": "001",
@@ -24,8 +24,7 @@
           "card_id": "001_s1_c1",
           "type": "teach",
           "body": "There's one word in Tagalog you can start using right now. Even in English sentences.",
-          "highlight": "That word is po.",
-          "image": null
+          "highlight": "That word is po."
         },
         {
           "card_id": "001_s1_c2",
@@ -48,7 +47,8 @@
           },
           "alam_mo_ba_inline": {
             "term": "Taglish",
-            "fact": "Taglish is the everyday mix of Tagalog and English that Filipinos speak. It's not slang, it's how the language actually works."
+            "fact": "Taglish is the everyday mix of Tagalog and English that Filipinos speak. It's not slang, it's how the language actually works.",
+            "emoji": "💬"
           }
         },
         {
@@ -111,7 +111,8 @@
           "use_po": true,
           "alam_mo_ba_inline": {
             "term": "lola",
-            "fact": "'Lola' means grandmother. 'Lolo' means grandfather. You'll hear these everywhere in Filipino families."
+            "fact": "'Lola' means grandmother. 'Lolo' means grandfather. You'll hear these everywhere in Filipino families.",
+            "emoji": "👵"
           }
         },
         {
@@ -126,7 +127,8 @@
           "use_po": true,
           "alam_mo_ba_inline": {
             "term": "CR",
-            "fact": "'CR' stands for 'comfort room,' the Filipino word for bathroom. You'll see it on signs everywhere in the Philippines."
+            "fact": "'CR' stands for 'comfort room,' the Filipino word for bathroom. You'll see it on signs everywhere in the Philippines.",
+            "emoji": "🚻"
           }
         },
         {
@@ -140,7 +142,8 @@
           "shuffle_options": true,
           "alam_mo_ba_inline": {
             "term": "CR",
-            "fact": "'CR' stands for 'comfort room.' It's what Filipinos call the bathroom."
+            "fact": "'CR' stands for 'comfort room.' It's what Filipinos call the bathroom.",
+            "emoji": "🚻"
           }
         },
         {
@@ -160,13 +163,14 @@
           "body": "Drop po with close friends your age. Using it can sound weirdly formal or even sarcastic.",
           "example": {
             "context": "Your friend asks if you want coffee",
-            "sentence": "Oo, g!",
-            "translation": "Yeah, let's go! (casual)"
+            "sentence": "Sige, pare!",
+            "translation": "Sure, dude! (casual, enthusiastic)"
           },
           "use_po": false,
           "alam_mo_ba_inline": {
-            "term": "g",
-            "fact": "'G' is Filipino slang for 'game' or 'let's go.' It means you're down for something. Texting shorthand that became spoken slang."
+            "term": "pare / mare",
+            "fact": "'Pare' is for male friends, 'mare' for female. Short for 'compadre' and 'comadre' (Spanish). It's the Filipino 'bro' and 'sis' for friends.",
+            "emoji": "🤝"
           }
         },
         {
@@ -185,10 +189,15 @@
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "prompt": "Your coworker (same age, close friend) asks if you want coffee. How do you say yes?",
-          "options": ["Opo.", "Oo, g!", "Yes po.", "Oo po."],
+          "options": ["Opo.", "Sige, pare!", "Yes po.", "Siyempre po."],
           "correct_answer": 1,
-          "explanation": "With a close friend your age, po isn't needed. 'Oo, g!' is casual and natural.",
-          "shuffle_options": true
+          "explanation": "With a close friend your age, po isn't needed. 'Sige, pare!' is casual and enthusiastic. 'Siyempre po' would be weirdly formal for a friend.",
+          "shuffle_options": true,
+          "alam_mo_ba_inline": {
+            "term": "sige",
+            "fact": "'Sige' is an all-purpose agreement word. It can mean 'okay,' 'sure,' 'let's go,' or even 'goodbye.' May come from Spanish 'sigue' (go on).",
+            "emoji": "💬"
+          }
         },
         {
           "card_id": "001_s2_q3",
@@ -211,7 +220,8 @@
           "shuffle_options": true,
           "alam_mo_ba_inline": {
             "term": "adobo",
-            "fact": "Adobo is the unofficial national dish of the Philippines. Meat braised in vinegar, soy sauce, garlic, and bay leaves. Every family has their own recipe."
+            "fact": "Adobo is the unofficial national dish of the Philippines. Meat braised in vinegar, soy sauce, garlic, and bay leaves. Every family has their own recipe.",
+            "emoji": "🍳"
           }
         }
       ]
@@ -245,12 +255,16 @@
         {
           "card_id": "001_s3_q1",
           "type": "quiz",
-          "quiz_type": "multiple_choice",
-          "prompt": "Where is po placed in 'Kumain na po ako'?",
-          "options": ["At the very end", "After 'na', before 'ako'", "Before 'kumain'", "It replaces 'na'"],
-          "correct_answer": 1,
-          "explanation": "Po sits after 'na' (already) and before 'ako' (I). It nestles into the middle of the sentence.",
-          "shuffle_options": true
+          "quiz_type": "word_order",
+          "prompt": "Build the respectful version of: 'Kumain na ako.'",
+          "given_sentence": "Kumain na ako.",
+          "word_pieces": ["Kumain", "na", "po", "ako"],
+          "correct_orders": [
+            ["Kumain", "na", "po", "ako"],
+            ["Kumain", "na", "ako", "po"]
+          ],
+          "best_order": ["Kumain", "na", "po", "ako"],
+          "explanation": "'Kumain na po ako' is the most natural placement. 'Kumain na ako po' also works but sounds slightly stiff."
         },
         {
           "card_id": "001_s3_c3",
@@ -273,28 +287,35 @@
           },
           "alam_mo_ba_inline": {
             "term": "gusto",
-            "fact": "'Gusto' comes straight from Spanish. The original Tagalog word is 'ibig,' but almost nobody uses it in daily speech anymore."
+            "fact": "'Gusto' comes straight from Spanish. The original Tagalog word is 'ibig,' but almost nobody uses it in daily speech anymore.",
+            "emoji": "📜"
           }
         },
         {
           "card_id": "001_s3_q2",
           "type": "quiz",
-          "quiz_type": "multiple_choice",
-          "prompt": "Make this respectful: 'Gusto ko.'",
-          "options": ["Po gusto ko.", "Gusto ko po.", "Gusto po ko.", "Po gusto po ko."],
-          "correct_answer": 1,
-          "explanation": "Po goes after 'ko'. 'Gusto ko po' is clean and natural.",
-          "shuffle_options": true
+          "quiz_type": "word_order",
+          "prompt": "Build the respectful version of: 'Gusto ko.'",
+          "given_sentence": "Gusto ko.",
+          "word_pieces": ["Gusto", "ko", "po"],
+          "correct_orders": [
+            ["Gusto", "ko", "po"]
+          ],
+          "best_order": ["Gusto", "ko", "po"],
+          "explanation": "Po goes after 'ko.' 'Gusto ko po' is clean and natural."
         },
         {
           "card_id": "001_s3_q3",
           "type": "quiz",
-          "quiz_type": "multiple_choice",
-          "prompt": "Make this question respectful: 'Saan ito?'",
-          "options": ["Saan ito po?", "Po saan ito?", "Saan po ito?", "Saan ito, po?"],
-          "correct_answer": 2,
-          "explanation": "Po goes after the question word. 'Saan po ito?' is the natural placement.",
-          "shuffle_options": true
+          "quiz_type": "word_order",
+          "prompt": "Build the respectful version of: 'Saan ito?'",
+          "given_sentence": "Saan ito?",
+          "word_pieces": ["Saan", "po", "ito"],
+          "correct_orders": [
+            ["Saan", "po", "ito"]
+          ],
+          "best_order": ["Saan", "po", "ito"],
+          "explanation": "Po goes after the question word. 'Saan po ito?' is the natural placement."
         }
       ]
     },
@@ -331,7 +352,8 @@
           },
           "alam_mo_ba_inline": {
             "term": "mano",
-            "fact": "'Mano' comes from Spanish 'mano' (hand). The gesture predates Spanish colonisation, but the word stuck."
+            "fact": "'Mano' comes from Spanish 'mano' (hand). The gesture predates Spanish colonisation, but the word stuck.",
+            "emoji": "📜"
           }
         },
         {
@@ -342,13 +364,7 @@
           "options": ["A greeting you say on the phone", "A gesture where you press an elder's hand to your forehead", "A way to say goodbye", "A formal handshake"],
           "correct_answer": 1,
           "explanation": "You take an elder's hand and press the back of it to your forehead as a sign of respect.",
-          "shuffle_options": true,
-          "image": {
-            "filename": "mano_po_gesture.jpg",
-            "alt": "Filipino mano po gesture",
-            "source": "wikimedia_commons",
-            "attribution": null
-          }
+          "shuffle_options": true
         },
         {
           "card_id": "001_s4_c3",
@@ -371,13 +387,14 @@
           },
           "alam_mo_ba_inline": {
             "term": "pasensya",
-            "fact": "'Pasensya' comes from Spanish 'paciencia' (patience). You're literally asking someone to have patience with you."
+            "fact": "'Pasensya' comes from Spanish 'paciencia' (patience). You're literally asking someone to have patience with you.",
+            "emoji": "📜"
           }
         },
         {
           "card_id": "001_s4_c5",
           "type": "teach",
-          "body": "Sige po means 'okay' or 'alright' respectfully.",
+          "body": "Sige po means 'okay' or 'alright' respectfully. Sige is one of the most versatile words in Filipino.",
           "example": {
             "sentence": "Sige po, salamat po.",
             "translation": "Okay, thank you. (respectful)",
@@ -385,7 +402,23 @@
           },
           "alam_mo_ba_inline": {
             "term": "sige",
-            "fact": "'Sige' may come from Spanish 'sigue' (go on, continue). Filipinos use it for everything: agreement, goodbye, encouragement."
+            "fact": "'Sige' can mean 'okay,' 'sure,' 'let's go,' 'go ahead,' or even 'bye for now.' It's one word that does five jobs. May come from Spanish 'sigue' (go on).",
+            "emoji": "📜"
+          }
+        },
+        {
+          "card_id": "001_s4_c6",
+          "type": "teach",
+          "body": "Siyempre means 'of course' or 'certainly.' Use it when the answer is obvious.",
+          "example": {
+            "sentence": "Siyempre naman!",
+            "translation": "Of course! (enthusiastic, casual)",
+            "taglish": "Siyempre!"
+          },
+          "alam_mo_ba_inline": {
+            "term": "siyempre",
+            "fact": "'Siyempre' comes from Spanish 'siempre' (always). In Tagalog it shifted to mean 'of course' or 'certainly.'",
+            "emoji": "📜"
           }
         },
         {
@@ -409,17 +442,28 @@
           "shuffle_options": true,
           "alam_mo_ba_inline": {
             "term": "tita",
-            "fact": "'Tita' means aunt, but Filipinos use it for any woman a generation older than you. From Spanish 'tia.'"
+            "fact": "'Tita' means aunt, but Filipinos use it for any woman a generation older than you. From Spanish 'tia.'",
+            "emoji": "👩"
           }
         },
         {
           "card_id": "001_s4_q4",
           "type": "quiz",
           "quiz_type": "multiple_choice",
-          "prompt": "Which is natural Taglish for 'Okay, thank you'?",
+          "prompt": "Which is natural Taglish for 'Okay, thank you' to an elder?",
           "options": ["Sige, salamat.", "Sige po, thanks po.", "Okay po, salamat po.", "Both B and C."],
           "correct_answer": 3,
           "explanation": "Both work. 'Sige po, thanks po' and 'Okay po, salamat po' are both natural Taglish with po.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "001_s4_q5",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "prompt": "Your friend asks 'Want to get food?' and the answer is obviously yes. What do you say?",
+          "options": ["Opo.", "Siyempre!", "Siyempre po.", "Sige po."],
+          "correct_answer": 1,
+          "explanation": "'Siyempre!' means 'of course!' Casual, enthusiastic, no po needed with a friend.",
           "shuffle_options": true
         }
       ]
@@ -455,27 +499,30 @@
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "prompt": "Your friend (same age) offers you food. How do you say yes?",
-          "options": ["Opo.", "Sige po.", "Oo, g!", "Yes po."],
+          "options": ["Opo.", "Sige po.", "Sige, pare!", "Siyempre po."],
           "correct_answer": 2,
-          "explanation": "Same-age close friend = no po needed. 'Oo, g!' is casual and natural.",
+          "explanation": "Same-age close friend = no po needed. 'Sige, pare!' is casual and natural.",
           "shuffle_options": true
         },
         {
           "card_id": "001_s5_q4",
           "type": "quiz",
-          "quiz_type": "multiple_choice",
-          "prompt": "Make respectful: 'Saan ito?'",
-          "options": ["Saan po ito?", "Po saan ito?", "Saan ito po?", "Saan po?"],
-          "correct_answer": 0,
-          "explanation": "Po after the question word. 'Saan po ito?'",
-          "shuffle_options": true
+          "quiz_type": "word_order",
+          "prompt": "Build the respectful version of: 'Saan ito?'",
+          "given_sentence": "Saan ito?",
+          "word_pieces": ["Saan", "po", "ito"],
+          "correct_orders": [
+            ["Saan", "po", "ito"]
+          ],
+          "best_order": ["Saan", "po", "ito"],
+          "explanation": "Po after the question word. 'Saan po ito?'"
         },
         {
           "card_id": "001_s5_q5",
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "prompt": "What does 'pasensya na po' mean?",
-          "options": ["Thank you", "Sorry / excuse me", "Goodbye", "Please"],
+          "options": ["Thank you", "Sorry / excuse me", "Goodbye", "Of course"],
           "correct_answer": 1,
           "explanation": "'Pasensya na po' asks for patience. It's the respectful way to say sorry or excuse me.",
           "shuffle_options": true
@@ -492,12 +539,40 @@
         {
           "card_id": "001_s5_q7",
           "type": "quiz",
+          "quiz_type": "word_order",
+          "prompt": "Build the respectful version of: 'Gusto ko.'",
+          "given_sentence": "Gusto ko.",
+          "word_pieces": ["Gusto", "ko", "po"],
+          "correct_orders": [
+            ["Gusto", "ko", "po"]
+          ],
+          "best_order": ["Gusto", "ko", "po"],
+          "explanation": "'Gusto ko po.' Po after 'ko.'"
+        },
+        {
+          "card_id": "001_s5_q8",
+          "type": "quiz",
           "quiz_type": "multiple_choice",
           "prompt": "You're late to your boss's meeting. What do you say?",
           "options": ["Sorry, late.", "Pasensya na po, late po ako.", "Late na po.", "Sorry boss."],
           "correct_answer": 1,
           "explanation": "'Pasensya na po, late po ako.' Full respect for authority.",
           "shuffle_options": true
+        },
+        {
+          "card_id": "001_s5_q9",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "prompt": "Your mare asks if you're coming to her birthday. It's obvious you are. What do you say?",
+          "options": ["Opo.", "Siyempre!", "Sige po.", "Siyempre po."],
+          "correct_answer": 1,
+          "explanation": "'Siyempre!' means 'of course!' Casual with a close friend (mare = female friend), no po needed.",
+          "shuffle_options": true,
+          "alam_mo_ba_inline": {
+            "term": "mare",
+            "fact": "'Mare' is the female version of 'pare.' From Spanish 'comadre.' Your go-to word for a close female friend.",
+            "emoji": "🤝"
+          }
         }
       ]
     }
@@ -509,7 +584,11 @@
     { "word": "hindi po", "meaning": "no (respectful)", "pronunciation": "HIN-dee poh", "type": "phrase" },
     { "word": "mano po", "meaning": "hand blessing gesture", "pronunciation": "MAH-noh poh", "type": "phrase" },
     { "word": "pasensya na po", "meaning": "sorry / excuse me", "pronunciation": "pah-SEN-sha nah poh", "type": "phrase" },
-    { "word": "sige po", "meaning": "okay / alright (respectful)", "pronunciation": "SEE-geh poh", "type": "phrase" }
+    { "word": "sige", "meaning": "okay / sure / let's go / go ahead", "pronunciation": "SEE-geh", "type": "word" },
+    { "word": "sige po", "meaning": "okay / alright (respectful)", "pronunciation": "SEE-geh poh", "type": "phrase" },
+    { "word": "siyempre", "meaning": "of course / certainly", "pronunciation": "shem-PREH", "type": "word" },
+    { "word": "pare", "meaning": "male friend / bro", "pronunciation": "PAH-reh", "type": "word" },
+    { "word": "mare", "meaning": "female friend / sis", "pronunciation": "MAH-reh", "type": "word" }
   ],
 
   "wrong_answer_tracking": {
@@ -536,7 +615,7 @@
       "free_users": "1 session per chapter OR watch rewarded ad for another",
       "premium_users": "unlimited"
     },
-    "system_prompt_template": "You are Tarsier, a friendly Tagalog tutor. The user just completed Chapter 1 covering: po/opo (politeness), greetings (kumusta po, magandang umaga/hapon/gabi), basic courtesy (salamat po, pasensya na po, sige po, walang anuman), and pronouns (ako, ikaw, siya, kayo). Keep conversation in Taglish. Simulate a scenario: the user is arriving at a Filipino family gathering and needs to greet elders, respond to questions with po, and use mano po. Keep responses to 2-3 sentences. Be warm and encouraging. {wrong_answer_context}",
+    "system_prompt_template": "You are Tarsier, a friendly Tagalog tutor. The user just completed Chapter 1 covering: po/opo (politeness), greetings (kumusta po, magandang umaga/hapon/gabi), basic courtesy (salamat po, pasensya na po, sige po, walang anuman), casual speech (sige, siyempre, pare/mare), and pronouns (ako, ikaw, siya, kayo). Keep conversation in Taglish. Simulate a scenario: the user is arriving at a Filipino family gathering and needs to greet elders, respond to questions with po, and use mano po. Keep responses to 2-3 sentences. Be warm and encouraging. {wrong_answer_context}",
     "wrong_answer_context_example": "The user struggled with po placement in sentences (got it wrong 3 times). Gently practice sentence construction with po in natural positions.",
     "max_turns": 6
   },

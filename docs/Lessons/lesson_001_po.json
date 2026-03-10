@@ -1,8 +1,8 @@
 {
   "_meta": {
-    "schema_version": "0.5",
+    "schema_version": "0.6",
     "last_updated": "2026-03-09",
-    "notes": "Session-based lesson. v0.5: alam_mo_ba_inline and image fields (both optional on any card). Images only render on teach cards. If image file missing from bundle, render nothing. Updated: replaced 'g' slang with pare/mare + sige + siyempre."
+    "notes": "v0.6: Added word_order quiz type for po placement questions. Converted 4 multiple_choice placement quizzes to word_order. All 'g' slang removed, replaced with pare/mare/sige/siyempre."
   },
 
   "lesson_id": "001",
@@ -255,12 +255,16 @@
         {
           "card_id": "001_s3_q1",
           "type": "quiz",
-          "quiz_type": "multiple_choice",
-          "prompt": "Where is po placed in 'Kumain na po ako'?",
-          "options": ["At the very end", "After 'na', before 'ako'", "Before 'kumain'", "It replaces 'na'"],
-          "correct_answer": 1,
-          "explanation": "Po sits after 'na' (already) and before 'ako' (I). It nestles into the middle of the sentence.",
-          "shuffle_options": true
+          "quiz_type": "word_order",
+          "prompt": "Build the respectful version of: 'Kumain na ako.'",
+          "given_sentence": "Kumain na ako.",
+          "word_pieces": ["Kumain", "na", "po", "ako"],
+          "correct_orders": [
+            ["Kumain", "na", "po", "ako"],
+            ["Kumain", "na", "ako", "po"]
+          ],
+          "best_order": ["Kumain", "na", "po", "ako"],
+          "explanation": "'Kumain na po ako' is the most natural placement. 'Kumain na ako po' also works but sounds slightly stiff."
         },
         {
           "card_id": "001_s3_c3",
@@ -290,22 +294,28 @@
         {
           "card_id": "001_s3_q2",
           "type": "quiz",
-          "quiz_type": "multiple_choice",
-          "prompt": "Make this respectful: 'Gusto ko.'",
-          "options": ["Po gusto ko.", "Gusto ko po.", "Gusto po ko.", "Po gusto po ko."],
-          "correct_answer": 1,
-          "explanation": "Po goes after 'ko'. 'Gusto ko po' is clean and natural.",
-          "shuffle_options": true
+          "quiz_type": "word_order",
+          "prompt": "Build the respectful version of: 'Gusto ko.'",
+          "given_sentence": "Gusto ko.",
+          "word_pieces": ["Gusto", "ko", "po"],
+          "correct_orders": [
+            ["Gusto", "ko", "po"]
+          ],
+          "best_order": ["Gusto", "ko", "po"],
+          "explanation": "Po goes after 'ko.' 'Gusto ko po' is clean and natural."
         },
         {
           "card_id": "001_s3_q3",
           "type": "quiz",
-          "quiz_type": "multiple_choice",
-          "prompt": "Make this question respectful: 'Saan ito?'",
-          "options": ["Saan ito po?", "Po saan ito?", "Saan po ito?", "Saan ito, po?"],
-          "correct_answer": 2,
-          "explanation": "Po goes after the question word. 'Saan po ito?' is the natural placement.",
-          "shuffle_options": true
+          "quiz_type": "word_order",
+          "prompt": "Build the respectful version of: 'Saan ito?'",
+          "given_sentence": "Saan ito?",
+          "word_pieces": ["Saan", "po", "ito"],
+          "correct_orders": [
+            ["Saan", "po", "ito"]
+          ],
+          "best_order": ["Saan", "po", "ito"],
+          "explanation": "Po goes after the question word. 'Saan po ito?' is the natural placement."
         }
       ]
     },
@@ -453,7 +463,7 @@
           "prompt": "Your friend asks 'Want to get food?' and the answer is obviously yes. What do you say?",
           "options": ["Opo.", "Siyempre!", "Siyempre po.", "Sige po."],
           "correct_answer": 1,
-          "explanation": "'Siyempre!' means 'of course!' Casual, enthusiastic, no po needed with a friend. 'Sige' would also work but 'siyempre' adds that 'obviously yes' energy.",
+          "explanation": "'Siyempre!' means 'of course!' Casual, enthusiastic, no po needed with a friend.",
           "shuffle_options": true
         }
       ]
@@ -497,12 +507,15 @@
         {
           "card_id": "001_s5_q4",
           "type": "quiz",
-          "quiz_type": "multiple_choice",
-          "prompt": "Make respectful: 'Saan ito?'",
-          "options": ["Saan po ito?", "Po saan ito?", "Saan ito po?", "Saan po?"],
-          "correct_answer": 0,
-          "explanation": "Po after the question word. 'Saan po ito?'",
-          "shuffle_options": true
+          "quiz_type": "word_order",
+          "prompt": "Build the respectful version of: 'Saan ito?'",
+          "given_sentence": "Saan ito?",
+          "word_pieces": ["Saan", "po", "ito"],
+          "correct_orders": [
+            ["Saan", "po", "ito"]
+          ],
+          "best_order": ["Saan", "po", "ito"],
+          "explanation": "Po after the question word. 'Saan po ito?'"
         },
         {
           "card_id": "001_s5_q5",
@@ -526,6 +539,19 @@
         {
           "card_id": "001_s5_q7",
           "type": "quiz",
+          "quiz_type": "word_order",
+          "prompt": "Build the respectful version of: 'Gusto ko.'",
+          "given_sentence": "Gusto ko.",
+          "word_pieces": ["Gusto", "ko", "po"],
+          "correct_orders": [
+            ["Gusto", "ko", "po"]
+          ],
+          "best_order": ["Gusto", "ko", "po"],
+          "explanation": "'Gusto ko po.' Po after 'ko.'"
+        },
+        {
+          "card_id": "001_s5_q8",
+          "type": "quiz",
           "quiz_type": "multiple_choice",
           "prompt": "You're late to your boss's meeting. What do you say?",
           "options": ["Sorry, late.", "Pasensya na po, late po ako.", "Late na po.", "Sorry boss."],
@@ -534,7 +560,7 @@
           "shuffle_options": true
         },
         {
-          "card_id": "001_s5_q8",
+          "card_id": "001_s5_q9",
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "prompt": "Your mare asks if you're coming to her birthday. It's obvious you are. What do you say?",
