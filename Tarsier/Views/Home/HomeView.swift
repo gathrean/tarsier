@@ -136,42 +136,31 @@ struct HomeView: View {
             .padding(.top, chapterNumber == 1 ? 0 : TarsierSpacing.sectionSpacing)
             .padding(.bottom, 16)
 
-            // Lesson nodes — staggered
-            ForEach(Array(chapter.lessonIDs.enumerated()), id: \.element) { nodeIndex, lessonID in
-                let isCompleted = completedIDs.contains(lessonID)
-                let isCurrent = lessonID == currentLessonIndex
-                let isUnlocked = lessonID <= currentLessonIndex
+            // Lesson nodes — 2-column grid
+            let columns = [
+                GridItem(.flexible(), spacing: 24),
+                GridItem(.flexible(), spacing: 24),
+            ]
+            LazyVGrid(columns: columns, spacing: 20) {
+                ForEach(Array(chapter.lessonIDs.enumerated()), id: \.element) { index, lessonID in
+                    let isCompleted = completedIDs.contains(lessonID)
+                    let isCurrent = lessonID == currentLessonIndex
+                    let isUnlocked = lessonID <= currentLessonIndex
 
-                if nodeIndex > 0 {
-                    dottedConnector(offset: staggerOffset(for: nodeIndex, previous: nodeIndex - 1))
+                    lessonNode(
+                        lessonID: lessonID,
+                        chapterTitle: chapter.title,
+                        indexInChapter: index + 1,
+                        isCompleted: isCompleted,
+                        isCurrent: isCurrent,
+                        isUnlocked: isUnlocked
+                    )
                 }
-
-                lessonNode(
-                    lessonID: lessonID,
-                    isCompleted: isCompleted,
-                    isCurrent: isCurrent,
-                    isUnlocked: isUnlocked,
-                    nodeIndex: nodeIndex
-                )
             }
 
             // AI Practice node after chapter
-            dottedConnector(offset: 0)
             aiPracticeNode(chapter: chapter)
         }
-    }
-
-    // MARK: - Stagger
-
-    private func staggerOffset(for index: Int, previous: Int) -> CGFloat {
-        let currentX = nodeX(for: index)
-        let previousX = nodeX(for: previous)
-        return (currentX - previousX) / 2
-    }
-
-    private func nodeX(for index: Int) -> CGFloat {
-        let pattern: [CGFloat] = [0, 50, 0, -50]
-        return pattern[index % pattern.count]
     }
 
     // MARK: - Session Progress Helpers
@@ -201,14 +190,14 @@ struct HomeView: View {
 
     // MARK: - Lesson Node
 
-    private func lessonNode(lessonID: Int, isCompleted: Bool, isCurrent: Bool, isUnlocked: Bool, nodeIndex: Int) -> some View {
-        let lesson = lessons.first { $0.id == lessonID }
-        let topic = lesson?.topic ?? "Lesson \(lessonID)"
-        let offset = nodeX(for: nodeIndex)
+    private func lessonNode(lessonID: Int, chapterTitle: String, indexInChapter: Int, isCompleted: Bool, isCurrent: Bool, isUnlocked: Bool) -> some View {
         let completed = completedSessionCount(for: lessonID)
         let total = totalSessions(for: lessonID)
         let isAllSessionsDone = completed >= total
         let isReplay = isAllSessionsDone && isCompleted
+        let baseSize: CGFloat = 56 * 1.5 // ~84
+        let nodeSize: CGFloat = isCurrent ? baseSize * 1.1 : baseSize
+        let label = "\(chapterTitle) \(indexInChapter)"
 
         return NavigationLink(
             value: LessonNavigation(
@@ -219,26 +208,19 @@ struct HomeView: View {
         ) {
             VStack(spacing: 6) {
                 ZStack {
-                    // Progress ring behind the node (not for current/active)
-                    if isUnlocked && !isCompleted && !isCurrent && completed > 0 {
+                    // Progress ring around every unlocked lesson
+                    if isUnlocked && !isCompleted {
                         ProgressRingView(
                             completed: completed,
                             total: total,
-                            size: 72,
-                            lineWidth: 3
+                            size: nodeSize + 12,
+                            lineWidth: 3.5
                         )
                     }
 
-                    RoundedRectangle(cornerRadius: isCurrent ? 22 : 20)
+                    Circle()
                         .fill(nodeBackground(isCompleted: isCompleted, isCurrent: isCurrent, isUnlocked: isUnlocked))
-                        .frame(width: isCurrent ? 64 : 56, height: isCurrent ? 64 : 56)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: isCurrent ? 22 : 20)
-                                .stroke(
-                                    isCurrent ? TarsierColors.functionalPurple : .clear,
-                                    lineWidth: isCurrent ? 3 : 0
-                                )
-                        )
+                        .frame(width: nodeSize, height: nodeSize)
                         .shadow(
                             color: isCurrent ? TarsierColors.functionalPurple.opacity(0.3) : .clear,
                             radius: isCurrent ? 8 : 0
@@ -249,8 +231,8 @@ struct HomeView: View {
                             .font(.system(size: 22, weight: .bold, design: .rounded))
                             .foregroundStyle(.white)
                     } else if isUnlocked {
-                        Text("\(lessonID)")
-                            .font(TarsierFonts.heading())
+                        Text("\(indexInChapter)")
+                            .font(TarsierFonts.heading(24))
                             .foregroundStyle(TarsierColors.functionalPurple)
                     } else {
                         Image(systemName: "lock.fill")
@@ -259,23 +241,15 @@ struct HomeView: View {
                     }
                 }
 
-                Text(topic)
-                    .font(TarsierFonts.caption(11))
+                Text(label)
+                    .font(TarsierFonts.heading(20))
                     .foregroundStyle(isUnlocked ? TarsierColors.textPrimary : TarsierColors.textSecondary)
                     .lineLimit(1)
-
-                // Session progress label (e.g. "2/5")
-                if isUnlocked && !isCompleted && completed > 0 {
-                    Text("\(completed)/\(total)")
-                        .font(TarsierFonts.caption(10))
-                        .foregroundStyle(TarsierColors.functionalPurple)
-                }
             }
             .opacity(isUnlocked ? 1 : 0.5)
         }
         .disabled(!isUnlocked)
-        .offset(x: offset)
-        .padding(.vertical, 4)
+        .padding(.vertical, 8)
     }
 
     private func nodeBackground(isCompleted: Bool, isCurrent: Bool, isUnlocked: Bool) -> Color {
@@ -315,38 +289,28 @@ struct HomeView: View {
     private func aiPracticeContent(unlocked: Bool) -> some View {
         VStack(spacing: 6) {
             ZStack {
-                RoundedRectangle(cornerRadius: 20)
+                Circle()
                     .fill(unlocked ? TarsierColors.gold.opacity(0.15) : Color(hex: "#EEEAE6"))
-                    .frame(width: 64, height: 64)
+                    .frame(width: 84, height: 84)
                     .overlay(
-                        RoundedRectangle(cornerRadius: 20)
+                        Circle()
                             .stroke(
                                 unlocked ? TarsierColors.gold : TarsierColors.cardBorder,
                                 style: StrokeStyle(lineWidth: 2, dash: [6, 4])
                             )
                     )
 
-                Image(systemName: "eyes")
-                    .font(.system(size: 22, weight: .bold, design: .rounded))
+                Image(systemName: "book.fill")
+                    .font(.system(size: 28, weight: .bold, design: .rounded))
                     .foregroundStyle(unlocked ? TarsierColors.gold : TarsierColors.textSecondary)
             }
 
             Text("Practice")
-                .font(TarsierFonts.caption(11))
+                .font(TarsierFonts.caption(14))
                 .foregroundStyle(unlocked ? TarsierColors.textPrimary : TarsierColors.textSecondary)
         }
+        .frame(maxWidth: .infinity)
         .opacity(unlocked ? 1 : 0.5)
     }
 
-    // MARK: - Dotted Connector
-
-    private func dottedConnector(offset: CGFloat) -> some View {
-        Path { path in
-            path.move(to: CGPoint(x: 0, y: 0))
-            path.addLine(to: CGPoint(x: 0, y: 24))
-        }
-        .stroke(TarsierColors.cardBorder, style: StrokeStyle(lineWidth: 2, dash: [4, 4]))
-        .frame(width: 2, height: 24)
-        .offset(x: offset)
-    }
 }

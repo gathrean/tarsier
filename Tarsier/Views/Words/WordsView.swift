@@ -53,11 +53,11 @@ struct WordsView: View {
                 .foregroundStyle(TarsierColors.brandPurple)
 
             VStack(spacing: 8) {
-                Text("Word Bank")
+                Text("Vocab")
                     .font(TarsierFonts.title())
                     .foregroundStyle(TarsierColors.textPrimary)
 
-                Text("Start your first lesson to build your word bank")
+                Text("Start your first lesson to build your vocab")
                     .font(TarsierFonts.body())
                     .foregroundStyle(TarsierColors.textSecondary)
                     .multilineTextAlignment(.center)
