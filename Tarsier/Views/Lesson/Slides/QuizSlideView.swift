@@ -149,10 +149,10 @@ struct QuizSlideView: View {
         if state.isChecked {
             if index == correctIndex { return TarsierColors.correctGreen.opacity(0.15) }
             if index == state.selectedOption && state.answerState == .incorrect { return TarsierColors.alertRed.opacity(0.15) }
-            return TarsierColors.cream
+            return .white
         }
-        if index == state.selectedOption { return TarsierColors.brandPurple.opacity(0.1) }
-        return TarsierColors.cream
+        if index == state.selectedOption { return TarsierColors.primaryLight }
+        return .white
     }
 
     private func optionBorder(for index: Int) -> Color {
@@ -197,40 +197,41 @@ struct QuizSlideView: View {
 
     private var feedbackSection: some View {
         VStack(spacing: 12) {
-            HStack(spacing: 6) {
+            // Feedback banner
+            HStack(spacing: 8) {
                 if state.answerState == .correct {
                     Image(systemName: "checkmark.circle.fill")
-                        .foregroundStyle(TarsierColors.correctGreen)
-                    if let suffix = state.wordOrderFeedbackSuffix {
-                        VStack(alignment: .leading, spacing: 2) {
-                            TappableTagalogWord(
-                                word: "Tama!",
-                                translation: "Correct!",
-                                font: TarsierFonts.heading(),
-                                color: TarsierColors.correctGreen
-                            )
-                            Text("Though \"\(suffix)\" is more natural.")
-                                .font(TarsierFonts.caption())
-                                .foregroundStyle(TarsierColors.textSecondary)
-                        }
-                    } else {
-                        TappableTagalogWord(
-                            word: "Tama!",
-                            translation: "Correct!",
-                            font: TarsierFonts.heading(),
-                            color: TarsierColors.correctGreen
-                        )
-                    }
+                        .foregroundStyle(.white)
+                    TappableTagalogWord(
+                        word: "Tama!",
+                        translation: "Correct!",
+                        font: TarsierFonts.heading(),
+                        color: .white
+                    )
                 } else {
                     Image(systemName: "xmark.circle.fill")
-                        .foregroundStyle(TarsierColors.alertRed)
+                        .foregroundStyle(.white)
                     TappableTagalogWord(
                         word: "Mali",
                         translation: "Wrong",
                         font: TarsierFonts.heading(),
-                        color: TarsierColors.alertRed
+                        color: .white
                     )
                 }
+            }
+            .padding(.horizontal, TarsierSpacing.cardPadding)
+            .padding(.vertical, 12)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(
+                RoundedRectangle(cornerRadius: 14)
+                    .fill(state.answerState == .correct ? TarsierColors.correctGreen : TarsierColors.alertRed)
+            )
+
+            // "More natural" note for word-order
+            if state.answerState == .correct, let suffix = state.wordOrderFeedbackSuffix {
+                Text("Though \"\(suffix)\" is more natural.")
+                    .font(TarsierFonts.caption())
+                    .foregroundStyle(TarsierColors.textSecondary)
             }
 
             // Show correct answer for fill-in-blank wrong answers
@@ -283,18 +284,22 @@ struct WordOrderQuizView: View {
                             } label: {
                                 Text(pieces[pieceIndex])
                                     .font(TarsierFonts.body())
-                                    .foregroundStyle(.white)
+                                    .foregroundStyle(TarsierColors.functionalPurple)
                                     .padding(.horizontal, 14)
                                     .padding(.vertical, 8)
                                     .background(
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .fill(TarsierColors.functionalPurple)
+                                        Capsule()
+                                            .fill(TarsierColors.primaryLight)
+                                    )
+                                    .overlay(
+                                        Capsule()
+                                            .stroke(TarsierColors.functionalPurple, lineWidth: 1.5)
                                     )
                             }
                             .buttonStyle(.plain)
                             .disabled(state.isChecked)
                         } else {
-                            RoundedRectangle(cornerRadius: 10)
+                            Capsule()
                                 .strokeBorder(
                                     TarsierColors.cardBorder,
                                     style: StrokeStyle(lineWidth: 1.5, dash: [5, 3])
@@ -322,28 +327,27 @@ struct WordOrderQuizView: View {
 
                 FlowLayout(spacing: 8) {
                     ForEach(Array(pieces.enumerated()), id: \.offset) { index, piece in
-                        if !state.placedIndices.contains(index) {
-                            Button {
-                                guard !state.isChecked else { return }
-                                state.placedIndices.append(index)
-                            } label: {
-                                Text(piece)
-                                    .font(TarsierFonts.body())
-                                    .foregroundStyle(TarsierColors.textPrimary)
-                                    .padding(.horizontal, 14)
-                                    .padding(.vertical, 8)
-                                    .background(
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .fill(TarsierColors.cream)
-                                    )
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .stroke(TarsierColors.cardBorder, lineWidth: 1.5)
-                                    )
-                            }
-                            .buttonStyle(.plain)
-                            .disabled(state.isChecked)
+                        let isPlaced = state.placedIndices.contains(index)
+                        Button {
+                            guard !state.isChecked, !isPlaced else { return }
+                            state.placedIndices.append(index)
+                        } label: {
+                            Text(piece)
+                                .font(TarsierFonts.body())
+                                .foregroundStyle(isPlaced ? .clear : TarsierColors.textPrimary)
+                                .padding(.horizontal, 14)
+                                .padding(.vertical, 8)
+                                .background(
+                                    Capsule()
+                                        .fill(isPlaced ? TarsierColors.cardBorder.opacity(0.4) : .white)
+                                )
+                                .overlay(
+                                    Capsule()
+                                        .stroke(isPlaced ? .clear : TarsierColors.cardBorder, lineWidth: 1.5)
+                                )
                         }
+                        .buttonStyle(.plain)
+                        .disabled(state.isChecked || isPlaced)
                     }
                 }
             }
@@ -351,55 +355,3 @@ struct WordOrderQuizView: View {
     }
 }
 
-// MARK: - Flow Layout
-
-struct FlowLayout: Layout {
-    var spacing: CGFloat = 8
-
-    func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
-        let result = layout(proposal: proposal, subviews: subviews)
-        return result.size
-    }
-
-    func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
-        let result = layout(proposal: proposal, subviews: subviews)
-        for (index, frame) in result.frames.enumerated() {
-            subviews[index].place(
-                at: CGPoint(x: bounds.minX + frame.minX, y: bounds.minY + frame.minY),
-                proposal: ProposedViewSize(frame.size)
-            )
-        }
-    }
-
-    private struct LayoutResult {
-        var size: CGSize
-        var frames: [CGRect]
-    }
-
-    private func layout(proposal: ProposedViewSize, subviews: Subviews) -> LayoutResult {
-        let maxWidth = proposal.width ?? .infinity
-        var frames: [CGRect] = []
-        var x: CGFloat = 0
-        var y: CGFloat = 0
-        var rowHeight: CGFloat = 0
-        var totalHeight: CGFloat = 0
-
-        for subview in subviews {
-            let size = subview.sizeThatFits(.unspecified)
-            if x + size.width > maxWidth, x > 0 {
-                y += rowHeight + spacing
-                x = 0
-                rowHeight = 0
-            }
-            frames.append(CGRect(origin: CGPoint(x: x, y: y), size: size))
-            x += size.width + spacing
-            rowHeight = max(rowHeight, size.height)
-            totalHeight = y + rowHeight
-        }
-
-        return LayoutResult(
-            size: CGSize(width: maxWidth, height: totalHeight),
-            frames: frames
-        )
-    }
-}

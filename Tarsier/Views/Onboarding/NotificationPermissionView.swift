@@ -58,9 +58,9 @@ struct NotificationPermissionView: View {
                         .foregroundStyle(TarsierColors.textSecondary)
                 }
             }
-            .padding(.horizontal, 32)
+            .padding(.horizontal, 24)
             .padding(.bottom, 48)
         }
-        .background(TarsierColors.warmWhite.ignoresSafeArea())
+        .background(Color.white.ignoresSafeArea())
     }
 }

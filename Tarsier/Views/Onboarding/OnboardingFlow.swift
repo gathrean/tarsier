@@ -68,7 +68,7 @@ struct OnboardingFlow: View {
             PrimaryButton("Get Started") {
                 withAnimation { currentPage = 1 }
             }
-            .padding(.horizontal, 32)
+            .padding(.horizontal, 24)
             .padding(.bottom, 48)
         }
     }
@@ -88,12 +88,12 @@ struct OnboardingFlow: View {
                 .multilineTextAlignment(.center)
                 .padding(TarsierSpacing.cardPadding)
                 .background(
-                    RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
+                    RoundedRectangle(cornerRadius: 14)
                         .fill(TarsierColors.cream)
                 )
                 .overlay(
-                    RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
-                        .stroke(TarsierColors.cardBorder, lineWidth: 1)
+                    RoundedRectangle(cornerRadius: 14)
+                        .stroke(TarsierColors.cardBorder, lineWidth: 1.5)
                 )
                 .padding(.horizontal, 32)
                 .textInputAutocapitalization(.words)
@@ -119,7 +119,7 @@ struct OnboardingFlow: View {
                         .foregroundStyle(TarsierColors.textSecondary)
                 }
             }
-            .padding(.horizontal, 32)
+            .padding(.horizontal, 24)
             .padding(.bottom, 48)
         }
     }
@@ -154,12 +154,12 @@ struct OnboardingFlow: View {
                         }
                         .padding(TarsierSpacing.cardPadding)
                         .background(
-                            RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
-                                .fill(selectedSkillLevel == level ? TarsierColors.cream : TarsierColors.warmWhite)
+                            RoundedRectangle(cornerRadius: 14)
+                                .fill(selectedSkillLevel == level ? TarsierColors.primaryLight : .white)
                         )
                         .overlay(
-                            RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
-                                .stroke(selectedSkillLevel == level ? TarsierColors.functionalPurple : TarsierColors.cardBorder, lineWidth: selectedSkillLevel == level ? 2 : 1)
+                            RoundedRectangle(cornerRadius: 14)
+                                .stroke(selectedSkillLevel == level ? TarsierColors.functionalPurple : TarsierColors.cardBorder, lineWidth: selectedSkillLevel == level ? 2 : 1.5)
                         )
                     }
                     .buttonStyle(.plain)
@@ -173,7 +173,7 @@ struct OnboardingFlow: View {
                 withAnimation { currentPage = 3 }
             }
             .disabled(selectedSkillLevel == nil)
-            .padding(.horizontal, 32)
+            .padding(.horizontal, 24)
             .padding(.bottom, 48)
         }
     }
@@ -212,12 +212,12 @@ struct OnboardingFlow: View {
                         }
                         .padding(TarsierSpacing.cardPadding)
                         .background(
-                            RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
-                                .fill(selectedMotivations.contains(motivation) ? TarsierColors.cream : TarsierColors.warmWhite)
+                            RoundedRectangle(cornerRadius: 14)
+                                .fill(selectedMotivations.contains(motivation) ? TarsierColors.primaryLight : .white)
                         )
                         .overlay(
-                            RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
-                                .stroke(selectedMotivations.contains(motivation) ? TarsierColors.functionalPurple : TarsierColors.cardBorder, lineWidth: selectedMotivations.contains(motivation) ? 2 : 1)
+                            RoundedRectangle(cornerRadius: 14)
+                                .stroke(selectedMotivations.contains(motivation) ? TarsierColors.functionalPurple : TarsierColors.cardBorder, lineWidth: selectedMotivations.contains(motivation) ? 2 : 1.5)
                         )
                     }
                     .buttonStyle(.plain)
@@ -231,7 +231,7 @@ struct OnboardingFlow: View {
                 showHookButton = false
                 withAnimation { currentPage = 4 }
             }
-            .padding(.horizontal, 32)
+            .padding(.horizontal, 24)
             .padding(.bottom, 48)
         }
     }
@@ -336,12 +336,12 @@ struct OnboardingFlow: View {
                         }
                         .padding(TarsierSpacing.cardPadding)
                         .background(
-                            RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
-                                .fill(dailyGoalMinutes == goal.minutes ? TarsierColors.cream : TarsierColors.warmWhite)
+                            RoundedRectangle(cornerRadius: 14)
+                                .fill(dailyGoalMinutes == goal.minutes ? TarsierColors.primaryLight : .white)
                         )
                         .overlay(
-                            RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
-                                .stroke(dailyGoalMinutes == goal.minutes ? TarsierColors.functionalPurple : TarsierColors.cardBorder, lineWidth: dailyGoalMinutes == goal.minutes ? 2 : 1)
+                            RoundedRectangle(cornerRadius: 14)
+                                .stroke(dailyGoalMinutes == goal.minutes ? TarsierColors.functionalPurple : TarsierColors.cardBorder, lineWidth: dailyGoalMinutes == goal.minutes ? 2 : 1.5)
                         )
                     }
                     .buttonStyle(.plain)
@@ -354,7 +354,7 @@ struct OnboardingFlow: View {
             PrimaryButton("Continue") {
                 completeOnboarding()
             }
-            .padding(.horizontal, 32)
+            .padding(.horizontal, 24)
             .padding(.bottom, 48)
         }
     }

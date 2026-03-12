@@ -22,7 +22,7 @@ struct HeartDisplay: View {
             } else {
                 ForEach(0..<max, id: \.self) { index in
                     Image(systemName: index < current ? "heart.fill" : "heart")
-                        .foregroundStyle(index < current ? TarsierColors.heartRed : TarsierColors.cardBorder)
+                        .foregroundStyle(index < current ? TarsierColors.heartRed : .white.opacity(0.35))
                         .font(.system(size: 14, weight: .semibold))
                         .scaleEffect(index < current ? 1.0 : 0.9)
                         .animation(.easeOut(duration: 0.3), value: current)

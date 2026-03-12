@@ -14,39 +14,42 @@ struct HomeView: View {
     private var completedIDs: [Int] { profile?.completedLessonIDs ?? [] }
 
     var body: some View {
-        ScrollView {
+        GeometryReader { geo in
             VStack(spacing: 0) {
-                if showGreeting, let name = profile?.userName {
-                    HStack(spacing: 8) {
-                        Text("Welcome back, \(name)!")
-                            .font(TarsierFonts.heading(18))
-                            .foregroundStyle(TarsierColors.textPrimary)
-                    }
-                    .padding(.horizontal, TarsierSpacing.screenPadding)
-                    .padding(.vertical, 12)
-                    .frame(maxWidth: .infinity)
-                    .background(
-                        RoundedRectangle(cornerRadius: 12)
-                            .fill(TarsierColors.brandPurple.opacity(0.1))
-                    )
-                    .padding(.horizontal, TarsierSpacing.screenPadding)
-                    .padding(.bottom, 8)
-                    .transition(.opacity.combined(with: .move(edge: .top)))
-                }
-
                 topBar
-                    .padding(.horizontal, TarsierSpacing.screenPadding)
-                    .padding(.bottom, TarsierSpacing.sectionSpacing)
+                    .padding(.top, geo.safeAreaInsets.top)
 
-                roadmap
-                    .padding(.horizontal, TarsierSpacing.screenPadding)
+                ScrollView {
+                    VStack(spacing: 0) {
+                        if showGreeting, let name = profile?.userName {
+                            HStack(spacing: 8) {
+                                Text("Welcome back, \(name)!")
+                                    .font(TarsierFonts.heading(18))
+                                    .foregroundStyle(TarsierColors.textPrimary)
+                            }
+                            .padding(.horizontal, TarsierSpacing.screenPadding)
+                            .padding(.vertical, 12)
+                            .frame(maxWidth: .infinity)
+                            .background(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .fill(TarsierColors.primaryLight)
+                            )
+                            .padding(.horizontal, TarsierSpacing.screenPadding)
+                            .padding(.bottom, 8)
+                            .transition(.opacity.combined(with: .move(edge: .top)))
+                        }
+
+                        roadmap
+                            .padding(.horizontal, TarsierSpacing.screenPadding)
+                    }
+                    .padding(.top, TarsierSpacing.sectionSpacing)
+                    .padding(.bottom, 40)
+                }
             }
-            .padding(.top, 12)
-            .padding(.bottom, 40)
+            .ignoresSafeArea(edges: .top)
         }
         .background(TarsierColors.warmWhite)
-        .navigationTitle("Tarsier")
-        .navigationBarTitleDisplayMode(.inline)
+        .toolbar(.hidden, for: .navigationBar)
         .navigationDestination(for: LessonNavigation.self) { nav in
             if let lesson = LessonService.shared.lesson(for: nav.lessonId) {
                 LessonContainerView(lesson: lesson, sessionNumber: nav.sessionNumber, isReplay: nav.isReplay)
@@ -93,36 +96,33 @@ struct HomeView: View {
                     .foregroundStyle(TarsierColors.gold)
                 Text("\(profile?.currentStreak ?? 0)")
                     .font(TarsierFonts.heading(18))
+                    .foregroundStyle(TarsierColors.gold)
             }
 
             Spacer()
 
             HStack(spacing: 4) {
-                Image(systemName: "star.fill")
-                    .foregroundStyle(TarsierColors.functionalPurple)
+                Image(systemName: "hexagon.fill")
+                    .foregroundStyle(Color(hex: "#38BDF8"))
                 Text("\(profile?.totalXP ?? 0)")
                     .font(TarsierFonts.heading(18))
-                    .foregroundStyle(TarsierColors.functionalPurple)
+                    .foregroundStyle(Color(hex: "#38BDF8"))
             }
 
             Spacer()
 
-            HeartDisplay(
-                current: profile?.hearts ?? 5,
-                isPremium: profile?.isPremium ?? false
-            )
+            HStack(spacing: 4) {
+                Image(systemName: "heart.fill")
+                    .foregroundStyle(TarsierColors.heartRed)
+                Text("\(profile?.hearts ?? 5)")
+                    .font(TarsierFonts.heading(18))
+                    .foregroundStyle(TarsierColors.heartRed)
+            }
         }
         .font(.system(size: 18, weight: .bold, design: .rounded))
         .padding(.vertical, 12)
-        .padding(.horizontal, TarsierSpacing.cardPadding)
-        .background(
-            RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
-                .fill(TarsierColors.cream)
-        )
-        .overlay(
-            RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
-                .stroke(TarsierColors.cardBorder, lineWidth: 1)
-        )
+        .padding(.horizontal, TarsierSpacing.screenPadding)
+        .background(TarsierColors.functionalPurple)
     }
 
     // MARK: - Roadmap
@@ -312,7 +312,7 @@ struct HomeView: View {
     private func nodeBackground(isCompleted: Bool, isUnlocked: Bool) -> Color {
         if isCompleted { return TarsierColors.functionalPurple }
         if isUnlocked { return TarsierColors.cream }
-        return Color(hex: "#EEEAE6")
+        return Color(hex: "#F0F0F4")
     }
 
     // MARK: - AI Practice Node
@@ -347,7 +347,7 @@ struct HomeView: View {
         VStack(spacing: 4) {
             ZStack {
                 Circle()
-                    .fill(unlocked ? TarsierColors.gold.opacity(0.15) : Color(hex: "#EEEAE6"))
+                    .fill(unlocked ? TarsierColors.gold.opacity(0.15) : Color(hex: "#F0F0F4"))
                     .frame(width: 56, height: 56)
                     .overlay(
                         Circle()

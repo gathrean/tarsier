@@ -74,12 +74,8 @@ struct MainTabView: View {
 private struct TarsierTabBar: View {
     @Binding var selectedTab: AppTab
 
-    private let accentGradient = LinearGradient(
-        colors: [Color(hex: "#A78BFA"), Color(hex: "#6D28D9")],
-        startPoint: .top,
-        endPoint: .bottom
-    )
-    private let inactiveColor = Color(hex: "#5A5A5E")
+    private let accentColor = TarsierColors.functionalPurple
+    private let inactiveColor = TarsierColors.textSecondary
     var body: some View {
         HStack(spacing: 0) {
             ForEach(AppTab.allCases, id: \.self) { tab in
@@ -112,12 +108,12 @@ private struct TarsierTabBar: View {
                 Image(systemName: isActive ? tab.activeIcon : tab.inactiveIcon)
                     .font(.system(size: 22, weight: .medium, design: .rounded))
                     .symbolRenderingMode(.monochrome)
-                    .foregroundStyle(isActive ? AnyShapeStyle(accentGradient) : AnyShapeStyle(inactiveColor))
+                    .foregroundStyle(isActive ? AnyShapeStyle(accentColor) : AnyShapeStyle(inactiveColor))
                     .frame(height: 24)
 
                 Text(tab.label)
                     .font(.system(size: 10, weight: .medium, design: .rounded))
-                    .foregroundStyle(isActive ? AnyShapeStyle(accentGradient) : AnyShapeStyle(inactiveColor))
+                    .foregroundStyle(isActive ? AnyShapeStyle(accentColor) : AnyShapeStyle(inactiveColor))
             }
             .frame(maxWidth: .infinity)
         }

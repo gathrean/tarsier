@@ -23,11 +23,7 @@ struct TaglishCallout: View {
         }
         .background(
             RoundedRectangle(cornerRadius: 12)
-                .fill(TarsierColors.cream.opacity(0.7))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 12)
-                        .fill(TarsierColors.brandPurple.opacity(0.04))
-                )
+                .fill(TarsierColors.primaryLight)
         )
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }

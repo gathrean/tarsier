@@ -121,7 +121,7 @@
           "body": "Use po with strangers, even if they look your age.",
           "example": {
             "context": "Asking a stranger for directions",
-            "sentence": "Excuse po, saan po ang CR?",
+            "sentence": "Excuse me po, saan po ang CR?",
             "translation": "Excuse me, where's the bathroom?"
           },
           "use_po": true,
@@ -136,7 +136,7 @@
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "prompt": "You're asking a stranger where the bathroom is. Which is more appropriate?",
-          "options": ["Saan ang CR?", "Excuse po, saan po ang CR?", "Hey, where's the CR?", "Saan CR?"],
+          "options": ["Where's the CR?", "Excuse me po, where is the CR?", "Hey, where's the CR?", "Where CR?"],
           "correct_answer": 1,
           "explanation": "With strangers, po shows respect and politeness.",
           "shuffle_options": true,
@@ -152,8 +152,8 @@
           "body": "Use po with your boss, teacher, or anyone in authority.",
           "example": {
             "context": "Replying to your boss",
-            "sentence": "Yes po, I'll send it po.",
-            "translation": "Yes, I'll send it. (respectful)"
+            "sentence": "Opo, I'll send it to you po.",
+            "translation": "Yes, I'll send it to you. (respectful)"
           },
           "use_po": true
         },
@@ -189,7 +189,7 @@
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "prompt": "Your coworker (same age, close friend) asks if you want coffee. How do you say yes?",
-          "options": ["Opo.", "Sige, pare!", "Yes po.", "Siyempre po."],
+          "options": ["Sige po.", "Sige, pare!", "Yes po.", "Siyempre po."],
           "correct_answer": 1,
           "explanation": "With a close friend your age, po isn't needed. 'Sige, pare!' is casual and enthusiastic. 'Siyempre po' would be weirdly formal for a friend.",
           "shuffle_options": true,

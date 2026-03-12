@@ -146,8 +146,8 @@ struct LessonContainerView: View {
 
             Spacer(minLength: 0)
 
-            // Alam Mo Ba inline tooltip
-            if let inline = currentCard?.alamMoBaInline {
+            // Alam Mo Ba inline tooltip (hidden after quiz check)
+            if let inline = currentCard?.alamMoBaInline, !quizState.isChecked {
                 alamMoBaInlineView(inline)
                     .padding(.horizontal, TarsierSpacing.screenPadding)
                     .padding(.bottom, 8)
@@ -213,7 +213,7 @@ struct LessonContainerView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(
             RoundedRectangle(cornerRadius: 12)
-                .fill(TarsierColors.brandPurple.opacity(0.12))
+                .fill(TarsierColors.primaryLight)
         )
         .fixedSize(horizontal: false, vertical: true)
     }
