@@ -39,6 +39,12 @@ final class UserProfile {
     var lastHeartRefill: Date?
     var isPremium: Bool
     var hasCompletedOnboarding: Bool = false
+    var userName: String?
+    var dailyGoalMinutes: Int = 10
+    var hasSeenCoachMarks: Bool = false
+    var seenUIWords: [String] = []
+    var hasPromptedReview: Bool = false
+    var notificationTime: Date?
 
     init(
         skillLevel: SkillLevel = .beginner,

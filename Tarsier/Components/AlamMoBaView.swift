@@ -11,9 +11,12 @@ struct AlamMoBaView: View {
                     .font(TarsierFonts.heading())
                     .foregroundStyle(TarsierColors.gold)
 
-                Text("Alam Mo Ba?")
-                    .font(TarsierFonts.heading())
-                    .foregroundStyle(TarsierColors.textPrimary)
+                TappableTagalogWord(
+                    word: "Alam Mo Ba?",
+                    translation: "Did you know?",
+                    font: TarsierFonts.heading(),
+                    color: TarsierColors.textPrimary
+                )
             }
 
             Text(text)

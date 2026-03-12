@@ -3,30 +3,47 @@ import SwiftData
 
 struct OnboardingFlow: View {
     @Environment(\.modelContext) private var modelContext
+    @FocusState private var nameFieldFocused: Bool
+
     @State private var currentPage = 0
     @State private var selectedSkillLevel: SkillLevel?
     @State private var selectedMotivations: Set<String> = []
+    @State private var userName: String = ""
+    @State private var dailyGoalMinutes: Int = 10
+    @State private var showHookButton = false
 
     private let motivations = [
-        "Reconnect with family",
+        "Connect with family",
+        "Cultural pride",
         "Travel to the Philippines",
-        "Partner is Filipino",
-        "General interest",
-        "Other"
+        "Partner/relationship",
+        "Just curious"
     ]
 
     var body: some View {
-        TabView(selection: $currentPage) {
-            welcomePage.tag(0)
-            skillLevelPage.tag(1)
-            motivationPage.tag(2)
+        VStack(spacing: 0) {
+            // Progress dots (hidden on welcome page)
+            if currentPage > 0 {
+                OnboardingProgressDots(currentPage: currentPage)
+                    .padding(.top, 8)
+                    .transition(.opacity)
+            }
+
+            TabView(selection: $currentPage) {
+                welcomePage.tag(0)
+                namePage.tag(1)
+                skillLevelPage.tag(2)
+                motivationPage.tag(3)
+                emotionalHookPage.tag(4)
+                dailyGoalPage.tag(5)
+            }
+            .tabViewStyle(.page(indexDisplayMode: .never))
+            .animation(.easeInOut, value: currentPage)
         }
-        .tabViewStyle(.page(indexDisplayMode: .never))
-        .animation(.easeInOut, value: currentPage)
         .background(TarsierColors.warmWhite.ignoresSafeArea())
     }
 
-    // MARK: - Welcome Page
+    // MARK: - Welcome Page (0)
 
     private var welcomePage: some View {
         VStack(spacing: 32) {
@@ -56,7 +73,58 @@ struct OnboardingFlow: View {
         }
     }
 
-    // MARK: - Skill Level Page
+    // MARK: - Name Page (1)
+
+    private var namePage: some View {
+        VStack(spacing: 24) {
+            Spacer()
+
+            Text("What should we call you?")
+                .font(TarsierFonts.title())
+                .multilineTextAlignment(.center)
+
+            TextField("Your first name", text: $userName)
+                .font(TarsierFonts.body(18))
+                .multilineTextAlignment(.center)
+                .padding(TarsierSpacing.cardPadding)
+                .background(
+                    RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
+                        .fill(TarsierColors.cream)
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
+                        .stroke(TarsierColors.cardBorder, lineWidth: 1)
+                )
+                .padding(.horizontal, 32)
+                .textInputAutocapitalization(.words)
+                .autocorrectionDisabled()
+                .focused($nameFieldFocused)
+
+            Spacer()
+
+            VStack(spacing: 12) {
+                PrimaryButton("Continue") {
+                    nameFieldFocused = false
+                    withAnimation { currentPage = 2 }
+                }
+                .disabled(userName.trimmingCharacters(in: .whitespaces).isEmpty)
+
+                Button {
+                    userName = ""
+                    nameFieldFocused = false
+                    withAnimation { currentPage = 2 }
+                } label: {
+                    Text("Skip")
+                        .font(TarsierFonts.caption())
+                        .foregroundStyle(TarsierColors.textSecondary)
+                }
+            }
+            .padding(.horizontal, 32)
+            .padding(.bottom, 48)
+        }
+    }
+
+    // MARK: - Skill Level Page (2)
 
     private var skillLevelPage: some View {
         VStack(spacing: 24) {
@@ -102,7 +170,7 @@ struct OnboardingFlow: View {
             Spacer()
 
             PrimaryButton("Continue") {
-                withAnimation { currentPage = 2 }
+                withAnimation { currentPage = 3 }
             }
             .disabled(selectedSkillLevel == nil)
             .padding(.horizontal, 32)
@@ -110,7 +178,7 @@ struct OnboardingFlow: View {
         }
     }
 
-    // MARK: - Motivation Page
+    // MARK: - Motivation Page (3)
 
     private var motivationPage: some View {
         VStack(spacing: 24) {
@@ -159,7 +227,131 @@ struct OnboardingFlow: View {
 
             Spacer()
 
-            PrimaryButton("Let's Go!") {
+            PrimaryButton("Continue") {
+                showHookButton = false
+                withAnimation { currentPage = 4 }
+            }
+            .padding(.horizontal, 32)
+            .padding(.bottom, 48)
+        }
+    }
+
+    // MARK: - Emotional Hook Page (4)
+
+    private var emotionalHookPage: some View {
+        let hook = resolveHook()
+
+        return VStack(spacing: 24) {
+            Spacer()
+
+            VStack(spacing: 16) {
+                Text(hook.stat)
+                    .font(TarsierFonts.heading(18))
+                    .foregroundStyle(TarsierColors.textPrimary)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 24)
+
+                Text(hook.message)
+                    .font(TarsierFonts.body())
+                    .foregroundStyle(TarsierColors.textSecondary)
+                    .multilineTextAlignment(.center)
+            }
+
+            Spacer()
+
+            Image(systemName: "eyes")
+                .font(.system(size: 48))
+                .foregroundStyle(TarsierColors.tarsierDark)
+                .padding(.bottom, 16)
+
+            if showHookButton {
+                VStack(spacing: 8) {
+                    TappableTagalogWord(
+                        word: "Tara!",
+                        translation: "Let's go!",
+                        font: TarsierFonts.title(28),
+                        color: TarsierColors.functionalPurple
+                    )
+
+                    PrimaryButton("Continue") {
+                        withAnimation { currentPage = 5 }
+                    }
+                    .padding(.horizontal, TarsierSpacing.screenPadding)
+                }
+                .transition(.opacity.combined(with: .move(edge: .bottom)))
+            }
+
+            // Invisible spacer to maintain layout when button is hidden
+            if !showHookButton {
+                Color.clear.frame(height: 52)
+            }
+
+            Spacer()
+                .frame(height: 48)
+        }
+        .onAppear {
+            showHookButton = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                withAnimation(.easeOut(duration: 0.3)) {
+                    showHookButton = true
+                }
+            }
+        }
+    }
+
+    // MARK: - Daily Goal Page (5)
+
+    private var dailyGoalPage: some View {
+        let goals: [(minutes: Int, title: String, subtitle: String)] = [
+            (5, "Casual", "A few minutes a day"),
+            (10, "Regular", "Steady progress"),
+            (15, "Serious", "Real commitment")
+        ]
+
+        return VStack(spacing: 24) {
+            Spacer()
+
+            Text("How much time per day?")
+                .font(TarsierFonts.title())
+                .multilineTextAlignment(.center)
+
+            VStack(spacing: 12) {
+                ForEach(goals, id: \.minutes) { goal in
+                    Button {
+                        dailyGoalMinutes = goal.minutes
+                    } label: {
+                        HStack {
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("\(goal.minutes) min — \(goal.title)")
+                                    .font(TarsierFonts.heading(17))
+                                Text(goal.subtitle)
+                                    .font(TarsierFonts.caption())
+                                    .foregroundStyle(TarsierColors.textSecondary)
+                            }
+                            Spacer()
+                            if dailyGoalMinutes == goal.minutes {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .foregroundStyle(TarsierColors.functionalPurple)
+                            }
+                        }
+                        .padding(TarsierSpacing.cardPadding)
+                        .background(
+                            RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
+                                .fill(dailyGoalMinutes == goal.minutes ? TarsierColors.cream : TarsierColors.warmWhite)
+                        )
+                        .overlay(
+                            RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
+                                .stroke(dailyGoalMinutes == goal.minutes ? TarsierColors.functionalPurple : TarsierColors.cardBorder, lineWidth: dailyGoalMinutes == goal.minutes ? 2 : 1)
+                        )
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+            .padding(.horizontal, 24)
+
+            Spacer()
+
+            PrimaryButton("Continue") {
                 completeOnboarding()
             }
             .padding(.horizontal, 32)
@@ -167,11 +359,58 @@ struct OnboardingFlow: View {
         }
     }
 
+    // MARK: - Emotional Hook Data
+
+    private struct HookContent {
+        let stat: String
+        let message: String
+    }
+
+    private func resolveHook() -> HookContent {
+        // Priority: family > pride > partner > travel > curious
+        let priorityOrder: [(key: String, hook: HookContent)] = [
+            ("Connect with family", HookContent(
+                stat: "33% of Filipino-Americans understand Tagalog but can't speak it.",
+                message: "You're about to change that."
+            )),
+            ("Cultural pride", HookContent(
+                stat: "80 million people speak Tagalog. Duolingo won't teach it.",
+                message: "Tarsier will."
+            )),
+            ("Partner/relationship", HookContent(
+                stat: "Your partner's family will love you for trying.",
+                message: "Start with respect."
+            )),
+            ("Travel to the Philippines", HookContent(
+                stat: "Filipinos notice when you try. Even just 'po' changes everything.",
+                message: "Let's start there."
+            )),
+            ("Just curious", HookContent(
+                stat: "Tagalog turns any word into a verb. Even names.",
+                message: "You'll see what we mean."
+            ))
+        ]
+
+        for item in priorityOrder {
+            if selectedMotivations.contains(item.key) {
+                return item.hook
+            }
+        }
+
+        // Default if nothing selected
+        return priorityOrder.last!.hook
+    }
+
+    // MARK: - Complete Onboarding
+
     private func completeOnboarding() {
         let profile = UserProfile(
             skillLevel: selectedSkillLevel ?? .beginner,
             motivations: Array(selectedMotivations)
         )
+        let trimmedName = userName.trimmingCharacters(in: .whitespaces)
+        profile.userName = trimmedName.isEmpty ? nil : trimmedName
+        profile.dailyGoalMinutes = dailyGoalMinutes
         modelContext.insert(profile)
         try? modelContext.save()
     }

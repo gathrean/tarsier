@@ -1,6 +1,6 @@
 # Tarsier — Running Research & Strategy Notes
 
-> **Last updated:** 2026-03-08  
+> **Last updated:** 2026-03-11  
 > **Purpose:** Living document compiling all research, decisions, and open questions for Tarsier app development.
 
 ---
@@ -158,49 +158,78 @@ Every other app teaches "luto means cook" as an isolated flashcard. Tarsier teac
 One root word → five usable words. Woven into every lesson, not a separate feature.
 
 **UI differentiator:** Colour-coded affix decomposition.
-- Blue (#0038A8) for prefixes/infixes/suffixes
-- Warm brown (#7B5B3A) for root words
+- Functional purple (#6B5B9A) for prefixes/infixes/suffixes
+- Tarsier dark (#302B27) for root words
 - Visual breakdown: `[nag]` `[luto]` with colour separation
 
 **The Pacquiao TikTok angle:** "In Tagalog you can turn ANY word into a verb. Watch: Pacquiao. Pinacquiao ko yung exam ko — I Pacquiao'd my exam." This is a 15-second hook for millions of views.
 
 ---
 
-## 7. App Structure (AirLearn + HelloChinese Hybrid)
+## 7. App Structure
 
-### Macro: HelloChinese-style grouped roadmap
-- 30 lessons grouped into 9 chapters of 2-4 lessons each
-- Chapters organised by theme with affixes introduced organically
-- Visual roadmap with nodes — completing a chapter unlocks the next
-- Each chapter ends with an AI practice session (gated)
+### Two-Level Hierarchy (Updated 2026-03-11)
+- **Chapter** = visual grouping label on roadmap (Magalang, Kain!, etc.)
+- **Lesson** = circle on roadmap, each has a progress ring (5 sessions inside)
+- Sessions are invisible to the user, just internal progress within a lesson
+- No more "Magalang 1, Magalang 2." Each lesson has its own name: "Po & Opo," "Kumusta," etc.
+- Rows of 1-2 lessons create visual rhythm (no rows of 3 for v1.0)
 
-**Curriculum reorder (2026-03-08):** Po/respect comes FIRST, not food verbs. Starting with po is zero-grammar-barrier, immediately usable (even in English: "I didn't eat yet po"), and signals the app understands Filipino culture. Affixes don't appear until Chapter 2. See `tarsier_roadmap_v0.1.md` for full structure.
+### Roadmap Layout (HelloChinese-inspired)
+- Chapter titles are labels, not navigational levels
+- Lessons appear as circles in rows of 1-2 per chapter
+- Row of 1: foundational topics that deserve full attention
+- Row of 2: related topics that share a theme
+- Practice node at end of each chapter (AI practice, gated)
+- See `tarsier_roadmap.md` for full layout with row assignments and chapters.json
 
-### Micro: AirLearn-style slide flow within each lesson
-1. Cultural context slide (swipeable card)
-2. Etymology/affix teaching slides (2-3 cards, colour-coded breakdowns)
-3. Vocabulary slides (each word = one card, with photo, pronunciation, Taglish variant)
-4. Sentence breakdown slides (full sentence, tappable word-by-word breakdown)
-5. Quiz (4-6 questions testing what was just taught — costs hearts)
-6. Summary card (roots learned, affixes learned, cultural takeaway)
+### Onboarding (Mau's Playbook, Updated 2026-03-11)
+The user completes their first lesson BEFORE seeing the home screen:
+1. Open app, mascot, Get Started
+2. "How much Tagalog do you know?" (3 cards)
+3. "Why are you learning?" (pills)
+4. Straight into Po & Opo Session 1 (no home screen yet)
+5. Session 1 complete: progress ring 1/5, Alam Mo Ba, +15 XP
+6. NOW show the home screen with roadmap. User sees the journey.
+7. Paywall triggers on natural gate (hearts empty or AI practice node)
+Target: 10% download-to-trial conversion before spending on paid ads.
 
-**Key principle:** Steps 1-4 are TEACHING. Step 5 is TESTING. User never faces a quiz about something not yet explained.
+### Lesson JSON Schema (v0.6)
+- Sessions array with interleaved teach/quiz cards
+- Quiz types: multiple_choice, fill_in_blank, translate, root_pattern, word_order
+- `alam_mo_ba_inline`: optional contextual tooltip with emoji field on any card
+- `image`: optional, only renders on teach cards, loads from Resources/LessonImages/
+- Wrong answers go to back of session queue, must get all right to complete
+- Wrong count tracked per question for Gemini practice prompting
+- Completion reward: 1 random Alam Mo Ba fun fact, +15 XP
 
-### Organic Affix Introduction (Design Decision, 2026-03-08)
-Affixes are NOT taught in isolation. They're introduced naturally within themed lessons:
-- When a new affix appears for the first time, it's colour-coded (blue for affix, brown for root)
-- A brief 1-2 line explanation appears in context ("You'll see this pattern again — it means past tense")
-- Subsequent lessons reinforce the affix with new root words
-- No lesson is titled "the mag- lesson" — it's "the cooking lesson where you learn mag-"
-- Affix complexity builds gradually across the 30-lesson curriculum
+### Micro: Session Flow
+- Each session: teach 2-3 cards, quiz 2-4 cards, teach, quiz (interleaved)
+- One idea per card. No walls of text.
+- Teach cards can have: body, highlight, example, image, alam_mo_ba_inline
+- Quiz cards: select-then-check, haptic feedback, hearts
+- Word order quiz: tappable pills to build sentences, shake on wrong answer
 
-### "Alam Mo Ba?" (Did You Know?) Boxes (Design Decision, 2026-03-08)
-- Appear whenever a Spanish or American borrowed word is used in Tagalog
-- Short, fun, 1-2 sentence cultural/linguistic fact
-- NOT quizzed — purely enrichment, adds textbook personality
-- Example: "'Kumusta' comes from Spanish '¿Cómo está?' — 333 years of colonisation left hundreds of words in Tagalog."
-- Example: "'Jeepney' comes from American military jeeps left after WWII."
-- These are the moments that make the app feel like it was written by a Filipino, not a language template
+### Minimum Viable Launch (v1.0)
+- Ship when Chapters 1-3 are written and QA'd (Magalang, Taglish, Kain = 10 lessons)
+- Roadmap shows all v1.0 chapters but locks unwritten content
+- Write lessons 11-32 while in review and post-launch
+- Real user data from first 10 lessons informs remaining 22
+
+### Curriculum (Updated 2026-03-11)
+Po/respect comes FIRST, then Taglish chapter, then food verbs. 32 lessons across 10 chapters for v1.0. Future expansions (v2.0-v4.0) add 8 more chapters. See `tarsier_roadmap.md` for full structure.
+
+### Organic Affix Introduction
+Affixes introduced naturally within themed lessons:
+- Colour-coded on first appearance: purple (#6B5B9A) for affixes, dark (#302B27) for roots
+- Brief explanation in context, reinforced in subsequent lessons
+- No lesson is titled "the mag- lesson," it's "the cooking lesson where you learn mag-"
+- NEW: Taglish chapter (lessons 5-6) teases the affix system with fun examples (nag-shopping, pinacquiao) before formal teaching begins in Kain (lesson 7)
+- Full affix table and stacking taught in Chapter 10: Salita
+
+### "Alam Mo Ba?" (Did You Know?) — Two Types
+1. **Inline** (during lessons): contextual tooltip for non-Filipino users. Ube-tinted row above Check/Continue button. Optional emoji field per card.
+2. **Completion reward** (end of lesson): 1 random fun fact on lesson complete screen. 3-5 facts per lesson. Different on replay.
 
 ---
 
@@ -249,7 +278,7 @@ Affixes are NOT taught in isolation. They're introduced naturally within themed 
 ### Implementation Strategy
 - Cultural enrichment module, not a core pillar.
 - "Write Your Name in Baybayin" feature = organic social sharing on TikTok/Instagram.
-- Future scope (not v0.1).
+- Planned for v4.0 (3 lessons: The 17 Characters, Write Your Name, Read & Write).
 
 ---
 
@@ -384,24 +413,28 @@ Affixes are NOT taught in isolation. They're introduced naturally within themed 
 
 ## 17. Open Questions
 
-- [x] ~~Lesson 2: stay in food domain or jump?~~ → Resolved: Po/respect comes FIRST (Ch 1), food is Ch 2
-- [x] ~~Exact chapter groupings for all 30 lessons~~ → See `tarsier_roadmap_v0.1.md`
-- [x] ~~Affixes in isolation vs organic?~~ → Resolved: Organic introduction within themed lessons
-- [ ] Baybayin module scope and timeline (v0.3? v0.5?)
+- [x] ~~Lesson 2: stay in food domain or jump?~~ Resolved: Po/respect comes FIRST (Ch 1), food is Ch 3
+- [x] ~~Exact chapter groupings for all 30 lessons~~ See `tarsier_roadmap.md` (32 lessons, 10 chapters)
+- [x] ~~Affixes in isolation vs organic?~~ Resolved: Organic introduction, teased in Taglish chapter
+- [x] ~~Session-based or flat slides?~~ Resolved: 5 sessions per lesson, teach-quiz interleaved
+- [x] ~~Onboarding flow~~ Resolved: Lesson-first onboarding per Mau's playbook
+- [x] ~~v1.0 scope~~ Resolved: 10 chapters, 32 lessons. Ship with 3 chapters written.
+- [ ] Baybayin module scope (v4.0)
 - [ ] Rye involvement timeline for mascot creative direction
-- [x] ~~SaaS landing page domain~~ → **tarsierlearn.com** available at CA$15/year on Namecheap. Best option. tarsier.com is for sale (GoDaddy, absurd price). tarsier.app is taken (offer only). tarsierapp.com is taken (offer only). Fallbacks: gathrean.com/tarsier for v0.1.
-- [x] ~~Ad network~~ → **Google AdMob** for rewarded video ads. Broadest fill, best docs, Firebase analytics integration. Add mediation (AppLovin MAX) later when scaling.
-- [ ] Singular.net for attribution (per Mau's stack) — worth the $0.05/conversion?
-- [ ] PostHog vs. simpler analytics for v0.1
+- [x] ~~SaaS landing page domain~~ **tarsierlearn.com** available at CA$15/year on Namecheap.
+- [x] ~~Ad network~~ **Google AdMob** for rewarded video ads.
+- [ ] Singular.net for attribution (per Mau's stack) worth the $0.05/conversion?
+- [ ] PostHog vs. simpler analytics for v1.0
 - [ ] Filipino mascot alternatives beyond tarsier for supporting characters
-- [ ] Native speaker audio source — record yourself? Hire voice talent? TTS for v0.1?
-- [ ] Photo curation: build a spreadsheet of Wikimedia Commons image URLs per lesson?
+- [ ] Native speaker audio source: record yourself? Hire voice talent? TTS for v1.0?
+- [ ] Photo curation: Wikimedia Commons image spreadsheet per lesson
 
 ---
 
 ## 18. Related Documents
 
-- `tarsier_roadmap_v0.1.md` — Full 30-lesson roadmap with chapter structure, affix progression, and "Alam Mo Ba?" notes
-- `tarsier_lesson_001_v0.2.json` — Sample lesson JSON template (lesson 5 in new roadmap — was lesson 1 before po/respect reorder)
-- `Tarsier_Context.md` — Original context doc (architecture, branding, naming decisions)
-- `Tagalog_Learning_Apps__A_Fragmented_Market_With_Massive_Gaps.md` — Deep research report on competitive landscape
+- `tarsier_roadmap.md` Full 32-lesson roadmap with chapter structure, row layouts, affix progression, onboarding flow, marketing timeline, and chapters.json
+- `lesson_001_po.json` Lesson 1 JSON (v0.6): session-based, word_order quiz type, alam_mo_ba_inline, image fields
+- `tarsier_claude_code_spec.md` CLAUDE.md for Claude Code: design system, screen specs, build order
+- `tarsier_image_tracker.xlsx` Wikimedia image tracker + Alam Mo Ba sources
+- `Tagalog_Learning_Apps__A_Fragmented_Market_With_Massive_Gaps.md` Deep research report on competitive landscape

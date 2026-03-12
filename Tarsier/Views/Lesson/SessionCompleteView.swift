@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 
 struct SessionCompleteView: View {
     let lesson: SlideLesson
@@ -8,8 +9,11 @@ struct SessionCompleteView: View {
     let completedSessionsBefore: Int
     let onContinue: () -> Void
 
+    @Query private var profiles: [UserProfile]
     @State private var animatedCompleted: Int = 0
     @State private var showContent = false
+
+    private var profile: UserProfile? { profiles.first }
 
     private var totalSessions: Int { lesson.totalSessions }
     private var xp: Int { isReplay ? 0 : lesson.completionReward.xp }
@@ -69,10 +73,25 @@ struct SessionCompleteView: View {
                 }
             }
 
-            Text("Session Complete!")
-                .font(TarsierFonts.title(24))
-                .foregroundStyle(TarsierColors.textPrimary)
+            if let name = profile?.userName {
+                HStack(spacing: 4) {
+                    TappableTagalogWord(
+                        word: "Magaling,",
+                        translation: "Great job!",
+                        font: TarsierFonts.title(24),
+                        color: TarsierColors.textPrimary
+                    )
+                    Text("\(name)!")
+                        .font(TarsierFonts.title(24))
+                        .foregroundStyle(TarsierColors.textPrimary)
+                }
                 .opacity(showContent ? 1 : 0)
+            } else {
+                Text("Session Complete!")
+                    .font(TarsierFonts.title(24))
+                    .foregroundStyle(TarsierColors.textPrimary)
+                    .opacity(showContent ? 1 : 0)
+            }
 
             if let session = lesson.sessions.first(where: { $0.sessionNumber == sessionNumber }) {
                 Text(session.title)
@@ -101,10 +120,25 @@ struct SessionCompleteView: View {
                     .foregroundStyle(TarsierColors.functionalPurple)
             }
 
-            Text("Lesson Complete!")
-                .font(TarsierFonts.title(28))
-                .foregroundStyle(TarsierColors.textPrimary)
+            if let name = profile?.userName {
+                HStack(spacing: 4) {
+                    TappableTagalogWord(
+                        word: "Ang galing mo,",
+                        translation: "You're amazing!",
+                        font: TarsierFonts.title(28),
+                        color: TarsierColors.textPrimary
+                    )
+                    Text("\(name)!")
+                        .font(TarsierFonts.title(28))
+                        .foregroundStyle(TarsierColors.textPrimary)
+                }
                 .opacity(showContent ? 1 : 0)
+            } else {
+                Text("Lesson Complete!")
+                    .font(TarsierFonts.title(28))
+                    .foregroundStyle(TarsierColors.textPrimary)
+                    .opacity(showContent ? 1 : 0)
+            }
 
             Text(lesson.title)
                 .font(TarsierFonts.body())

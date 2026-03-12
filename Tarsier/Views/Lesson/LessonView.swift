@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import StoreKit
 
 struct LessonContainerView: View {
     let lesson: SlideLesson
@@ -36,6 +37,13 @@ struct LessonContainerView: View {
 
     // Wrong answer tracking
     @State private var wrongCounts: [String: Int] = [:]
+
+    // Coach marks
+    @State private var showTeachCoachMark = false
+    @State private var showQuizCoachMark = false
+    @State private var continueButtonRect: CGRect = .zero
+    @State private var quizOptionsRect: CGRect = .zero
+    @State private var coachMarkDismissedQuiz = false
 
     private var profile: UserProfile? { profiles.first }
     private var currentCard: SessionCard? { cardQueue.first }
@@ -148,6 +156,38 @@ struct LessonContainerView: View {
             // Bottom button
             bottomButton
         }
+        .coordinateSpace(name: "sessionContent")
+        .overlay {
+            if showTeachCoachMark, continueButtonRect != .zero {
+                CoachMarkOverlay(
+                    targetRect: continueButtonRect,
+                    message: "Tap Continue to advance",
+                    arrowPointsDown: true
+                )
+                .onTapGesture {
+                    withAnimation { showTeachCoachMark = false }
+                }
+            }
+            if showQuizCoachMark, quizOptionsRect != .zero {
+                CoachMarkOverlay(
+                    targetRect: quizOptionsRect,
+                    message: "Tap an answer, then Check",
+                    arrowPointsDown: false
+                )
+                .onTapGesture {
+                    withAnimation { showQuizCoachMark = false }
+                    coachMarkDismissedQuiz = true
+                    profile?.hasSeenCoachMarks = true
+                }
+            }
+        }
+        .onChange(of: quizState.hasSelection) { _, hasSelection in
+            if hasSelection && showQuizCoachMark {
+                withAnimation { showQuizCoachMark = false }
+                coachMarkDismissedQuiz = true
+                profile?.hasSeenCoachMarks = true
+            }
+        }
     }
 
     // MARK: - Alam Mo Ba Inline Tooltip
@@ -204,8 +244,21 @@ struct LessonContainerView: View {
             switch card.type {
             case .teach:
                 PrimaryButton("Continue") {
+                    if showTeachCoachMark {
+                        withAnimation { showTeachCoachMark = false }
+                    }
                     advanceTeachCard()
                 }
+                .background(
+                    GeometryReader { geo in
+                        Color.clear.onAppear {
+                            continueButtonRect = geo.frame(in: .named("sessionContent"))
+                        }
+                        .onChange(of: geo.frame(in: .named("sessionContent"))) { _, newValue in
+                            continueButtonRect = newValue
+                        }
+                    }
+                )
                 .padding(.horizontal, TarsierSpacing.screenPadding)
                 .padding(.bottom, 16)
 
@@ -244,6 +297,13 @@ struct LessonContainerView: View {
         completedCountBeforeThis = (try? modelContext.fetchCount(descriptor)) ?? 0
 
         prepareCurrentCard()
+
+        // Show teach coach mark on first card if user hasn't seen coach marks
+        if profile?.hasSeenCoachMarks == false, let card = currentCard, card.type == .teach {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                withAnimation { showTeachCoachMark = true }
+            }
+        }
     }
 
     // MARK: - Card Advancement
@@ -366,6 +426,15 @@ struct LessonContainerView: View {
             shuffledWordPieces = []
             quizState.totalWordPieces = 0
         }
+
+        // Show quiz coach mark on first quiz card
+        if card.type == .quiz,
+           !coachMarkDismissedQuiz,
+           profile?.hasSeenCoachMarks == false {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                withAnimation { showQuizCoachMark = true }
+            }
+        }
     }
 
     private func prepareShuffledOptions(for card: SessionCard) {
@@ -403,6 +472,17 @@ struct LessonContainerView: View {
 
         withAnimation(.easeInOut(duration: 0.3)) {
             sessionComplete = true
+        }
+
+        // Review prompt after first full lesson completion
+        if isLessonComplete, let profile, !profile.hasPromptedReview {
+            profile.hasPromptedReview = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                if let scene = UIApplication.shared.connectedScenes
+                    .first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
+                    SKStoreReviewController.requestReview(in: scene)
+                }
+            }
         }
     }
 

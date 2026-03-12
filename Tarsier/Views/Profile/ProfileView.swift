@@ -6,6 +6,8 @@ struct ProfileView: View {
     @Environment(\.modelContext) private var modelContext
     @State private var showResetConfirmation = false
     @State private var showSkillLevelChange = false
+    @State private var showNameEdit = false
+    @State private var editingName: String = ""
     @AppStorage("notificationsEnabled") private var notificationsEnabled = true
     @AppStorage("soundEnabled") private var soundEnabled = true
 
@@ -22,6 +24,20 @@ struct ProfileView: View {
             // MARK: - Profile
             Section("Profile") {
                 if let profile {
+                    HStack {
+                        Text("Name")
+                            .font(TarsierFonts.body())
+                        Spacer()
+                        Text(profile.userName ?? "Add name")
+                            .font(TarsierFonts.body())
+                            .foregroundStyle(profile.userName != nil ? TarsierColors.textSecondary : TarsierColors.functionalPurple)
+                    }
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        editingName = profile.userName ?? ""
+                        showNameEdit = true
+                    }
+
                     HStack {
                         Text("Skill Level")
                             .font(TarsierFonts.body())
@@ -114,6 +130,13 @@ struct ProfileView: View {
         } message: {
             Text("Changing your skill level will reset your lesson progress.")
         }
+        .alert("Edit Name", isPresented: $showNameEdit) {
+            TextField("Your name", text: $editingName)
+            Button("Save") {
+                profile?.userName = editingName.trimmingCharacters(in: .whitespaces).isEmpty ? nil : editingName.trimmingCharacters(in: .whitespaces)
+            }
+            Button("Cancel", role: .cancel) {}
+        }
     }
 
     // MARK: - Stats Grid
@@ -165,6 +188,8 @@ struct ProfileView: View {
             profile.currentStreak = 0
             profile.lastCompletedDate = nil
             profile.hasCompletedOnboarding = false
+            profile.hasSeenCoachMarks = false
+            profile.seenUIWords = []
         }
     }
 

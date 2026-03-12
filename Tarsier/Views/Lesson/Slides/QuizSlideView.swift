@@ -203,24 +203,33 @@ struct QuizSlideView: View {
                         .foregroundStyle(TarsierColors.correctGreen)
                     if let suffix = state.wordOrderFeedbackSuffix {
                         VStack(alignment: .leading, spacing: 2) {
-                            Text("Tama!")
-                                .font(TarsierFonts.heading())
-                                .foregroundStyle(TarsierColors.correctGreen)
+                            TappableTagalogWord(
+                                word: "Tama!",
+                                translation: "Correct!",
+                                font: TarsierFonts.heading(),
+                                color: TarsierColors.correctGreen
+                            )
                             Text("Though \"\(suffix)\" is more natural.")
                                 .font(TarsierFonts.caption())
                                 .foregroundStyle(TarsierColors.textSecondary)
                         }
                     } else {
-                        Text("Tama!")
-                            .font(TarsierFonts.heading())
-                            .foregroundStyle(TarsierColors.correctGreen)
+                        TappableTagalogWord(
+                            word: "Tama!",
+                            translation: "Correct!",
+                            font: TarsierFonts.heading(),
+                            color: TarsierColors.correctGreen
+                        )
                     }
                 } else {
                     Image(systemName: "xmark.circle.fill")
                         .foregroundStyle(TarsierColors.alertRed)
-                    Text("Mali")
-                        .font(TarsierFonts.heading())
-                        .foregroundStyle(TarsierColors.alertRed)
+                    TappableTagalogWord(
+                        word: "Mali",
+                        translation: "Wrong",
+                        font: TarsierFonts.heading(),
+                        color: TarsierColors.alertRed
+                    )
                 }
             }
 

@@ -7,6 +7,8 @@ struct HomeView: View {
     @State private var chapters: [Chapter] = []
     @State private var lessons: [SlideLesson] = []
     @State private var showPremiumGate = false
+    @State private var showGreeting = false
+    @AppStorage("lastGreetingDate") private var lastGreetingDate: String = ""
 
     private var profile: UserProfile? { profiles.first }
     private var completedIDs: [Int] { profile?.completedLessonIDs ?? [] }
@@ -14,6 +16,24 @@ struct HomeView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
+                if showGreeting, let name = profile?.userName {
+                    HStack(spacing: 8) {
+                        Text("Welcome back, \(name)!")
+                            .font(TarsierFonts.heading(18))
+                            .foregroundStyle(TarsierColors.textPrimary)
+                    }
+                    .padding(.horizontal, TarsierSpacing.screenPadding)
+                    .padding(.vertical, 12)
+                    .frame(maxWidth: .infinity)
+                    .background(
+                        RoundedRectangle(cornerRadius: 12)
+                            .fill(TarsierColors.brandPurple.opacity(0.1))
+                    )
+                    .padding(.horizontal, TarsierSpacing.screenPadding)
+                    .padding(.bottom, 8)
+                    .transition(.opacity.combined(with: .move(edge: .top)))
+                }
+
                 topBar
                     .padding(.horizontal, TarsierSpacing.screenPadding)
                     .padding(.bottom, TarsierSpacing.sectionSpacing)
@@ -50,6 +70,16 @@ struct HomeView: View {
             if let profile {
                 StreakService.validateStreak(for: profile)
                 profile.refillHearts()
+            }
+
+            // Show greeting once per day if user has a name
+            let today = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .none)
+            if profile?.userName != nil && lastGreetingDate != today {
+                lastGreetingDate = today
+                withAnimation { showGreeting = true }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                    withAnimation { showGreeting = false }
+                }
             }
         }
     }
