@@ -9,7 +9,6 @@ struct HomeView: View {
     @State private var showPremiumGate = false
 
     private var profile: UserProfile? { profiles.first }
-    private var currentLessonIndex: Int { profile?.currentLessonIndex ?? 1 }
     private var completedIDs: [Int] { profile?.completedLessonIDs ?? [] }
 
     var body: some View {
@@ -101,14 +100,14 @@ struct HomeView: View {
     private var roadmap: some View {
         VStack(spacing: 0) {
             ForEach(Array(chapters.enumerated()), id: \.element.id) { chapterIndex, chapter in
-                chapterSection(chapter, chapterNumber: chapterIndex + 1)
+                chapterSection(chapter, chapterNumber: chapterIndex + 1, chapterIndex: chapterIndex)
             }
         }
     }
 
     // MARK: - Chapter Section
 
-    private func chapterSection(_ chapter: Chapter, chapterNumber: Int) -> some View {
+    private func chapterSection(_ chapter: Chapter, chapterNumber: Int, chapterIndex: Int) -> some View {
         VStack(spacing: 0) {
             // Chapter header
             HStack(spacing: 10) {
@@ -136,30 +135,47 @@ struct HomeView: View {
             .padding(.top, chapterNumber == 1 ? 0 : TarsierSpacing.sectionSpacing)
             .padding(.bottom, 16)
 
-            // Lesson nodes — 2-column grid
-            let columns = [
-                GridItem(.flexible(), spacing: 24),
-                GridItem(.flexible(), spacing: 24),
-            ]
-            LazyVGrid(columns: columns, spacing: 20) {
-                ForEach(Array(chapter.lessonIDs.enumerated()), id: \.element) { index, lessonID in
-                    let isCompleted = completedIDs.contains(lessonID)
-                    let isCurrent = lessonID == currentLessonIndex
-                    let isUnlocked = lessonID <= currentLessonIndex
+            // Lesson rows from chapters.json
+            ForEach(chapter.rows, id: \.row) { row in
+                let lessonInts = row.lessons.compactMap { Int($0) }
 
-                    lessonNode(
-                        lessonID: lessonID,
-                        chapterTitle: chapter.title,
-                        indexInChapter: index + 1,
-                        isCompleted: isCompleted,
-                        isCurrent: isCurrent,
-                        isUnlocked: isUnlocked
-                    )
+                HStack(spacing: 24) {
+                    if lessonInts.count == 1 {
+                        Spacer()
+                        lessonNode(lessonID: lessonInts[0], chapter: chapter, chapterIndex: chapterIndex)
+                        Spacer()
+                    } else {
+                        ForEach(lessonInts, id: \.self) { lessonID in
+                            lessonNode(lessonID: lessonID, chapter: chapter, chapterIndex: chapterIndex)
+                        }
+                    }
                 }
+                .padding(.vertical, 4)
             }
 
-            // AI Practice node after chapter
+            // Practice node after chapter
             aiPracticeNode(chapter: chapter)
+        }
+    }
+
+    // MARK: - Unlock Logic
+
+    private func isLessonUnlocked(_ lessonID: Int, chapter: Chapter, chapterIndex: Int) -> Bool {
+        // Lesson 1 is always unlocked
+        if lessonID == 1 { return true }
+
+        let allIDs = chapter.lessonIDs
+        guard let posInChapter = allIDs.firstIndex(of: lessonID) else { return false }
+
+        if posInChapter == 0 {
+            // First lesson in chapter — need all lessons in previous chapter completed
+            guard chapterIndex > 0 else { return true }
+            let prevChapter = chapters[chapterIndex - 1]
+            return prevChapter.lessonIDs.allSatisfy { completedIDs.contains($0) }
+        } else {
+            // Not first — need previous lesson in this chapter completed
+            let prevLessonID = allIDs[posInChapter - 1]
+            return completedIDs.contains(prevLessonID)
         }
     }
 
@@ -188,16 +204,23 @@ struct HomeView: View {
         return 1 // All done, replay from 1
     }
 
+    private func lessonTitle(for lessonID: Int) -> String {
+        lessons.first { $0.id == lessonID }?.title ?? "Lesson \(lessonID)"
+    }
+
     // MARK: - Lesson Node
 
-    private func lessonNode(lessonID: Int, chapterTitle: String, indexInChapter: Int, isCompleted: Bool, isCurrent: Bool, isUnlocked: Bool) -> some View {
+    private func lessonNode(lessonID: Int, chapter: Chapter, chapterIndex: Int) -> some View {
+        let isCompleted = completedIDs.contains(lessonID)
+        let isUnlocked = isLessonUnlocked(lessonID, chapter: chapter, chapterIndex: chapterIndex)
         let completed = completedSessionCount(for: lessonID)
         let total = totalSessions(for: lessonID)
         let isAllSessionsDone = completed >= total
         let isReplay = isAllSessionsDone && isCompleted
-        let baseSize: CGFloat = 56 * 1.5 // ~84
-        let nodeSize: CGFloat = isCurrent ? baseSize * 1.1 : baseSize
-        let label = "\(chapterTitle) \(indexInChapter)"
+        let hasProgress = completed > 0 && !isCompleted
+        let indexInChapter = (chapter.lessonIDs.firstIndex(of: lessonID) ?? 0) + 1
+        let title = lessonTitle(for: lessonID)
+        let nodeSize: CGFloat = 72
 
         return NavigationLink(
             value: LessonNavigation(
@@ -208,8 +231,8 @@ struct HomeView: View {
         ) {
             VStack(spacing: 6) {
                 ZStack {
-                    // Progress ring around every unlocked lesson
-                    if isUnlocked && !isCompleted {
+                    // Progress ring — only when there's actual progress (1+ sessions done)
+                    if hasProgress {
                         ProgressRingView(
                             completed: completed,
                             total: total,
@@ -219,11 +242,14 @@ struct HomeView: View {
                     }
 
                     Circle()
-                        .fill(nodeBackground(isCompleted: isCompleted, isCurrent: isCurrent, isUnlocked: isUnlocked))
+                        .fill(nodeBackground(isCompleted: isCompleted, isUnlocked: isUnlocked))
                         .frame(width: nodeSize, height: nodeSize)
-                        .shadow(
-                            color: isCurrent ? TarsierColors.functionalPurple.opacity(0.3) : .clear,
-                            radius: isCurrent ? 8 : 0
+                        .overlay(
+                            Circle()
+                                .stroke(
+                                    isUnlocked && !isCompleted ? TarsierColors.functionalPurple.opacity(0.3) : .clear,
+                                    lineWidth: 2
+                                )
                         )
 
                     if isCompleted {
@@ -232,29 +258,30 @@ struct HomeView: View {
                             .foregroundStyle(.white)
                     } else if isUnlocked {
                         Text("\(indexInChapter)")
-                            .font(TarsierFonts.heading(24))
+                            .font(TarsierFonts.heading(22))
                             .foregroundStyle(TarsierColors.functionalPurple)
                     } else {
                         Image(systemName: "lock.fill")
-                            .font(.system(size: 18, weight: .semibold))
+                            .font(.system(size: 16, weight: .semibold))
                             .foregroundStyle(TarsierColors.textSecondary)
                     }
                 }
 
-                Text(label)
-                    .font(TarsierFonts.heading(20))
+                Text(title)
+                    .font(TarsierFonts.caption(13))
                     .foregroundStyle(isUnlocked ? TarsierColors.textPrimary : TarsierColors.textSecondary)
-                    .lineLimit(1)
+                    .lineLimit(2)
+                    .multilineTextAlignment(.center)
+                    .frame(width: nodeSize + 20)
             }
             .opacity(isUnlocked ? 1 : 0.5)
         }
         .disabled(!isUnlocked)
-        .padding(.vertical, 8)
     }
 
-    private func nodeBackground(isCompleted: Bool, isCurrent: Bool, isUnlocked: Bool) -> Color {
+    private func nodeBackground(isCompleted: Bool, isUnlocked: Bool) -> Color {
         if isCompleted { return TarsierColors.functionalPurple }
-        if isCurrent || isUnlocked { return TarsierColors.cream }
+        if isUnlocked { return TarsierColors.cream }
         return Color(hex: "#EEEAE6")
     }
 
@@ -283,34 +310,33 @@ struct HomeView: View {
                 aiPracticeContent(unlocked: false)
             }
         }
-        .padding(.vertical, 4)
+        .padding(.vertical, 8)
     }
 
     private func aiPracticeContent(unlocked: Bool) -> some View {
-        VStack(spacing: 6) {
+        VStack(spacing: 4) {
             ZStack {
                 Circle()
                     .fill(unlocked ? TarsierColors.gold.opacity(0.15) : Color(hex: "#EEEAE6"))
-                    .frame(width: 84, height: 84)
+                    .frame(width: 56, height: 56)
                     .overlay(
                         Circle()
                             .stroke(
                                 unlocked ? TarsierColors.gold : TarsierColors.cardBorder,
-                                style: StrokeStyle(lineWidth: 2, dash: [6, 4])
+                                style: StrokeStyle(lineWidth: 2, dash: [5, 3])
                             )
                     )
 
                 Image(systemName: "book.fill")
-                    .font(.system(size: 28, weight: .bold, design: .rounded))
+                    .font(.system(size: 20, weight: .bold, design: .rounded))
                     .foregroundStyle(unlocked ? TarsierColors.gold : TarsierColors.textSecondary)
             }
 
             Text("Practice")
-                .font(TarsierFonts.caption(14))
+                .font(TarsierFonts.caption(12))
                 .foregroundStyle(unlocked ? TarsierColors.textPrimary : TarsierColors.textSecondary)
         }
         .frame(maxWidth: .infinity)
         .opacity(unlocked ? 1 : 0.5)
     }
-
 }

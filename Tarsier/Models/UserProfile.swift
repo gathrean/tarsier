@@ -38,6 +38,7 @@ final class UserProfile {
     var hearts: Int
     var lastHeartRefill: Date?
     var isPremium: Bool
+    var hasCompletedOnboarding: Bool = false
 
     init(
         skillLevel: SkillLevel = .beginner,
@@ -49,7 +50,8 @@ final class UserProfile {
         motivations: [String] = [],
         totalXP: Int = 0,
         hearts: Int = 5,
-        isPremium: Bool = false
+        isPremium: Bool = false,
+        hasCompletedOnboarding: Bool = false
     ) {
         self.id = UUID()
         self.skillLevel = skillLevel
@@ -64,6 +66,7 @@ final class UserProfile {
         self.hearts = hearts
         self.lastHeartRefill = nil
         self.isPremium = isPremium
+        self.hasCompletedOnboarding = hasCompletedOnboarding
     }
 
     /// Refill hearts based on elapsed time (1 heart per 30 minutes, max 5)

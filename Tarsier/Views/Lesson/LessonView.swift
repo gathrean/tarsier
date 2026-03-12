@@ -5,6 +5,7 @@ struct LessonContainerView: View {
     let lesson: SlideLesson
     let sessionNumber: Int
     let isReplay: Bool
+    var onSessionComplete: (() -> Void)? = nil
 
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
@@ -52,7 +53,13 @@ struct LessonContainerView: View {
                     isLessonComplete: isLessonComplete,
                     isReplay: isReplay,
                     completedSessionsBefore: completedCountBeforeThis,
-                    onContinue: { dismiss() }
+                    onContinue: {
+                        if let onSessionComplete {
+                            onSessionComplete()
+                        } else {
+                            dismiss()
+                        }
+                    }
                 )
             } else {
                 sessionContent

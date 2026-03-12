@@ -7,6 +7,8 @@ struct ContentView: View {
     var body: some View {
         if profiles.isEmpty {
             OnboardingFlow()
+        } else if !(profiles.first?.hasCompletedOnboarding ?? false) {
+            OnboardingLessonView()
         } else {
             MainTabView()
         }

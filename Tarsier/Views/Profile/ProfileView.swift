@@ -164,6 +164,7 @@ struct ProfileView: View {
             profile.currentLessonIndex = 1
             profile.currentStreak = 0
             profile.lastCompletedDate = nil
+            profile.hasCompletedOnboarding = false
         }
     }
 
