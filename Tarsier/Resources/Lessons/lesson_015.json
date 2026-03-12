@@ -1,0 +1,21 @@
+{
+  "_meta": { "schema_version": "0.6", "last_updated": "2026-03-12", "notes": "Placeholder stub. Sessions not yet written." },
+  "lesson_id": "015",
+  "title": "Filipino Numbers",
+  "subtitle": "Counting in Three Systems",
+  "chapter_id": "ch05",
+  "chapter_title": "Bilang — Counting & Money",
+  "position_in_chapter": 1,
+  "difficulty": "beginner",
+  "total_sessions": 5,
+  "sessions": [],
+  "vocabulary": [],
+  "wrong_answer_tracking": { "behaviour": "Wrong answers go to back of current session queue.", "track_wrong_count": true, "wrong_count_usage": "Feed to Gemini system prompt for AI Practice." },
+  "completion_reward": {
+    "xp": 15,
+    "alam_mo_ba": [ "Filipinos count in three systems depending on context: native Tagalog (isa, dalawa, tatlo), Spanish-derived (uno, dos, tres — used for money and time), and English (one, two, three — used in formal or academic settings). Most Filipinos switch between all three without thinking about it." ],
+    "alam_mo_ba_display": "Show 1 random fun fact on lesson completion screen."
+  },
+  "ai_practice": null,
+  "gamification": { "xp_per_lesson": 15, "hearts_per_wrong_answer": 1, "streak_eligible": true, "progress_ring": { "total": 5, "display": "Ring animates from X/5 to (X+1)/5 on session completion" }, "replay": { "allowed": true, "xp_on_replay": 0 } }
+}

@@ -16,11 +16,17 @@ struct ProgressBarView: View {
                     .fill(TarsierColors.cardBorder)
 
                 Capsule()
-                    .fill(TarsierColors.functionalPurple)
+                    .fill(
+                        LinearGradient(
+                            colors: [TarsierColors.functionalPurple, TarsierColors.brandPurple],
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                    )
                     .frame(width: geo.size.width * progress)
                     .animation(.easeInOut(duration: 0.3), value: current)
             }
         }
-        .frame(height: 6)
+        .frame(height: 10)
     }
 }

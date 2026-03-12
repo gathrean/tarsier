@@ -1,0 +1,21 @@
+{
+  "_meta": { "schema_version": "0.6", "last_updated": "2026-03-12", "notes": "Placeholder stub. Sessions not yet written." },
+  "lesson_id": "029",
+  "title": "Kahapon, Ngayon, Bukas",
+  "subtitle": "Yesterday, Today, Tomorrow — Tense Consolidation",
+  "chapter_id": "ch09",
+  "chapter_title": "Oras — Time & Planning",
+  "position_in_chapter": 1,
+  "difficulty": "beginner",
+  "total_sessions": 5,
+  "sessions": [],
+  "vocabulary": [],
+  "wrong_answer_tracking": { "behaviour": "Wrong answers go to back of current session queue.", "track_wrong_count": true, "wrong_count_usage": "Feed to Gemini system prompt for AI Practice." },
+  "completion_reward": {
+    "xp": 15,
+    "alam_mo_ba": [ "Tagalog expresses tense through verb prefixes, not separate time words. Nag- signals past, nag-_-_ (with an infix) signals present, mag- signals future. Once you know the roots, the prefix tells you when — a very different system from English's separate past tense verbs." ],
+    "alam_mo_ba_display": "Show 1 random fun fact on lesson completion screen."
+  },
+  "ai_practice": null,
+  "gamification": { "xp_per_lesson": 15, "hearts_per_wrong_answer": 1, "streak_eligible": true, "progress_ring": { "total": 5, "display": "Ring animates from X/5 to (X+1)/5 on session completion" }, "replay": { "allowed": true, "xp_on_replay": 0 } }
+}

@@ -99,9 +99,6 @@ struct QuizSlideView: View {
                 EmptyView()
             }
 
-            if state.isChecked {
-                feedbackSection
-            }
         }
     }
 
@@ -193,71 +190,6 @@ struct QuizSlideView: View {
         }
     }
 
-    // MARK: - Feedback
-
-    private var feedbackSection: some View {
-        VStack(spacing: 12) {
-            // Feedback banner
-            HStack(spacing: 8) {
-                if state.answerState == .correct {
-                    Image(systemName: "checkmark.circle.fill")
-                        .foregroundStyle(.white)
-                    TappableTagalogWord(
-                        word: "Tama!",
-                        translation: "Correct!",
-                        font: TarsierFonts.heading(),
-                        color: .white
-                    )
-                } else {
-                    Image(systemName: "xmark.circle.fill")
-                        .foregroundStyle(.white)
-                    TappableTagalogWord(
-                        word: "Mali",
-                        translation: "Wrong",
-                        font: TarsierFonts.heading(),
-                        color: .white
-                    )
-                }
-            }
-            .padding(.horizontal, TarsierSpacing.cardPadding)
-            .padding(.vertical, 12)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(
-                RoundedRectangle(cornerRadius: 14)
-                    .fill(state.answerState == .correct ? TarsierColors.correctGreen : TarsierColors.alertRed)
-            )
-
-            // "More natural" note for word-order
-            if state.answerState == .correct, let suffix = state.wordOrderFeedbackSuffix {
-                Text("Though \"\(suffix)\" is more natural.")
-                    .font(TarsierFonts.caption())
-                    .foregroundStyle(TarsierColors.textSecondary)
-            }
-
-            // Show correct answer for fill-in-blank wrong answers
-            if state.answerState == .incorrect,
-               card.quizType == .fillInBlank,
-               let answers = card.correctAnswers,
-               let first = answers.first {
-                Text("Answer: \(first)")
-                    .font(TarsierFonts.body())
-                    .foregroundStyle(TarsierColors.textSecondary)
-            }
-
-            if let explanation = card.explanation {
-                Text(explanation)
-                    .font(TarsierFonts.body(15))
-                    .foregroundStyle(TarsierColors.textSecondary)
-                    .padding(TarsierSpacing.cardPadding)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .background(
-                        RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
-                            .fill(TarsierColors.cream)
-                    )
-            }
-        }
-        .padding(.top, 8)
-    }
 }
 
 // MARK: - Word Order Quiz View
@@ -268,44 +200,16 @@ struct WordOrderQuizView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            // Builder row — placed pills (left to right)
+            // Builder row — fixed slots, each sized to its word
             VStack(alignment: .leading, spacing: 8) {
                 Text("Your sentence:")
                     .font(TarsierFonts.caption())
                     .foregroundStyle(TarsierColors.textSecondary)
 
                 FlowLayout(spacing: 8) {
+                    // Always render all slots using the original piece order for sizing
                     ForEach(0..<pieces.count, id: \.self) { slot in
-                        if slot < state.placedIndices.count {
-                            let pieceIndex = state.placedIndices[slot]
-                            Button {
-                                guard !state.isChecked else { return }
-                                state.placedIndices.remove(at: slot)
-                            } label: {
-                                Text(pieces[pieceIndex])
-                                    .font(TarsierFonts.body())
-                                    .foregroundStyle(TarsierColors.functionalPurple)
-                                    .padding(.horizontal, 14)
-                                    .padding(.vertical, 8)
-                                    .background(
-                                        Capsule()
-                                            .fill(TarsierColors.primaryLight)
-                                    )
-                                    .overlay(
-                                        Capsule()
-                                            .stroke(TarsierColors.functionalPurple, lineWidth: 1.5)
-                                    )
-                            }
-                            .buttonStyle(.plain)
-                            .disabled(state.isChecked)
-                        } else {
-                            Capsule()
-                                .strokeBorder(
-                                    TarsierColors.cardBorder,
-                                    style: StrokeStyle(lineWidth: 1.5, dash: [5, 3])
-                                )
-                                .frame(width: 60, height: 36)
-                        }
+                        wordSlot(at: slot)
                     }
                 }
                 .padding(12)
@@ -352,6 +256,53 @@ struct WordOrderQuizView: View {
                 }
             }
         }
+    }
+
+    /// Each slot is sized to the longest word so slots never shift.
+    /// Filled slots show the placed word; empty slots show a dashed outline.
+    @ViewBuilder
+    private func wordSlot(at slot: Int) -> some View {
+        let isFilled = slot < state.placedIndices.count
+        let longestPiece = pieces.max(by: { $0.count < $1.count }) ?? ""
+
+        // Hidden text sets a fixed minimum width per slot
+        Text(longestPiece)
+            .font(TarsierFonts.body())
+            .padding(.horizontal, 14)
+            .padding(.vertical, 8)
+            .hidden()
+            .overlay {
+                if isFilled {
+                    let pieceIndex = state.placedIndices[slot]
+                    Button {
+                        guard !state.isChecked else { return }
+                        state.placedIndices.remove(at: slot)
+                    } label: {
+                        Text(pieces[pieceIndex])
+                            .font(TarsierFonts.body())
+                            .foregroundStyle(TarsierColors.functionalPurple)
+                            .padding(.horizontal, 14)
+                            .padding(.vertical, 8)
+                            .frame(maxWidth: .infinity)
+                            .background(
+                                Capsule()
+                                    .fill(TarsierColors.primaryLight)
+                            )
+                            .overlay(
+                                Capsule()
+                                    .stroke(TarsierColors.functionalPurple, lineWidth: 1.5)
+                            )
+                    }
+                    .buttonStyle(.plain)
+                    .disabled(state.isChecked)
+                } else {
+                    Capsule()
+                        .strokeBorder(
+                            TarsierColors.cardBorder,
+                            style: StrokeStyle(lineWidth: 1.5, dash: [5, 3])
+                        )
+                }
+            }
     }
 }
 

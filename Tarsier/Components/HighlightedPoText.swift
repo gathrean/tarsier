@@ -31,6 +31,7 @@ struct HighlightedPoText: View {
                     Text(word.text)
                         .font(font)
                         .foregroundStyle(baseColor)
+                        .padding(.vertical, 2) // match chip vertical padding for alignment
                 }
             }
         }

@@ -38,4 +38,20 @@ enum TarsierColors {
     static let heartRed = Color(hex: "#FF4B4B")
     /// Default border for cards and inputs.
     static let cardBorder = Color(hex: "#E5E7EB")
+
+    // MARK: - Path / Roadmap
+    /// Completed/active path line segments.
+    static let pathActive = Color(hex: "#C4B8F8")
+    /// Locked path line segments.
+    static let pathLocked = Color(hex: "#DDE0E8")
+    /// 3D shadow on active lesson node.
+    static let nodeShadow = Color(hex: "#3D2BA8")
+    /// Locked node / locked banner fill.
+    static let lockedFill = Color(hex: "#F4F4F8")
+
+    // MARK: - Feedback Banners
+    /// Light green background for correct-answer banner.
+    static let correctBannerBg = Color(hex: "#E8F5E9")
+    /// Light red background for wrong-answer banner.
+    static let wrongBannerBg = Color(hex: "#FDECEA")
 }

@@ -119,6 +119,14 @@ struct LessonContainerView: View {
                 }
 
                 ProgressBarView(current: completedCardIds.count, total: initialCardCount)
+
+                HStack(spacing: 4) {
+                    Image(systemName: "heart.fill")
+                        .foregroundStyle(TarsierColors.heartRed)
+                    Text("\(profile?.hearts ?? 5)")
+                        .font(TarsierFonts.heading(16))
+                        .foregroundStyle(TarsierColors.heartRed)
+                }
             }
             .padding(.horizontal, TarsierSpacing.screenPadding)
             .padding(.top, 8)
@@ -264,11 +272,7 @@ struct LessonContainerView: View {
 
             case .quiz:
                 if quizState.isChecked {
-                    PrimaryButton("Continue") {
-                        advanceAfterQuizCheck()
-                    }
-                    .padding(.horizontal, TarsierSpacing.screenPadding)
-                    .padding(.bottom, 16)
+                    quizFeedbackPanel(card: card)
                 } else {
                     PrimaryButton("Check") {
                         checkQuizAnswer(card: card)
@@ -280,6 +284,71 @@ struct LessonContainerView: View {
                 }
             }
         }
+    }
+
+    // MARK: - Quiz Feedback Banner (compact bottom strip)
+
+    private func quizFeedbackPanel(card: SessionCard) -> some View {
+        let isCorrect = quizState.answerState == .correct
+        let accentColor = isCorrect ? TarsierColors.correctGreen : TarsierColors.alertRed
+        let bannerBg = isCorrect ? TarsierColors.correctBannerBg : TarsierColors.wrongBannerBg
+
+        // Build explanation text
+        let explanation: String? = {
+            if let exp = card.explanation { return exp }
+            if isCorrect, let suffix = quizState.wordOrderFeedbackSuffix {
+                return "Though \"\(suffix)\" is more natural."
+            }
+            if !isCorrect, card.quizType == .fillInBlank,
+               let answers = card.correctAnswers, let first = answers.first {
+                return "Correct answer: \(first)"
+            }
+            if !isCorrect, card.quizType == .wordOrder,
+               let best = card.bestOrder, !best.isEmpty {
+                return "Correct: \(best.joined(separator: " "))"
+            }
+            return nil
+        }()
+
+        return VStack(alignment: .leading, spacing: 8) {
+            // Header: checkmark + "Tama!" / "Mali"
+            HStack(spacing: 6) {
+                Image(systemName: isCorrect ? "checkmark.circle.fill" : "xmark.circle.fill")
+                    .font(.system(size: 22, weight: .bold))
+                    .foregroundStyle(accentColor)
+                Text(isCorrect ? "Tama!" : "Mali")
+                    .font(TarsierFonts.heading(22))
+                    .foregroundStyle(accentColor)
+            }
+
+            // Explanation (1-2 lines max)
+            if let explanation {
+                Text(explanation)
+                    .font(TarsierFonts.body(14))
+                    .foregroundStyle(TarsierColors.textPrimary)
+                    .lineLimit(2)
+            }
+
+            // Continue button
+            Button {
+                advanceAfterQuizCheck()
+            } label: {
+                Text("CONTINUE")
+                    .font(TarsierFonts.button())
+                    .foregroundStyle(.white)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 48)
+                    .background(
+                        RoundedRectangle(cornerRadius: TarsierSpacing.buttonCornerRadius)
+                            .fill(accentColor)
+                    )
+            }
+            .buttonStyle(PrimaryButtonStyle())
+        }
+        .padding(.horizontal, TarsierSpacing.screenPadding)
+        .padding(.top, 16)
+        .padding(.bottom, 12)
+        .background(bannerBg.ignoresSafeArea(edges: .bottom))
     }
 
     // MARK: - Load Session
@@ -386,22 +455,10 @@ struct LessonContainerView: View {
             UIImpactFeedbackGenerator(style: .light).impactOccurred()
         } else {
             UINotificationFeedbackGenerator().notificationOccurred(.error)
-            // Only lose a heart on the first wrong attempt
-            let isFirstWrong = wrongCounts[card.cardId] == nil
             wrongCounts[card.cardId, default: 0] += 1
-            if isFirstWrong {
-                profile?.loseHeart()
-                if profile?.hearts == 0 {
-                    showHeartsEmpty = true
-                }
-            }
-            // Shake the check button, then reset placed indices after animation
-            withAnimation(.linear(duration: 0.4)) {
-                wordOrderShakeCount += 1
-            }
-            quizState.answerState = .unanswered
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.45) {
-                quizState.placedIndices = []
+            profile?.loseHeart()
+            if profile?.hearts == 0 {
+                showHeartsEmpty = true
             }
         }
     }
