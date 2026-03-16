@@ -26,25 +26,7 @@ struct ProficiencyScreen: View {
         VStack(spacing: 24) {
             Spacer()
 
-            // Bunso mascot + speech bubble (Duolingo style)
-            HStack(alignment: .top, spacing: 12) {
-                BunsoView(pose: .curious, size: 70)
-
-                Text("How much Tagalog do you know?")
-                    .font(TarsierFonts.heading(17))
-                    .foregroundStyle(TarsierColors.textPrimary)
-                    .padding(.horizontal, 14)
-                    .padding(.vertical, 10)
-                    .background(
-                        RoundedRectangle(cornerRadius: 14)
-                            .fill(Color.white)
-                    )
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 14)
-                            .stroke(TarsierColors.cardBorder, lineWidth: 1)
-                    )
-            }
-            .padding(.horizontal, TarsierSpacing.screenPadding)
+            BunsoSpeechBubble(pose: .curious, text: "How much Tagalog do you know?")
 
             VStack(spacing: 10) {
                 ForEach(Array(levels.enumerated()), id: \.offset) { index, level in

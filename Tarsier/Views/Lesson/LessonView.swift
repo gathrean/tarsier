@@ -6,6 +6,7 @@ struct LessonContainerView: View {
     let lesson: SlideLesson
     let sessionNumber: Int
     let isReplay: Bool
+    var hideCloseButton: Bool = false
     var onSessionComplete: (() -> Void)? = nil
 
     @Environment(\.dismiss) private var dismiss
@@ -105,15 +106,17 @@ struct LessonContainerView: View {
         VStack(spacing: 0) {
             // Top bar: close + progress
             HStack(spacing: 12) {
-                Button {
-                    showCloseConfirmation = true
-                } label: {
-                    Image(systemName: "xmark")
-                        .font(.system(size: 14, weight: .bold))
-                        .foregroundStyle(TarsierColors.textSecondary)
-                        .frame(width: 32, height: 32)
-                        .background(Circle().fill(TarsierColors.cream))
-                        .overlay(Circle().stroke(TarsierColors.cardBorder, lineWidth: 1))
+                if !hideCloseButton {
+                    Button {
+                        showCloseConfirmation = true
+                    } label: {
+                        Image(systemName: "xmark")
+                            .font(.system(size: 14, weight: .bold))
+                            .foregroundStyle(TarsierColors.textSecondary)
+                            .frame(width: 32, height: 32)
+                            .background(Circle().fill(TarsierColors.cream))
+                            .overlay(Circle().stroke(TarsierColors.cardBorder, lineWidth: 1))
+                    }
                 }
 
                 ProgressBarView(current: completedCardIds.count, total: initialCardCount)

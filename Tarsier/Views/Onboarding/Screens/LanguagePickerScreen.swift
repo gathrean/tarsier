@@ -22,10 +22,7 @@ struct LanguagePickerScreen: View {
         VStack(spacing: 24) {
             Spacer()
 
-            Text("What would you like to learn?")
-                .font(TarsierFonts.title())
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, TarsierSpacing.screenPadding)
+            BunsoSpeechBubble(pose: .excited, text: "What would you like to learn?")
 
             VStack(alignment: .leading, spacing: 12) {
                 Text("For English Speakers")

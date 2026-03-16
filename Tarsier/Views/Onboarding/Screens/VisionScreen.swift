@@ -14,10 +14,7 @@ struct VisionScreen: View {
         VStack(spacing: 24) {
             Spacer()
 
-            Text("Here's what you can achieve in 3 months")
-                .font(TarsierFonts.title(24))
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, TarsierSpacing.screenPadding)
+            BunsoSpeechBubble(pose: .flexing, text: "Here's what you can achieve in 3 months")
 
             VStack(spacing: 14) {
                 ForEach(benefits, id: \.title) { benefit in

@@ -31,9 +31,7 @@ struct MotivationScreen: View {
             Spacer()
                 .frame(height: 24)
 
-            Text("Why are you learning Tagalog?")
-                .font(TarsierFonts.title(24))
-                .multilineTextAlignment(.center)
+            BunsoSpeechBubble(pose: .heartEyes, text: "Why are you learning Tagalog?")
 
             Text("Pick all that apply")
                 .font(TarsierFonts.caption())

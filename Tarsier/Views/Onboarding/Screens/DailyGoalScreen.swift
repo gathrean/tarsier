@@ -42,9 +42,7 @@ struct DailyGoalScreen: View {
         VStack(spacing: 24) {
             Spacer()
 
-            Text("What's your daily learning goal?")
-                .font(TarsierFonts.title(24))
-                .multilineTextAlignment(.center)
+            BunsoSpeechBubble(pose: .tappingWrist, text: "What's your daily learning goal?")
 
             VStack(spacing: 12) {
                 ForEach(goals, id: \.minutes) { goal in

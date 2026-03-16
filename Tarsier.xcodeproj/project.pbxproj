@@ -50,6 +50,7 @@
 		49E3E09FDEE4FB6FF22378C2 /* SubscriptionGateScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA296D83C9B2D2AF06A6B83 /* SubscriptionGateScreen.swift */; };
 		4AC72BB0E0EBFFB6781198EF /* PathNodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917AE620F52E04804585AC13 /* PathNodeView.swift */; };
 		4D0C62DE6CFF07894F308CC4 /* LessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D61E44B983120EE2E25748 /* LessonView.swift */; };
+		4D6D059AE838E2361E2ED105 /* BunsoSpeechBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD94A1988351D3F15F0D4CC2 /* BunsoSpeechBubble.swift */; };
 		4F00245F54EA1F869D7A71E0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091A2D027DE131B1E9BBBC6B /* HomeView.swift */; };
 		524227891F0FF1C1EAF4DDDE /* lesson_007.json in Resources */ = {isa = PBXBuildFile; fileRef = 73CE4FCFE3D044B4EA46CA72 /* lesson_007.json */; };
 		537A4CA66D6EA9C2B6A1AF5C /* lesson_014.json in Resources */ = {isa = PBXBuildFile; fileRef = 51AD4E6E7A3B5CAA63E69031 /* lesson_014.json */; };
@@ -212,6 +213,7 @@
 		FCB4DC90868E5BB58F66337F /* WordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsView.swift; sourceTree = "<group>"; };
 		FD351D022D43F28267207471 /* HeartDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartDisplay.swift; sourceTree = "<group>"; };
 		FD8C652E1A2831115D24A527 /* lesson_023.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lesson_023.json; sourceTree = "<group>"; };
+		FD94A1988351D3F15F0D4CC2 /* BunsoSpeechBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BunsoSpeechBubble.swift; sourceTree = "<group>"; };
 		FDBED49AC8802C7A05C79304 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -255,6 +257,7 @@
 		21830710E4350CFEC27F504B /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				FD94A1988351D3F15F0D4CC2 /* BunsoSpeechBubble.swift */,
 				B8B10408555C498086A914E2 /* BunsoView.swift */,
 				DBCD8CCAC476282D791517EC /* OnboardingFlow.swift */,
 				3E47065F8108212DB8088A22 /* OnboardingLessonView.swift */,
@@ -601,6 +604,7 @@
 				24E401C768B2C1C765C0C224 /* AlamMoBaView.swift in Sources */,
 				6C8D11F2915F34D7863A5E4B /* AttributionScreen.swift in Sources */,
 				C98A417F4B067C5D54D4F51C /* AudioPlayerService.swift in Sources */,
+				4D6D059AE838E2361E2ED105 /* BunsoSpeechBubble.swift in Sources */,
 				A2CC9D254993F6D8E43586A6 /* BunsoView.swift in Sources */,
 				F80EBF2D8BC153F6DABDF33A /* Chapter.swift in Sources */,
 				FE4553C6FCA8DE9EA6A11E24 /* ChapterBannerView.swift in Sources */,

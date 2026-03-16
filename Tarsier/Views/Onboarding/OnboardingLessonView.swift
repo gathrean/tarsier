@@ -15,6 +15,7 @@ struct OnboardingLessonView: View {
                 lesson: lesson,
                 sessionNumber: 1,
                 isReplay: false,
+                hideCloseButton: true,
                 onSessionComplete: {
                     profile?.hasCompletedOnboarding = true
                     try? modelContext.save()

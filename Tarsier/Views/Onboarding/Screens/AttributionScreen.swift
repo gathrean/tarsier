@@ -18,11 +18,7 @@ struct AttributionScreen: View {
         VStack(spacing: 24) {
             Spacer()
 
-            BunsoView(pose: .curious, size: 80)
-
-            Text("How did you learn about Tarsier?")
-                .font(TarsierFonts.title(24))
-                .multilineTextAlignment(.center)
+            BunsoSpeechBubble(pose: .curious, text: "How did you learn about Tarsier?")
 
             VStack(spacing: 10) {
                 ForEach(sources, id: \.self) { source in
