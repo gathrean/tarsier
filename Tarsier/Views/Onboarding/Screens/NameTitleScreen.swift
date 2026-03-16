@@ -12,8 +12,6 @@ struct NameTitleScreen: View {
 
     var body: some View {
         VStack(spacing: 24) {
-            Spacer()
-
             BunsoSpeechBubble(pose: .waving, text: "What should I call you?")
 
             TextField("Your name", text: $userName)
@@ -65,21 +63,22 @@ struct NameTitleScreen: View {
                     }
 
                     Button {
-                        preferredTitle = nil
+                        preferredTitle = ""
                     } label: {
+                        let isSelected = preferredTitle == ""
                         Text("Neither")
                             .font(TarsierFonts.heading(16))
-                            .foregroundStyle(preferredTitle == nil ? .white : TarsierColors.textSecondary)
+                            .foregroundStyle(isSelected ? .white : TarsierColors.textSecondary)
                             .padding(.horizontal, 24)
                             .padding(.vertical, 10)
                             .background(
                                 Capsule()
-                                    .fill(preferredTitle == nil ? TarsierColors.functionalPurple : .white)
+                                    .fill(isSelected ? TarsierColors.functionalPurple : .white)
                             )
                             .overlay(
                                 Capsule()
                                     .stroke(
-                                        preferredTitle == nil ? TarsierColors.functionalPurple : TarsierColors.cardBorder,
+                                        isSelected ? TarsierColors.functionalPurple : TarsierColors.cardBorder,
                                         lineWidth: 1.5
                                     )
                             )

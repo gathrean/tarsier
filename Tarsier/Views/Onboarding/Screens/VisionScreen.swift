@@ -12,8 +12,6 @@ struct VisionScreen: View {
 
     var body: some View {
         VStack(spacing: 24) {
-            Spacer()
-
             BunsoSpeechBubble(pose: .flexing, text: "Here's what you can achieve in 3 months")
 
             VStack(spacing: 14) {

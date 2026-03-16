@@ -5,6 +5,7 @@ struct MotivationScreen: View {
     let screenIndex: Int // 0 = picker, 1 = response
     @Binding var selectedMotivations: Set<String>
     let onContinue: () -> Void
+    var onShowContinue: (() -> Void)? = nil
 
     private let motivations = [
         "Just for fun",
@@ -28,9 +29,6 @@ struct MotivationScreen: View {
 
     private var pickerView: some View {
         VStack(spacing: 20) {
-            Spacer()
-                .frame(height: 24)
-
             BunsoSpeechBubble(pose: .heartEyes, text: "Why are you learning Tagalog?")
 
             Text("Pick all that apply")
@@ -79,21 +77,27 @@ struct MotivationScreen: View {
         }
     }
 
+    @State private var showRoutinePhase = false
+
     private var responseView: some View {
         let (pose, message) = motivationResponse
 
         return VStack(spacing: 32) {
-            Spacer()
-
-            BunsoSpeechBubble(pose: pose, text: message, bunsoSize: 100)
+            BunsoSpeechBubble(
+                pose: showRoutinePhase ? .tappingWrist : pose,
+                text: showRoutinePhase ? "Let's set up a learning routine!" : message,
+                bunsoSize: 100
+            )
 
             Spacer()
         }
-        .contentShape(Rectangle())
-        .onTapGesture { onContinue() }
         .onAppear {
+            showRoutinePhase = false
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                onContinue()
+                withAnimation(.easeInOut(duration: 0.3)) {
+                    showRoutinePhase = true
+                }
+                onShowContinue?()
             }
         }
     }

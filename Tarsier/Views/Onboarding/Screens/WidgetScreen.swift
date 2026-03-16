@@ -8,8 +8,6 @@ struct WidgetScreen: View {
 
     var body: some View {
         VStack(spacing: 32) {
-            Spacer()
-
             BunsoSpeechBubble(pose: .celebrating, text: "I'll cheer you on from your home screen!", bunsoSize: 100)
 
             // Mock widget preview

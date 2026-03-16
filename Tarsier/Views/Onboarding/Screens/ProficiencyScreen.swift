@@ -24,8 +24,6 @@ struct ProficiencyScreen: View {
 
     private var pickerView: some View {
         VStack(spacing: 24) {
-            Spacer()
-
             BunsoSpeechBubble(pose: .curious, text: "How much Tagalog do you know?")
 
             VStack(spacing: 10) {
@@ -69,8 +67,6 @@ struct ProficiencyScreen: View {
         let (pose, message) = proficiencyResponse
 
         return VStack(spacing: 32) {
-            Spacer()
-
             BunsoSpeechBubble(pose: pose, text: message, bunsoSize: 100)
 
             Spacer()

@@ -1,19 +1,19 @@
 import SwiftUI
 import SwiftData
 
-/// 18-screen Bunso onboarding flow (v0.3).
+/// 17-screen Bunso onboarding flow (v0.3.3).
 /// Manages screen progression with manual index — no NavigationStack, no back-swipe.
 struct OnboardingFlow: View {
     @Environment(\.modelContext) private var modelContext
 
-    // Screen index (0–17, mapping to 18 screens)
+    // Screen index (0–16, mapping to 17 screens)
     @State private var currentScreen = 0
 
     // Collected data
     @State private var userName: String = ""
     @State private var preferredTitle: String? = nil
     @State private var selectedLanguage: String = ""
-    @State private var attributionSource: String = ""
+    @State private var attributionSources: Set<String> = []
     @State private var proficiencyLevel: Int = -1       // -1 = no selection
     @State private var selectedMotivations: Set<String> = []
     @State private var dailyGoalMinutes: Int = 0        // 0 = no selection
@@ -24,34 +24,38 @@ struct OnboardingFlow: View {
     // Transition direction
     @State private var isGoingForward = true
 
-    private let totalScreens = 17 // last index
+    // Screen 9: motivation response → routine transition (shows continue after delay)
+    @State private var motivationResponseReady = false
+
+    private let totalScreens = 16 // last index
 
     /// Screens where the back button should be hidden
     private var hideBackButton: Bool {
-        // Splash (0,1), auto-advance responses (5, 7, 9), loading (17)
-        [0, 1, 5, 7, 9, 17].contains(currentScreen)
+        // Splash (0,1), loading (16)
+        [0, 1, 16].contains(currentScreen)
     }
 
     /// Screens where the progress bar should be hidden
     private var hideProgressBar: Bool {
-        [0, 1, 17].contains(currentScreen)
+        [0, 1, 16].contains(currentScreen)
     }
 
     /// Screens where the floating Continue button should be hidden
     private var hideFloatingButton: Bool {
-        // Auto-advance responses (5, 7, 9), subscription gate (16, has own buttons), loading (17)
-        [5, 7, 9, 16, 17].contains(currentScreen)
+        // Auto-advance responses (5, 7), screen 9 until ready, subscription gate (15), loading (16)
+        if currentScreen == 9 && !motivationResponseReady { return true }
+        return [5, 7, 15, 16].contains(currentScreen)
     }
 
     /// Whether the Continue button should be disabled
     private var isButtonDisabled: Bool {
         switch currentScreen {
         case 2: selectedLanguage.isEmpty
-        case 3: attributionSource.isEmpty
+        case 3: attributionSources.isEmpty
         case 4: proficiencyLevel < 0
         case 6: userName.trimmingCharacters(in: .whitespaces).isEmpty
         case 8: selectedMotivations.isEmpty
-        case 11: dailyGoalMinutes == 0
+        case 10: dailyGoalMinutes == 0
         default: false
         }
     }
@@ -60,7 +64,7 @@ struct OnboardingFlow: View {
     private var buttonLabel: String {
         switch currentScreen {
         case 0: "Get Started"
-        case 15: "Okay! You can add my widget any time."
+        case 14: "Okay! You can add my widget any time."
         default: "Continue"
         }
     }
@@ -133,7 +137,7 @@ struct OnboardingFlow: View {
         case 2: // Language picker
             LanguagePickerScreen(selectedLanguage: $selectedLanguage) { advance() }
         case 3: // Attribution
-            AttributionScreen(attributionSource: $attributionSource) { advance() }
+            AttributionScreen(attributionSources: $attributionSources) { advance() }
         case 4: // Proficiency picker
             ProficiencyScreen(screenIndex: 0, proficiencyLevel: $proficiencyLevel) { advance() }
         case 5: // Proficiency response (auto-advance)
@@ -144,23 +148,25 @@ struct OnboardingFlow: View {
             nameGreetingView
         case 8: // Motivation picker
             MotivationScreen(screenIndex: 0, selectedMotivations: $selectedMotivations) { advance() }
-        case 9: // Motivation response (auto-advance)
-            MotivationScreen(screenIndex: 1, selectedMotivations: $selectedMotivations) { advanceOnce() }
-        case 10: // Daily goal intro
-            DailyGoalScreen(screenIndex: 0, dailyGoalMinutes: $dailyGoalMinutes) { advance() }
-        case 11: // Daily goal picker
+        case 9: // Motivation response → routine transition (continue button appears after delay)
+            MotivationScreen(screenIndex: 1, selectedMotivations: $selectedMotivations, onContinue: { advance() }, onShowContinue: {
+                withAnimation {
+                    motivationResponseReady = true
+                }
+            })
+        case 10: // Daily goal picker
             DailyGoalScreen(screenIndex: 1, dailyGoalMinutes: $dailyGoalMinutes) { advance() }
-        case 12: // Goal confirmation
+        case 11: // Goal confirmation
             DailyGoalScreen(screenIndex: 2, dailyGoalMinutes: $dailyGoalMinutes) { advance() }
-        case 13: // Three-month vision
+        case 12: // Three-month vision
             VisionScreen { advance() }
-        case 14: // Notification pitch
+        case 13: // Notification pitch
             OnboardingNotificationScreen { advance() }
-        case 15: // Widget pitch
+        case 14: // Widget pitch
             WidgetScreen { advance() }
-        case 16: // Subscription gate
+        case 15: // Subscription gate
             SubscriptionGateScreen { advance() }
-        case 17: // Loading
+        case 16: // Loading
             LoadingScreen(profile: createProfile()) {
                 // Profile is saved by LoadingScreen; ContentView will re-route
             }
@@ -173,8 +179,6 @@ struct OnboardingFlow: View {
 
     private var nameGreetingView: some View {
         VStack(spacing: 32) {
-            Spacer()
-
             BunsoSpeechBubble(pose: .celebrating, text: nameGreeting, bunsoSize: 100)
 
             Spacer()
@@ -193,9 +197,9 @@ struct OnboardingFlow: View {
 
     private func advance(playSound: Bool = true) {
         autoAdvanceFired = false
+        motivationResponseReady = false
         isGoingForward = true
         if playSound {
-            SoundManager.shared.play("page")
             UIImpactFeedbackGenerator(style: .soft).impactOccurred()
         }
         withAnimation {
@@ -205,6 +209,7 @@ struct OnboardingFlow: View {
 
     private func goBack() {
         guard currentScreen > 0 else { return }
+        motivationResponseReady = false
         isGoingForward = false
         withAnimation {
             currentScreen -= 1
@@ -212,7 +217,7 @@ struct OnboardingFlow: View {
     }
 
     /// For auto-advance screens — prevents double-fire from both timer and tap.
-    /// No sound on auto-advance (screens 5, 7, 9).
+    /// No sound on auto-advance (screens 5, 7).
     private func advanceOnce() {
         guard !autoAdvanceFired else { return }
         autoAdvanceFired = true
@@ -229,9 +234,9 @@ struct OnboardingFlow: View {
         )
         let trimmedName = userName.trimmingCharacters(in: .whitespaces)
         profile.userName = trimmedName.isEmpty ? nil : trimmedName
-        profile.preferredTitle = preferredTitle
+        profile.preferredTitle = (preferredTitle?.isEmpty == false) ? preferredTitle : nil
         profile.selectedLanguage = selectedLanguage
-        profile.attributionSource = attributionSource
+        profile.attributionSource = attributionSources.joined(separator: ", ")
         profile.proficiencyLevel = max(proficiencyLevel, 0)
 
         modelContext.insert(profile)

@@ -451,7 +451,7 @@
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "prompt": "Which is natural Taglish for 'Okay, thank you' to an elder?",
-          "options": ["Sige, salamat.", "Sige po, thanks po.", "Okay po, salamat po.", "Both B and C."],
+          "options": ["Sige, salamat.", "Sige po, thanks po.", "Okay po, salamat po.", "Either 'Sige po' or 'Okay po' works."],
           "correct_answer": 3,
           "explanation": "Both work. 'Sige po, thanks po' and 'Okay po, salamat po' are both natural Taglish with po.",
           "shuffle_options": true

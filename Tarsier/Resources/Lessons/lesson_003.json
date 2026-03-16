@@ -166,7 +166,7 @@
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "prompt": "Your boss gives you a compliment. How do you say thank you?",
-          "options": ["Salamat!", "Thank you po.", "Salamat po.", "Both B and C."],
+          "options": ["Salamat!", "Thank you po.", "Salamat po.", "Either 'Thank you po' or 'Salamat po' works."],
           "correct_answer": 3,
           "explanation": "Both work. 'Thank you po' and 'Salamat po' are both natural with authority. Taglish is normal.",
           "shuffle_options": true
@@ -329,7 +329,7 @@
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "prompt": "Your teacher helps you after class. How do you thank them?",
-          "options": ["Salamat!", "Maraming salamat po!", "Thanks po.", "Both B and C."],
+          "options": ["Salamat!", "Maraming salamat po!", "Thanks po.", "Either 'Maraming salamat po' or 'Thanks po' works."],
           "correct_answer": 3,
           "explanation": "Teacher = authority, and they did something significant. 'Maraming salamat po!' and 'Thanks po' both work. Taglish is natural.",
           "shuffle_options": true
@@ -442,7 +442,7 @@
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "prompt": "Your mare says 'Salamat!' after you lend her your umbrella. What do you say?",
-          "options": ["Walang anuman po.", "Walang anuman!", "Okay lang, mare!", "Both B and C."],
+          "options": ["Walang anuman po.", "Walang anuman!", "Okay lang, mare!", "Either 'Walang anuman' or 'Okay lang, mare' works."],
           "correct_answer": 3,
           "explanation": "Close female friend. Both 'Walang anuman!' and 'Okay lang, mare!' work. No po needed.",
           "shuffle_options": true

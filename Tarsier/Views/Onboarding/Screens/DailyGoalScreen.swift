@@ -25,8 +25,6 @@ struct DailyGoalScreen: View {
 
     private var introView: some View {
         VStack(spacing: 32) {
-            Spacer()
-
             BunsoSpeechBubble(pose: .tappingWrist, text: "Let's set up a learning routine!", bunsoSize: 100)
 
             Spacer()
@@ -35,8 +33,6 @@ struct DailyGoalScreen: View {
 
     private var pickerView: some View {
         VStack(spacing: 24) {
-            Spacer()
-
             BunsoSpeechBubble(pose: .tappingWrist, text: "What's your daily learning goal?")
 
             VStack(spacing: 12) {
@@ -88,8 +84,6 @@ struct DailyGoalScreen: View {
         let words = wordEstimates[resolvedGoal] ?? 30
 
         return VStack(spacing: 32) {
-            Spacer()
-
             BunsoSpeechBubble(pose: .celebrating, text: "That's about \(words) new words in your first week!", bunsoSize: 100)
 
             Text("\(resolvedGoal) minutes a day")
