@@ -18,6 +18,7 @@
 		0F0637F837839EE85E063E9A /* SessionProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24BC6C7E1CC146418898D68 /* SessionProgress.swift */; };
 		0F681F9C1D173AB4A405CB18 /* lesson_011.json in Resources */ = {isa = PBXBuildFile; fileRef = 61563B989F508A2AF34BFFEC /* lesson_011.json */; };
 		0FBF2180D7FBB76E82B23FF4 /* lesson_019.json in Resources */ = {isa = PBXBuildFile; fileRef = 505EF5419ADC3E37D0710FF9 /* lesson_019.json */; };
+		1000760C4EBC14DBB3CB477A /* DailyActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F1AF056FB07527328995C4 /* DailyActivity.swift */; };
 		118726566415C9B860E2EA93 /* TappableTagalogWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B1AC1AF9C8323F0EC1CE3F /* TappableTagalogWord.swift */; };
 		13918976D798ED16AE8AA1A9 /* lesson_016.json in Resources */ = {isa = PBXBuildFile; fileRef = A329C739D83D71B73D4843D5 /* lesson_016.json */; };
 		16156C06C674FAAA283CF1BF /* TeachCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475FB32862C7CAB41C46C54E /* TeachCardView.swift */; };
@@ -47,6 +48,7 @@
 		404518A2DD7AF8501629CB17 /* lesson_021.json in Resources */ = {isa = PBXBuildFile; fileRef = 81140DB294416CBC83C3E8C6 /* lesson_021.json */; };
 		41D5C642375D7E1868452670 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB1EE9F22C3F12C82F5081F /* ProfileView.swift */; };
 		450CE5F3A026F86BCC7633A2 /* lesson_004.json in Resources */ = {isa = PBXBuildFile; fileRef = F21A19E2EBA05B0C438FDA07 /* lesson_004.json */; };
+		45CBED735190AA6F5301A38D /* WeeklyActivityChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09312595CB4E7B224A0B925 /* WeeklyActivityChart.swift */; };
 		45E9BBBD69941E4D7A1926DE /* PracticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E4C6BD3E168155DBD9D685 /* PracticeView.swift */; };
 		49E3E09FDEE4FB6FF22378C2 /* SubscriptionGateScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA296D83C9B2D2AF06A6B83 /* SubscriptionGateScreen.swift */; };
 		4AC72BB0E0EBFFB6781198EF /* PathNodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917AE620F52E04804585AC13 /* PathNodeView.swift */; };
@@ -83,6 +85,7 @@
 		8BAA6ACD3327B25218382406 /* incorrect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8F71F182FBB54F59BB77B28C /* incorrect.mp3 */; };
 		9136ABD7F4E245A61EA03A69 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E180A31160DC805B3530AE /* ContentView.swift */; };
 		93FF10A316B84CFF7BCD38DD /* lesson_001.json in Resources */ = {isa = PBXBuildFile; fileRef = 80B9F7B563B311E2B064C6E9 /* lesson_001.json */; };
+		95FCFB9BCCC02D478B30A634 /* StreakCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD4A9C20A9DCD69FF7B60FB /* StreakCalendarView.swift */; };
 		A2CC9D254993F6D8E43586A6 /* BunsoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B10408555C498086A914E2 /* BunsoView.swift */; };
 		A34C50B0E4922A008BD468FB /* ZigzagChapterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59916CEB753589A5CC734C17 /* ZigzagChapterView.swift */; };
 		A96817343CAD57D4AF7418B6 /* StreakService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BAE3455847B83FA3F5BA1A /* StreakService.swift */; };
@@ -136,6 +139,7 @@
 		334AB78600BA755760110060 /* tap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tap.mp3; sourceTree = "<group>"; };
 		3422D0C828B531C91F4D5CC5 /* lesson_005.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lesson_005.json; sourceTree = "<group>"; };
 		366CC93EAAACCB1B57913063 /* LessonPopoverCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonPopoverCard.swift; sourceTree = "<group>"; };
+		38F1AF056FB07527328995C4 /* DailyActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyActivity.swift; sourceTree = "<group>"; };
 		3A9EE03C08C65FACB6E683A9 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		3D9E19B47AF8A2F0C3FC616D /* CoachMarkOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarkOverlay.swift; sourceTree = "<group>"; };
 		3E1E37117D7A295A82029498 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
@@ -160,7 +164,7 @@
 		66D68AE60916444BBAE35788 /* AffixBreakdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffixBreakdownView.swift; sourceTree = "<group>"; };
 		670A8D7AF46149EA097A1F2F /* LanguagePickerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePickerScreen.swift; sourceTree = "<group>"; };
 		69F047FF04ACFAC5A57C1FDF /* GreetingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingHelper.swift; sourceTree = "<group>"; };
-		6E3FB2F04B2A708D6E5E6B01 /* Tarsier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tarsier.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E3FB2F04B2A708D6E5E6B01 /* Tarsier.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Tarsier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E87449FA03A7982FF92828A /* lesson_006.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lesson_006.json; sourceTree = "<group>"; };
 		714F0509CA9E786FEF73759C /* lesson_020.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lesson_020.json; sourceTree = "<group>"; };
 		73CE4FCFE3D044B4EA46CA72 /* lesson_007.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lesson_007.json; sourceTree = "<group>"; };
@@ -179,6 +183,7 @@
 		9C2378D89C052FCAC09BB170 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9CB36CA5AEFE730DF998C96E /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		9CC53468AD1B9C1EB0B4C798 /* TaglishCallout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaglishCallout.swift; sourceTree = "<group>"; };
+		A09312595CB4E7B224A0B925 /* WeeklyActivityChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyActivityChart.swift; sourceTree = "<group>"; };
 		A0A3143C76EC900F509A1CCC /* lesson_002.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lesson_002.json; sourceTree = "<group>"; };
 		A329C739D83D71B73D4843D5 /* lesson_016.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lesson_016.json; sourceTree = "<group>"; };
 		A3C11C7907CF608BDB708F91 /* TarsierSpacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TarsierSpacing.swift; sourceTree = "<group>"; };
@@ -221,6 +226,7 @@
 		EACACA5DDDE60931AD01A7C4 /* FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
 		EB4C950665FE788FD10BA044 /* HighlightedPoText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightedPoText.swift; sourceTree = "<group>"; };
 		EDB4EFD9A7225B23AD499745 /* lesson_015.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lesson_015.json; sourceTree = "<group>"; };
+		EDD4A9C20A9DCD69FF7B60FB /* StreakCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakCalendarView.swift; sourceTree = "<group>"; };
 		F21A19E2EBA05B0C438FDA07 /* lesson_004.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lesson_004.json; sourceTree = "<group>"; };
 		F6BAE3455847B83FA3F5BA1A /* StreakService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakService.swift; sourceTree = "<group>"; };
 		F9280831FA6F2FF7D323DD38 /* lesson_008.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lesson_008.json; sourceTree = "<group>"; };
@@ -318,6 +324,8 @@
 			children = (
 				5527708EB3ED2D16E9E9708A /* PhotoCreditsView.swift */,
 				CEB1EE9F22C3F12C82F5081F /* ProfileView.swift */,
+				EDD4A9C20A9DCD69FF7B60FB /* StreakCalendarView.swift */,
+				A09312595CB4E7B224A0B925 /* WeeklyActivityChart.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -387,6 +395,7 @@
 				D65F1555E6D8F9F929B15CC2 /* Chapter.swift */,
 				161EAC20196EEF34D268F9BA /* ChapterProgress.swift */,
 				E6893FBD2AC772885B02341C /* ChatMessage.swift */,
+				38F1AF056FB07527328995C4 /* DailyActivity.swift */,
 				91A9FACB6D20AB766F5171B6 /* LessonResult.swift */,
 				C24BC6C7E1CC146418898D68 /* SessionProgress.swift */,
 				1E49CB69516AE4DEACD6DF11 /* SlideLesson.swift */,
@@ -552,7 +561,9 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 2630;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+				};
 			};
 			buildConfigurationList = 3F3D5629C7C4DB09FEC13EC6 /* Build configuration list for PBXProject "Tarsier" */;
 			developmentRegion = en;
@@ -646,6 +657,7 @@
 				C59428EE044D7C09D0A14A4B /* CoachMarkOverlay.swift in Sources */,
 				E1DA712511C05A355B29C6EC /* Color+Hex.swift in Sources */,
 				9136ABD7F4E245A61EA03A69 /* ContentView.swift in Sources */,
+				1000760C4EBC14DBB3CB477A /* DailyActivity.swift in Sources */,
 				742F8698C67A7B8AD57CFA46 /* DailyGoalScreen.swift in Sources */,
 				E0E0757A7D0E3C0FFE85930A /* FlowLayout.swift in Sources */,
 				008885DF805902F799DAE6DD /* GreetingHelper.swift in Sources */,
@@ -683,6 +695,7 @@
 				EC21AFA5ACEBBC72072F60D8 /* SoundManager.swift in Sources */,
 				CFE9ABD0C4EF814A2BBC1858 /* SplashIntroScreen.swift in Sources */,
 				F20AAA7456D6B1BBAA7988FA /* StartBubbleView.swift in Sources */,
+				95FCFB9BCCC02D478B30A634 /* StreakCalendarView.swift in Sources */,
 				A96817343CAD57D4AF7418B6 /* StreakService.swift in Sources */,
 				49E3E09FDEE4FB6FF22378C2 /* SubscriptionGateScreen.swift in Sources */,
 				FE3E7E9604967CD6CE5EE6AC /* TaglishCallout.swift in Sources */,
@@ -696,6 +709,7 @@
 				16156C06C674FAAA283CF1BF /* TeachCardView.swift in Sources */,
 				6F0020EE3CEE3F36FE04B25B /* UserProfile.swift in Sources */,
 				881CDA2FB54A88301DBB6BDB /* VisionScreen.swift in Sources */,
+				45CBED735190AA6F5301A38D /* WeeklyActivityChart.swift in Sources */,
 				81797E47EBB2AFCD8DF84CED /* WidgetScreen.swift in Sources */,
 				60E230BFDDAD721B76B986D6 /* WordBank.swift in Sources */,
 				8A31076D4816001DB0BCA2E3 /* WordsView.swift in Sources */,
@@ -713,7 +727,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Tarsier/Info.plist;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -788,7 +801,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -804,7 +816,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Tarsier/Info.plist;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -872,7 +883,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";

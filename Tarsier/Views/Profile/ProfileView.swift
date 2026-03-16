@@ -3,6 +3,7 @@ import SwiftData
 
 struct ProfileView: View {
     @Query private var profiles: [UserProfile]
+    @Query(sort: \WordBankEntry.word) private var words: [WordBankEntry]
     @Environment(\.modelContext) private var modelContext
     @State private var showResetConfirmation = false
     @State private var showSkillLevelChange = false
@@ -14,102 +15,23 @@ struct ProfileView: View {
     private var profile: UserProfile? { profiles.first }
 
     var body: some View {
-        List {
-            // MARK: - Stats
-            Section {
-                statsGrid
+        ScrollView {
+            VStack(spacing: TarsierSpacing.sectionSpacing) {
+                // Header: Bunso + greeting
+                headerSection
+
+                // Stats cards
+                statsCards
+
+                // Activity & Streak
+                activitySection
+
+                // Settings sections
+                settingsSection
             }
-            .listRowBackground(TarsierColors.cream)
-
-            // MARK: - Profile
-            Section("Profile") {
-                if let profile {
-                    HStack {
-                        Text("Name")
-                            .font(TarsierFonts.body())
-                        Spacer()
-                        Text(profile.userName ?? "Add name")
-                            .font(TarsierFonts.body())
-                            .foregroundStyle(profile.userName != nil ? TarsierColors.textSecondary : TarsierColors.functionalPurple)
-                    }
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        editingName = profile.userName ?? ""
-                        showNameEdit = true
-                    }
-
-                    HStack {
-                        Text("Skill Level")
-                            .font(TarsierFonts.body())
-                        Spacer()
-                        Text(profile.skillLevel.displayName)
-                            .font(TarsierFonts.body())
-                            .foregroundStyle(TarsierColors.textSecondary)
-                    }
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        showSkillLevelChange = true
-                    }
-                }
-            }
-
-            // MARK: - Preferences
-            Section("Preferences") {
-                Toggle(isOn: $notificationsEnabled) {
-                    Text("Notifications")
-                        .font(TarsierFonts.body())
-                }
-                .tint(TarsierColors.functionalPurple)
-
-                Toggle(isOn: $soundEnabled) {
-                    Text("Sound Effects")
-                        .font(TarsierFonts.body())
-                }
-                .tint(TarsierColors.functionalPurple)
-            }
-
-            // MARK: - Subscription
-            Section("Subscription") {
-                Button("Manage Subscription") {
-                    // TODO: Open RevenueCat management
-                }
-                .font(TarsierFonts.body())
-            }
-
-            // MARK: - Data
-            Section("Data") {
-                Button("Reset Progress", role: .destructive) {
-                    showResetConfirmation = true
-                }
-                .font(TarsierFonts.body())
-            }
-
-            // MARK: - About
-            Section("About") {
-                HStack {
-                    Text("Version")
-                        .font(TarsierFonts.body())
-                    Spacer()
-                    Text("0.1.1")
-                        .font(TarsierFonts.body())
-                        .foregroundStyle(TarsierColors.textSecondary)
-                }
-
-                Link("Privacy Policy", destination: URL(string: "https://tarsierapp.com/privacy")!)
-                    .font(TarsierFonts.body())
-
-                Link("Feedback", destination: URL(string: "mailto:hello@tarsierapp.com")!)
-                    .font(TarsierFonts.body())
-
-                NavigationLink {
-                    PhotoCreditsView()
-                } label: {
-                    Text("Photo Credits")
-                        .font(TarsierFonts.body())
-                }
-            }
+            .padding(.horizontal, TarsierSpacing.screenPadding)
+            .padding(.bottom, 40)
         }
-        .scrollContentBackground(.hidden)
         .background(TarsierColors.warmWhite)
         .navigationTitle("Profile")
         .alert("Reset Progress?", isPresented: $showResetConfirmation) {
@@ -139,44 +61,230 @@ struct ProfileView: View {
         }
     }
 
-    // MARK: - Stats Grid
+    // MARK: - Header
 
-    private var statsGrid: some View {
-        HStack(spacing: 0) {
-            statItem(
+    private var headerSection: some View {
+        HStack(spacing: 14) {
+            BunsoView(pose: .waving, size: 60)
+
+            VStack(alignment: .leading, spacing: 4) {
+                if let profile {
+                    Text(GreetingHelper.greeting(for: profile))
+                        .font(TarsierFonts.heading(18))
+                        .foregroundStyle(TarsierColors.textPrimary)
+                }
+
+                HStack(spacing: 6) {
+                    Image("philippine-flag")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 16, height: 16)
+                        .clipShape(Circle())
+                    Text("Learning Tagalog")
+                        .font(TarsierFonts.caption())
+                        .foregroundStyle(TarsierColors.textSecondary)
+                }
+            }
+
+            Spacer()
+        }
+        .padding(.top, 8)
+    }
+
+    // MARK: - Stats Cards
+
+    private var statsCards: some View {
+        HStack(spacing: 12) {
+            statCard(
                 icon: "flame.fill",
                 value: "\(profile?.currentStreak ?? 0)",
                 label: "Streak",
                 color: TarsierColors.gold
             )
-            statItem(
+            statCard(
                 icon: "star.fill",
                 value: "\(profile?.totalXP ?? 0)",
                 label: "XP",
                 color: TarsierColors.functionalPurple
             )
-            statItem(
-                icon: "book.closed.fill",
-                value: "\(profile?.completedLessonIDs.count ?? 0)",
-                label: "Lessons",
+            statCard(
+                icon: "textformat.abc",
+                value: "\(words.count)",
+                label: "Words",
                 color: TarsierColors.correctGreen
             )
         }
     }
 
-    private func statItem(icon: String, value: String, label: String, color: Color) -> some View {
-        VStack(spacing: 4) {
+    private func statCard(icon: String, value: String, label: String, color: Color) -> some View {
+        VStack(spacing: 6) {
             Image(systemName: icon)
-                .font(.system(size: 20, weight: .bold, design: .rounded))
+                .font(.system(size: 18, weight: .bold, design: .rounded))
                 .foregroundStyle(color)
             Text(value)
-                .font(TarsierFonts.heading())
+                .font(TarsierFonts.heading(22))
                 .foregroundStyle(TarsierColors.textPrimary)
             Text(label)
-                .font(TarsierFonts.caption())
+                .font(TarsierFonts.caption(11))
                 .foregroundStyle(TarsierColors.textSecondary)
         }
         .frame(maxWidth: .infinity)
+        .padding(.vertical, 14)
+        .background(
+            RoundedRectangle(cornerRadius: 14)
+                .fill(.white)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 14)
+                .stroke(TarsierColors.cardBorder, lineWidth: 1)
+        )
+    }
+
+    // MARK: - Activity
+
+    private var activitySection: some View {
+        VStack(spacing: 12) {
+            WeeklyActivityChart()
+            StreakCalendarView()
+        }
+    }
+
+    // MARK: - Settings
+
+    private var settingsSection: some View {
+        VStack(spacing: 16) {
+            // Profile settings
+            settingsGroup(title: "Profile") {
+                settingsRow(label: "Name", value: profile?.userName ?? "Add name", highlight: profile?.userName == nil) {
+                    editingName = profile?.userName ?? ""
+                    showNameEdit = true
+                }
+                Divider()
+                settingsRow(label: "Skill Level", value: profile?.skillLevel.displayName ?? "—") {
+                    showSkillLevelChange = true
+                }
+            }
+
+            // Preferences
+            settingsGroup(title: "Preferences") {
+                Toggle(isOn: $notificationsEnabled) {
+                    Text("Notifications")
+                        .font(TarsierFonts.body())
+                }
+                .tint(TarsierColors.functionalPurple)
+                Divider()
+                Toggle(isOn: $soundEnabled) {
+                    Text("Sound Effects")
+                        .font(TarsierFonts.body())
+                }
+                .tint(TarsierColors.functionalPurple)
+            }
+
+            // About
+            settingsGroup(title: "About") {
+                HStack {
+                    Text("Version")
+                        .font(TarsierFonts.body())
+                    Spacer()
+                    Text("0.1.1")
+                        .font(TarsierFonts.body())
+                        .foregroundStyle(TarsierColors.textSecondary)
+                }
+                Divider()
+                Link(destination: URL(string: "https://tarsierapp.com/privacy")!) {
+                    HStack {
+                        Text("Privacy Policy")
+                            .font(TarsierFonts.body())
+                            .foregroundStyle(TarsierColors.textPrimary)
+                        Spacer()
+                        Image(systemName: "arrow.up.right")
+                            .font(.system(size: 12))
+                            .foregroundStyle(TarsierColors.textSecondary)
+                    }
+                }
+                Divider()
+                Link(destination: URL(string: "mailto:hello@tarsierapp.com")!) {
+                    HStack {
+                        Text("Feedback")
+                            .font(TarsierFonts.body())
+                            .foregroundStyle(TarsierColors.textPrimary)
+                        Spacer()
+                        Image(systemName: "arrow.up.right")
+                            .font(.system(size: 12))
+                            .foregroundStyle(TarsierColors.textSecondary)
+                    }
+                }
+                Divider()
+                NavigationLink {
+                    PhotoCreditsView()
+                } label: {
+                    HStack {
+                        Text("Photo Credits")
+                            .font(TarsierFonts.body())
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .font(.system(size: 12, weight: .semibold))
+                            .foregroundStyle(TarsierColors.textSecondary)
+                    }
+                }
+            }
+
+            // Data
+            settingsGroup(title: "Data") {
+                Button(role: .destructive) {
+                    showResetConfirmation = true
+                } label: {
+                    Text("Reset Progress")
+                        .font(TarsierFonts.body())
+                        .foregroundStyle(TarsierColors.alertRed)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+            }
+        }
+    }
+
+    // MARK: - Settings Helpers
+
+    private func settingsGroup(title: String, @ViewBuilder content: () -> some View) -> some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text(title)
+                .font(TarsierFonts.caption())
+                .foregroundStyle(TarsierColors.textSecondary)
+                .textCase(.uppercase)
+                .padding(.bottom, 8)
+                .padding(.leading, 4)
+
+            VStack(spacing: 0) {
+                content()
+            }
+            .padding(TarsierSpacing.cardPadding)
+            .background(
+                RoundedRectangle(cornerRadius: 14)
+                    .fill(.white)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 14)
+                    .stroke(TarsierColors.cardBorder, lineWidth: 1)
+            )
+        }
+    }
+
+    private func settingsRow(label: String, value: String, highlight: Bool = false, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            HStack {
+                Text(label)
+                    .font(TarsierFonts.body())
+                    .foregroundStyle(TarsierColors.textPrimary)
+                Spacer()
+                Text(value)
+                    .font(TarsierFonts.body())
+                    .foregroundStyle(highlight ? TarsierColors.functionalPurple : TarsierColors.textSecondary)
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 12, weight: .semibold))
+                    .foregroundStyle(TarsierColors.textSecondary)
+            }
+        }
+        .buttonStyle(.plain)
     }
 
     // MARK: - Actions

@@ -22,7 +22,7 @@ struct SplashIntroScreen: View {
                         .foregroundStyle(TarsierColors.textSecondary)
                 }
             } else {
-                BunsoSpeechBubble(pose: .curious, text: "Just a few quick questions before we start your first lesson!", bunsoSize: 100)
+                // Bubble rendered by OnboardingFlow (persistent)
             }
 
             Spacer()

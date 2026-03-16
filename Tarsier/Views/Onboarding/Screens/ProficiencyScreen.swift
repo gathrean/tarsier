@@ -24,8 +24,6 @@ struct ProficiencyScreen: View {
 
     private var pickerView: some View {
         VStack(spacing: 24) {
-            BunsoSpeechBubble(pose: .curious, text: "How much Tagalog do you know?")
-
             VStack(spacing: 10) {
                 ForEach(Array(levels.enumerated()), id: \.offset) { index, level in
                     let isSelected = proficiencyLevel >= 0 && proficiencyLevel == index
@@ -64,11 +62,7 @@ struct ProficiencyScreen: View {
     }
 
     private var responseView: some View {
-        let (pose, message) = proficiencyResponse
-
-        return VStack(spacing: 32) {
-            BunsoSpeechBubble(pose: pose, text: message, bunsoSize: 100)
-
+        VStack(spacing: 32) {
             Spacer()
         }
         .contentShape(Rectangle())
@@ -80,16 +74,6 @@ struct ProficiencyScreen: View {
         }
     }
 
-    private var proficiencyResponse: (BunsoPose, String) {
-        switch proficiencyLevel {
-        case 0:
-            (.thumbsUp, "No worries, we'll start from the very beginning!")
-        case 1, 2:
-            (.excited, "Okay, we'll build on what you know!")
-        default:
-            (.flexing, "Nice! Let's sharpen those skills.")
-        }
-    }
 }
 
 // MARK: - Signal Bars (Duolingo-style proficiency indicator)

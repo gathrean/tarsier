@@ -14,6 +14,7 @@ struct TarsierApp: App {
             ChapterProgress.self,
             WordBankEntry.self,
             SessionProgress.self,
+            DailyActivity.self,
         ])
     }
 }

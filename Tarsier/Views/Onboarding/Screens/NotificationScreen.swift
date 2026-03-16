@@ -9,8 +9,6 @@ struct OnboardingNotificationScreen: View {
 
     var body: some View {
         VStack(spacing: 32) {
-            BunsoSpeechBubble(pose: .tappingWrist, text: "I'll remind you to practice so it becomes a habit!", bunsoSize: 100)
-
             Text("A quick daily reminder keeps your streak alive")
                 .font(TarsierFonts.body())
                 .foregroundStyle(TarsierColors.textSecondary)

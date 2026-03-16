@@ -157,8 +157,8 @@ struct LessonContainerView: View {
 
             Spacer(minLength: 0)
 
-            // Alam Mo Ba inline tooltip (hidden after quiz check)
-            if let inline = currentCard?.alamMoBaInline, !quizState.isChecked {
+            // Alam Mo Ba inline tooltip — only for quiz cards (teach cards render it inline)
+            if let inline = currentCard?.alamMoBaInline, currentCard?.type == .quiz, !quizState.isChecked {
                 alamMoBaInlineView(inline)
                     .padding(.horizontal, TarsierSpacing.screenPadding)
                     .padding(.bottom, 8)
@@ -528,6 +528,9 @@ struct LessonContainerView: View {
             completeLessonFull()
         }
 
+        // Track daily activity
+        trackDailyActivity()
+
         withAnimation(.easeInOut(duration: 0.3)) {
             sessionComplete = true
         }
@@ -579,6 +582,19 @@ struct LessonContainerView: View {
             xpEarned: xp
         )
         modelContext.insert(result)
+    }
+
+    private func trackDailyActivity() {
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: .now)
+        let descriptor = FetchDescriptor<DailyActivity>(
+            predicate: #Predicate { $0.date == today }
+        )
+        if let existing = try? modelContext.fetch(descriptor).first {
+            existing.minutesPracticed += 5
+        } else {
+            modelContext.insert(DailyActivity(date: .now, minutesPracticed: 5))
+        }
     }
 
     private func addVocabularyToWordBank() {

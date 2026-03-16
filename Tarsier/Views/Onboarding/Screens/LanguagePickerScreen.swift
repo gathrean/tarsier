@@ -20,8 +20,6 @@ struct LanguagePickerScreen: View {
 
     var body: some View {
         VStack(spacing: 24) {
-            BunsoSpeechBubble(pose: .excited, text: "What would you like to learn?")
-
             VStack(alignment: .leading, spacing: 12) {
                 Text("For English Speakers")
                     .font(TarsierFonts.caption())

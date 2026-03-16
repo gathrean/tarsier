@@ -13,8 +13,6 @@ struct DailyGoalScreen: View {
         (20, "Intense", "🔥")
     ]
 
-    private let wordEstimates: [Int: Int] = [5: 15, 10: 30, 15: 50, 20: 70]
-
     var body: some View {
         switch screenIndex {
         case 0: introView
@@ -25,16 +23,12 @@ struct DailyGoalScreen: View {
 
     private var introView: some View {
         VStack(spacing: 32) {
-            BunsoSpeechBubble(pose: .tappingWrist, text: "Let's set up a learning routine!", bunsoSize: 100)
-
             Spacer()
         }
     }
 
     private var pickerView: some View {
         VStack(spacing: 24) {
-            BunsoSpeechBubble(pose: .tappingWrist, text: "What's your daily learning goal?")
-
             VStack(spacing: 12) {
                 ForEach(goals, id: \.minutes) { goal in
                     Button {
@@ -81,11 +75,8 @@ struct DailyGoalScreen: View {
 
     private var confirmationView: some View {
         let resolvedGoal = dailyGoalMinutes > 0 ? dailyGoalMinutes : 10
-        let words = wordEstimates[resolvedGoal] ?? 30
 
         return VStack(spacing: 32) {
-            BunsoSpeechBubble(pose: .celebrating, text: "That's about \(words) new words in your first week!", bunsoSize: 100)
-
             Text("\(resolvedGoal) minutes a day")
                 .font(TarsierFonts.body())
                 .foregroundStyle(TarsierColors.textSecondary)

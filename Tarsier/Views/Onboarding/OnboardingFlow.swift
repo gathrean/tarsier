@@ -3,6 +3,7 @@ import SwiftData
 
 /// 17-screen Bunso onboarding flow (v0.3.3).
 /// Manages screen progression with manual index — no NavigationStack, no back-swipe.
+/// Bunso + speech bubble are rendered persistently (not re-created per screen).
 struct OnboardingFlow: View {
     @Environment(\.modelContext) private var modelContext
 
@@ -78,6 +79,40 @@ struct OnboardingFlow: View {
         return "It's nice to get to know you, \(name)!"
     }
 
+    // MARK: - Bubble Config
+
+    /// Returns (pose, text, bunsoSize) for the current screen, or nil if no bubble.
+    private var bubbleConfig: (pose: BunsoPose, text: String, size: CGFloat)? {
+        switch currentScreen {
+        case 0: return nil // Splash — centered BunsoView, no bubble
+        case 1: return (.curious, "Just a few quick questions before we start your first lesson!", 100)
+        case 2: return (.excited, "What would you like to learn?", 70)
+        case 3: return (.curious, "How did you learn about Tarsier?", 70)
+        case 4: return (.curious, "How much Tagalog do you know?", 70)
+        case 5: // Proficiency response (dynamic)
+            let (pose, text) = proficiencyResponse
+            return (pose, text, 100)
+        case 6: return (.waving, "What should I call you?", 70)
+        case 7: return (.celebrating, nameGreeting, 100)
+        case 8: return (.heartEyes, "Why are you learning Tagalog?", 70)
+        case 9: // Motivation response → routine transition
+            if motivationResponseReady {
+                return (.tappingWrist, "Let's set up a learning routine!", 100)
+            }
+            let (pose, text) = motivationResponse
+            return (pose, text, 100)
+        case 10: return (.tappingWrist, "What's your daily learning goal?", 70)
+        case 11: // Goal confirmation (dynamic)
+            let resolvedGoal = dailyGoalMinutes > 0 ? dailyGoalMinutes : 10
+            let words = [5: 15, 10: 30, 15: 50, 20: 70][resolvedGoal] ?? 30
+            return (.celebrating, "That's about \(words) new words in your first week!", 100)
+        case 12: return (.flexing, "Here's what you can achieve in 3 months", 70)
+        case 13: return (.tappingWrist, "I'll remind you to practice so it becomes a habit!", 100)
+        case 14: return (.celebrating, "I'll cheer you on from your home screen!", 100)
+        default: return nil // Subscription (15), Loading (16)
+        }
+    }
+
     var body: some View {
         ZStack {
             TarsierColors.warmWhite.ignoresSafeArea()
@@ -100,10 +135,17 @@ struct OnboardingFlow: View {
                     }
                     .padding(.horizontal, TarsierSpacing.screenPadding)
                     .padding(.top, 8)
-                    .padding(.bottom, 4)
+                    .padding(.bottom, 24)
                 }
 
-                // Animated screen content
+                // Persistent Bunso + speech bubble (NOT animated with screen transitions)
+                if let config = bubbleConfig {
+                    BunsoSpeechBubble(pose: config.pose, text: config.text, bunsoSize: config.size)
+                        .animation(.easeInOut(duration: 0.3), value: currentScreen)
+                        .animation(.easeInOut(duration: 0.3), value: motivationResponseReady)
+                }
+
+                // Animated screen content (below bubble)
                 screenContent
                     .id(currentScreen)
                     .transition(.asymmetric(
@@ -132,7 +174,7 @@ struct OnboardingFlow: View {
         switch currentScreen {
         case 0: // Splash
             SplashIntroScreen(screenIndex: 0) { advance() }
-        case 1: // Quick questions intro
+        case 1: // Quick questions intro (auto-advance)
             SplashIntroScreen(screenIndex: 1) { advance() }
         case 2: // Language picker
             LanguagePickerScreen(selectedLanguage: $selectedLanguage) { advance() }
@@ -148,7 +190,7 @@ struct OnboardingFlow: View {
             nameGreetingView
         case 8: // Motivation picker
             MotivationScreen(screenIndex: 0, selectedMotivations: $selectedMotivations) { advance() }
-        case 9: // Motivation response → routine transition (continue button appears after delay)
+        case 9: // Motivation response → routine transition
             MotivationScreen(screenIndex: 1, selectedMotivations: $selectedMotivations, onContinue: { advance() }, onShowContinue: {
                 withAnimation {
                     motivationResponseReady = true
@@ -179,8 +221,6 @@ struct OnboardingFlow: View {
 
     private var nameGreetingView: some View {
         VStack(spacing: 32) {
-            BunsoSpeechBubble(pose: .celebrating, text: nameGreeting, bunsoSize: 100)
-
             Spacer()
         }
         .contentShape(Rectangle())
@@ -191,6 +231,32 @@ struct OnboardingFlow: View {
                 advanceOnce()
             }
         }
+    }
+
+    // MARK: - Dynamic Response Helpers
+
+    private var proficiencyResponse: (BunsoPose, String) {
+        switch proficiencyLevel {
+        case 0: (.thumbsUp, "No worries, we'll start from the very beginning!")
+        case 1, 2: (.excited, "Okay, we'll build on what you know!")
+        default: (.flexing, "Nice! Let's sharpen those skills.")
+        }
+    }
+
+    private var motivationResponse: (BunsoPose, String) {
+        if selectedMotivations.contains("Connect with my family better") {
+            return (.heartEyes, "That's the best reason. Let's make it happen!")
+        }
+        if selectedMotivations.contains("Impress my partner") {
+            return (.blushing, "Kilig! They're going to love this.")
+        }
+        if selectedMotivations.contains("Just for fun") {
+            return (.excited, "The best way to learn! Let's go!")
+        }
+        if selectedMotivations.contains("Connect with people who speak Tagalog") {
+            return (.waving, "Filipinos are the friendliest. You'll fit right in.")
+        }
+        return (.thumbsUp, "Great reasons. Let's get started!")
     }
 
     // MARK: - Navigation

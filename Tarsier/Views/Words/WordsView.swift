@@ -45,28 +45,15 @@ struct WordsView: View {
     // MARK: - Empty State
 
     private var emptyState: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 24) {
             Spacer()
 
-            Image(systemName: "character.book.closed.fill")
-                .font(.system(size: 50, weight: .bold, design: .rounded))
-                .foregroundStyle(TarsierColors.brandPurple)
-
-            VStack(spacing: 8) {
-                Text("Vocab")
-                    .font(TarsierFonts.title())
-                    .foregroundStyle(TarsierColors.textPrimary)
-
-                Text("Complete a lesson to build your vocab")
-                    .font(TarsierFonts.body())
-                    .foregroundStyle(TarsierColors.textSecondary)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, 40)
-            }
+            BunsoSpeechBubble(pose: .reading, text: "Complete your first lesson to start building your vocabulary!", bunsoSize: 80)
 
             Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding(.horizontal, TarsierSpacing.screenPadding)
     }
 
     // MARK: - Word List
@@ -200,9 +187,15 @@ private struct WordCard: View {
             Button(action: onTap) {
                 HStack {
                     VStack(alignment: .leading, spacing: 4) {
-                        Text(entry.word)
-                            .font(TarsierFonts.tagalogWord(18))
-                            .foregroundStyle(TarsierColors.textPrimary)
+                        HStack(spacing: 8) {
+                            Text(entry.word)
+                                .font(TarsierFonts.tagalogWord(18))
+                                .foregroundStyle(TarsierColors.textPrimary)
+
+                            Text("Lesson \(entry.lessonId)")
+                                .font(TarsierFonts.caption(11))
+                                .foregroundStyle(TarsierColors.textSecondary)
+                        }
                         Text(entry.meaning)
                             .font(TarsierFonts.body(14))
                             .foregroundStyle(TarsierColors.textSecondary)

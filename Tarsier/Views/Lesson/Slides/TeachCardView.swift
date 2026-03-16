@@ -4,13 +4,12 @@ struct TeachCardView: View {
     let card: SessionCard
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
+        VStack(alignment: .leading, spacing: 12) {
             // Lesson image — render ONLY if file exists in bundle. No placeholder.
             if let uiImage = loadCardImage() {
                 Image(uiImage: uiImage)
                     .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(height: 180)
+                    .aspectRatio(3 / 2, contentMode: .fill)
                     .frame(maxWidth: .infinity)
                     .clipShape(RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius))
                     .overlay(
@@ -20,22 +19,17 @@ struct TeachCardView: View {
                     .accessibilityLabel(card.image?.alt ?? "Lesson image")
             }
 
-            // Body text (with "po" highlighting)
-            if let body = card.body {
-                HighlightedPoText(text: body, font: TarsierFonts.body(), baseColor: TarsierColors.textPrimary)
-            }
-
-            // Highlight (bold, purple — with "po" highlighting) + speaker icon
+            // Highlight (bold heading — the focal point) + speaker icon
             if let highlight = card.highlight {
                 HStack(spacing: 10) {
-                    HighlightedPoText(text: highlight, font: TarsierFonts.tagalogWord(22), baseColor: TarsierColors.functionalPurple)
+                    HighlightedPoText(text: highlight, font: TarsierFonts.tagalogWord(28), baseColor: TarsierColors.functionalPurple)
 
                     if let audioPath = card.audio, AudioPlayerService.shared.hasAudio(relativePath: audioPath) {
                         Button {
                             AudioPlayerService.shared.play(relativePath: audioPath)
                         } label: {
                             Image(systemName: "speaker.wave.2.fill")
-                                .font(.system(size: 18))
+                                .font(.system(size: 20))
                                 .foregroundStyle(TarsierColors.functionalPurple)
                         }
                         .buttonStyle(.plain)
@@ -43,9 +37,19 @@ struct TeachCardView: View {
                 }
             }
 
-            // Example
+            // Body text
+            if let body = card.body {
+                HighlightedPoText(text: body, font: TarsierFonts.body(17), baseColor: TarsierColors.textPrimary)
+            }
+
+            // Example — styled as a distinct card
             if let example = card.example {
                 exampleCard(example)
+            }
+
+            // Alam Mo Ba? inline callout
+            if let alamMoBa = card.alamMoBaInline {
+                alamMoBaCallout(alamMoBa)
             }
         }
         .onAppear {
@@ -61,9 +65,7 @@ struct TeachCardView: View {
     /// Returns UIImage only if the file actually exists. Returns nil otherwise — no placeholder.
     private func loadCardImage() -> UIImage? {
         guard let filename = card.image?.filename, !filename.isEmpty else { return nil }
-        // Try asset catalog first, then bundle root
         if let img = UIImage(named: filename) { return img }
-        // Try without extension in asset catalog (filename may include .jpg)
         let nameWithoutExt = (filename as NSString).deletingPathExtension
         if let img = UIImage(named: nameWithoutExt) { return img }
         return nil
@@ -73,7 +75,7 @@ struct TeachCardView: View {
 
     @ViewBuilder
     private func exampleCard(_ example: CardExample) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 6) {
             // Context label (e.g. "Speaking to your lola")
             if let context = example.context {
                 Text(context)
@@ -93,7 +95,7 @@ struct TeachCardView: View {
                 }
             } else if let sentence = example.sentence {
                 // Format 2: sentence + translation
-                HighlightedPoText(text: sentence, font: TarsierFonts.tagalogWord(18), baseColor: TarsierColors.textPrimary)
+                HighlightedPoText(text: sentence, font: TarsierFonts.tagalogWord(18), baseColor: TarsierColors.functionalPurple)
 
                 if let translation = example.translation {
                     HighlightedPoText(text: translation, font: TarsierFonts.body(15), baseColor: TarsierColors.textSecondary)
@@ -125,21 +127,45 @@ struct TeachCardView: View {
                         .font(TarsierFonts.caption())
                         .foregroundStyle(TarsierColors.textSecondary)
                         .padding(.leading, 10)
-                        .padding(.vertical, 6)
+                        .padding(.vertical, 4)
                 }
-                .padding(.top, 4)
             }
         }
         .padding(TarsierSpacing.cardPadding)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(
             RoundedRectangle(cornerRadius: 12)
-                .fill(TarsierColors.cream)
+                .fill(TarsierColors.functionalPurple.opacity(0.06))
         )
         .overlay(
             RoundedRectangle(cornerRadius: 12)
-                .stroke(TarsierColors.cardBorder, lineWidth: 1)
+                .stroke(TarsierColors.functionalPurple.opacity(0.15), lineWidth: 1)
+        )
+    }
+
+    // MARK: - Alam Mo Ba? Callout
+
+    @ViewBuilder
+    private func alamMoBaCallout(_ alamMoBa: AlamMoBaInline) -> some View {
+        HStack(alignment: .top, spacing: 10) {
+            Text(alamMoBa.emoji ?? "💡")
+                .font(.system(size: 18))
+
+            VStack(alignment: .leading, spacing: 4) {
+                Text("Alam Mo Ba?")
+                    .font(TarsierFonts.caption())
+                    .foregroundStyle(TarsierColors.gold)
+                    .fontWeight(.semibold)
+                Text(alamMoBa.fact)
+                    .font(TarsierFonts.caption())
+                    .foregroundStyle(TarsierColors.textPrimary)
+            }
+        }
+        .padding(12)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(
+            RoundedRectangle(cornerRadius: 12)
+                .fill(TarsierColors.gold.opacity(0.10))
         )
     }
 }
-

@@ -22,6 +22,7 @@ struct BunsoSpeechBubble: View {
                 .padding(.leading, 14 + tailWidth) // extra left padding for the tail area
                 .padding(.trailing, 14)
                 .padding(.vertical, 10)
+                .frame(maxWidth: .infinity, alignment: .leading)
                 .background(
                     SpeechBubbleShape(
                         cornerRadius: bubbleRadius,

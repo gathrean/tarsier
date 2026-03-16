@@ -16,12 +16,6 @@ struct AttributionScreen: View {
 
     var body: some View {
         VStack(spacing: 24) {
-            BunsoSpeechBubble(pose: .curious, text: "How did you learn about Tarsier?")
-
-            Text("Pick all that apply")
-                .font(TarsierFonts.caption())
-                .foregroundStyle(TarsierColors.textSecondary)
-
             VStack(spacing: 10) {
                 ForEach(sources, id: \.self) { source in
                     let isSelected = attributionSources.contains(source)

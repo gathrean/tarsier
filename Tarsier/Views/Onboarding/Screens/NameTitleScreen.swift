@@ -12,8 +12,6 @@ struct NameTitleScreen: View {
 
     var body: some View {
         VStack(spacing: 24) {
-            BunsoSpeechBubble(pose: .waving, text: "What should I call you?")
-
             TextField("Your name", text: $userName)
                 .font(TarsierFonts.body(18))
                 .multilineTextAlignment(.center)

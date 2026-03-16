@@ -8,8 +8,8 @@ enum AppTab: CaseIterable {
     var label: String {
         switch self {
         case .learn: "Learn"
-        case .words: "Vocab"
-        case .profile: "Me"
+        case .words: "Words"
+        case .profile: "Profile"
         }
     }
 
