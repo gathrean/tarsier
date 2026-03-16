@@ -1,26 +1,23 @@
 import SwiftUI
 import SwiftData
 
+/// Plays the first lesson (Po & Opo) after onboarding completes.
+/// On session complete, marks onboarding as done → ContentView routes to MainTabView.
 struct OnboardingLessonView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var profiles: [UserProfile]
-    @State private var showNotificationScreen = false
 
     private var profile: UserProfile? { profiles.first }
 
     var body: some View {
-        if showNotificationScreen {
-            NotificationPermissionView(onComplete: {
-                profile?.hasCompletedOnboarding = true
-                try? modelContext.save()
-            })
-        } else if let lesson = LessonService.shared.lesson(for: 1) {
+        if let lesson = LessonService.shared.lesson(for: 1) {
             LessonContainerView(
                 lesson: lesson,
                 sessionNumber: 1,
                 isReplay: false,
                 onSessionComplete: {
-                    showNotificationScreen = true
+                    profile?.hasCompletedOnboarding = true
+                    try? modelContext.save()
                 }
             )
         } else {

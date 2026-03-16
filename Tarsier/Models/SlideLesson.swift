@@ -65,6 +65,9 @@ struct SessionCard: Codable, Identifiable {
     let image: CardImage?
     let alamMoBaInline: AlamMoBaInline?
 
+    // v0.7 — optional pronunciation audio path (relative to bundle)
+    let audio: String?
+
     // Teach fields
     let body: String?
     let highlight: String?
@@ -91,7 +94,7 @@ struct SessionCard: Codable, Identifiable {
 
     enum CodingKeys: String, CodingKey {
         case cardId = "card_id"
-        case type, body, highlight, image, example
+        case type, body, highlight, image, example, audio
         case alamMoBaInline = "alam_mo_ba_inline"
         case usePo = "use_po"
         case quizType = "quiz_type"

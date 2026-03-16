@@ -46,6 +46,12 @@ final class UserProfile {
     var hasPromptedReview: Bool = false
     var notificationTime: Date?
 
+    // v0.3 — Bunso onboarding fields
+    var preferredTitle: String? = nil   // "Ate", "Kuya", or nil
+    var selectedLanguage: String = "tagalog"
+    var attributionSource: String = ""
+    var proficiencyLevel: Int = 0       // 0–4
+
     init(
         skillLevel: SkillLevel = .beginner,
         currentLessonIndex: Int = 1,
@@ -57,7 +63,8 @@ final class UserProfile {
         totalXP: Int = 0,
         hearts: Int = 5,
         isPremium: Bool = false,
-        hasCompletedOnboarding: Bool = false
+        hasCompletedOnboarding: Bool = false,
+        dailyGoalMinutes: Int = 10
     ) {
         self.id = UUID()
         self.skillLevel = skillLevel
@@ -73,6 +80,7 @@ final class UserProfile {
         self.lastHeartRefill = nil
         self.isPremium = isPremium
         self.hasCompletedOnboarding = hasCompletedOnboarding
+        self.dailyGoalMinutes = dailyGoalMinutes
     }
 
     /// Refill hearts based on elapsed time (1 heart per 30 minutes, max 5)
