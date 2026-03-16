@@ -175,13 +175,7 @@ struct OnboardingFlow: View {
         VStack(spacing: 32) {
             Spacer()
 
-            BunsoView(pose: .celebrating, size: 120)
-
-            Text(nameGreeting)
-                .font(TarsierFonts.heading(20))
-                .foregroundStyle(TarsierColors.textPrimary)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 32)
+            BunsoSpeechBubble(pose: .celebrating, text: nameGreeting, bunsoSize: 100)
 
             Spacer()
         }

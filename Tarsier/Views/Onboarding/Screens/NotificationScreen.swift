@@ -11,20 +11,13 @@ struct OnboardingNotificationScreen: View {
         VStack(spacing: 32) {
             Spacer()
 
-            BunsoView(pose: .tappingWrist, size: 120)
+            BunsoSpeechBubble(pose: .tappingWrist, text: "I'll remind you to practice so it becomes a habit!", bunsoSize: 100)
 
-            VStack(spacing: 12) {
-                Text("I'll remind you to practice so it becomes a habit!")
-                    .font(TarsierFonts.heading(20))
-                    .foregroundStyle(TarsierColors.textPrimary)
-                    .multilineTextAlignment(.center)
-
-                Text("A quick daily reminder keeps your streak alive")
-                    .font(TarsierFonts.body())
-                    .foregroundStyle(TarsierColors.textSecondary)
-                    .multilineTextAlignment(.center)
-            }
-            .padding(.horizontal, 32)
+            Text("A quick daily reminder keeps your streak alive")
+                .font(TarsierFonts.body())
+                .foregroundStyle(TarsierColors.textSecondary)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 32)
 
             Spacer()
         }

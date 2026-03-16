@@ -10,13 +10,7 @@ struct WidgetScreen: View {
         VStack(spacing: 32) {
             Spacer()
 
-            BunsoView(pose: .celebrating, size: 100)
-
-            Text("I'll cheer you on from your home screen!")
-                .font(TarsierFonts.heading(20))
-                .foregroundStyle(TarsierColors.textPrimary)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 32)
+            BunsoSpeechBubble(pose: .celebrating, text: "I'll cheer you on from your home screen!", bunsoSize: 100)
 
             // Mock widget preview
             VStack(spacing: 8) {

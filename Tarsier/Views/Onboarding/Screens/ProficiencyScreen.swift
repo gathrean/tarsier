@@ -71,13 +71,7 @@ struct ProficiencyScreen: View {
         return VStack(spacing: 32) {
             Spacer()
 
-            BunsoView(pose: pose, size: 120)
-
-            Text(message)
-                .font(TarsierFonts.heading(20))
-                .foregroundStyle(TarsierColors.textPrimary)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 32)
+            BunsoSpeechBubble(pose: pose, text: message, bunsoSize: 100)
 
             Spacer()
         }

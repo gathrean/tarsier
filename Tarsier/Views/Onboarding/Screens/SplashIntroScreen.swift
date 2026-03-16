@@ -9,9 +9,9 @@ struct SplashIntroScreen: View {
         VStack(spacing: 32) {
             Spacer()
 
-            BunsoView(pose: screenIndex == 0 ? .waving : .curious, size: 140)
-
             if screenIndex == 0 {
+                BunsoView(pose: .waving, size: 140)
+
                 VStack(spacing: 8) {
                     Text("Hi there! I'm Bunso!")
                         .font(TarsierFonts.title(28))
@@ -22,11 +22,7 @@ struct SplashIntroScreen: View {
                         .foregroundStyle(TarsierColors.textSecondary)
                 }
             } else {
-                Text("Just a few quick questions before we start your first lesson!")
-                    .font(TarsierFonts.heading(20))
-                    .foregroundStyle(TarsierColors.textPrimary)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, 24)
+                BunsoSpeechBubble(pose: .curious, text: "Just a few quick questions before we start your first lesson!", bunsoSize: 100)
             }
 
             Spacer()

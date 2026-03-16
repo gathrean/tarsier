@@ -27,12 +27,7 @@ struct DailyGoalScreen: View {
         VStack(spacing: 32) {
             Spacer()
 
-            BunsoView(pose: .tappingWrist, size: 120)
-
-            Text("Let's set up a learning routine!")
-                .font(TarsierFonts.title(24))
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 32)
+            BunsoSpeechBubble(pose: .tappingWrist, text: "Let's set up a learning routine!", bunsoSize: 100)
 
             Spacer()
         }
@@ -95,19 +90,11 @@ struct DailyGoalScreen: View {
         return VStack(spacing: 32) {
             Spacer()
 
-            BunsoView(pose: .celebrating, size: 120)
+            BunsoSpeechBubble(pose: .celebrating, text: "That's about \(words) new words in your first week!", bunsoSize: 100)
 
-            VStack(spacing: 12) {
-                Text("That's about \(words) new words in your first week!")
-                    .font(TarsierFonts.heading(20))
-                    .foregroundStyle(TarsierColors.textPrimary)
-                    .multilineTextAlignment(.center)
-
-                Text("\(resolvedGoal) minutes a day")
-                    .font(TarsierFonts.body())
-                    .foregroundStyle(TarsierColors.textSecondary)
-            }
-            .padding(.horizontal, 32)
+            Text("\(resolvedGoal) minutes a day")
+                .font(TarsierFonts.body())
+                .foregroundStyle(TarsierColors.textSecondary)
 
             Spacer()
         }
