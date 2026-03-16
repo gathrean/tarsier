@@ -78,6 +78,7 @@ struct QuizSlideView: View {
     /// Shuffled word pieces for word_order quiz. Provided by parent.
     let shuffledWordPieces: [String]
     @Bindable var state: QuizState
+    @FocusState private var isTextFieldFocused: Bool
 
     var body: some View {
         VStack(spacing: 20) {
@@ -108,7 +109,11 @@ struct QuizSlideView: View {
             case .fillInBlank:
                 fillInBlankInput
             case .wordOrder:
-                WordOrderQuizView(pieces: shuffledWordPieces, state: state)
+                WordOrderQuizView(
+                    pieces: shuffledWordPieces,
+                    state: state,
+                    audioBasePath: card.audio.flatMap { ($0 as NSString).deletingLastPathComponent + "/" }
+                )
             case .none:
                 EmptyView()
             }
@@ -180,13 +185,6 @@ struct QuizSlideView: View {
 
     private var fillInBlankInput: some View {
         VStack(spacing: 12) {
-            if let hint = card.hint, !state.isChecked {
-                Text("Hint: \(hint)")
-                    .font(TarsierFonts.caption())
-                    .foregroundStyle(TarsierColors.textSecondary)
-                    .italic()
-            }
-
             TextField("Type your answer", text: $state.textAnswer)
                 .font(TarsierFonts.body())
                 .padding(TarsierSpacing.cardPadding)
@@ -198,9 +196,22 @@ struct QuizSlideView: View {
                     RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
                         .stroke(TarsierColors.cardBorder, lineWidth: 1)
                 )
+                .focused($isTextFieldFocused)
                 .disabled(state.isChecked)
                 .autocorrectionDisabled()
                 .textInputAutocapitalization(.never)
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                        isTextFieldFocused = true
+                    }
+                }
+
+            if let hint = card.hint, !state.isChecked {
+                Text("Hint: \(hint)")
+                    .font(TarsierFonts.caption())
+                    .foregroundStyle(TarsierColors.textSecondary)
+                    .italic()
+            }
         }
     }
 
@@ -211,6 +222,8 @@ struct QuizSlideView: View {
 struct WordOrderQuizView: View {
     let pieces: [String]
     @Bindable var state: QuizState
+    /// Base audio path for the lesson (e.g., "audio/lesson_001/") used to look up individual word pronunciation
+    var audioBasePath: String? = nil
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -249,6 +262,17 @@ struct WordOrderQuizView: View {
                         Button {
                             guard !state.isChecked, !isPlaced else { return }
                             state.placedIndices.append(index)
+                            SoundManager.shared.play("tap")
+                            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                            // Play individual word pronunciation if available
+                            if let basePath = audioBasePath {
+                                let wordFile = piece.lowercased()
+                                    .replacingOccurrences(of: " ", with: "_")
+                                let path = basePath + wordFile + ".mp3"
+                                if AudioPlayerService.shared.hasAudio(relativePath: path) {
+                                    AudioPlayerService.shared.play(relativePath: path)
+                                }
+                            }
                         } label: {
                             Text(piece)
                                 .font(TarsierFonts.body())

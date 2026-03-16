@@ -38,6 +38,7 @@ struct LessonContainerView: View {
 
     // Wrong answer tracking
     @State private var wrongCounts: [String: Int] = [:]
+    @State private var heartShakeCount: Int = 0
 
     // Coach marks
     @State private var showQuizCoachMark = false
@@ -128,6 +129,7 @@ struct LessonContainerView: View {
                         .font(TarsierFonts.heading(16))
                         .foregroundStyle(TarsierColors.heartRed)
                 }
+                .modifier(ShakeModifier(animatableData: CGFloat(heartShakeCount)))
             }
             .padding(.horizontal, TarsierSpacing.screenPadding)
             .padding(.top, 8)
@@ -366,6 +368,9 @@ struct LessonContainerView: View {
     private func advanceAfterQuizCheck() {
         guard let card = currentCard else { return }
 
+        // Stop any pronunciation audio still playing from correct-answer feedback
+        AudioPlayerService.shared.stop()
+
         if quizState.answerState == .correct {
             completedCardIds.insert(card.cardId)
             cardQueue.removeFirst()
@@ -402,14 +407,9 @@ struct LessonContainerView: View {
         }
 
         if isCorrect {
-            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+            handleCorrectAnswer(card: card)
         } else {
-            UINotificationFeedbackGenerator().notificationOccurred(.error)
-            wrongCounts[card.cardId, default: 0] += 1
-            profile?.loseHeart()
-            if profile?.hearts == 0 {
-                showHeartsEmpty = true
-            }
+            handleWrongAnswer(card: card)
         }
     }
 
@@ -425,14 +425,37 @@ struct LessonContainerView: View {
         )
 
         if isCorrect {
-            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+            handleCorrectAnswer(card: card)
         } else {
-            UINotificationFeedbackGenerator().notificationOccurred(.error)
-            wrongCounts[card.cardId, default: 0] += 1
-            profile?.loseHeart()
-            if profile?.hearts == 0 {
-                showHeartsEmpty = true
+            handleWrongAnswer(card: card)
+        }
+    }
+
+    // MARK: - Answer Feedback (sound + haptics)
+
+    private func handleCorrectAnswer(card: SessionCard) {
+        SoundManager.shared.play("correct")
+        UINotificationFeedbackGenerator().notificationOccurred(.success)
+
+        // Delayed pronunciation — plays while "Tama!" banner is showing
+        if let audioPath = card.audio {
+            Task {
+                try? await Task.sleep(for: .seconds(0.3))
+                AudioPlayerService.shared.play(relativePath: audioPath)
             }
+        }
+    }
+
+    private func handleWrongAnswer(card: SessionCard) {
+        SoundManager.shared.play("incorrect")
+        UINotificationFeedbackGenerator().notificationOccurred(.error)
+        wrongCounts[card.cardId, default: 0] += 1
+        profile?.loseHeart()
+        withAnimation(.spring(response: 0.3, dampingFraction: 0.3)) {
+            heartShakeCount += 1
+        }
+        if profile?.hearts == 0 {
+            showHeartsEmpty = true
         }
     }
 

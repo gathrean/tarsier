@@ -191,9 +191,13 @@ struct OnboardingFlow: View {
 
     // MARK: - Navigation
 
-    private func advance() {
+    private func advance(playSound: Bool = true) {
         autoAdvanceFired = false
         isGoingForward = true
+        if playSound {
+            SoundManager.shared.play("page")
+            UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+        }
         withAnimation {
             currentScreen += 1
         }
@@ -207,11 +211,12 @@ struct OnboardingFlow: View {
         }
     }
 
-    /// For auto-advance screens — prevents double-fire from both timer and tap
+    /// For auto-advance screens — prevents double-fire from both timer and tap.
+    /// No sound on auto-advance (screens 5, 7, 9).
     private func advanceOnce() {
         guard !autoAdvanceFired else { return }
         autoAdvanceFired = true
-        advance()
+        advance(playSound: false)
     }
 
     /// Creates and inserts UserProfile from collected onboarding data.

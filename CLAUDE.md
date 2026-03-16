@@ -572,6 +572,14 @@ Until packages are added, Claude Code should stub the integration points with TO
 
 ---
 
+## Asset Licensing
+
+**Sound effects:** Sourced from [Pixabay](https://pixabay.com). Pixabay's Content License allows free use in commercial apps without attribution. No standalone redistribution of the original files. Full license: https://pixabay.com/service/license-summary/
+
+**Photos:** Lesson images sourced from Wikimedia Commons (CC-licensed). Attribution tracked in `PhotoCreditsView`.
+
+---
+
 ## Sample Lesson JSONs
 
 Reference files in `docs/Lessons/`:

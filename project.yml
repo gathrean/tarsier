@@ -42,6 +42,8 @@ targets:
       - path: Tarsier/Assets.xcassets
       - path: Tarsier/Resources/Lessons
         buildPhase: resources
+      - path: Tarsier/Resources/Sounds
+        buildPhase: resources
     dependencies:
       - package: GoogleGenerativeAI
       - package: RevenueCat

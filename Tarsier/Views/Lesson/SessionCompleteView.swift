@@ -46,6 +46,16 @@ struct SessionCompleteView: View {
                 animatedCompleted = completedSessionsBefore + 1
                 showContent = true
             }
+
+            // Play sound when ring animation completes (~0.9s = 0.3s delay + 0.6s animation)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
+                if isLessonComplete {
+                    SoundManager.shared.play("lesson_complete")
+                } else {
+                    SoundManager.shared.play("progress")
+                }
+                UINotificationFeedbackGenerator().notificationOccurred(.success)
+            }
         }
     }
 

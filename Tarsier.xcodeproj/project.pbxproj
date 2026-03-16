@@ -40,6 +40,7 @@
 		2D2AC7A6FCB5241C821EC71A /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E37117D7A295A82029498 /* PrimaryButton.swift */; };
 		32CEDFB6CC58EB901DEFD4E5 /* lesson_009.json in Resources */ = {isa = PBXBuildFile; fileRef = D51AA372EC00B61F6CCCC79A /* lesson_009.json */; };
 		35D1FA87BA1859B01638F669 /* lesson_003.json in Resources */ = {isa = PBXBuildFile; fileRef = B798425839972D12C2420444 /* lesson_003.json */; };
+		39908E74AE9CD56F086C6666 /* correct.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5CA148C48FB90E2526E603D2 /* correct.mp3 */; };
 		3AB726BC7EBDD42653328589 /* lesson_022.json in Resources */ = {isa = PBXBuildFile; fileRef = ADEC94B83602D8C3062079BD /* lesson_022.json */; };
 		3CD9D7100A609013145A1B28 /* PremiumGateSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DB9E3078E8948B59F80B23 /* PremiumGateSheet.swift */; };
 		3F03204005F947C9B26E0E0C /* lesson_013.json in Resources */ = {isa = PBXBuildFile; fileRef = D393638235BE39650554776C /* lesson_013.json */; };
@@ -53,7 +54,9 @@
 		4D6D059AE838E2361E2ED105 /* BunsoSpeechBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD94A1988351D3F15F0D4CC2 /* BunsoSpeechBubble.swift */; };
 		4F00245F54EA1F869D7A71E0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091A2D027DE131B1E9BBBC6B /* HomeView.swift */; };
 		524227891F0FF1C1EAF4DDDE /* lesson_007.json in Resources */ = {isa = PBXBuildFile; fileRef = 73CE4FCFE3D044B4EA46CA72 /* lesson_007.json */; };
+		52BBA1E2B1B6A3686F6232D7 /* progress.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ABCEA96C4A00FA3F24911597 /* progress.mp3 */; };
 		537A4CA66D6EA9C2B6A1AF5C /* lesson_014.json in Resources */ = {isa = PBXBuildFile; fileRef = 51AD4E6E7A3B5CAA63E69031 /* lesson_014.json */; };
+		55AADF4CA797AF235B401EB6 /* lesson_complete.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 810BD5D4A13D35488421665A /* lesson_complete.mp3 */; };
 		563F04CAB0A390D175523758 /* lesson_029.json in Resources */ = {isa = PBXBuildFile; fileRef = BD3ED4FA39D64478000F4C60 /* lesson_029.json */; };
 		56995CB378A80952171C6902 /* ProgressRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099D01D14DB7EFA05035EB31 /* ProgressRingView.swift */; };
 		587F763BAE9ABA4C4319BB52 /* lesson_012.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CEEB3B24DCF68850C245BBF /* lesson_012.json */; };
@@ -71,11 +74,13 @@
 		7605F8A7C446D7D3AFEAB646 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F006D7EB86B96B93700F25C /* SecondaryButton.swift */; };
 		7A77214E9AC313D7F5A7FCB1 /* HeartDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD351D022D43F28267207471 /* HeartDisplay.swift */; };
 		7E5A197B2CF673B5FA0AA57C /* TarsierApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AA407504A6746AA18FB8E6 /* TarsierApp.swift */; };
+		8147687B9F8C289D24514CC9 /* page.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E01A4EADF55A9DA889EEEB02 /* page.mp3 */; };
 		81797E47EBB2AFCD8DF84CED /* WidgetScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BB5F11B81F6FB85A3E2FF9 /* WidgetScreen.swift */; };
 		8321D4A500B59C5323B6BEBD /* QuizSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DEC845066A52A8B91AB249 /* QuizSlideView.swift */; };
 		881CDA2FB54A88301DBB6BDB /* VisionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FEDAEE89B71C2A7D71EB326 /* VisionScreen.swift */; };
 		88C0B9BF90E95AE3194205DD /* LessonService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9508A59AD298CD0D5AD18F0 /* LessonService.swift */; };
 		8A31076D4816001DB0BCA2E3 /* WordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB4DC90868E5BB58F66337F /* WordsView.swift */; };
+		8BAA6ACD3327B25218382406 /* incorrect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8F71F182FBB54F59BB77B28C /* incorrect.mp3 */; };
 		9136ABD7F4E245A61EA03A69 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E180A31160DC805B3530AE /* ContentView.swift */; };
 		93FF10A316B84CFF7BCD38DD /* lesson_001.json in Resources */ = {isa = PBXBuildFile; fileRef = 80B9F7B563B311E2B064C6E9 /* lesson_001.json */; };
 		A2CC9D254993F6D8E43586A6 /* BunsoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B10408555C498086A914E2 /* BunsoView.swift */; };
@@ -100,8 +105,10 @@
 		E0E0757A7D0E3C0FFE85930A /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACACA5DDDE60931AD01A7C4 /* FlowLayout.swift */; };
 		E109B5AA1B5028FD0BDA64C7 /* lesson_031.json in Resources */ = {isa = PBXBuildFile; fileRef = A773E77E1C5CAB0BD2A4CD5F /* lesson_031.json */; };
 		E1DA712511C05A355B29C6EC /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D1A21E9377CE216B63B7CC /* Color+Hex.swift */; };
+		E7DE93734537CC6DA07A0E65 /* tap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 334AB78600BA755760110060 /* tap.mp3 */; };
 		E8AAEF762FA3C100EC68A028 /* lesson_020.json in Resources */ = {isa = PBXBuildFile; fileRef = 714F0509CA9E786FEF73759C /* lesson_020.json */; };
 		E9CE3A331A87A7416558A37B /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 2924F4C7AF12EDD42E4E929E /* RevenueCat */; };
+		EC21AFA5ACEBBC72072F60D8 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9EE03C08C65FACB6E683A9 /* SoundManager.swift */; };
 		ED8A8B8E24893BF936A79B46 /* lesson_023.json in Resources */ = {isa = PBXBuildFile; fileRef = FD8C652E1A2831115D24A527 /* lesson_023.json */; };
 		EF95B6FD5683A0DD0E7BE53A /* AffixBreakdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D68AE60916444BBAE35788 /* AffixBreakdownView.swift */; };
 		F20AAA7456D6B1BBAA7988FA /* StartBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9CEBF6A897AD2397F2E301 /* StartBubbleView.swift */; };
@@ -126,8 +133,10 @@
 		23B1AC1AF9C8323F0EC1CE3F /* TappableTagalogWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableTagalogWord.swift; sourceTree = "<group>"; };
 		2BC7EB6E074A89D467C03394 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2FA296D83C9B2D2AF06A6B83 /* SubscriptionGateScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionGateScreen.swift; sourceTree = "<group>"; };
+		334AB78600BA755760110060 /* tap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tap.mp3; sourceTree = "<group>"; };
 		3422D0C828B531C91F4D5CC5 /* lesson_005.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lesson_005.json; sourceTree = "<group>"; };
 		366CC93EAAACCB1B57913063 /* LessonPopoverCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonPopoverCard.swift; sourceTree = "<group>"; };
+		3A9EE03C08C65FACB6E683A9 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		3D9E19B47AF8A2F0C3FC616D /* CoachMarkOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarkOverlay.swift; sourceTree = "<group>"; };
 		3E1E37117D7A295A82029498 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		3E47065F8108212DB8088A22 /* OnboardingLessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLessonView.swift; sourceTree = "<group>"; };
@@ -144,23 +153,26 @@
 		51AD4E6E7A3B5CAA63E69031 /* lesson_014.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lesson_014.json; sourceTree = "<group>"; };
 		5527708EB3ED2D16E9E9708A /* PhotoCreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCreditsView.swift; sourceTree = "<group>"; };
 		59916CEB753589A5CC734C17 /* ZigzagChapterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZigzagChapterView.swift; sourceTree = "<group>"; };
+		5CA148C48FB90E2526E603D2 /* correct.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = correct.mp3; sourceTree = "<group>"; };
 		5F212D70075F9319CEF17CDF /* lesson_017.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lesson_017.json; sourceTree = "<group>"; };
 		61563B989F508A2AF34BFFEC /* lesson_011.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lesson_011.json; sourceTree = "<group>"; };
 		63AFCD23BA6B7D51D993A567 /* TarsierCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TarsierCard.swift; sourceTree = "<group>"; };
 		66D68AE60916444BBAE35788 /* AffixBreakdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffixBreakdownView.swift; sourceTree = "<group>"; };
 		670A8D7AF46149EA097A1F2F /* LanguagePickerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePickerScreen.swift; sourceTree = "<group>"; };
 		69F047FF04ACFAC5A57C1FDF /* GreetingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingHelper.swift; sourceTree = "<group>"; };
-		6E3FB2F04B2A708D6E5E6B01 /* Tarsier.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Tarsier.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E3FB2F04B2A708D6E5E6B01 /* Tarsier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tarsier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E87449FA03A7982FF92828A /* lesson_006.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lesson_006.json; sourceTree = "<group>"; };
 		714F0509CA9E786FEF73759C /* lesson_020.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lesson_020.json; sourceTree = "<group>"; };
 		73CE4FCFE3D044B4EA46CA72 /* lesson_007.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lesson_007.json; sourceTree = "<group>"; };
 		7FEDAEE89B71C2A7D71EB326 /* VisionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionScreen.swift; sourceTree = "<group>"; };
 		80B9F7B563B311E2B064C6E9 /* lesson_001.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lesson_001.json; sourceTree = "<group>"; };
+		810BD5D4A13D35488421665A /* lesson_complete.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = lesson_complete.mp3; sourceTree = "<group>"; };
 		81140DB294416CBC83C3E8C6 /* lesson_021.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lesson_021.json; sourceTree = "<group>"; };
 		8142EF1917AAD789166E3058 /* ChapterBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterBannerView.swift; sourceTree = "<group>"; };
 		8981091307BFE192BF3F036D /* WordBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordBank.swift; sourceTree = "<group>"; };
 		89AA407504A6746AA18FB8E6 /* TarsierApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TarsierApp.swift; sourceTree = "<group>"; };
 		8F6C600FF04968840B281DE5 /* DailyGoalScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyGoalScreen.swift; sourceTree = "<group>"; };
+		8F71F182FBB54F59BB77B28C /* incorrect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = incorrect.mp3; sourceTree = "<group>"; };
 		917AE620F52E04804585AC13 /* PathNodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathNodeView.swift; sourceTree = "<group>"; };
 		91A9FACB6D20AB766F5171B6 /* LessonResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonResult.swift; sourceTree = "<group>"; };
 		9749D52F0A93EC1D9163BB9B /* HeartsEmptySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartsEmptySheet.swift; sourceTree = "<group>"; };
@@ -174,6 +186,7 @@
 		A79F49CDC721731313AAEDAE /* lesson_026.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lesson_026.json; sourceTree = "<group>"; };
 		A879C1DFECA40E98D231F46A /* lesson_027.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lesson_027.json; sourceTree = "<group>"; };
 		A9508A59AD298CD0D5AD18F0 /* LessonService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonService.swift; sourceTree = "<group>"; };
+		ABCEA96C4A00FA3F24911597 /* progress.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = progress.mp3; sourceTree = "<group>"; };
 		ADEC94B83602D8C3062079BD /* lesson_022.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lesson_022.json; sourceTree = "<group>"; };
 		B4BBABD167E3FC37B7BA5AB5 /* LoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreen.swift; sourceTree = "<group>"; };
 		B6AB4EC3C4231D87F301687E /* AttributionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributionScreen.swift; sourceTree = "<group>"; };
@@ -197,6 +210,7 @@
 		D65F1555E6D8F9F929B15CC2 /* Chapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter.swift; sourceTree = "<group>"; };
 		DBCD8CCAC476282D791517EC /* OnboardingFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlow.swift; sourceTree = "<group>"; };
 		DC3933E4D30A0A30A35D0B1E /* NotificationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationScreen.swift; sourceTree = "<group>"; };
+		E01A4EADF55A9DA889EEEB02 /* page.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = page.mp3; sourceTree = "<group>"; };
 		E01D17B7BA11302C6091374C /* lesson_030.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lesson_030.json; sourceTree = "<group>"; };
 		E07563E4C878E9487E4E9258 /* lesson_010.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lesson_010.json; sourceTree = "<group>"; };
 		E2BB5F11B81F6FB85A3E2FF9 /* WidgetScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetScreen.swift; sourceTree = "<group>"; };
@@ -254,6 +268,19 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		1582CCE6B80A3673B9EF5065 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				5CA148C48FB90E2526E603D2 /* correct.mp3 */,
+				8F71F182FBB54F59BB77B28C /* incorrect.mp3 */,
+				810BD5D4A13D35488421665A /* lesson_complete.mp3 */,
+				E01A4EADF55A9DA889EEEB02 /* page.mp3 */,
+				ABCEA96C4A00FA3F24911597 /* progress.mp3 */,
+				334AB78600BA755760110060 /* tap.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		21830710E4350CFEC27F504B /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -281,6 +308,7 @@
 			isa = PBXGroup;
 			children = (
 				3953BB8B2EC33EB16E8D5D5E /* Lessons */,
+				1582CCE6B80A3673B9EF5065 /* Sounds */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -450,6 +478,7 @@
 				C7CCF35A4679E15E3A59181E /* AudioPlayerService.swift */,
 				A9508A59AD298CD0D5AD18F0 /* LessonService.swift */,
 				CECF36C68B4DF4E0A9B1FA91 /* NotificationService.swift */,
+				3A9EE03C08C65FACB6E683A9 /* SoundManager.swift */,
 				F6BAE3455847B83FA3F5BA1A /* StreakService.swift */,
 				40317D7E75CBD3DE301CED61 /* TarsierAIService.swift */,
 			);
@@ -523,9 +552,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1600;
-				TargetAttributes = {
-				};
+				LastUpgradeCheck = 2630;
 			};
 			buildConfigurationList = 3F3D5629C7C4DB09FEC13EC6 /* Build configuration list for PBXProject "Tarsier" */;
 			developmentRegion = en;
@@ -558,6 +585,8 @@
 			files = (
 				600FEE600003A090F6F86EB9 /* Assets.xcassets in Resources */,
 				CB4EB44F3EB7DEE0B72E9039 /* chapters.json in Resources */,
+				39908E74AE9CD56F086C6666 /* correct.mp3 in Resources */,
+				8BAA6ACD3327B25218382406 /* incorrect.mp3 in Resources */,
 				93FF10A316B84CFF7BCD38DD /* lesson_001.json in Resources */,
 				1E128C808C02DBC6F94340ED /* lesson_002.json in Resources */,
 				35D1FA87BA1859B01638F669 /* lesson_003.json in Resources */,
@@ -590,6 +619,10 @@
 				CE431793BEBE4341ABA6808E /* lesson_030.json in Resources */,
 				E109B5AA1B5028FD0BDA64C7 /* lesson_031.json in Resources */,
 				B01F1540117F658EEC76E621 /* lesson_032.json in Resources */,
+				55AADF4CA797AF235B401EB6 /* lesson_complete.mp3 in Resources */,
+				8147687B9F8C289D24514CC9 /* page.mp3 in Resources */,
+				52BBA1E2B1B6A3686F6232D7 /* progress.mp3 in Resources */,
+				E7DE93734537CC6DA07A0E65 /* tap.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -647,6 +680,7 @@
 				024571D7C03069C4FF7B0FA7 /* SessionCompleteView.swift in Sources */,
 				0F0637F837839EE85E063E9A /* SessionProgress.swift in Sources */,
 				0CA0DE6E23037B1B5828FE93 /* SlideLesson.swift in Sources */,
+				EC21AFA5ACEBBC72072F60D8 /* SoundManager.swift in Sources */,
 				CFE9ABD0C4EF814A2BBC1858 /* SplashIntroScreen.swift in Sources */,
 				F20AAA7456D6B1BBAA7988FA /* StartBubbleView.swift in Sources */,
 				A96817343CAD57D4AF7418B6 /* StreakService.swift in Sources */,
@@ -754,6 +788,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -837,6 +872,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
