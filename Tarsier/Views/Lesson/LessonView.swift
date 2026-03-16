@@ -39,9 +39,7 @@ struct LessonContainerView: View {
     @State private var wrongCounts: [String: Int] = [:]
 
     // Coach marks
-    @State private var showTeachCoachMark = false
     @State private var showQuizCoachMark = false
-    @State private var continueButtonRect: CGRect = .zero
     @State private var quizOptionsRect: CGRect = .zero
     @State private var coachMarkDismissedQuiz = false
 
@@ -166,16 +164,6 @@ struct LessonContainerView: View {
         }
         .coordinateSpace(name: "sessionContent")
         .overlay {
-            if showTeachCoachMark, continueButtonRect != .zero {
-                CoachMarkOverlay(
-                    targetRect: continueButtonRect,
-                    message: "Tap Continue to advance",
-                    arrowPointsDown: true
-                )
-                .onTapGesture {
-                    withAnimation { showTeachCoachMark = false }
-                }
-            }
             if showQuizCoachMark, quizOptionsRect != .zero {
                 CoachMarkOverlay(
                     targetRect: quizOptionsRect,
@@ -252,21 +240,8 @@ struct LessonContainerView: View {
             switch card.type {
             case .teach:
                 PrimaryButton("Continue") {
-                    if showTeachCoachMark {
-                        withAnimation { showTeachCoachMark = false }
-                    }
                     advanceTeachCard()
                 }
-                .background(
-                    GeometryReader { geo in
-                        Color.clear.onAppear {
-                            continueButtonRect = geo.frame(in: .named("sessionContent"))
-                        }
-                        .onChange(of: geo.frame(in: .named("sessionContent"))) { _, newValue in
-                            continueButtonRect = newValue
-                        }
-                    }
-                )
                 .padding(.horizontal, TarsierSpacing.screenPadding)
                 .padding(.bottom, 16)
 
@@ -367,12 +342,7 @@ struct LessonContainerView: View {
 
         prepareCurrentCard()
 
-        // Show teach coach mark on first card if user hasn't seen coach marks
-        if profile?.hasSeenCoachMarks == false, let card = currentCard, card.type == .teach {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                withAnimation { showTeachCoachMark = true }
-            }
-        }
+        // Show quiz coach mark on first quiz card if user hasn't seen coach marks
     }
 
     // MARK: - Card Advancement
@@ -523,6 +493,11 @@ struct LessonContainerView: View {
         progress.markCompleted()
         modelContext.insert(progress)
 
+        // Add vocabulary to word bank on first session (not replay)
+        if !isReplay && sessionNumber == 1 {
+            addVocabularyToWordBank()
+        }
+
         if isLessonComplete && !isReplay {
             completeLessonFull()
         }
@@ -578,8 +553,9 @@ struct LessonContainerView: View {
             xpEarned: xp
         )
         modelContext.insert(result)
+    }
 
-        // Add vocabulary to word bank
+    private func addVocabularyToWordBank() {
         for vocab in lesson.vocabulary {
             let entry = WordBankEntry(
                 word: vocab.word,

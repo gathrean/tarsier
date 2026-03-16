@@ -82,10 +82,24 @@ struct QuizSlideView: View {
     var body: some View {
         VStack(spacing: 20) {
             if let prompt = card.prompt {
-                Text(prompt)
-                    .font(TarsierFonts.heading(20))
-                    .foregroundStyle(TarsierColors.textPrimary)
-                    .multilineTextAlignment(.center)
+                HStack(spacing: 10) {
+                    Text(prompt)
+                        .font(TarsierFonts.heading(20))
+                        .foregroundStyle(TarsierColors.textPrimary)
+                        .multilineTextAlignment(.center)
+
+                    // Speaker icon for Tagalog prompts (no auto-play on quiz cards)
+                    if let audioPath = card.audio, AudioPlayerService.shared.hasAudio(relativePath: audioPath) {
+                        Button {
+                            AudioPlayerService.shared.play(relativePath: audioPath)
+                        } label: {
+                            Image(systemName: "speaker.wave.2.fill")
+                                .font(.system(size: 18))
+                                .foregroundStyle(TarsierColors.functionalPurple)
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
             }
 
             switch card.quizType {

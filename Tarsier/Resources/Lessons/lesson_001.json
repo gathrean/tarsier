@@ -76,7 +76,7 @@
           "card_id": "001_s1_q2",
           "type": "quiz",
           "quiz_type": "fill_in_blank",
-          "prompt": "Complete the respectful yes: O___",
+          "prompt": "How would you say yes respectfully?",
           "correct_answers": ["Opo", "opo"],
           "hint": "Oo (yes) + po (respect) = ?",
           "explanation": "Oo + po = opo."

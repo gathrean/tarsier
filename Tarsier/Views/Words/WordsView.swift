@@ -57,7 +57,7 @@ struct WordsView: View {
                     .font(TarsierFonts.title())
                     .foregroundStyle(TarsierColors.textPrimary)
 
-                Text("Start your first lesson to build your vocab")
+                Text("Complete a lesson to build your vocab")
                     .font(TarsierFonts.body())
                     .foregroundStyle(TarsierColors.textSecondary)
                     .multilineTextAlignment(.center)

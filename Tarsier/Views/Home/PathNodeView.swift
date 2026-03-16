@@ -98,7 +98,6 @@ struct PathNodeView: View {
         Circle()
             .fill(TarsierColors.functionalPurple)
             .frame(width: nodeSize, height: nodeSize)
-            .shadow(color: TarsierColors.nodeShadow, radius: 0, x: 0, y: 4)
             .shadow(color: TarsierColors.functionalPurple.opacity(0.25), radius: 12)
             .background(PulsingGlowRing(size: nodeSize))
             .overlay {

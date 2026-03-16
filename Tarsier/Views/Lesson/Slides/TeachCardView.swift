@@ -25,14 +25,33 @@ struct TeachCardView: View {
                 HighlightedPoText(text: body, font: TarsierFonts.body(), baseColor: TarsierColors.textPrimary)
             }
 
-            // Highlight (bold, purple — with "po" highlighting)
+            // Highlight (bold, purple — with "po" highlighting) + speaker icon
             if let highlight = card.highlight {
-                HighlightedPoText(text: highlight, font: TarsierFonts.tagalogWord(22), baseColor: TarsierColors.functionalPurple)
+                HStack(spacing: 10) {
+                    HighlightedPoText(text: highlight, font: TarsierFonts.tagalogWord(22), baseColor: TarsierColors.functionalPurple)
+
+                    if let audioPath = card.audio, AudioPlayerService.shared.hasAudio(relativePath: audioPath) {
+                        Button {
+                            AudioPlayerService.shared.play(relativePath: audioPath)
+                        } label: {
+                            Image(systemName: "speaker.wave.2.fill")
+                                .font(.system(size: 18))
+                                .foregroundStyle(TarsierColors.functionalPurple)
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
             }
 
             // Example
             if let example = card.example {
                 exampleCard(example)
+            }
+        }
+        .onAppear {
+            // Auto-play pronunciation audio when teach card appears
+            if let audioPath = card.audio {
+                AudioPlayerService.shared.play(relativePath: audioPath)
             }
         }
     }

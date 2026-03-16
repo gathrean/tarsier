@@ -24,9 +24,9 @@ struct HomeView: View {
                 ZStack(alignment: .top) {
                     ScrollView {
                     VStack(spacing: 0) {
-                        if showGreeting, let name = profile?.userName {
+                        if showGreeting, let profile {
                             HStack(spacing: 8) {
-                                Text("Welcome back, \(name)!")
+                                Text(GreetingHelper.greeting(for: profile))
                                     .font(TarsierFonts.heading(18))
                                     .foregroundStyle(TarsierColors.textPrimary)
                             }

@@ -3,7 +3,7 @@ import SwiftUI
 struct StartBubbleView: View {
     var body: some View {
         VStack(spacing: 0) {
-            Text("Start!")
+            Text("Continue")
                 .font(TarsierFonts.button(15))
                 .foregroundStyle(TarsierColors.functionalPurple)
                 .padding(.horizontal, 16)
