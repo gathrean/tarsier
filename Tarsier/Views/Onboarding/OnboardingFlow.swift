@@ -143,6 +143,7 @@ struct OnboardingFlow: View {
                     BunsoSpeechBubble(pose: config.pose, text: config.text, bunsoSize: config.size)
                         .animation(.easeInOut(duration: 0.3), value: currentScreen)
                         .animation(.easeInOut(duration: 0.3), value: motivationResponseReady)
+                        .padding(.bottom, 16)
                 }
 
                 // Animated screen content (below bubble)

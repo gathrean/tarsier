@@ -7,8 +7,8 @@ struct HomeView: View {
     @State private var chapters: [Chapter] = []
     @State private var lessons: [SlideLesson] = []
     @State private var showPremiumGate = false
-    @State private var showGreeting = false
     @State private var selectedLessonID: Int? = nil
+    @State private var isFirstLoadToday = false
     @AppStorage("lastGreetingDate") private var lastGreetingDate: String = ""
 
     private var profile: UserProfile? { profiles.first }
@@ -24,22 +24,12 @@ struct HomeView: View {
                 ZStack(alignment: .top) {
                     ScrollView {
                     VStack(spacing: 0) {
-                        if showGreeting, let profile {
-                            HStack(spacing: 8) {
-                                Text(GreetingHelper.greeting(for: profile))
-                                    .font(TarsierFonts.heading(18))
-                                    .foregroundStyle(TarsierColors.textPrimary)
-                            }
-                            .padding(.horizontal, TarsierSpacing.screenPadding)
-                            .padding(.vertical, 12)
-                            .frame(maxWidth: .infinity)
-                            .background(
-                                RoundedRectangle(cornerRadius: 12)
-                                    .fill(TarsierColors.primaryLight)
+                        // Bunso greeting — scrolls with content
+                        if let profile {
+                            BunsoGreetingHeader(
+                                greeting: bunsoGreeting(for: profile)
                             )
-                            .padding(.horizontal, TarsierSpacing.screenPadding)
                             .padding(.bottom, 8)
-                            .transition(.opacity.combined(with: .move(edge: .top)))
                         }
 
                         roadmap
@@ -87,14 +77,11 @@ struct HomeView: View {
                 profile.refillHearts()
             }
 
-            // Show greeting once per day if user has a name
+            // Track first load of the day for greeting variant
             let today = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .none)
-            if profile?.userName != nil && lastGreetingDate != today {
+            if lastGreetingDate != today {
                 lastGreetingDate = today
-                withAnimation { showGreeting = true }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                    withAnimation { showGreeting = false }
-                }
+                isFirstLoadToday = true
             }
         }
     }
@@ -214,4 +201,14 @@ struct HomeView: View {
         lessons.first { $0.id == lessonID }?.title ?? "Lesson \(lessonID)"
     }
 
+    // MARK: - Bunso Greeting
+
+    private func bunsoGreeting(for profile: UserProfile) -> String {
+        let name = GreetingHelper.greeting(for: profile)
+        if isFirstLoadToday {
+            return "Great to see you today! \(name)"
+        } else {
+            return "Welcome back! \(name)"
+        }
+    }
 }

@@ -33,8 +33,9 @@ struct ChapterBannerView: View {
         .padding(.vertical, 14)
         .foregroundStyle(isUnlocked ? .white : TarsierColors.textSecondary)
         .background(
-            RoundedRectangle(cornerRadius: 18)
+            Capsule()
                 .fill(isUnlocked ? TarsierColors.functionalPurple : TarsierColors.lockedFill)
+                .shadow(color: isUnlocked ? TarsierColors.functionalPurple.opacity(0.2) : .clear, radius: 6, y: 3)
         )
     }
 }

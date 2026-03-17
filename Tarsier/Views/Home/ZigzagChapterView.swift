@@ -232,32 +232,52 @@ struct ZigzagChapterView: View {
     // MARK: - Path Canvas
 
     private func pathCanvas(nodes: [PathNode]) -> some View {
-        Canvas { context, _ in
-            for i in 0..<(nodes.count - 1) {
-                let from = nodes[i].position
-                let to = nodes[i + 1].position
+        ZStack {
+            Canvas { context, _ in
+                for i in 0..<(nodes.count - 1) {
+                    let from = nodes[i].position
+                    let to = nodes[i + 1].position
 
-                let fromCompleted = nodes[i].state == .completed
-                let toActive = nodes[i + 1].state == .active || nodes[i + 1].state == .inProgress || nodes[i + 1].state == .completed
-                let isActiveSegment = fromCompleted && toActive
+                    let fromCompleted = nodes[i].state == .completed
+                    let toActive = nodes[i + 1].state == .active || nodes[i + 1].state == .inProgress || nodes[i + 1].state == .completed
+                    let isActiveSegment = fromCompleted && toActive
 
-                let color: Color = (isActiveSegment ? TarsierColors.pathActive : TarsierColors.pathLocked).opacity(0.3)
+                    var path = Path()
+                    path.move(to: from)
+                    let controlY = (from.y + to.y) / 2
+                    path.addCurve(
+                        to: to,
+                        control1: CGPoint(x: from.x, y: controlY),
+                        control2: CGPoint(x: to.x, y: controlY)
+                    )
 
-                var path = Path()
-                path.move(to: from)
-                let controlY = (from.y + to.y) / 2
-                path.addCurve(
-                    to: to,
-                    control1: CGPoint(x: from.x, y: controlY),
-                    control2: CGPoint(x: to.x, y: controlY)
-                )
+                    // Thick road base
+                    let roadColor: Color = isActiveSegment
+                        ? TarsierColors.pathActive.opacity(0.25)
+                        : TarsierColors.pathLocked.opacity(0.15)
+                    context.stroke(
+                        path,
+                        with: .color(roadColor),
+                        style: StrokeStyle(lineWidth: 12, lineCap: .round)
+                    )
 
-                context.stroke(
-                    path,
-                    with: .color(color),
-                    style: StrokeStyle(lineWidth: 4, lineCap: .round, dash: [6, 16])
-                )
+                    // Dashed centre line
+                    let dashColor: Color = isActiveSegment
+                        ? TarsierColors.pathActive.opacity(0.5)
+                        : TarsierColors.pathLocked.opacity(0.25)
+                    context.stroke(
+                        path,
+                        with: .color(dashColor),
+                        style: StrokeStyle(lineWidth: 2, lineCap: .round, dash: [6, 8])
+                    )
+                }
             }
+
+            // Decorations between nodes
+            ChapterDecorations(
+                chapterIndex: chapterIndex,
+                nodePositions: nodes.map(\.position)
+            )
         }
     }
 

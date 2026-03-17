@@ -98,12 +98,13 @@ struct PathNodeView: View {
         Circle()
             .fill(TarsierColors.functionalPurple)
             .frame(width: nodeSize, height: nodeSize)
-            .shadow(color: TarsierColors.functionalPurple.opacity(0.25), radius: 12)
+            .shadow(color: TarsierColors.functionalPurple.opacity(0.3), radius: 12)
             .background(PulsingGlowRing(size: nodeSize))
             .overlay {
                 Text(node.emoji)
                     .font(.system(size: 32))
             }
+            .modifier(GentlePulse())
     }
 
     // MARK: - Completed (60×60, purple, checkmark)
@@ -211,5 +212,21 @@ struct NodePressStyle: ButtonStyle {
         configuration.label
             .scaleEffect(configuration.isPressed ? 0.92 : 1.0)
             .animation(.easeOut(duration: 0.15), value: configuration.isPressed)
+    }
+}
+
+// MARK: - Gentle Pulse (active node subtle scale animation)
+
+private struct GentlePulse: ViewModifier {
+    @State private var isPulsing = false
+
+    func body(content: Content) -> some View {
+        content
+            .scaleEffect(isPulsing ? 1.03 : 1.0)
+            .onAppear {
+                withAnimation(.easeInOut(duration: 1.5).repeatForever(autoreverses: true)) {
+                    isPulsing = true
+                }
+            }
     }
 }

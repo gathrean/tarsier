@@ -1,1 +1,2 @@
-google-cloud-texttospeech
+Pillow>=10.0
+requests>=2.28

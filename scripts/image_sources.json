@@ -1,0 +1,12 @@
+{
+  "_comment": "Map image keys to Wikimedia Commons sources. Ean fills this in as lessons are authored.",
+  "_example": {
+    "araw": {
+      "source": "https://commons.wikimedia.org/wiki/File:Sun_in_February.jpg",
+      "direct_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/.../400px-Sun_in_February.jpg",
+      "licence": "CC BY-SA 4.0",
+      "author": "John Doe",
+      "local_path": "images/araw.jpg"
+    }
+  }
+}
