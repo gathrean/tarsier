@@ -65,6 +65,21 @@ class QuizState {
         }
         return isCorrect
     }
+
+    /// Check image match against the correct index within shuffled display order.
+    func checkImageMatch(correctIndex: Int) -> Bool {
+        guard let selected = selectedOption else { return false }
+        let isCorrect = selected == correctIndex
+        answerState = isCorrect ? .correct : .incorrect
+        return isCorrect
+    }
+
+    /// Check sentence build against the correct word order.
+    func checkSentenceBuild(placedWords: [String], correctOrder: [String]) -> Bool {
+        let isCorrect = placedWords == correctOrder
+        answerState = isCorrect ? .correct : .incorrect
+        return isCorrect
+    }
 }
 
 // MARK: - Quiz Slide View
@@ -77,12 +92,33 @@ struct QuizSlideView: View {
     let correctIndex: Int
     /// Shuffled word pieces for word_order quiz. Provided by parent.
     let shuffledWordPieces: [String]
+    /// Shuffled indices for image_match quiz. Provided by parent.
+    var imageMatchShuffledIndices: [Int] = []
+    /// Correct index within imageMatchShuffledIndices.
+    var imageMatchCorrectIndex: Int = 0
+    /// All words for sentence_build (correctOrder + distractors, shuffled). Provided by parent.
+    var sentenceBuildWords: [String] = []
+    /// Whether to show the character's meaning label.
+    var showCharacterMeaning: Bool = true
     @Bindable var state: QuizState
     @FocusState private var isTextFieldFocused: Bool
 
     var body: some View {
         VStack(spacing: 20) {
-            if let prompt = card.prompt {
+            // Character bubble (if character present) replaces plain prompt
+            if let character = card.character {
+                if let prompt = card.prompt {
+                    Text(prompt)
+                        .font(TarsierFonts.caption(14))
+                        .foregroundStyle(TarsierColors.textSecondary)
+                }
+                CharacterBubbleView(
+                    character: character,
+                    text: card.sourceText ?? card.givenSentence ?? card.prompt ?? "",
+                    audio: card.audio,
+                    showMeaning: showCharacterMeaning
+                )
+            } else if let prompt = card.prompt {
                 HStack(spacing: 10) {
                     Text(prompt)
                         .font(TarsierFonts.heading(20))
@@ -114,6 +150,25 @@ struct QuizSlideView: View {
                     state: state,
                     audioBasePath: card.audio.flatMap { ($0 as NSString).deletingLastPathComponent + "/" }
                 )
+            case .imageMatch:
+                if let options = card.imageMatchOptions {
+                    ImageMatchQuizView(
+                        options: options,
+                        shuffledIndices: imageMatchShuffledIndices,
+                        state: state,
+                        correctIndex: imageMatchCorrectIndex
+                    )
+                }
+            case .sentenceBuild:
+                if let sourceText = card.sourceText, let correctOrder = card.correctOrder {
+                    SentenceBuildQuizView(
+                        sourceText: sourceText,
+                        allWords: sentenceBuildWords,
+                        correctOrder: correctOrder,
+                        state: state,
+                        audioBasePath: card.audio.flatMap { ($0 as NSString).deletingLastPathComponent + "/" }
+                    )
+                }
             case .none:
                 EmptyView()
             }

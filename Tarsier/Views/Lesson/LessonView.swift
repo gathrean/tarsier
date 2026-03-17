@@ -26,6 +26,13 @@ struct LessonContainerView: View {
     @State private var shuffledWordPieces: [String] = []
     @State private var wordOrderShakeCount: Int = 0
 
+    // Image-match state
+    @State private var imageMatchShuffledIndices: [Int] = []
+    @State private var imageMatchCorrectIndex: Int = 0
+
+    // Sentence-build state
+    @State private var sentenceBuildWords: [String] = []
+
     // Quiz state
     @State private var quizState = QuizState()
     @State private var showCloseConfirmation = false
@@ -225,15 +232,43 @@ struct LessonContainerView: View {
     private func cardContent(for card: SessionCard) -> some View {
         switch card.type {
         case .teach:
-            TeachCardView(card: card)
+            TeachCardView(card: card, showCharacterMeaning: shouldShowCharacterMeaning(card.character))
         case .quiz:
             QuizSlideView(
                 card: card,
                 displayOptions: shuffledOptions,
                 correctIndex: shuffledCorrectIndex,
                 shuffledWordPieces: shuffledWordPieces,
+                imageMatchShuffledIndices: imageMatchShuffledIndices,
+                imageMatchCorrectIndex: imageMatchCorrectIndex,
+                sentenceBuildWords: sentenceBuildWords,
+                showCharacterMeaning: shouldShowCharacterMeaning(card.character),
                 state: quizState
             )
+        case .characterIntro:
+            if let character = card.character {
+                CharacterIntroView(
+                    character: character,
+                    introText: card.text ?? "",
+                    funFact: card.funFact
+                )
+            }
+        }
+    }
+
+    /// Show character meaning for the first 3 appearances.
+    private func shouldShowCharacterMeaning(_ character: TarsierCharacter?) -> Bool {
+        guard let character, let profile else { return true }
+        let count = profile.characterAppearanceCounts[character.rawValue] ?? 0
+        return count < 3
+    }
+
+    /// Track character appearance and mark as introduced.
+    private func trackCharacterAppearance(_ character: TarsierCharacter?) {
+        guard let character, let profile else { return }
+        profile.characterAppearanceCounts[character.rawValue, default: 0] += 1
+        if !profile.introducedCharacters.contains(character.rawValue) {
+            profile.introducedCharacters.append(character.rawValue)
         }
     }
 
@@ -243,7 +278,7 @@ struct LessonContainerView: View {
     private var bottomButton: some View {
         if let card = currentCard {
             switch card.type {
-            case .teach:
+            case .teach, .characterIntro:
                 PrimaryButton("Continue") {
                     advanceTeachCard()
                 }
@@ -286,6 +321,10 @@ struct LessonContainerView: View {
             if !isCorrect, card.quizType == .wordOrder,
                let best = card.bestOrder, !best.isEmpty {
                 return "Correct: \(best.joined(separator: " "))"
+            }
+            if !isCorrect, card.quizType == .sentenceBuild,
+               let correct = card.correctOrder, !correct.isEmpty {
+                return "Correct: \(correct.joined(separator: " "))"
             }
             return nil
         }()
@@ -402,6 +441,11 @@ struct LessonContainerView: View {
         case .wordOrder:
             checkWordOrder(card: card)
             return
+        case .imageMatch:
+            isCorrect = quizState.checkImageMatch(correctIndex: imageMatchCorrectIndex)
+        case .sentenceBuild:
+            let placedWords = quizState.placedIndices.map { sentenceBuildWords[$0] }
+            isCorrect = quizState.checkSentenceBuild(placedWords: placedWords, correctOrder: card.correctOrder ?? [])
         case .none:
             return
         }
@@ -463,22 +507,35 @@ struct LessonContainerView: View {
 
     private func prepareCurrentCard() {
         guard let card = currentCard else { return }
-        if card.type == .quiz, card.quizType == .multipleChoice {
-            prepareShuffledOptions(for: card)
-            shuffledWordPieces = []
-            quizState.totalWordPieces = 0
-        } else if card.type == .quiz, card.quizType == .wordOrder {
-            shuffledOptions = []
-            shuffledCorrectIndex = 0
-            let pieces = card.wordPieces ?? []
-            shuffledWordPieces = pieces.shuffled()
-            quizState.totalWordPieces = pieces.count
-        } else {
-            shuffledOptions = []
-            shuffledCorrectIndex = 0
-            shuffledWordPieces = []
-            quizState.totalWordPieces = 0
+
+        // Reset all quiz-type-specific state
+        shuffledOptions = []
+        shuffledCorrectIndex = 0
+        shuffledWordPieces = []
+        imageMatchShuffledIndices = []
+        imageMatchCorrectIndex = 0
+        sentenceBuildWords = []
+        quizState.totalWordPieces = 0
+
+        if card.type == .quiz {
+            switch card.quizType {
+            case .multipleChoice:
+                prepareShuffledOptions(for: card)
+            case .wordOrder:
+                let pieces = card.wordPieces ?? []
+                shuffledWordPieces = pieces.shuffled()
+                quizState.totalWordPieces = pieces.count
+            case .imageMatch:
+                prepareImageMatch(for: card)
+            case .sentenceBuild:
+                prepareSentenceBuild(for: card)
+            case .fillInBlank, .none:
+                break
+            }
         }
+
+        // Track character appearance
+        trackCharacterAppearance(card.character)
 
         // Show quiz coach mark on first quiz card
         if card.type == .quiz,
@@ -488,6 +545,25 @@ struct LessonContainerView: View {
                 withAnimation { showQuizCoachMark = true }
             }
         }
+    }
+
+    private func prepareImageMatch(for card: SessionCard) {
+        guard let options = card.imageMatchOptions else { return }
+        var indices = Array(0..<options.count)
+        indices.shuffle()
+        imageMatchShuffledIndices = indices
+        // Find which display position has the correct answer
+        if let correctOriginalIndex = options.firstIndex(where: { $0.correct }) {
+            imageMatchCorrectIndex = indices.firstIndex(of: correctOriginalIndex) ?? 0
+        }
+    }
+
+    private func prepareSentenceBuild(for card: SessionCard) {
+        let correct = card.correctOrder ?? []
+        let distractors = card.distractors ?? []
+        let allWords = (correct + distractors).shuffled()
+        sentenceBuildWords = allWords
+        quizState.totalWordPieces = correct.count
     }
 
     private func prepareShuffledOptions(for card: SessionCard) {
