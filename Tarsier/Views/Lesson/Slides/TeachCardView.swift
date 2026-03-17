@@ -2,9 +2,29 @@ import SwiftUI
 
 struct TeachCardView: View {
     let card: SessionCard
+    var showCharacterMeaning: Bool = true
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
+            // Character header (when character is present on teach card)
+            if let character = card.character {
+                HStack(spacing: 10) {
+                    characterHead(character)
+                        .frame(width: 36, height: 36)
+                    VStack(alignment: .leading, spacing: 1) {
+                        Text(character.displayName)
+                            .font(TarsierFonts.caption(13))
+                            .fontWeight(.semibold)
+                            .foregroundStyle(TarsierColors.textPrimary)
+                        if showCharacterMeaning {
+                            Text(character.meaning)
+                                .font(TarsierFonts.caption(11))
+                                .foregroundStyle(TarsierColors.textSecondary)
+                        }
+                    }
+                }
+            }
+
             // Lesson image — render ONLY if file exists in bundle. No placeholder.
             if let uiImage = loadCardImage() {
                 Image(uiImage: uiImage)
@@ -141,6 +161,25 @@ struct TeachCardView: View {
             RoundedRectangle(cornerRadius: 12)
                 .stroke(TarsierColors.functionalPurple.opacity(0.15), lineWidth: 1)
         )
+    }
+
+    // MARK: - Character Head
+
+    @ViewBuilder
+    private func characterHead(_ character: TarsierCharacter) -> some View {
+        if let imageName = character.imageName {
+            Image(imageName)
+                .resizable()
+                .scaledToFill()
+                .clipShape(Circle())
+        } else {
+            Circle()
+                .fill(Color(.systemGray5))
+                .overlay(
+                    Text(character.emoji)
+                        .font(.system(size: 20))
+                )
+        }
     }
 
     // MARK: - Alam Mo Ba? Callout

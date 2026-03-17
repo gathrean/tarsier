@@ -52,6 +52,10 @@ final class UserProfile {
     var attributionSource: String = ""
     var proficiencyLevel: Int = 0       // 0–4
 
+    // v0.4.1 — Character system
+    var introducedCharacters: [String] = []           // TarsierCharacter raw values already introduced
+    var characterAppearanceCounts: [String: Int] = [:] // Tracks how many times each character has appeared
+
     init(
         skillLevel: SkillLevel = .beginner,
         currentLessonIndex: Int = 1,

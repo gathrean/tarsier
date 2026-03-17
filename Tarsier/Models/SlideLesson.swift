@@ -55,6 +55,7 @@ struct LessonSession: Codable, Identifiable {
 enum CardType: String, Codable {
     case teach
     case quiz
+    case characterIntro = "character_intro"
 }
 
 struct SessionCard: Codable, Identifiable {
@@ -67,6 +68,9 @@ struct SessionCard: Codable, Identifiable {
 
     // v0.7 — optional pronunciation audio path (relative to bundle)
     let audio: String?
+
+    // v0.4.1 — optional character (used on teach, quiz, and character_intro cards)
+    let character: TarsierCharacter?
 
     // Teach fields
     let body: String?
@@ -90,15 +94,27 @@ struct SessionCard: Codable, Identifiable {
     let correctOrders: [[String]]?
     let bestOrder: [String]?
 
+    // Image-match quiz fields (v0.4)
+    let imageMatchOptions: [ImageMatchOption]?
+
+    // Sentence-build quiz fields (v0.4)
+    let sourceText: String?
+    let correctOrder: [String]?
+    let distractors: [String]?
+
+    // Character-intro fields (v0.4.1)
+    let text: String?
+    let funFact: String?
+
     var id: String { cardId }
 
     enum CodingKeys: String, CodingKey {
         case cardId = "card_id"
-        case type, body, highlight, image, example, audio
+        case type, body, highlight, image, example, audio, character
         case alamMoBaInline = "alam_mo_ba_inline"
         case usePo = "use_po"
         case quizType = "quiz_type"
-        case prompt, options, hint, explanation
+        case prompt, options, hint, explanation, text
         case correctAnswer = "correct_answer"
         case correctAnswers = "correct_answers"
         case shuffleOptions = "shuffle_options"
@@ -106,7 +122,22 @@ struct SessionCard: Codable, Identifiable {
         case wordPieces = "word_pieces"
         case correctOrders = "correct_orders"
         case bestOrder = "best_order"
+        case imageMatchOptions = "image_match_options"
+        case sourceText = "source_text"
+        case correctOrder = "correct_order"
+        case distractors
+        case funFact = "fun_fact"
     }
+}
+
+// MARK: - Image Match Option
+
+struct ImageMatchOption: Codable, Identifiable {
+    let image: String
+    let label: String
+    let correct: Bool
+
+    var id: String { label }
 }
 
 // MARK: - Card Sub-Types
@@ -115,6 +146,8 @@ enum QuizType: String, Codable {
     case multipleChoice = "multiple_choice"
     case fillInBlank = "fill_in_blank"
     case wordOrder = "word_order"
+    case imageMatch = "image_match"
+    case sentenceBuild = "sentence_build"
 }
 
 struct CardImage: Codable {
