@@ -52,6 +52,13 @@ struct LessonContainerView: View {
     @State private var quizOptionsRect: CGRect = .zero
     @State private var coachMarkDismissedQuiz = false
 
+    // Progressive reveal (teach cards)
+    @State private var visibleBlockCount: Int = 1
+    @State private var totalBlockCount: Int = 1
+
+    // Alam Mo Ba collapsible
+    @State private var showAlamMoBa = false
+
     private var profile: UserProfile? { profiles.first }
     private var currentCard: SessionCard? { cardQueue.first }
 
@@ -147,14 +154,21 @@ struct LessonContainerView: View {
                 Text(session.title)
                     .font(TarsierFonts.caption())
                     .foregroundStyle(TarsierColors.textSecondary)
-                    .padding(.bottom, 8)
+                    .padding(.bottom, 4)
+            }
+
+            // Alam Mo Ba collapsible button (below progress bar, above card content)
+            if let inline = currentCard?.alamMoBaInline {
+                alamMoBaCollapsible(inline)
+                    .padding(.horizontal, TarsierSpacing.screenPadding)
+                    .padding(.bottom, 4)
             }
 
             // Card content
             if let card = currentCard {
                 ScrollView {
                     cardContent(for: card)
-                        .padding(.horizontal, TarsierSpacing.screenPadding)
+                        .padding(.horizontal, 24)
                         .padding(.top, 16)
                         .padding(.bottom, 80)
                 }
@@ -163,13 +177,6 @@ struct LessonContainerView: View {
             }
 
             Spacer(minLength: 0)
-
-            // Alam Mo Ba inline tooltip — only for quiz cards (teach cards render it inline)
-            if let inline = currentCard?.alamMoBaInline, currentCard?.type == .quiz, !quizState.isChecked {
-                alamMoBaInlineView(inline)
-                    .padding(.horizontal, TarsierSpacing.screenPadding)
-                    .padding(.bottom, 8)
-            }
 
             // Bottom button
             bottomButton
@@ -198,32 +205,48 @@ struct LessonContainerView: View {
         }
     }
 
-    // MARK: - Alam Mo Ba Inline Tooltip
+    // MARK: - Alam Mo Ba Collapsible Button
 
-    private func alamMoBaInlineView(_ inline: AlamMoBaInline) -> some View {
-        HStack(alignment: .top, spacing: 8) {
-            Text(inline.emoji ?? "💡")
-                .font(.system(size: 14))
+    @ViewBuilder
+    private func alamMoBaCollapsible(_ inline: AlamMoBaInline) -> some View {
+        VStack(spacing: 0) {
+            // Tappable button
+            Button {
+                withAnimation(.easeOut(duration: 0.25)) {
+                    showAlamMoBa.toggle()
+                }
+            } label: {
+                HStack(spacing: 6) {
+                    Image(systemName: "questionmark.circle")
+                        .font(.system(size: 13, weight: .medium))
+                    Text("Alam Mo Ba?")
+                        .font(.system(size: 13, weight: .medium, design: .rounded))
+                }
+                .foregroundStyle(Color(hex: "#F5A100"))
+            }
+            .buttonStyle(.plain)
 
-            VStack(alignment: .leading, spacing: 2) {
-                Text(inline.term)
-                    .font(TarsierFonts.caption(13))
-                    .fontWeight(.bold)
-                    .foregroundStyle(TarsierColors.functionalPurple)
-                Text(inline.fact)
-                    .font(TarsierFonts.caption(12))
-                    .foregroundStyle(TarsierColors.textSecondary)
-                    .fixedSize(horizontal: false, vertical: true)
+            // Expandable card
+            if showAlamMoBa {
+                HStack(alignment: .top, spacing: 8) {
+                    Text(inline.emoji ?? "?")
+                        .font(.system(size: 14))
+
+                    Text(inline.fact)
+                        .font(.system(size: 14, weight: .regular, design: .rounded))
+                        .foregroundStyle(TarsierColors.textPrimary)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+                .padding(12)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color(hex: "#F5A100").opacity(0.08))
+                )
+                .transition(.opacity.combined(with: .move(edge: .top)))
+                .padding(.top, 6)
             }
         }
-        .padding(.horizontal, 12)
-        .padding(.vertical, 12)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(
-            RoundedRectangle(cornerRadius: 12)
-                .fill(TarsierColors.primaryLight)
-        )
-        .fixedSize(horizontal: false, vertical: true)
     }
 
     // MARK: - Card Router
@@ -232,7 +255,7 @@ struct LessonContainerView: View {
     private func cardContent(for card: SessionCard) -> some View {
         switch card.type {
         case .teach:
-            TeachCardView(card: card, showCharacterMeaning: shouldShowCharacterMeaning(card.character))
+            TeachCardView(card: card, showCharacterMeaning: shouldShowCharacterMeaning(card.character), visibleBlockCount: $visibleBlockCount, totalBlockCount: $totalBlockCount)
         case .quiz:
             QuizSlideView(
                 card: card,
@@ -274,11 +297,29 @@ struct LessonContainerView: View {
 
     // MARK: - Bottom Button
 
+    /// Whether all teach blocks are visible (progressive reveal complete).
+    private var allBlocksVisible: Bool {
+        visibleBlockCount >= totalBlockCount
+    }
+
     @ViewBuilder
     private var bottomButton: some View {
         if let card = currentCard {
             switch card.type {
-            case .teach, .characterIntro:
+            case .teach:
+                PrimaryButton(allBlocksVisible ? "Next" : "Continue") {
+                    if allBlocksVisible {
+                        advanceTeachCard()
+                    } else {
+                        withAnimation(.easeOut(duration: 0.3)) {
+                            visibleBlockCount = min(visibleBlockCount + 1, totalBlockCount)
+                        }
+                    }
+                }
+                .padding(.horizontal, TarsierSpacing.screenPadding)
+                .padding(.bottom, 16)
+
+            case .characterIntro:
                 PrimaryButton("Continue") {
                     advanceTeachCard()
                 }
@@ -507,6 +548,11 @@ struct LessonContainerView: View {
 
     private func prepareCurrentCard() {
         guard let card = currentCard else { return }
+
+        // Reset progressive reveal and Alam Mo Ba
+        visibleBlockCount = 1
+        totalBlockCount = 1
+        showAlamMoBa = false
 
         // Reset all quiz-type-specific state
         shuffledOptions = []

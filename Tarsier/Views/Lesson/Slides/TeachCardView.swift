@@ -4,79 +4,131 @@ struct TeachCardView: View {
     let card: SessionCard
     var showCharacterMeaning: Bool = true
 
+    /// Tracks how many content blocks are visible (progressive reveal).
+    @Binding var visibleBlockCount: Int
+    /// Total number of blocks for this card.
+    @Binding var totalBlockCount: Int
+
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            // Character header (when character is present on teach card)
-            if let character = card.character {
-                HStack(spacing: 10) {
-                    characterHead(character)
-                        .frame(width: 36, height: 36)
-                    VStack(alignment: .leading, spacing: 1) {
-                        Text(character.displayName)
-                            .font(TarsierFonts.caption(13))
-                            .fontWeight(.semibold)
-                            .foregroundStyle(TarsierColors.textPrimary)
-                        if showCharacterMeaning {
-                            Text(character.meaning)
-                                .font(TarsierFonts.caption(11))
-                                .foregroundStyle(TarsierColors.textSecondary)
-                        }
-                    }
-                }
-            }
+        let blocks = buildBlocks()
 
-            // Lesson image — render ONLY if file exists in bundle. No placeholder.
-            if let uiImage = loadCardImage() {
-                Image(uiImage: uiImage)
-                    .resizable()
-                    .aspectRatio(3 / 2, contentMode: .fill)
-                    .frame(maxWidth: .infinity)
-                    .clipShape(RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
-                            .stroke(TarsierColors.cardBorder, lineWidth: 1)
-                    )
-                    .accessibilityLabel(card.image?.alt ?? "Lesson image")
-            }
-
-            // Highlight (bold heading — the focal point) + speaker icon
-            if let highlight = card.highlight {
-                HStack(spacing: 10) {
-                    HighlightedPoText(text: highlight, font: TarsierFonts.tagalogWord(28), baseColor: TarsierColors.functionalPurple)
-
-                    if let audioPath = card.audio, AudioPlayerService.shared.hasAudio(relativePath: audioPath) {
-                        Button {
-                            AudioPlayerService.shared.play(relativePath: audioPath)
-                        } label: {
-                            Image(systemName: "speaker.wave.2.fill")
-                                .font(.system(size: 20))
-                                .foregroundStyle(TarsierColors.functionalPurple)
-                        }
-                        .buttonStyle(.plain)
-                    }
-                }
-            }
-
-            // Body text
-            if let body = card.body {
-                HighlightedPoText(text: body, font: TarsierFonts.body(17), baseColor: TarsierColors.textPrimary)
-            }
-
-            // Example — styled as a distinct card
-            if let example = card.example {
-                exampleCard(example)
-            }
-
-            // Alam Mo Ba? inline callout
-            if let alamMoBa = card.alamMoBaInline {
-                alamMoBaCallout(alamMoBa)
+        VStack(alignment: .leading, spacing: 16) {
+            ForEach(Array(blocks.prefix(visibleBlockCount).enumerated()), id: \.offset) { index, block in
+                blockView(for: block)
+                    .transition(.opacity.combined(with: .move(edge: .bottom)))
+                    .animation(.easeOut(duration: 0.3), value: visibleBlockCount)
             }
         }
+        .padding(.horizontal, 4)
         .onAppear {
+            let blocks = buildBlocks()
+            totalBlockCount = blocks.count
+            visibleBlockCount = min(1, blocks.count)
+
             // Auto-play pronunciation audio when teach card appears
             if let audioPath = card.audio {
                 AudioPlayerService.shared.play(relativePath: audioPath)
             }
+        }
+    }
+
+    // MARK: - Block Model
+
+    private enum TeachBlock {
+        case character(TarsierCharacter)
+        case image(UIImage, alt: String?)
+        case highlight(String, audioPath: String?)
+        case body(String)
+        case example(CardExample)
+    }
+
+    // MARK: - Build Blocks from Card Data
+
+    private func buildBlocks() -> [TeachBlock] {
+        var blocks: [TeachBlock] = []
+
+        if let character = card.character {
+            blocks.append(.character(character))
+        }
+
+        if let uiImage = loadCardImage() {
+            blocks.append(.image(uiImage, alt: card.image?.alt))
+        }
+
+        if let highlight = card.highlight {
+            blocks.append(.highlight(highlight, audioPath: card.audio))
+        }
+
+        if let body = card.body {
+            blocks.append(.body(body))
+        }
+
+        if let example = card.example {
+            blocks.append(.example(example))
+        }
+
+        // Alam Mo Ba is no longer rendered inline — it's in the collapsible button above
+
+        return blocks
+    }
+
+    // MARK: - Block Rendering
+
+    @ViewBuilder
+    private func blockView(for block: TeachBlock) -> some View {
+        switch block {
+        case .character(let character):
+            HStack(spacing: 10) {
+                characterHead(character)
+                    .frame(width: 36, height: 36)
+                VStack(alignment: .leading, spacing: 1) {
+                    Text(character.displayName)
+                        .font(TarsierFonts.caption(13))
+                        .fontWeight(.semibold)
+                        .foregroundStyle(TarsierColors.textPrimary)
+                    if showCharacterMeaning {
+                        Text(character.meaning)
+                            .font(TarsierFonts.caption(11))
+                            .foregroundStyle(TarsierColors.textSecondary)
+                    }
+                }
+            }
+
+        case .image(let uiImage, let alt):
+            Image(uiImage: uiImage)
+                .resizable()
+                .aspectRatio(3 / 2, contentMode: .fill)
+                .frame(maxWidth: .infinity)
+                .frame(minHeight: 240)
+                .clipShape(RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius))
+                .overlay(
+                    RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
+                        .stroke(TarsierColors.cardBorder, lineWidth: 1)
+                )
+                .accessibilityLabel(alt ?? "Lesson image")
+
+        case .highlight(let text, let audioPath):
+            HStack(spacing: 10) {
+                HighlightedPoText(text: text, font: .system(size: 32, weight: .bold, design: .rounded), baseColor: TarsierColors.functionalPurple)
+
+                if let audioPath, AudioPlayerService.shared.hasAudio(relativePath: audioPath) {
+                    Button {
+                        AudioPlayerService.shared.play(relativePath: audioPath)
+                    } label: {
+                        Image(systemName: "speaker.wave.2.fill")
+                            .font(.system(size: 20))
+                            .foregroundStyle(TarsierColors.functionalPurple)
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .center)
+
+        case .body(let text):
+            HighlightedPoText(text: text, font: .system(size: 18, weight: .regular, design: .rounded), baseColor: TarsierColors.textPrimary)
+
+        case .example(let example):
+            exampleCard(example)
         }
     }
 
@@ -182,29 +234,4 @@ struct TeachCardView: View {
         }
     }
 
-    // MARK: - Alam Mo Ba? Callout
-
-    @ViewBuilder
-    private func alamMoBaCallout(_ alamMoBa: AlamMoBaInline) -> some View {
-        HStack(alignment: .top, spacing: 10) {
-            Text(alamMoBa.emoji ?? "💡")
-                .font(.system(size: 18))
-
-            VStack(alignment: .leading, spacing: 4) {
-                Text("Alam Mo Ba?")
-                    .font(TarsierFonts.caption())
-                    .foregroundStyle(TarsierColors.gold)
-                    .fontWeight(.semibold)
-                Text(alamMoBa.fact)
-                    .font(TarsierFonts.caption())
-                    .foregroundStyle(TarsierColors.textPrimary)
-            }
-        }
-        .padding(12)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(
-            RoundedRectangle(cornerRadius: 12)
-                .fill(TarsierColors.gold.opacity(0.10))
-        )
-    }
 }

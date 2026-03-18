@@ -1,8 +1,20 @@
 [
   {
+    "chapter_id": "ch00",
+    "title": "Introduction",
+    "subtitle": "Abakada",
+    "icon": "textformat.abc",
+    "accent_color": "#2AA198",
+    "rows": [
+      { "row": 1, "lessons": ["000"] }
+    ]
+  },
+  {
     "chapter_id": "ch01",
     "title": "Respect & Greetings",
     "subtitle": "Magalang",
+    "icon": "🙏",
+    "accent_color": "#5B48E0",
     "rows": [
       { "row": 1, "lessons": ["001"] },
       { "row": 2, "lessons": ["002", "003"] },
@@ -13,6 +25,8 @@
     "chapter_id": "ch02",
     "title": "Modern Tagalog",
     "subtitle": "Taglish",
+    "icon": "🔀",
+    "accent_color": "#FF6B6B",
     "rows": [
       { "row": 1, "lessons": ["005"] },
       { "row": 2, "lessons": ["006"] }
@@ -22,6 +36,8 @@
     "chapter_id": "ch03",
     "title": "Food & Basic Verbs",
     "subtitle": "Kain!",
+    "icon": "🍽️",
+    "accent_color": "#F5A100",
     "rows": [
       { "row": 1, "lessons": ["007"] },
       { "row": 2, "lessons": ["008", "009"] },
@@ -32,6 +48,8 @@
     "chapter_id": "ch04",
     "title": "Family & Relationships",
     "subtitle": "Pamilya",
+    "icon": "👨‍👩‍👧",
+    "accent_color": "#E8577D",
     "rows": [
       { "row": 1, "lessons": ["011", "012"] },
       { "row": 2, "lessons": ["013", "014"] }
@@ -41,6 +59,8 @@
     "chapter_id": "ch05",
     "title": "Counting & Money",
     "subtitle": "Bilang",
+    "icon": "🔢",
+    "accent_color": "#38BDF8",
     "rows": [
       { "row": 1, "lessons": ["015"] },
       { "row": 2, "lessons": ["016"] }
@@ -50,6 +70,8 @@
     "chapter_id": "ch06",
     "title": "Daily Routines",
     "subtitle": "Araw-araw",
+    "icon": "🌅",
+    "accent_color": "#34D399",
     "rows": [
       { "row": 1, "lessons": ["017"] },
       { "row": 2, "lessons": ["018", "019"] },
@@ -60,6 +82,8 @@
     "chapter_id": "ch07",
     "title": "Feelings & Descriptions",
     "subtitle": "Damdamin",
+    "icon": "😊",
+    "accent_color": "#C47A2B",
     "rows": [
       { "row": 1, "lessons": ["021"] },
       { "row": 2, "lessons": ["022", "023"] },
@@ -70,6 +94,8 @@
     "chapter_id": "ch08",
     "title": "Places & Getting Around",
     "subtitle": "Lugar",
+    "icon": "📍",
+    "accent_color": "#A78BFA",
     "rows": [
       { "row": 1, "lessons": ["025"] },
       { "row": 2, "lessons": ["026", "027"] },
@@ -80,6 +106,8 @@
     "chapter_id": "ch09",
     "title": "Time & Planning",
     "subtitle": "Oras",
+    "icon": "📅",
+    "accent_color": "#0D9488",
     "rows": [
       { "row": 1, "lessons": ["029"] },
       { "row": 2, "lessons": ["030"] }
@@ -89,6 +117,8 @@
     "chapter_id": "ch10",
     "title": "The Word Machine",
     "subtitle": "Salita",
+    "icon": "🧩",
+    "accent_color": "#6366F1",
     "rows": [
       { "row": 1, "lessons": ["031"] },
       { "row": 2, "lessons": ["032"] }

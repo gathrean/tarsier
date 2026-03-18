@@ -1,0 +1,105 @@
+{
+  "_meta": {
+    "schema_version": "0.7",
+    "last_updated": "2026-03-18",
+    "notes": "Chapter 0: Introduction / Abakada. Teach-only orientation session (no quizzes). Content to be filled in by Ean."
+  },
+
+  "lesson_id": "000",
+  "title": "The Abakada",
+  "subtitle": "How Tagalog Sounds",
+  "chapter_id": "ch00",
+  "chapter_title": "Introduction — Abakada",
+  "position_in_chapter": 1,
+  "difficulty": "beginner",
+  "total_sessions": 1,
+
+  "sessions": [
+    {
+      "session_id": "000_s1",
+      "session_number": 1,
+      "title": "How Tagalog Works",
+      "cards": [
+        {
+          "card_id": "000_s1_c1",
+          "type": "teach",
+          "highlight": "Welcome!",
+          "body": "Tagalog uses the Latin alphabet. No new script to learn!"
+        },
+        {
+          "card_id": "000_s1_c2",
+          "type": "teach",
+          "highlight": "The Abakada",
+          "body": "The traditional Filipino alphabet has 20 letters: A Ba Ka Da E Ga Ha I La Ma Na Ng O Pa Ra Sa Ta U Wa Ya."
+        },
+        {
+          "card_id": "000_s1_c3",
+          "type": "teach",
+          "highlight": "What you see is what you say",
+          "body": "Tagalog is mostly phonetic. Unlike English where 'tough', 'through', and 'though' all sound different, Tagalog letters have consistent sounds."
+        },
+        {
+          "card_id": "000_s1_c4",
+          "type": "teach",
+          "highlight": "Key sounds",
+          "body": "Three things to know: the rolled R, 'ng' is its own letter (like in 'singing'), and the glottal stop (a quick pause, like 'uh-oh')."
+        },
+        {
+          "card_id": "000_s1_c5",
+          "type": "teach",
+          "highlight": "Words you already know",
+          "body": "Karaoke, boondocks (from bundok — mountain), and sari-sari (variety store) are all Tagalog words that made it into English.",
+          "alam_mo_ba_inline": {
+            "term": "Boondocks",
+            "fact": "American soldiers in the Philippines borrowed 'bundok' (mountain) — it became 'boondocks' meaning a remote area.",
+            "emoji": "🏔️"
+          }
+        },
+        {
+          "card_id": "000_s1_c6",
+          "type": "teach",
+          "highlight": "No gendered pronouns",
+          "body": "Tagalog has no he/she distinction. 'Siya' means he, she, or they. One word for everyone."
+        },
+        {
+          "card_id": "000_s1_c7",
+          "type": "teach",
+          "highlight": "Ready?",
+          "body": "You're about to learn your first Tagalog. Let's go!"
+        }
+      ]
+    }
+  ],
+
+  "vocabulary": [],
+
+  "wrong_answer_tracking": {
+    "behaviour": "No quizzes in this lesson. Teach-only orientation.",
+    "track_wrong_count": false,
+    "wrong_count_usage": ""
+  },
+
+  "completion_reward": {
+    "xp": 10,
+    "alam_mo_ba": [
+      "The Philippines has over 180 languages, but Tagalog (Filipino) is the national lingua franca.",
+      "The word 'karaoke' comes from Japanese, but the karaoke machine was invented by a Filipino named Roberto del Rosario."
+    ]
+  },
+
+  "ai_practice": null,
+
+  "gamification": {
+    "xp_per_lesson": 10,
+    "hearts_per_wrong_answer": 0,
+    "streak_eligible": true,
+    "progress_ring": {
+      "total": 1,
+      "display": "Single session lesson"
+    },
+    "replay": {
+      "allowed": true,
+      "xp_on_replay": 0
+    }
+  }
+}

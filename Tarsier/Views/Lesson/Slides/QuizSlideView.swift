@@ -19,7 +19,7 @@ class QuizState {
     }
 
     var hasSelection: Bool {
-        if totalWordPieces > 0 { return placedIndices.count == totalWordPieces }
+        if totalWordPieces > 0 { return !placedIndices.isEmpty }
         return selectedOption != nil || !textAnswer.trimmingCharacters(in: .whitespaces).isEmpty
     }
 

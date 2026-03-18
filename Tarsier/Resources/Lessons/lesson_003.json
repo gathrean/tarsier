@@ -160,8 +160,8 @@
           "type": "quiz",
           "quiz_type": "sentence_build",
           "character": "lola",
-          "prompt": "Build what you'd say to Lola after she cooks for you:",
-          "source_text": "Thank you very much (respectful)",
+          "prompt": "Reply to Lola",
+          "source_text": "Did you like the sinigang, anak?",
           "correct_order": ["Maraming", "salamat", "po"],
           "distractors": ["naman", "Walang", "anuman"],
           "explanation": "'Maraming salamat po!' Maximum gratitude with respect."
@@ -280,8 +280,8 @@
           "type": "quiz",
           "quiz_type": "sentence_build",
           "character": "bunso",
-          "prompt": "Build the respectful response to 'Salamat!':",
-          "source_text": "You're welcome (respectful)",
+          "prompt": "Respond to Bunso",
+          "source_text": "Salamat for helping me with my homework!",
           "correct_order": ["Walang", "anuman", "po"],
           "distractors": ["salamat", "maraming", "naman"],
           "explanation": "'Walang anuman po.' It was nothing."
@@ -373,8 +373,8 @@
           "type": "quiz",
           "quiz_type": "sentence_build",
           "character": "tita",
-          "prompt": "Your tita thanked you. Build your response:",
-          "source_text": "You're welcome (respectful)",
+          "prompt": "Reply to Tita",
+          "source_text": "Salamat for bringing the leche flan, anak!",
           "correct_order": ["Walang", "anuman", "po"],
           "distractors": ["Maraming", "salamat", "hindi"],
           "explanation": "'Walang anuman po.' Po at the end for respect."
@@ -446,8 +446,8 @@
           "type": "quiz",
           "quiz_type": "sentence_build",
           "character": "lolo",
-          "prompt": "Lolo just gave you a gift. Build your response:",
-          "source_text": "Thank you very much (respectful)",
+          "prompt": "Reply to Lolo",
+          "source_text": "Here, anak. This is for your birthday.",
           "correct_order": ["Maraming", "salamat", "po"],
           "distractors": ["Walang", "anuman", "hindi", "na"],
           "explanation": "'Maraming salamat po!' Po at the end for respect."

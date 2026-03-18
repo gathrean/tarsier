@@ -365,8 +365,8 @@
           "type": "quiz",
           "quiz_type": "sentence_build",
           "character": "lolo",
-          "prompt": "Translate what Lolo wants to say:",
-          "source_text": "Good evening! How are you? (respectful)",
+          "prompt": "Greet Lolo",
+          "source_text": "You just arrived at Lolo's house in the evening. Greet him properly.",
           "correct_order": ["Magandang", "gabi", "po", "Kumusta", "po"],
           "distractors": ["umaga", "hapon"],
           "explanation": "'Magandang gabi po! Kumusta po?' Combining a time-of-day greeting with kumusta."
@@ -462,8 +462,8 @@
           "type": "quiz",
           "quiz_type": "sentence_build",
           "character": "bunso",
-          "prompt": "Build a respectful afternoon greeting:",
-          "source_text": "Good afternoon (respectful)",
+          "prompt": "Greet your teacher",
+          "source_text": "It's 2 PM. You see your teacher in the hallway. Greet them properly.",
           "correct_order": ["Magandang", "hapon", "po"],
           "distractors": ["umaga", "gabi", "kumusta"],
           "explanation": "'Magandang hapon po!' Hapon = afternoon."
