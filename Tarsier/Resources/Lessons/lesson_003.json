@@ -6,10 +6,10 @@
   },
 
   "lesson_id": "003",
-  "title": "Oo, Hindi, Salamat",
-  "subtitle": "Yes, No, and Thank You",
+  "title": "Yes, No, Thanks",
+  "subtitle": "Oo, Hindi, Salamat — Yes, No, and Thank You",
   "chapter_id": "ch01",
-  "chapter_title": "Magalang — Respect & Greetings",
+  "chapter_title": "Respect & Greetings — Magalang",
   "position_in_chapter": 3,
   "difficulty": "beginner",
   "total_sessions": 5,
@@ -309,7 +309,7 @@
           "card_id": "003_s4_c1",
           "type": "teach",
           "body": "Let's put together everything you've learned. Here's how a full exchange might sound with an elder.",
-          "image": "images/filipino_adobo.jpg",
+          "image": { "filename": "images/filipino_adobo.jpg" },
           "example": {
             "context": "Your lolo offers you food at a family gathering",
             "sentence": "\"Kumain ka na ba?\" \"Hindi pa po.\" \"Kain na!\" \"Salamat po, Lolo.\"",

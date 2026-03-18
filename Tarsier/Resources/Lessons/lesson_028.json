@@ -1,7 +1,11 @@
 {
-  "_meta": { "schema_version": "0.6", "last_updated": "2026-03-12", "notes": "Placeholder stub. Sessions not yet written." },
+  "_meta": {
+    "schema_version": "0.6",
+    "last_updated": "2026-03-12",
+    "notes": "Placeholder stub. Sessions not yet written."
+  },
   "lesson_id": "028",
-  "title": "Sakay",
+  "title": "Transportation",
   "subtitle": "Riding — Jeepneys, Tricycles, and Para Po!",
   "chapter_id": "ch08",
   "chapter_title": "Lugar — Places & Getting Around",
@@ -10,12 +14,30 @@
   "total_sessions": 5,
   "sessions": [],
   "vocabulary": [],
-  "wrong_answer_tracking": { "behaviour": "Wrong answers go to back of current session queue.", "track_wrong_count": true, "wrong_count_usage": "Feed to Gemini system prompt for AI Practice." },
+  "wrong_answer_tracking": {
+    "behaviour": "Wrong answers go to back of current session queue.",
+    "track_wrong_count": true,
+    "wrong_count_usage": "Feed to Gemini system prompt for AI Practice."
+  },
   "completion_reward": {
     "xp": 15,
-    "alam_mo_ba": [ "Jeepneys were originally built from American military jeeps left behind after World War II. Filipinos repainted, extended, and decorated them into a uniquely Filipino vehicle. They are now considered a national cultural symbol — and are slowly being phased out for modern electric jeepneys." ],
+    "alam_mo_ba": [
+      "Jeepneys were originally built from American military jeeps left behind after World War II. Filipinos repainted, extended, and decorated them into a uniquely Filipino vehicle. They are now considered a national cultural symbol — and are slowly being phased out for modern electric jeepneys."
+    ],
     "alam_mo_ba_display": "Show 1 random fun fact on lesson completion screen."
   },
   "ai_practice": null,
-  "gamification": { "xp_per_lesson": 15, "hearts_per_wrong_answer": 1, "streak_eligible": true, "progress_ring": { "total": 5, "display": "Ring animates from X/5 to (X+1)/5 on session completion" }, "replay": { "allowed": true, "xp_on_replay": 0 } }
+  "gamification": {
+    "xp_per_lesson": 15,
+    "hearts_per_wrong_answer": 1,
+    "streak_eligible": true,
+    "progress_ring": {
+      "total": 5,
+      "display": "Ring animates from X/5 to (X+1)/5 on session completion"
+    },
+    "replay": {
+      "allowed": true,
+      "xp_on_replay": 0
+    }
+  }
 }

@@ -8,8 +8,8 @@ struct HomeView: View {
     @State private var lessons: [SlideLesson] = []
     @State private var showPremiumGate = false
     @State private var selectedLessonID: Int? = nil
-    @State private var isFirstLoadToday = false
-    @AppStorage("lastGreetingDate") private var lastGreetingDate: String = ""
+    @State private var showDailyToast = false
+    @Environment(\.scenePhase) private var scenePhase
 
     private var profile: UserProfile? { profiles.first }
     private var completedIDs: [Int] { profile?.completedLessonIDs ?? [] }
@@ -22,20 +22,19 @@ struct HomeView: View {
                     .zIndex(1)
 
                 ZStack(alignment: .top) {
+                    ScrollViewReader { scrollProxy in
                     ScrollView {
                     VStack(spacing: 0) {
-                        // Bunso greeting — scrolls with content
-                        if let profile {
-                            BunsoGreetingHeader(
-                                greeting: bunsoGreeting(for: profile)
-                            )
-                            .padding(.bottom, 8)
-                        }
-
                         roadmap
                     }
                     .padding(.top, TarsierSpacing.sectionSpacing)
                     .padding(.bottom, 40)
+                    }
+                    .onAppear {
+                        if let chapterId = currentChapterId {
+                            scrollProxy.scrollTo("chapter_\(chapterId)", anchor: .center)
+                        }
+                    }
                 }
 
                     // Fade gradient at top of scroll area
@@ -46,6 +45,16 @@ struct HomeView: View {
                     )
                     .frame(height: 24)
                     .allowsHitTesting(false)
+
+                    // Daily toast greeting
+                    if showDailyToast, let profile {
+                        DailyToastView(
+                            greeting: GreetingHelper.greeting(for: profile),
+                            onDismiss: { showDailyToast = false }
+                        )
+                        .show()
+                        .padding(.top, 8)
+                    }
                 }
             }
             .ignoresSafeArea(edges: .top)
@@ -77,35 +86,50 @@ struct HomeView: View {
                 profile.refillHearts()
             }
 
-            // Track first load of the day for greeting variant
-            let today = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .none)
-            if lastGreetingDate != today {
-                lastGreetingDate = today
-                isFirstLoadToday = true
+            // Show greeting toast on app open
+            showDailyToast = true
+        }
+        .onChange(of: scenePhase) { _, newPhase in
+            if newPhase == .active {
+                showDailyToast = true
             }
         }
     }
 
-    // MARK: - Top Bar (Streak / Hearts / XP)
+    // MARK: - Top Bar (Bunso + Name | Streak / Hearts / XP)
 
     private var topBar: some View {
         HStack(spacing: 0) {
-            HStack(spacing: 4) {
-                Image(systemName: "flame.fill")
-                    .foregroundStyle(TarsierColors.gold)
-                Text("\(profile?.currentStreak ?? 0)")
-                    .font(TarsierFonts.heading(18))
-                    .foregroundStyle(TarsierColors.gold)
+            // Left: Bunso head + user name
+            HStack(spacing: 8) {
+                bunsoHeaderAvatar
+                    .frame(width: 28, height: 28)
+
+                if let profile {
+                    Text(displayName(for: profile))
+                        .font(.system(size: 15, weight: .medium, design: .rounded))
+                        .foregroundStyle(.white)
+                        .lineLimit(1)
+                }
             }
 
             Spacer()
 
+            // Right: streak, gems, hearts
             HStack(spacing: 12) {
+                HStack(spacing: 4) {
+                    Image(systemName: "flame.fill")
+                        .foregroundStyle(TarsierColors.gold)
+                    Text("\(profile?.currentStreak ?? 0)")
+                        .font(TarsierFonts.heading(16))
+                        .foregroundStyle(TarsierColors.gold)
+                }
+
                 HStack(spacing: 4) {
                     Image(systemName: "hexagon.fill")
                         .foregroundStyle(Color(hex: "#38BDF8"))
                     Text("\(profile?.totalXP ?? 0)")
-                        .font(TarsierFonts.heading(18))
+                        .font(TarsierFonts.heading(16))
                         .foregroundStyle(Color(hex: "#38BDF8"))
                 }
 
@@ -113,15 +137,43 @@ struct HomeView: View {
                     Image(systemName: "heart.fill")
                         .foregroundStyle(TarsierColors.heartRed)
                     Text("\(profile?.hearts ?? 5)")
-                        .font(TarsierFonts.heading(18))
+                        .font(TarsierFonts.heading(16))
                         .foregroundStyle(TarsierColors.heartRed)
                 }
             }
         }
-        .font(.system(size: 18, weight: .bold, design: .rounded))
+        .font(.system(size: 16, weight: .bold, design: .rounded))
         .padding(.vertical, 12)
         .padding(.horizontal, TarsierSpacing.screenPadding)
         .background(TarsierColors.functionalPurple)
+    }
+
+    @ViewBuilder
+    private var bunsoHeaderAvatar: some View {
+        if let _ = UIImage(named: "character_bunso") {
+            Image("character_bunso")
+                .resizable()
+                .scaledToFit()
+        } else if let _ = UIImage(named: "Tarsier-Waving") {
+            Image("Tarsier-Waving")
+                .resizable()
+                .scaledToFit()
+        } else {
+            Circle()
+                .fill(Color.white.opacity(0.2))
+                .overlay(
+                    Text("🐵")
+                        .font(.system(size: 16))
+                )
+        }
+    }
+
+    private func displayName(for profile: UserProfile) -> String {
+        guard let name = profile.userName, !name.isEmpty else { return "" }
+        if let title = profile.preferredTitle, !title.isEmpty {
+            return "\(title) \(name)"
+        }
+        return name
     }
 
     // MARK: - Roadmap
@@ -147,8 +199,21 @@ struct HomeView: View {
                     selectedLessonID: $selectedLessonID,
                     showPremiumGate: $showPremiumGate
                 )
+                .id("chapter_\(chapter.chapterId)")
             }
         }
+    }
+
+    /// The chapter containing the user's current (next incomplete) lesson.
+    private var currentChapterId: String? {
+        for chapter in chapters {
+            for lessonID in chapter.lessonIDs {
+                if !completedIDs.contains(lessonID) {
+                    return chapter.chapterId
+                }
+            }
+        }
+        return nil
     }
 
     // MARK: - Unlock Logic
@@ -201,14 +266,4 @@ struct HomeView: View {
         lessons.first { $0.id == lessonID }?.title ?? "Lesson \(lessonID)"
     }
 
-    // MARK: - Bunso Greeting
-
-    private func bunsoGreeting(for profile: UserProfile) -> String {
-        let name = GreetingHelper.greeting(for: profile)
-        if isFirstLoadToday {
-            return "Great to see you today! \(name)"
-        } else {
-            return "Welcome back! \(name)"
-        }
-    }
 }

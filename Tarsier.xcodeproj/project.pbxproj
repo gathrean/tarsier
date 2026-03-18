@@ -94,6 +94,7 @@
 		A96817343CAD57D4AF7418B6 /* StreakService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BAE3455847B83FA3F5BA1A /* StreakService.swift */; };
 		AC81B93BFE985CB5A30EB7A8 /* OnboardingFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCD8CCAC476282D791517EC /* OnboardingFlow.swift */; };
 		ACD9E409F56D77268197A74E /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C5B7D17C0C9BF896E2DC8 /* ProgressBarView.swift */; };
+		ACF105281774A3D190A6B6FF /* DailyToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB55CD3180266F3284F6AF0 /* DailyToastView.swift */; };
 		AFE4A7627B1E0B897C96D056 /* lesson_006.json in Resources */ = {isa = PBXBuildFile; fileRef = 6E87449FA03A7982FF92828A /* lesson_006.json */; };
 		B01F1540117F658EEC76E621 /* lesson_032.json in Resources */ = {isa = PBXBuildFile; fileRef = E55D65B5A5B38C7A4628F6D4 /* lesson_032.json */; };
 		B5A1293B9F9379C11B46951A /* ProficiencyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EA384B1AC9E3F3D1225FD9 /* ProficiencyScreen.swift */; };
@@ -138,6 +139,7 @@
 		1472B2E8325E8DA300837744 /* chapters.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = chapters.json; sourceTree = "<group>"; };
 		161EAC20196EEF34D268F9BA /* ChapterProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterProgress.swift; sourceTree = "<group>"; };
 		18E4C6BD3E168155DBD9D685 /* PracticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeView.swift; sourceTree = "<group>"; };
+		1CB55CD3180266F3284F6AF0 /* DailyToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyToastView.swift; sourceTree = "<group>"; };
 		1E49CB69516AE4DEACD6DF11 /* SlideLesson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideLesson.swift; sourceTree = "<group>"; };
 		204951829987ECBA0D413D0A /* TarsierColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TarsierColors.swift; sourceTree = "<group>"; };
 		205DFCB623E019B789D420D6 /* ImageMatchQuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMatchQuizView.swift; sourceTree = "<group>"; };
@@ -177,7 +179,7 @@
 		670A8D7AF46149EA097A1F2F /* LanguagePickerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePickerScreen.swift; sourceTree = "<group>"; };
 		68965F42111E735FDD0F0176 /* RoadmapDecorations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadmapDecorations.swift; sourceTree = "<group>"; };
 		69F047FF04ACFAC5A57C1FDF /* GreetingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingHelper.swift; sourceTree = "<group>"; };
-		6E3FB2F04B2A708D6E5E6B01 /* Tarsier.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Tarsier.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E3FB2F04B2A708D6E5E6B01 /* Tarsier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tarsier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E87449FA03A7982FF92828A /* lesson_006.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lesson_006.json; sourceTree = "<group>"; };
 		714F0509CA9E786FEF73759C /* lesson_020.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lesson_020.json; sourceTree = "<group>"; };
 		73CE4FCFE3D044B4EA46CA72 /* lesson_007.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lesson_007.json; sourceTree = "<group>"; };
@@ -535,6 +537,7 @@
 			children = (
 				601FBFA72001DF467F94C25E /* BunsoGreetingHeader.swift */,
 				8142EF1917AAD789166E3058 /* ChapterBannerView.swift */,
+				1CB55CD3180266F3284F6AF0 /* DailyToastView.swift */,
 				091A2D027DE131B1E9BBBC6B /* HomeView.swift */,
 				366CC93EAAACCB1B57913063 /* LessonPopoverCard.swift */,
 				917AE620F52E04804585AC13 /* PathNodeView.swift */,
@@ -586,8 +589,6 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1600;
-				TargetAttributes = {
-				};
 			};
 			buildConfigurationList = 3F3D5629C7C4DB09FEC13EC6 /* Build configuration list for PBXProject "Tarsier" */;
 			developmentRegion = en;
@@ -686,6 +687,7 @@
 				9136ABD7F4E245A61EA03A69 /* ContentView.swift in Sources */,
 				1000760C4EBC14DBB3CB477A /* DailyActivity.swift in Sources */,
 				742F8698C67A7B8AD57CFA46 /* DailyGoalScreen.swift in Sources */,
+				ACF105281774A3D190A6B6FF /* DailyToastView.swift in Sources */,
 				E0E0757A7D0E3C0FFE85930A /* FlowLayout.swift in Sources */,
 				008885DF805902F799DAE6DD /* GreetingHelper.swift in Sources */,
 				7A77214E9AC313D7F5A7FCB1 /* HeartDisplay.swift in Sources */,
@@ -758,6 +760,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = QH9WULA9FH;
 				INFOPLIST_FILE = Tarsier/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -847,6 +850,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = QH9WULA9FH;
 				INFOPLIST_FILE = Tarsier/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

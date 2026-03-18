@@ -55,6 +55,14 @@ struct PathNodeView: View {
         return false
     }
 
+    /// Asset name for the lesson icon, e.g. "lesson_001"
+    private var lessonIconName: String? {
+        if case .lesson(let id) = node.kind {
+            return String(format: "lesson_%03d", id)
+        }
+        return nil
+    }
+
     var body: some View {
         VStack(spacing: 6) {
             ZStack {
@@ -92,6 +100,26 @@ struct PathNodeView: View {
         }
     }
 
+    // MARK: - Lesson Icon (image from asset catalog, emoji fallback)
+
+    @ViewBuilder
+    private func lessonIcon(size: CGFloat, grayscale: Bool = false, opacity: Double = 1.0) -> some View {
+        if let name = lessonIconName, UIImage(named: name) != nil {
+            Image(name)
+                .resizable()
+                .scaledToFill()
+                .frame(width: size, height: size)
+                .clipShape(Circle())
+                .grayscale(grayscale ? 1.0 : 0)
+                .opacity(opacity)
+        } else {
+            Text(node.emoji)
+                .font(.system(size: size > 70 ? 32 : 24))
+                .grayscale(grayscale ? 1.0 : 0)
+                .opacity(opacity)
+        }
+    }
+
     // MARK: - Active (84×84, pulsing glow, 3D shadow)
 
     private var activeNode: some View {
@@ -101,8 +129,7 @@ struct PathNodeView: View {
             .shadow(color: TarsierColors.functionalPurple.opacity(0.3), radius: 12)
             .background(PulsingGlowRing(size: nodeSize))
             .overlay {
-                Text(node.emoji)
-                    .font(.system(size: 32))
+                lessonIcon(size: nodeSize)
             }
             .modifier(GentlePulse())
     }
@@ -115,8 +142,7 @@ struct PathNodeView: View {
                 .fill(TarsierColors.functionalPurple)
                 .frame(width: nodeSize, height: nodeSize)
 
-            Text(node.emoji)
-                .font(.system(size: 24))
+            lessonIcon(size: nodeSize)
         }
     }
 
@@ -139,8 +165,7 @@ struct PathNodeView: View {
                         .stroke(TarsierColors.functionalPurple.opacity(0.3), lineWidth: 2)
                 )
 
-            Text(node.emoji)
-                .font(.system(size: 24))
+            lessonIcon(size: nodeSize)
         }
     }
 
@@ -156,10 +181,7 @@ struct PathNodeView: View {
                         .stroke(TarsierColors.cardBorder, lineWidth: 3)
                 )
 
-            Text(node.emoji)
-                .font(.system(size: 24))
-                .grayscale(1.0)
-                .opacity(0.4)
+            lessonIcon(size: nodeSize, grayscale: true, opacity: 0.4)
         }
     }
 

@@ -5,7 +5,7 @@
     "notes": "Placeholder stub. Sessions not yet written."
   },
   "lesson_id": "008",
-  "title": "Luto",
+  "title": "Cooking",
   "subtitle": "Cooking — mag- and nag-",
   "chapter_id": "ch03",
   "chapter_title": "Kain! — Food & Basic Verbs",
@@ -31,7 +31,13 @@
     "xp_per_lesson": 15,
     "hearts_per_wrong_answer": 1,
     "streak_eligible": true,
-    "progress_ring": { "total": 5, "display": "Ring animates from X/5 to (X+1)/5 on session completion" },
-    "replay": { "allowed": true, "xp_on_replay": 0 }
+    "progress_ring": {
+      "total": 5,
+      "display": "Ring animates from X/5 to (X+1)/5 on session completion"
+    },
+    "replay": {
+      "allowed": true,
+      "xp_on_replay": 0
+    }
   }
 }

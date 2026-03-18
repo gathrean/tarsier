@@ -1,8 +1,8 @@
 [
   {
     "chapter_id": "ch01",
-    "title": "Magalang",
-    "subtitle": "Respect & Greetings",
+    "title": "Respect & Greetings",
+    "subtitle": "Magalang",
     "rows": [
       { "row": 1, "lessons": ["001"] },
       { "row": 2, "lessons": ["002", "003"] },
@@ -11,8 +11,8 @@
   },
   {
     "chapter_id": "ch02",
-    "title": "Taglish",
-    "subtitle": "How Filipinos Actually Talk",
+    "title": "Modern Tagalog",
+    "subtitle": "Taglish",
     "rows": [
       { "row": 1, "lessons": ["005"] },
       { "row": 2, "lessons": ["006"] }
@@ -20,8 +20,8 @@
   },
   {
     "chapter_id": "ch03",
-    "title": "Kain!",
-    "subtitle": "Food & Basic Verbs",
+    "title": "Food & Basic Verbs",
+    "subtitle": "Kain!",
     "rows": [
       { "row": 1, "lessons": ["007"] },
       { "row": 2, "lessons": ["008", "009"] },
@@ -30,8 +30,8 @@
   },
   {
     "chapter_id": "ch04",
-    "title": "Pamilya",
-    "subtitle": "Family & Relationships",
+    "title": "Family & Relationships",
+    "subtitle": "Pamilya",
     "rows": [
       { "row": 1, "lessons": ["011", "012"] },
       { "row": 2, "lessons": ["013", "014"] }
@@ -39,8 +39,8 @@
   },
   {
     "chapter_id": "ch05",
-    "title": "Bilang",
-    "subtitle": "Counting & Money",
+    "title": "Counting & Money",
+    "subtitle": "Bilang",
     "rows": [
       { "row": 1, "lessons": ["015"] },
       { "row": 2, "lessons": ["016"] }
@@ -48,8 +48,8 @@
   },
   {
     "chapter_id": "ch06",
-    "title": "Araw-araw",
-    "subtitle": "Daily Routines",
+    "title": "Daily Routines",
+    "subtitle": "Araw-araw",
     "rows": [
       { "row": 1, "lessons": ["017"] },
       { "row": 2, "lessons": ["018", "019"] },
@@ -58,8 +58,8 @@
   },
   {
     "chapter_id": "ch07",
-    "title": "Damdamin",
-    "subtitle": "Feelings & Descriptions",
+    "title": "Feelings & Descriptions",
+    "subtitle": "Damdamin",
     "rows": [
       { "row": 1, "lessons": ["021"] },
       { "row": 2, "lessons": ["022", "023"] },
@@ -68,8 +68,8 @@
   },
   {
     "chapter_id": "ch08",
-    "title": "Lugar",
-    "subtitle": "Places & Getting Around",
+    "title": "Places & Getting Around",
+    "subtitle": "Lugar",
     "rows": [
       { "row": 1, "lessons": ["025"] },
       { "row": 2, "lessons": ["026", "027"] },
@@ -78,8 +78,8 @@
   },
   {
     "chapter_id": "ch09",
-    "title": "Oras",
-    "subtitle": "Time & Planning",
+    "title": "Time & Planning",
+    "subtitle": "Oras",
     "rows": [
       { "row": 1, "lessons": ["029"] },
       { "row": 2, "lessons": ["030"] }
@@ -87,8 +87,8 @@
   },
   {
     "chapter_id": "ch10",
-    "title": "Salita",
-    "subtitle": "The Word Machine",
+    "title": "The Word Machine",
+    "subtitle": "Salita",
     "rows": [
       { "row": 1, "lessons": ["031"] },
       { "row": 2, "lessons": ["032"] }

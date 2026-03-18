@@ -6,10 +6,10 @@
   },
 
   "lesson_id": "002",
-  "title": "Kumusta",
-  "subtitle": "How Filipinos Say Hello",
+  "title": "How Are You?",
+  "subtitle": "Kumusta — How Filipinos Say Hello",
   "chapter_id": "ch01",
-  "chapter_title": "Magalang — Respect & Greetings",
+  "chapter_title": "Respect & Greetings — Magalang",
   "position_in_chapter": 2,
   "difficulty": "beginner",
   "total_sessions": 5,
@@ -128,7 +128,7 @@
           "card_id": "002_s2_c2",
           "type": "teach",
           "body": "There are three time-of-day greetings.",
-          "image": "images/filipino_morning.jpg",
+          "image": { "filename": "images/filipino_morning.jpg" },
           "example": {
             "sentence": "Magandang umaga",
             "translation": "Good morning"
@@ -169,7 +169,7 @@
           "quiz_type": "image_match",
           "character": "bunso",
           "prompt": "Which one is 'umaga'?",
-          "options": [
+          "image_match_options": [
             { "image": "images/umaga_sunrise.jpg", "label": "umaga", "correct": true },
             { "image": "images/hapon_afternoon.jpg", "label": "hapon", "correct": false },
             { "image": "images/gabi_night.jpg", "label": "gabi", "correct": false },
@@ -226,7 +226,7 @@
           "card_id": "002_s3_c2",
           "type": "teach",
           "body": "Filipinos ask 'Kumain ka na ba?' the same way Americans say 'How's it going?' They don't actually need to know what you ate.",
-          "image": "images/filipino_family_food.jpg",
+          "image": { "filename": "images/filipino_family_food.jpg" },
           "example": {
             "context": "Your tita sees you at a family gathering",
             "sentence": "Kumain ka na ba?",

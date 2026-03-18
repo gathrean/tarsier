@@ -28,6 +28,7 @@ struct NameTitleScreen: View {
                 .textInputAutocapitalization(.words)
                 .autocorrectionDisabled()
                 .focused($nameFieldFocused)
+                .transaction { $0.animation = nil }
 
             // Ate / Kuya picker
             VStack(spacing: 8) {
@@ -92,6 +93,14 @@ struct NameTitleScreen: View {
             }
 
             Spacer()
+        }
+        .onAppear {
+            // Delay focus until the slide transition animation completes.
+            // Without this, the TextField can become non-interactive when
+            // created inside an .id()-based transition (SwiftUI bug).
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.45) {
+                nameFieldFocused = true
+            }
         }
         .onDisappear { nameFieldFocused = false }
     }

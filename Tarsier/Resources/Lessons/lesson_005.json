@@ -5,7 +5,7 @@
     "notes": "Placeholder stub. Sessions not yet written."
   },
   "lesson_id": "005",
-  "title": "The Mix",
+  "title": "Basic Taglish",
   "subtitle": "How Taglish Actually Works",
   "chapter_id": "ch02",
   "chapter_title": "Taglish — How Filipinos Actually Talk",
@@ -31,7 +31,13 @@
     "xp_per_lesson": 15,
     "hearts_per_wrong_answer": 1,
     "streak_eligible": true,
-    "progress_ring": { "total": 5, "display": "Ring animates from X/5 to (X+1)/5 on session completion" },
-    "replay": { "allowed": true, "xp_on_replay": 0 }
+    "progress_ring": {
+      "total": 5,
+      "display": "Ring animates from X/5 to (X+1)/5 on session completion"
+    },
+    "replay": {
+      "allowed": true,
+      "xp_on_replay": 0
+    }
   }
 }
