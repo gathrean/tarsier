@@ -77,6 +77,7 @@ struct SessionCard: Codable, Identifiable {
     let highlight: String?
     let usePo: Bool?
     let example: CardExample?
+    let examples: [CardExample]?
 
     // Quiz fields
     let quizType: QuizType?
@@ -110,7 +111,7 @@ struct SessionCard: Codable, Identifiable {
 
     enum CodingKeys: String, CodingKey {
         case cardId = "card_id"
-        case type, body, highlight, image, example, audio, character
+        case type, body, highlight, image, example, examples, audio, character
         case alamMoBaInline = "alam_mo_ba_inline"
         case usePo = "use_po"
         case quizType = "quiz_type"

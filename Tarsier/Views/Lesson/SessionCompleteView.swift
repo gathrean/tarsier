@@ -158,8 +158,8 @@ struct SessionCompleteView: View {
             // XP badge
             if xp > 0 {
                 HStack(spacing: 6) {
-                    Image(systemName: "star.fill")
-                        .foregroundStyle(TarsierColors.functionalPurple)
+                    Image(systemName: "hexagon.fill")
+                        .foregroundStyle(Color(hex: "#38BDF8"))
                     Text("+\(xp) XP")
                         .font(TarsierFonts.heading(18))
                         .foregroundStyle(TarsierColors.textPrimary)

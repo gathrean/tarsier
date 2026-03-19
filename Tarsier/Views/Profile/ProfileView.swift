@@ -15,25 +15,49 @@ struct ProfileView: View {
     private var profile: UserProfile? { profiles.first }
 
     var body: some View {
-        ScrollView {
-            VStack(spacing: TarsierSpacing.sectionSpacing) {
-                // Header: Bunso + greeting
-                headerSection
+        ZStack(alignment: .top) {
+            ScrollView {
+                VStack(spacing: TarsierSpacing.sectionSpacing) {
+                    // Spacer for gradient header
+                    Color.clear.frame(height: 24)
 
-                // Stats cards
-                statsCards
+                    // Header: Bunso + greeting
+                    headerSection
 
-                // Activity & Streak
-                activitySection
+                    // Stats cards
+                    statsCards
 
-                // Settings sections
-                settingsSection
+                    // Activity & Streak
+                    activitySection
+
+                    // Settings sections
+                    settingsSection
+                }
+                .padding(.horizontal, TarsierSpacing.screenPadding)
+                .padding(.bottom, 100) // Extra bottom clearance for tab bar
             }
-            .padding(.horizontal, TarsierSpacing.screenPadding)
-            .padding(.bottom, 40)
+
+            // Purple gradient header
+            VStack(spacing: 0) {
+                Text("Profile")
+                    .font(TarsierFonts.heading(22))
+                    .foregroundStyle(.white)
+                    .frame(maxWidth: .infinity)
+                    .padding(.bottom, 12)
+            }
+            .allowsHitTesting(false)
+            .background(
+                LinearGradient(
+                    colors: [Color(hex: "#5B48E0"), Color(hex: "#5B48E0").opacity(0)],
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                .padding(.top, -200)
+                .padding(.bottom, -40)
+            )
         }
         .background(TarsierColors.warmWhite)
-        .navigationTitle("Profile")
+        .toolbar(.hidden, for: .navigationBar)
         .alert("Reset Progress?", isPresented: $showResetConfirmation) {
             Button("Cancel", role: .cancel) {}
             Button("Reset", role: .destructive) {
@@ -102,10 +126,10 @@ struct ProfileView: View {
                 color: TarsierColors.gold
             )
             statCard(
-                icon: "star.fill",
+                icon: "hexagon.fill",
                 value: "\(profile?.totalXP ?? 0)",
                 label: "XP",
-                color: TarsierColors.functionalPurple
+                color: Color(hex: "#38BDF8")
             )
             statCard(
                 icon: "textformat.abc",

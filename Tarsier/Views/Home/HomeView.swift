@@ -8,8 +8,11 @@ struct HomeView: View {
     @State private var lessons: [SlideLesson] = []
     @State private var showPremiumGate = false
     @State private var showGreetingSheet = false
-    @State private var hasShownGreetingThisSession = false
     @Environment(\.scenePhase) private var scenePhase
+
+    /// In-memory flag: persists for the lifetime of the app process.
+    /// Resets only when the app is fully terminated and relaunched.
+    nonisolated(unsafe) private static var hasShownGreetingThisLaunch = false
 
     private var profile: UserProfile? { profiles.first }
     private var completedIDs: [Int] { profile?.completedLessonIDs ?? [] }
@@ -29,7 +32,7 @@ struct HomeView: View {
                         totalSessions: totalSessions(for:)
                     )
                     .padding(.top, 28)
-                    .padding(.bottom, 40)
+                    .padding(.bottom, 100) // Extra bottom clearance for tab bar
                 }
             }
 
@@ -40,15 +43,18 @@ struct HomeView: View {
         .background(TarsierColors.warmWhite)
         .toolbar(.hidden, for: .navigationBar)
         .navigationDestination(for: Chapter.self) { chapter in
+            let idx = chapters.firstIndex(where: { $0.id == chapter.id }) ?? 0
+            let locked = idx > 0 && !chapters[idx - 1].lessonIDs.allSatisfy({ completedIDs.contains($0) })
             ChapterDetailView(
                 chapter: chapter,
-                chapterIndex: chapters.firstIndex(where: { $0.id == chapter.id }) ?? 0,
+                chapterIndex: idx,
                 lessons: lessons,
                 completedIDs: completedIDs,
                 completedSessionCount: completedSessionCount(for:),
                 totalSessions: totalSessions(for:),
                 nextSessionNumber: nextSessionNumber(for:),
-                isPremium: profile?.isPremium ?? false
+                isPremium: profile?.isPremium ?? false,
+                isChapterLocked: locked
             )
         }
         .navigationDestination(for: String.self) { route in
@@ -63,17 +69,24 @@ struct HomeView: View {
                 }
             )
         }
-        .sheet(isPresented: $showGreetingSheet) {
-            GreetingSheetView(
-                profile: profile,
-                currentStreak: profile?.currentStreak ?? 0,
-                inProgressLessonTitle: inProgressLessonTitle,
-                onDismiss: { showGreetingSheet = false }
-            )
-            .presentationDetents([.height(180)])
-            .presentationDragIndicator(.visible)
-            .presentationCornerRadius(20)
+        .overlay(alignment: .bottom) {
+            if showGreetingSheet {
+                GreetingSheetView(
+                    profile: profile,
+                    currentStreak: profile?.currentStreak ?? 0,
+                    inProgressLessonTitle: inProgressLessonTitle,
+                    onDismiss: {
+                        withAnimation(.easeOut(duration: 0.25)) {
+                            showGreetingSheet = false
+                        }
+                    }
+                )
+                .padding(.horizontal, 12)
+                .padding(.bottom, 64) // sits above tab bar
+                .transition(.move(edge: .bottom).combined(with: .opacity))
+            }
         }
+        .animation(.easeOut(duration: 0.3), value: showGreetingSheet)
         .onAppear {
             chapters = LessonService.shared.loadChapters()
             lessons = LessonService.shared.loadAllLessons()
@@ -82,9 +95,9 @@ struct HomeView: View {
                 profile.refillHearts()
             }
 
-            // Show greeting sheet once per app session
-            if !hasShownGreetingThisSession {
-                hasShownGreetingThisSession = true
+            // Show greeting sheet once per app launch (cold start only)
+            if !Self.hasShownGreetingThisLaunch {
+                Self.hasShownGreetingThisLaunch = true
                 showGreetingSheet = true
             }
         }
@@ -92,17 +105,19 @@ struct HomeView: View {
 
     // MARK: - Ube Purple Gradient Header
 
+    /// Daily XP goal for the progress bar
+    private let dailyXPGoal: Int = 100
+
+    /// XP progress toward next level milestone (totalXP mod dailyGoal)
+    private var xpProgress: Int {
+        (profile?.totalXP ?? 0) % dailyXPGoal
+    }
+
     private var gradientHeader: some View {
         VStack(spacing: 0) {
-            // "tarsier" wordmark — tucked behind Dynamic Island
-            Text("tarsier")
-                .font(.system(size: 17, weight: .bold, design: .rounded))
-                .foregroundStyle(.white.opacity(0.8))
-                .frame(maxWidth: .infinity)
-                .padding(.top, -28)
-
-            // Stats bar: streak, XP, hearts
-            HStack(spacing: 16) {
+            // Stats bar: streak, XP progress bar, hearts
+            HStack(spacing: 12) {
+                // Streak
                 HStack(spacing: 4) {
                     Image(systemName: "flame.fill")
                         .foregroundStyle(TarsierColors.gold)
@@ -111,16 +126,27 @@ struct HomeView: View {
                         .foregroundStyle(.white)
                 }
 
-                HStack(spacing: 4) {
+                // XP progress bar capsule
+                HStack(spacing: 6) {
                     Image(systemName: "hexagon.fill")
+                        .font(.system(size: 14))
                         .foregroundStyle(Color(hex: "#38BDF8"))
-                    Text("\(profile?.totalXP ?? 0)")
-                        .font(TarsierFonts.heading(16))
-                        .foregroundStyle(.white)
+
+                    GeometryReader { geo in
+                        Capsule()
+                            .fill(Color.white.opacity(0.20))
+                            .overlay(alignment: .leading) {
+                                Capsule()
+                                    .fill(Color.white)
+                                    .frame(width: max(0, geo.size.width * min(1.0, CGFloat(xpProgress) / CGFloat(dailyXPGoal))))
+                            }
+                    }
+                    .frame(width: 100, height: 8)
                 }
 
                 Spacer()
 
+                // Hearts
                 HStack(spacing: 4) {
                     Image(systemName: "heart.fill")
                         .foregroundStyle(TarsierColors.heartRed)

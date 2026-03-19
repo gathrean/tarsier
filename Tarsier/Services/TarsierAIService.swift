@@ -1,8 +1,10 @@
 import Foundation
+
+#if canImport(GoogleGenerativeAI)
 import GoogleGenerativeAI
 
 final class TarsierAIService: @unchecked Sendable {
-    nonisolated(unsafe) static let shared = TarsierAIService()
+    static let shared = TarsierAIService()
 
     private let model: GenerativeModel?
 
@@ -51,6 +53,20 @@ final class TarsierAIService: @unchecked Sendable {
     }
 }
 
+#else
+
+// Stub when GoogleGenerativeAI package is not installed
+final class TarsierAIService: Sendable {
+    static let shared = TarsierAIService()
+    private init() {}
+
+    func sendMessage(_ message: String, history: [(content: String, isUser: Bool)]) async throws -> String {
+        throw TarsierAIError.notConfigured
+    }
+}
+
+#endif
+
 enum TarsierAIError: LocalizedError {
     case notConfigured
     case emptyResponse
@@ -58,7 +74,7 @@ enum TarsierAIError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .notConfigured:
-            "Tarsier AI is not configured. Please add your Gemini API key."
+            "Tarsier AI is not configured. Add the GoogleGenerativeAI package in Xcode."
         case .emptyResponse:
             "Tarsier is sleeping right now. Try again in a moment!"
         }

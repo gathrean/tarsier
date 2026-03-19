@@ -7,30 +7,34 @@ struct SentenceBuildQuizView: View {
     let correctOrder: [String]
     @Bindable var state: QuizState
     var audioBasePath: String? = nil
+    var hideSourceText: Bool = false // Hide when character bubble already shows it
 
     var body: some View {
         VStack(spacing: 20) {
             // Source text card (English sentence to translate)
-            HStack {
-                Text(sourceText)
-                    .font(TarsierFonts.body())
-                    .foregroundStyle(TarsierColors.textPrimary)
-                    .multilineTextAlignment(.leading)
-                Spacer()
+            // Hidden when a character bubble already displays it
+            if !hideSourceText {
+                HStack {
+                    Text(sourceText)
+                        .font(TarsierFonts.body())
+                        .foregroundStyle(TarsierColors.textPrimary)
+                        .multilineTextAlignment(.leading)
+                    Spacer()
+                }
+                .padding(TarsierSpacing.cardPadding)
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(TarsierColors.cream)
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(TarsierColors.cardBorder, lineWidth: 1)
+                )
             }
-            .padding(TarsierSpacing.cardPadding)
-            .background(
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(TarsierColors.cream)
-            )
-            .overlay(
-                RoundedRectangle(cornerRadius: 12)
-                    .stroke(TarsierColors.cardBorder, lineWidth: 1)
-            )
 
-            // Answer area — placed words
+            // Answer area - placed words
             VStack(alignment: .leading, spacing: 8) {
-                Text("Your sentence:")
+                Text("You say:")
                     .font(TarsierFonts.caption())
                     .foregroundStyle(TarsierColors.textSecondary)
 

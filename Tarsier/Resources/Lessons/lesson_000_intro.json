@@ -4,16 +4,14 @@
     "last_updated": "2026-03-18",
     "notes": "Chapter 0: Introduction / Abakada. Teach-only orientation session (no quizzes). Content to be filled in by Ean."
   },
-
   "lesson_id": "000",
   "title": "The Abakada",
   "subtitle": "How Tagalog Sounds",
   "chapter_id": "ch00",
-  "chapter_title": "Introduction — Abakada",
+  "chapter_title": "Introduction - Abakada",
   "position_in_chapter": 1,
   "difficulty": "beginner",
   "total_sessions": 1,
-
   "sessions": [
     {
       "session_id": "000_s1",
@@ -48,10 +46,10 @@
           "card_id": "000_s1_c5",
           "type": "teach",
           "highlight": "Words you already know",
-          "body": "Karaoke, boondocks (from bundok — mountain), and sari-sari (variety store) are all Tagalog words that made it into English.",
+          "body": "Karaoke, boondocks (from bundok - mountain), and sari-sari (variety store) are all Tagalog words that made it into English.",
           "alam_mo_ba_inline": {
             "term": "Boondocks",
-            "fact": "American soldiers in the Philippines borrowed 'bundok' (mountain) — it became 'boondocks' meaning a remote area.",
+            "fact": "American soldiers in the Philippines borrowed 'bundok' (mountain) - it became 'boondocks' meaning a remote area.",
             "emoji": "🏔️"
           }
         },
@@ -70,15 +68,12 @@
       ]
     }
   ],
-
   "vocabulary": [],
-
   "wrong_answer_tracking": {
     "behaviour": "No quizzes in this lesson. Teach-only orientation.",
     "track_wrong_count": false,
     "wrong_count_usage": ""
   },
-
   "completion_reward": {
     "xp": 10,
     "alam_mo_ba": [
@@ -86,9 +81,7 @@
       "The word 'karaoke' comes from Japanese, but the karaoke machine was invented by a Filipino named Roberto del Rosario."
     ]
   },
-
   "ai_practice": null,
-
   "gamification": {
     "xp_per_lesson": 10,
     "hearts_per_wrong_answer": 0,

@@ -13,6 +13,8 @@ struct Chapter: Codable, Identifiable, Hashable {
     let icon: String?
     let accentColor: String?
     let rows: [ChapterRow]
+    let description: String?
+    let hasPractice: Bool?
 
     var id: String { chapterId }
 
@@ -27,9 +29,16 @@ struct Chapter: Codable, Identifiable, Hashable {
         return Color(hex: hex)
     }
 
+    /// Whether this chapter shows an AI Practice node. Defaults to true if not specified,
+    /// but also gated behind the global feature flag.
+    var showsPractice: Bool {
+        (hasPractice ?? true) && FeatureFlags.aiPracticeEnabled
+    }
+
     enum CodingKeys: String, CodingKey {
         case chapterId = "chapter_id"
-        case title, subtitle, icon, rows
+        case title, subtitle, icon, rows, description
         case accentColor = "accent_color"
+        case hasPractice = "has_practice"
     }
 }

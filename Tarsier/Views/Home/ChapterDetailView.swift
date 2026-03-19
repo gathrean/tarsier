@@ -9,42 +9,85 @@ struct ChapterDetailView: View {
     let totalSessions: (Int) -> Int
     let nextSessionNumber: (Int) -> Int
     let isPremium: Bool
+    var isChapterLocked: Bool = false
 
     @Environment(\.dismiss) private var dismiss
+    @State private var showLockedToast = false
 
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
-                // Themed header banner
+                // Themed header banner (desaturated if locked)
                 ChapterHeaderView(chapter: chapter, chapterIndex: chapterIndex)
+                    .saturation(isChapterLocked ? 0.3 : 1.0)
+                    .opacity(isChapterLocked ? 0.7 : 1.0)
+
+                // Chapter description
+                if let desc = chapter.description, !desc.isEmpty {
+                    Text(desc)
+                        .font(.system(size: 15, weight: .regular, design: .rounded))
+                        .foregroundStyle(TarsierColors.textSecondary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal, 24)
+                        .padding(.vertical, 12)
+                }
 
                 // Lesson list
                 VStack(spacing: 12) {
                     ForEach(chapter.lessonIDs, id: \.self) { lessonID in
                         let lesson = lessons.first { $0.id == lessonID }
-                        let isCompleted = completedIDs.contains(lessonID)
-                        let isLocked = !isLessonUnlocked(lessonID)
-                        let completed = completedSessionCount(lessonID)
+                        let isCompleted = isChapterLocked ? false : completedIDs.contains(lessonID)
+                        let isLocked = isChapterLocked ? true : !isLessonUnlocked(lessonID)
+                        let completed = isChapterLocked ? 0 : completedSessionCount(lessonID)
                         let total = totalSessions(lessonID)
                         let isCurrent = !isCompleted && !isLocked
 
-                        LessonRowView(
-                            lessonID: lessonID,
-                            title: lesson?.title ?? "Lesson \(lessonID)",
-                            vocabularyPreview: vocabularyPreview(for: lesson),
-                            isCompleted: isCompleted,
-                            isLocked: isLocked,
-                            isCurrent: isCurrent,
-                            completedSessions: completed,
-                            totalSessions: total,
-                            sessionNumber: nextSessionNumber(lessonID),
-                            isReplay: isCompleted,
-                            accentColor: chapter.accentSwiftUIColor
-                        )
+                        if isChapterLocked {
+                            // Locked chapter: tapping a lesson shows a toast
+                            Button {
+                                withAnimation(.easeOut(duration: 0.3)) {
+                                    showLockedToast = true
+                                }
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                                    withAnimation { showLockedToast = false }
+                                }
+                            } label: {
+                                LessonRowView(
+                                    lessonID: lessonID,
+                                    title: lesson?.title ?? "Lesson \(lessonID)",
+                                    vocabularyPreview: vocabularyPreview(for: lesson),
+                                    isCompleted: false,
+                                    isLocked: true,
+                                    isCurrent: false,
+                                    completedSessions: 0,
+                                    totalSessions: total,
+                                    sessionNumber: 1,
+                                    isReplay: false,
+                                    accentColor: chapter.accentSwiftUIColor
+                                )
+                            }
+                            .buttonStyle(.plain)
+                        } else {
+                            LessonRowView(
+                                lessonID: lessonID,
+                                title: lesson?.title ?? "Lesson \(lessonID)",
+                                vocabularyPreview: vocabularyPreview(for: lesson),
+                                isCompleted: isCompleted,
+                                isLocked: isLocked,
+                                isCurrent: isCurrent,
+                                completedSessions: completed,
+                                totalSessions: total,
+                                sessionNumber: nextSessionNumber(lessonID),
+                                isReplay: isCompleted,
+                                accentColor: chapter.accentSwiftUIColor
+                            )
+                        }
                     }
 
-                    // AI Practice card
-                    aiPracticeCard
+                    // AI Practice card (gated behind feature flag + per-chapter flag)
+                    if chapter.showsPractice {
+                        aiPracticeCard
+                    }
                 }
                 .padding(.horizontal, TarsierSpacing.screenPadding)
                 .padding(.top, 20)
@@ -59,9 +102,10 @@ struct ChapterDetailView: View {
         .toolbar(.hidden, for: .tabBar)
         .navigationDestination(for: LessonNavigation.self) { nav in
             if let lesson = LessonService.shared.lesson(for: nav.lessonId) {
-                LessonContainerView(lesson: lesson, sessionNumber: nav.sessionNumber, isReplay: nav.isReplay)
+                LessonContainerView(lesson: lesson, sessionNumber: nav.sessionNumber, isReplay: nav.isReplay, chapterAccentColor: chapter.accentSwiftUIColor)
             }
         }
+        .enableSwipeBack()
         .safeAreaInset(edge: .top, spacing: 0) { Color.clear.frame(height: 0) }
         .overlay(alignment: .topLeading) {
             Button {
@@ -75,6 +119,18 @@ struct ChapterDetailView: View {
             }
             .padding(.leading, 16)
             .padding(.top, 4)
+        }
+        .overlay(alignment: .bottom) {
+            if showLockedToast {
+                Text("Complete the previous chapter to unlock")
+                    .font(.system(size: 14, weight: .medium, design: .rounded))
+                    .foregroundStyle(.white)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 10)
+                    .background(Capsule().fill(TarsierColors.textPrimary.opacity(0.85)))
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
+                    .padding(.bottom, 24)
+            }
         }
     }
 

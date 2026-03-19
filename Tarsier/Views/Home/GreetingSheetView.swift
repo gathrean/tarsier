@@ -29,8 +29,14 @@ struct GreetingSheetView: View {
                 .frame(width: 60, height: 60)
         }
         .padding(.horizontal, 24)
-        .padding(.top, 24)
+        .padding(.top, 20)
         .padding(.bottom, 16)
+        .background(
+            RoundedRectangle(cornerRadius: 20)
+                .fill(.white)
+                .shadow(color: .black.opacity(0.12), radius: 16, y: 4)
+        )
+        .onTapGesture { onDismiss() }
         .onAppear {
             // Auto-dismiss after 5 seconds
             autoDismissTask = Task {

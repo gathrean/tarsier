@@ -67,7 +67,14 @@ struct TeachCardView: View {
             blocks.append(.example(example))
         }
 
-        // Alam Mo Ba is no longer rendered inline — it's in the collapsible button above
+        // Multiple examples (e.g. time-of-day greetings on one card)
+        if let examples = card.examples {
+            for ex in examples {
+                blocks.append(.example(ex))
+            }
+        }
+
+        // Alam Mo Ba is no longer rendered inline - it's in the collapsible button above
 
         return blocks
     }

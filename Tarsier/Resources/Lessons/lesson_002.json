@@ -4,16 +4,14 @@
     "last_updated": "2026-03-17",
     "notes": "v0.7: Added character fields to quiz cards. Added sentence_build and image_match quiz types. Added image fields to teach cards."
   },
-
   "lesson_id": "002",
   "title": "How Are You?",
-  "subtitle": "Kumusta — How Filipinos Say Hello",
+  "subtitle": "Kumusta - How Filipinos Say Hello",
   "chapter_id": "ch01",
-  "chapter_title": "Respect & Greetings — Magalang",
+  "chapter_title": "Respect & Greetings - Magalang",
   "position_in_chapter": 2,
   "difficulty": "beginner",
   "total_sessions": 5,
-
   "sessions": [
     {
       "session_id": "002_s1",
@@ -61,9 +59,13 @@
           "card_id": "002_s1_q1",
           "type": "quiz",
           "quiz_type": "multiple_choice",
-          "character": "bunso",
           "prompt": "What does 'kumusta' mean?",
-          "options": ["Thank you", "How are you?", "Goodbye", "Excuse me"],
+          "options": [
+            "Thank you",
+            "How are you?",
+            "Goodbye",
+            "Excuse me"
+          ],
           "correct_answer": 1,
           "explanation": "Kumusta means 'How are you?' From Spanish 'Cómo está.'",
           "shuffle_options": true
@@ -88,11 +90,17 @@
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "lola",
-          "prompt": "Your lola asks 'Kumusta?' How do you respond?",
-          "options": ["Okay lang.", "Mabuti naman po.", "Mabuti naman.", "Sige po."],
+          "prompt": "Lola checks up on you. How do you respond?",
+          "options": [
+            "Okay lang.",
+            "Mabuti naman po.",
+            "Mabuti naman.",
+            "Sige po."
+          ],
           "correct_answer": 1,
           "explanation": "Lola is an elder. 'Mabuti naman po' shows respect.",
-          "shuffle_options": true
+          "shuffle_options": true,
+          "source_text": "Kumusta, anak?"
         },
         {
           "card_id": "002_s1_q3",
@@ -100,14 +108,19 @@
           "quiz_type": "multiple_choice",
           "character": "pare",
           "prompt": "Your pare asks 'Kumusta?' What's the most natural response?",
-          "options": ["Mabuti naman po.", "Okay lang, ikaw?", "Mabuti po.", "Opo, mabuti."],
+          "options": [
+            "Mabuti naman po.",
+            "Okay lang, ikaw?",
+            "Mabuti po.",
+            "Opo, mabuti."
+          ],
           "correct_answer": 1,
           "explanation": "Close friend, same age. No po needed. 'Okay lang, ikaw?' is casual and natural.",
-          "shuffle_options": true
+          "shuffle_options": true,
+          "source_text": "Uy! Kumusta?"
         }
       ]
     },
-
     {
       "session_id": "002_s2",
       "session_number": 2,
@@ -127,38 +140,36 @@
         {
           "card_id": "002_s2_c2",
           "type": "teach",
-          "body": "There are three time-of-day greetings.",
-          "image": { "filename": "images/filipino_morning.jpg" },
-          "example": {
-            "sentence": "Magandang umaga",
-            "translation": "Good morning"
-          }
-        },
-        {
-          "card_id": "002_s2_c3",
-          "type": "teach",
-          "body": "Hapon means afternoon.",
-          "example": {
-            "sentence": "Magandang hapon",
-            "translation": "Good afternoon"
-          }
-        },
-        {
-          "card_id": "002_s2_c4",
-          "type": "teach",
-          "body": "Gabi means evening or night.",
-          "example": {
-            "sentence": "Magandang gabi",
-            "translation": "Good evening"
-          }
+          "body": "There are three time-of-day greetings. They all start with magandang (beautiful/good).",
+          "examples": [
+            {
+              "sentence": "Magandang umaga",
+              "translation": "Good morning",
+              "note": "umaga = morning"
+            },
+            {
+              "sentence": "Magandang hapon",
+              "translation": "Good afternoon",
+              "note": "hapon = afternoon"
+            },
+            {
+              "sentence": "Magandang gabi",
+              "translation": "Good evening",
+              "note": "gabi = evening/night"
+            }
+          ]
         },
         {
           "card_id": "002_s2_q1",
           "type": "quiz",
           "quiz_type": "multiple_choice",
-          "character": "bunso",
           "prompt": "How do you say 'good morning'?",
-          "options": ["Magandang gabi", "Magandang hapon", "Magandang umaga", "Kumusta po"],
+          "options": [
+            "Magandang gabi",
+            "Magandang hapon",
+            "Magandang umaga",
+            "Kumusta po"
+          ],
           "correct_answer": 2,
           "explanation": "Umaga = morning. Magandang umaga = good morning.",
           "shuffle_options": true
@@ -167,13 +178,28 @@
           "card_id": "002_s2_q1b",
           "type": "quiz",
           "quiz_type": "image_match",
-          "character": "bunso",
           "prompt": "Which one is 'umaga'?",
           "image_match_options": [
-            { "image": "images/umaga_sunrise.jpg", "label": "umaga", "correct": true },
-            { "image": "images/hapon_afternoon.jpg", "label": "hapon", "correct": false },
-            { "image": "images/gabi_night.jpg", "label": "gabi", "correct": false },
-            { "image": "images/araw_sun.jpg", "label": "araw", "correct": false }
+            {
+              "image": "images/umaga_sunrise.jpg",
+              "label": "umaga",
+              "correct": true
+            },
+            {
+              "image": "images/hapon_afternoon.jpg",
+              "label": "hapon",
+              "correct": false
+            },
+            {
+              "image": "images/gabi_night.jpg",
+              "label": "gabi",
+              "correct": false
+            },
+            {
+              "image": "images/araw_sun.jpg",
+              "label": "araw",
+              "correct": false
+            }
           ],
           "explanation": "Umaga = morning. The sunrise scene."
         },
@@ -191,10 +217,11 @@
           "card_id": "002_s2_q2",
           "type": "quiz",
           "quiz_type": "fill_in_blank",
-          "character": "bunso",
-          "prompt": "Good afternoon (respectful): 'Magandang ___ po.'",
-          "correct_answers": ["hapon", "Hapon"],
-          "hint": "Morning = umaga, afternoon = ???, evening = gabi",
+          "prompt": "It's afternoon. How do you greet respectfully? 'Magandang ___ po.'",
+          "correct_answers": [
+            "hapon",
+            "Hapon"
+          ],
           "explanation": "Hapon = afternoon. Magandang hapon po."
         },
         {
@@ -203,14 +230,19 @@
           "quiz_type": "multiple_choice",
           "character": "tita",
           "prompt": "It's 8 PM. You arrive at your tita's house. What do you say?",
-          "options": ["Magandang umaga po!", "Magandang hapon po!", "Magandang gabi po!", "Kumusta!"],
+          "options": [
+            "Magandang umaga po!",
+            "Magandang hapon po!",
+            "Magandang gabi po!",
+            "Kumusta!"
+          ],
           "correct_answer": 2,
           "explanation": "8 PM is evening. Gabi = evening/night. And po because she's your tita.",
-          "shuffle_options": true
+          "shuffle_options": true,
+          "source_text": "You're just in time, I made kare-kare!"
         }
       ]
     },
-
     {
       "session_id": "002_s3",
       "session_number": 3,
@@ -226,7 +258,9 @@
           "card_id": "002_s3_c2",
           "type": "teach",
           "body": "Filipinos ask 'Kumain ka na ba?' the same way Americans say 'How's it going?' They don't actually need to know what you ate.",
-          "image": { "filename": "images/filipino_family_food.jpg" },
+          "image": {
+            "filename": "images/filipino_family_food.jpg"
+          },
           "example": {
             "context": "Your tita sees you at a family gathering",
             "sentence": "Kumain ka na ba?",
@@ -265,9 +299,13 @@
           "card_id": "002_s3_q1",
           "type": "quiz",
           "quiz_type": "multiple_choice",
-          "character": "bunso",
           "prompt": "When a Filipino asks 'Kumain ka na ba?', what are they really doing?",
-          "options": ["Asking for your food order", "Greeting you / checking in on you", "Inviting you to cook", "Asking what time dinner is"],
+          "options": [
+            "Asking for your food order",
+            "Greeting you / checking in on you",
+            "Inviting you to cook",
+            "Asking what time dinner is"
+          ],
           "correct_answer": 1,
           "explanation": "It functions as a greeting. It's the Filipino way of asking if you're okay and taken care of.",
           "shuffle_options": true
@@ -278,10 +316,16 @@
           "quiz_type": "multiple_choice",
           "character": "lola",
           "prompt": "Your lola asks 'Kumain ka na ba?' and you already ate. What do you say?",
-          "options": ["Oo.", "Kumain na po.", "Kumain na.", "Sige po."],
+          "options": [
+            "Oo.",
+            "Kumain na po.",
+            "Kumain na.",
+            "Sige po."
+          ],
           "correct_answer": 1,
           "explanation": "Lola is an elder. 'Kumain na po' is respectful and answers her question.",
-          "shuffle_options": true
+          "shuffle_options": true,
+          "source_text": "Kumain ka na ba, anak?"
         },
         {
           "card_id": "002_s3_q3",
@@ -289,14 +333,19 @@
           "quiz_type": "multiple_choice",
           "character": "lola",
           "prompt": "Your lola asks 'Kumain ka na ba?' and you haven't eaten yet. What do you say?",
-          "options": ["Hindi.", "Hindi pa po.", "No po.", "Hindi po."],
+          "options": [
+            "Hindi.",
+            "Hindi pa po.",
+            "No po.",
+            "Hindi po."
+          ],
           "correct_answer": 1,
           "explanation": "'Hindi pa po' means 'not yet' (respectful). 'Pa' adds 'yet.' 'Hindi po' without 'pa' just means 'no.'",
-          "shuffle_options": true
+          "shuffle_options": true,
+          "source_text": "Kumain ka na ba? You look thin!"
         }
       ]
     },
-
     {
       "session_id": "002_s4",
       "session_number": 4,
@@ -342,9 +391,13 @@
           "card_id": "002_s4_q1",
           "type": "quiz",
           "quiz_type": "multiple_choice",
-          "character": "bunso",
           "prompt": "It's morning. You see your teacher. What's a good greeting?",
-          "options": ["Musta?", "Magandang umaga po!", "Kumusta, pare?", "Magandang umaga!"],
+          "options": [
+            "Musta?",
+            "Magandang umaga po!",
+            "Kumusta, pare?",
+            "Magandang umaga!"
+          ],
           "correct_answer": 1,
           "explanation": "Teacher = authority. Morning = umaga. 'Magandang umaga po!' is correct and respectful.",
           "shuffle_options": true
@@ -355,10 +408,16 @@
           "quiz_type": "multiple_choice",
           "character": "mare",
           "prompt": "You bump into your mare at the mall. How do you greet her?",
-          "options": ["Kumusta po?", "Magandang hapon po!", "Musta, mare?", "Magandang gabi!"],
+          "options": [
+            "Kumusta po?",
+            "Magandang hapon po!",
+            "Musta, mare?",
+            "Magandang gabi!"
+          ],
           "correct_answer": 2,
           "explanation": "Close female friend. Casual is fine. 'Musta, mare?' is natural.",
-          "shuffle_options": true
+          "shuffle_options": true,
+          "source_text": "Ay! Mare! Long time no see!"
         },
         {
           "card_id": "002_s4_q2b",
@@ -367,8 +426,17 @@
           "character": "lolo",
           "prompt": "Greet Lolo",
           "source_text": "You just arrived at Lolo's house in the evening. Greet him properly.",
-          "correct_order": ["Magandang", "gabi", "po", "Kumusta", "po"],
-          "distractors": ["umaga", "hapon"],
+          "correct_order": [
+            "Magandang",
+            "gabi",
+            "po",
+            "Kumusta",
+            "po"
+          ],
+          "distractors": [
+            "umaga",
+            "hapon"
+          ],
           "explanation": "'Magandang gabi po! Kumusta po?' Combining a time-of-day greeting with kumusta."
         },
         {
@@ -377,11 +445,23 @@
           "quiz_type": "word_order",
           "prompt": "Build a respectful morning greeting.",
           "given_sentence": "Good morning (respectful)",
-          "word_pieces": ["Magandang", "umaga", "po"],
-          "correct_orders": [
-            ["Magandang", "umaga", "po"]
+          "word_pieces": [
+            "Magandang",
+            "umaga",
+            "po"
           ],
-          "best_order": ["Magandang", "umaga", "po"],
+          "correct_orders": [
+            [
+              "Magandang",
+              "umaga",
+              "po"
+            ]
+          ],
+          "best_order": [
+            "Magandang",
+            "umaga",
+            "po"
+          ],
           "explanation": "'Magandang umaga po!' Po goes at the end of the greeting."
         },
         {
@@ -390,24 +470,30 @@
           "quiz_type": "multiple_choice",
           "character": "lola",
           "prompt": "You arrive at your lola's house in the evening. What do you do first?",
-          "options": ["Say 'Magandang gabi po!'", "Mano po, then greet her", "Say 'Kumusta po?'", "Say 'Musta, Lola?'"],
+          "options": [
+            "Say 'Magandang gabi po!'",
+            "Mano po, then greet her",
+            "Say 'Kumusta po?'",
+            "Say 'Musta, Lola?'"
+          ],
           "correct_answer": 1,
           "explanation": "Mano po first with elders, then greet. The gesture comes before the words.",
-          "shuffle_options": true
+          "shuffle_options": true,
+          "source_text": "Anak! You're finally here!"
         },
         {
           "card_id": "002_s4_q5",
           "type": "quiz",
           "quiz_type": "fill_in_blank",
-          "character": "bunso",
           "prompt": "Casual 'how are you' to a friend: '___?'",
-          "correct_answers": ["Musta", "musta"],
-          "hint": "The shortened version of kumusta.",
+          "correct_answers": [
+            "Musta",
+            "musta"
+          ],
           "explanation": "Musta is casual kumusta. Only with friends, never with elders."
         }
       ]
     },
-
     {
       "session_id": "002_s5",
       "session_number": 5,
@@ -418,9 +504,13 @@
           "card_id": "002_s5_q1",
           "type": "quiz",
           "quiz_type": "multiple_choice",
-          "character": "bunso",
           "prompt": "What does 'kumusta' mean?",
-          "options": ["Goodbye", "How are you?", "Thank you", "Good morning"],
+          "options": [
+            "Goodbye",
+            "How are you?",
+            "Thank you",
+            "Good morning"
+          ],
           "correct_answer": 1,
           "explanation": "Kumusta = How are you? From Spanish 'Cómo está.'",
           "shuffle_options": true
@@ -429,10 +519,11 @@
           "card_id": "002_s5_q2",
           "type": "quiz",
           "quiz_type": "fill_in_blank",
-          "character": "bunso",
-          "prompt": "Good evening (respectful): 'Magandang ___ po.'",
-          "correct_answers": ["gabi", "Gabi"],
-          "hint": "Morning = umaga, afternoon = hapon, evening = ???",
+          "prompt": "It's evening. How do you greet respectfully? 'Magandang ___ po.'",
+          "correct_answers": [
+            "gabi",
+            "Gabi"
+          ],
           "explanation": "Gabi = evening/night. Magandang gabi po."
         },
         {
@@ -441,10 +532,16 @@
           "quiz_type": "multiple_choice",
           "character": "tita",
           "prompt": "Your tita asks 'Kumusta?' How do you respond?",
-          "options": ["Okay lang.", "Mabuti naman po.", "Musta!", "Magandang umaga."],
+          "options": [
+            "Okay lang.",
+            "Mabuti naman po.",
+            "Musta!",
+            "Magandang umaga."
+          ],
           "correct_answer": 1,
           "explanation": "Tita is an elder. 'Mabuti naman po' is the respectful response.",
-          "shuffle_options": true
+          "shuffle_options": true,
+          "source_text": "Anak! Kumusta ka?"
         },
         {
           "card_id": "002_s5_q4",
@@ -452,10 +549,16 @@
           "quiz_type": "multiple_choice",
           "character": "pare",
           "prompt": "A coworker you're close with asks 'Kumain ka na ba?' and you haven't eaten. What do you say?",
-          "options": ["Hindi pa po.", "Hindi pa.", "Hindi po.", "Kumain na."],
+          "options": [
+            "Hindi pa po.",
+            "Hindi pa.",
+            "Hindi po.",
+            "Kumain na."
+          ],
           "correct_answer": 1,
           "explanation": "Close coworker, same age. No po needed. 'Hindi pa' means 'not yet.'",
-          "shuffle_options": true
+          "shuffle_options": true,
+          "source_text": "Kumain ka na ba? You look hungry!"
         },
         {
           "card_id": "002_s5_q5",
@@ -464,17 +567,29 @@
           "character": "bunso",
           "prompt": "Greet your teacher",
           "source_text": "It's 2 PM. You see your teacher in the hallway. Greet them properly.",
-          "correct_order": ["Magandang", "hapon", "po"],
-          "distractors": ["umaga", "gabi", "kumusta"],
+          "correct_order": [
+            "Magandang",
+            "hapon",
+            "po"
+          ],
+          "distractors": [
+            "umaga",
+            "gabi",
+            "kumusta"
+          ],
           "explanation": "'Magandang hapon po!' Hapon = afternoon."
         },
         {
           "card_id": "002_s5_q6",
           "type": "quiz",
           "quiz_type": "multiple_choice",
-          "character": "bunso",
           "prompt": "When a Filipino asks 'Kumain ka na ba?', they're really...",
-          "options": ["Planning a meal", "Greeting you / showing they care", "Asking you to cook", "Complaining about being hungry"],
+          "options": [
+            "Planning a meal",
+            "Greeting you / showing they care",
+            "Asking you to cook",
+            "Complaining about being hungry"
+          ],
           "correct_answer": 1,
           "explanation": "It functions as a greeting. Asking about food is how Filipinos show care.",
           "shuffle_options": true
@@ -485,28 +600,39 @@
           "quiz_type": "multiple_choice",
           "character": "lola",
           "prompt": "Which greeting would you NEVER use with your lola?",
-          "options": ["Kumusta po?", "Magandang umaga po!", "Musta?", "Magandang gabi po!"],
+          "options": [
+            "Kumusta po?",
+            "Magandang umaga po!",
+            "Musta?",
+            "Magandang gabi po!"
+          ],
           "correct_answer": 2,
           "explanation": "'Musta' is casual slang. Never with elders. Kumusta po is the respectful version.",
-          "shuffle_options": true
+          "shuffle_options": true,
+          "source_text": "I'm watching how you greet me, ha!"
         },
         {
           "card_id": "002_s5_q8",
           "type": "quiz",
           "quiz_type": "fill_in_blank",
-          "character": "bunso",
           "prompt": "Respectful 'how are you': '___ po?'",
-          "correct_answers": ["Kumusta", "kumusta"],
-          "hint": "The most common Tagalog greeting.",
+          "correct_answers": [
+            "Kumusta",
+            "kumusta"
+          ],
           "explanation": "Kumusta po? The respectful way to ask how someone is."
         },
         {
           "card_id": "002_s5_q9",
           "type": "quiz",
           "quiz_type": "multiple_choice",
-          "character": "bunso",
           "prompt": "It's 3 PM. You're greeting your boss. What do you say?",
-          "options": ["Magandang umaga po!", "Magandang gabi po!", "Magandang hapon po!", "Musta, boss?"],
+          "options": [
+            "Magandang umaga po!",
+            "Magandang gabi po!",
+            "Magandang hapon po!",
+            "Musta, boss?"
+          ],
           "correct_answer": 2,
           "explanation": "3 PM = afternoon. Boss = authority. 'Magandang hapon po!'",
           "shuffle_options": true
@@ -514,34 +640,121 @@
       ]
     }
   ],
-
   "vocabulary": [
-    { "word": "kumusta", "meaning": "how are you?", "pronunciation": "koo-MUS-tah", "type": "greeting" },
-    { "word": "kumusta po", "meaning": "how are you? (respectful)", "pronunciation": "koo-MUS-tah poh", "type": "greeting" },
-    { "word": "musta", "meaning": "how are you? (casual/slang)", "pronunciation": "MUS-tah", "type": "greeting" },
-    { "word": "mabuti", "meaning": "good / fine", "pronunciation": "mah-BOO-tee", "type": "adjective" },
-    { "word": "naman", "meaning": "softener particle (for my part / though)", "pronunciation": "nah-MAN", "type": "particle" },
-    { "word": "magandang umaga", "meaning": "good morning", "pronunciation": "mah-gan-DANG oo-MAH-gah", "type": "greeting" },
-    { "word": "magandang hapon", "meaning": "good afternoon", "pronunciation": "mah-gan-DANG HAH-pon", "type": "greeting" },
-    { "word": "magandang gabi", "meaning": "good evening", "pronunciation": "mah-gan-DANG GAH-bee", "type": "greeting" },
-    { "word": "maganda", "meaning": "beautiful / good", "pronunciation": "mah-gan-DAH", "type": "adjective" },
-    { "word": "umaga", "meaning": "morning", "pronunciation": "oo-MAH-gah", "type": "noun" },
-    { "word": "hapon", "meaning": "afternoon", "pronunciation": "HAH-pon", "type": "noun" },
-    { "word": "gabi", "meaning": "evening / night", "pronunciation": "GAH-bee", "type": "noun" },
-    { "word": "kumain ka na ba?", "meaning": "have you eaten? (greeting)", "pronunciation": "koo-mah-IN kah nah bah", "type": "phrase" },
-    { "word": "kumain na po", "meaning": "I already ate (respectful)", "pronunciation": "koo-mah-IN nah poh", "type": "phrase" },
-    { "word": "hindi pa", "meaning": "not yet", "pronunciation": "HIN-dee pah", "type": "phrase" },
-    { "word": "hindi pa po", "meaning": "not yet (respectful)", "pronunciation": "HIN-dee pah poh", "type": "phrase" },
-    { "word": "ikaw", "meaning": "you", "pronunciation": "ee-KAW", "type": "pronoun" },
-    { "word": "okay lang", "meaning": "just okay", "pronunciation": "oh-KAY lang", "type": "phrase" }
+    {
+      "word": "kumusta",
+      "meaning": "how are you?",
+      "pronunciation": "koo-MUS-tah",
+      "type": "greeting"
+    },
+    {
+      "word": "kumusta po",
+      "meaning": "how are you? (respectful)",
+      "pronunciation": "koo-MUS-tah poh",
+      "type": "greeting"
+    },
+    {
+      "word": "musta",
+      "meaning": "how are you? (casual/slang)",
+      "pronunciation": "MUS-tah",
+      "type": "greeting"
+    },
+    {
+      "word": "mabuti",
+      "meaning": "good / fine",
+      "pronunciation": "mah-BOO-tee",
+      "type": "adjective"
+    },
+    {
+      "word": "naman",
+      "meaning": "softener particle (for my part / though)",
+      "pronunciation": "nah-MAN",
+      "type": "particle"
+    },
+    {
+      "word": "magandang umaga",
+      "meaning": "good morning",
+      "pronunciation": "mah-gan-DANG oo-MAH-gah",
+      "type": "greeting"
+    },
+    {
+      "word": "magandang hapon",
+      "meaning": "good afternoon",
+      "pronunciation": "mah-gan-DANG HAH-pon",
+      "type": "greeting"
+    },
+    {
+      "word": "magandang gabi",
+      "meaning": "good evening",
+      "pronunciation": "mah-gan-DANG GAH-bee",
+      "type": "greeting"
+    },
+    {
+      "word": "maganda",
+      "meaning": "beautiful / good",
+      "pronunciation": "mah-gan-DAH",
+      "type": "adjective"
+    },
+    {
+      "word": "umaga",
+      "meaning": "morning",
+      "pronunciation": "oo-MAH-gah",
+      "type": "noun"
+    },
+    {
+      "word": "hapon",
+      "meaning": "afternoon",
+      "pronunciation": "HAH-pon",
+      "type": "noun"
+    },
+    {
+      "word": "gabi",
+      "meaning": "evening / night",
+      "pronunciation": "GAH-bee",
+      "type": "noun"
+    },
+    {
+      "word": "kumain ka na ba?",
+      "meaning": "have you eaten? (greeting)",
+      "pronunciation": "koo-mah-IN kah nah bah",
+      "type": "phrase"
+    },
+    {
+      "word": "kumain na po",
+      "meaning": "I already ate (respectful)",
+      "pronunciation": "koo-mah-IN nah poh",
+      "type": "phrase"
+    },
+    {
+      "word": "hindi pa",
+      "meaning": "not yet",
+      "pronunciation": "HIN-dee pah",
+      "type": "phrase"
+    },
+    {
+      "word": "hindi pa po",
+      "meaning": "not yet (respectful)",
+      "pronunciation": "HIN-dee pah poh",
+      "type": "phrase"
+    },
+    {
+      "word": "ikaw",
+      "meaning": "you",
+      "pronunciation": "ee-KAW",
+      "type": "pronoun"
+    },
+    {
+      "word": "okay lang",
+      "meaning": "just okay",
+      "pronunciation": "oh-KAY lang",
+      "type": "phrase"
+    }
   ],
-
   "wrong_answer_tracking": {
     "behaviour": "Wrong answers go to back of current session queue. User must get ALL questions right to complete session. Cannot finish lesson with outstanding wrong answers.",
     "track_wrong_count": true,
     "wrong_count_usage": "Feed to Gemini system prompt for AI Practice. E.g., 'User struggled with time-of-day greetings (confused hapon and gabi). Focus practice on greeting selection by context.'"
   },
-
   "completion_reward": {
     "xp": 15,
     "alam_mo_ba": [
@@ -553,9 +766,7 @@
     ],
     "alam_mo_ba_display": "Show 1 random fun fact on lesson completion screen. On replay, show a different one."
   },
-
   "ai_practice": null,
-
   "gamification": {
     "xp_per_lesson": 15,
     "hearts_per_wrong_answer": 1,

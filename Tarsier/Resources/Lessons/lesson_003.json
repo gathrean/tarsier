@@ -4,16 +4,14 @@
     "last_updated": "2026-03-17",
     "notes": "v0.7: Added character fields to quiz cards. Added sentence_build and image_match quiz types. Added image fields to teach cards."
   },
-
   "lesson_id": "003",
   "title": "Yes, No, Thanks",
-  "subtitle": "Oo, Hindi, Salamat — Yes, No, and Thank You",
+  "subtitle": "Oo, Hindi, Salamat - Yes, No, and Thank You",
   "chapter_id": "ch01",
-  "chapter_title": "Respect & Greetings — Magalang",
+  "chapter_title": "Respect & Greetings - Magalang",
   "position_in_chapter": 3,
   "difficulty": "beginner",
   "total_sessions": 5,
-
   "sessions": [
     {
       "session_id": "003_s1",
@@ -63,10 +61,16 @@
           "quiz_type": "multiple_choice",
           "character": "pare",
           "prompt": "Your pare asks 'Want to grab food?' How do you say yes?",
-          "options": ["Opo.", "Oo!", "Sige po.", "Oo po."],
+          "options": [
+            "Opo.",
+            "Oo!",
+            "Sige po.",
+            "Oo po."
+          ],
           "correct_answer": 1,
           "explanation": "Close friend, same age. 'Oo!' is casual and natural. Opo would be too formal here.",
-          "shuffle_options": true
+          "shuffle_options": true,
+          "source_text": "Pare, let's grab food!"
         },
         {
           "card_id": "003_s1_c4",
@@ -83,25 +87,34 @@
           "quiz_type": "multiple_choice",
           "character": "lola",
           "prompt": "Your lola asks if you've finished your homework. You haven't. What do you say?",
-          "options": ["Hindi.", "Hindi po.", "Hindi pa po.", "Oo."],
+          "options": [
+            "Hindi.",
+            "Hindi po.",
+            "Hindi pa po.",
+            "Oo."
+          ],
           "correct_answer": 2,
           "explanation": "'Hindi pa po' means 'not yet' (respectful). 'Pa' adds 'yet,' which is softer than a flat 'hindi po' (no).",
-          "shuffle_options": true
+          "shuffle_options": true,
+          "source_text": "Did you finish your homework yet, anak?"
         },
         {
           "card_id": "003_s1_q3",
           "type": "quiz",
           "quiz_type": "multiple_choice",
-          "character": "bunso",
           "prompt": "What's the difference between 'hindi po' and 'hindi pa po'?",
-          "options": ["No difference", "'Hindi po' = no. 'Hindi pa po' = not yet.", "'Hindi pa po' is more casual", "'Hindi po' is for friends"],
+          "options": [
+            "No difference",
+            "'Hindi po' = no. 'Hindi pa po' = not yet.",
+            "'Hindi pa po' is more casual",
+            "'Hindi po' is for friends"
+          ],
           "correct_answer": 1,
           "explanation": "'Hindi po' is a flat no (respectful). 'Hindi pa po' means 'not yet' (respectful). 'Pa' adds the sense of 'yet.'",
           "shuffle_options": true
         }
       ]
     },
-
     {
       "session_id": "003_s2",
       "session_number": 2,
@@ -148,9 +161,13 @@
           "card_id": "003_s2_q1",
           "type": "quiz",
           "quiz_type": "multiple_choice",
-          "character": "bunso",
           "prompt": "How do you say 'thank you very much' in Tagalog?",
-          "options": ["Salamat po", "Maraming salamat", "Salamat naman", "Salamat lang"],
+          "options": [
+            "Salamat po",
+            "Maraming salamat",
+            "Salamat naman",
+            "Salamat lang"
+          ],
           "correct_answer": 1,
           "explanation": "Maraming salamat = thank you very much. Marami (many) + salamat (thanks).",
           "shuffle_options": true
@@ -162,8 +179,16 @@
           "character": "lola",
           "prompt": "Reply to Lola",
           "source_text": "Did you like the sinigang, anak?",
-          "correct_order": ["Maraming", "salamat", "po"],
-          "distractors": ["naman", "Walang", "anuman"],
+          "correct_order": [
+            "Maraming",
+            "salamat",
+            "po"
+          ],
+          "distractors": [
+            "naman",
+            "Walang",
+            "anuman"
+          ],
           "explanation": "'Maraming salamat po!' Maximum gratitude with respect."
         },
         {
@@ -180,9 +205,13 @@
           "card_id": "003_s2_q2",
           "type": "quiz",
           "quiz_type": "multiple_choice",
-          "character": "bunso",
           "prompt": "Your boss gives you a compliment. How do you say thank you?",
-          "options": ["Salamat!", "Thank you po.", "Salamat po.", "Either 'Thank you po' or 'Salamat po' works."],
+          "options": [
+            "Salamat!",
+            "Thank you po.",
+            "Salamat po.",
+            "Either 'Thank you po' or 'Salamat po' works."
+          ],
           "correct_answer": 3,
           "explanation": "Both work. 'Thank you po' and 'Salamat po' are both natural with authority. Taglish is normal.",
           "shuffle_options": true
@@ -193,16 +222,27 @@
           "quiz_type": "word_order",
           "prompt": "Build: 'Thank you very much' (respectful)",
           "given_sentence": "Thank you very much (respectful)",
-          "word_pieces": ["Maraming", "salamat", "po"],
-          "correct_orders": [
-            ["Maraming", "salamat", "po"]
+          "word_pieces": [
+            "Maraming",
+            "salamat",
+            "po"
           ],
-          "best_order": ["Maraming", "salamat", "po"],
+          "correct_orders": [
+            [
+              "Maraming",
+              "salamat",
+              "po"
+            ]
+          ],
+          "best_order": [
+            "Maraming",
+            "salamat",
+            "po"
+          ],
           "explanation": "'Maraming salamat po!' Po at the end for respect."
         }
       ]
     },
-
     {
       "session_id": "003_s3",
       "session_number": 3,
@@ -243,9 +283,13 @@
           "card_id": "003_s3_q1",
           "type": "quiz",
           "quiz_type": "multiple_choice",
-          "character": "bunso",
           "prompt": "What does 'walang anuman' mean?",
-          "options": ["Thank you", "You're welcome", "I'm sorry", "Goodbye"],
+          "options": [
+            "Thank you",
+            "You're welcome",
+            "I'm sorry",
+            "Goodbye"
+          ],
           "correct_answer": 1,
           "explanation": "Walang anuman = You're welcome. Literally 'it was nothing.'",
           "shuffle_options": true
@@ -269,10 +313,11 @@
           "card_id": "003_s3_q2",
           "type": "quiz",
           "quiz_type": "fill_in_blank",
-          "character": "bunso",
           "prompt": "You're welcome (respectful): '___ anuman po.'",
-          "correct_answers": ["Walang", "walang"],
-          "hint": "'Wala' (nothing) + ng = ???",
+          "correct_answers": [
+            "Walang",
+            "walang"
+          ],
           "explanation": "Walang anuman po. Wala + ng = walang."
         },
         {
@@ -282,8 +327,16 @@
           "character": "bunso",
           "prompt": "Respond to Bunso",
           "source_text": "Salamat for helping me with my homework!",
-          "correct_order": ["Walang", "anuman", "po"],
-          "distractors": ["salamat", "maraming", "naman"],
+          "correct_order": [
+            "Walang",
+            "anuman",
+            "po"
+          ],
+          "distractors": [
+            "salamat",
+            "maraming",
+            "naman"
+          ],
           "explanation": "'Walang anuman po.' It was nothing."
         },
         {
@@ -292,14 +345,19 @@
           "quiz_type": "multiple_choice",
           "character": "lola",
           "prompt": "Your lola says 'Maraming salamat, anak!' What's the best response?",
-          "options": ["Okay lang.", "Walang anuman po.", "Walang anuman.", "Sige."],
+          "options": [
+            "Okay lang.",
+            "Walang anuman po.",
+            "Walang anuman.",
+            "Sige."
+          ],
           "correct_answer": 1,
           "explanation": "Lola is an elder. 'Walang anuman po' is the respectful you're welcome.",
-          "shuffle_options": true
+          "shuffle_options": true,
+          "source_text": "Maraming salamat, anak!"
         }
       ]
     },
-
     {
       "session_id": "003_s4",
       "session_number": 4,
@@ -309,7 +367,9 @@
           "card_id": "003_s4_c1",
           "type": "teach",
           "body": "Let's put together everything you've learned. Here's how a full exchange might sound with an elder.",
-          "image": { "filename": "images/filipino_adobo.jpg" },
+          "image": {
+            "filename": "images/filipino_adobo.jpg"
+          },
           "example": {
             "context": "Your lolo offers you food at a family gathering",
             "sentence": "\"Kumain ka na ba?\" \"Hindi pa po.\" \"Kain na!\" \"Salamat po, Lolo.\"",
@@ -332,10 +392,16 @@
           "quiz_type": "multiple_choice",
           "character": "tita",
           "prompt": "Your tita offers you more food. You're full. Which is the most polite way to decline?",
-          "options": ["Hindi.", "Hindi po, busog na po ako.", "No thanks.", "Hindi na."],
+          "options": [
+            "Hindi.",
+            "Hindi po, busog na po ako.",
+            "No thanks.",
+            "Hindi na."
+          ],
           "correct_answer": 1,
           "explanation": "'Hindi po, busog na po ako' means 'No, I'm already full' (respectful). Double po shows extra respect to tita.",
-          "shuffle_options": true
+          "shuffle_options": true,
+          "source_text": "Have some more, anak! You're so thin!"
         },
         {
           "card_id": "003_s4_c3",
@@ -350,9 +416,13 @@
           "card_id": "003_s4_q2",
           "type": "quiz",
           "quiz_type": "multiple_choice",
-          "character": "bunso",
           "prompt": "Someone holds the door for you. Quick, natural response?",
-          "options": ["Salamat!", "Maraming salamat po!", "Walang anuman!", "Opo!"],
+          "options": [
+            "Salamat!",
+            "Maraming salamat po!",
+            "Walang anuman!",
+            "Opo!"
+          ],
           "correct_answer": 0,
           "explanation": "Stranger, quick moment. 'Salamat!' is natural. If they're clearly older, 'salamat po.' No need for maraming salamat for a door hold.",
           "shuffle_options": true
@@ -361,9 +431,13 @@
           "card_id": "003_s4_q3",
           "type": "quiz",
           "quiz_type": "multiple_choice",
-          "character": "bunso",
           "prompt": "Your teacher helps you after class. How do you thank them?",
-          "options": ["Salamat!", "Maraming salamat po!", "Thanks po.", "Either 'Maraming salamat po' or 'Thanks po' works."],
+          "options": [
+            "Salamat!",
+            "Maraming salamat po!",
+            "Thanks po.",
+            "Either 'Maraming salamat po' or 'Thanks po' works."
+          ],
           "correct_answer": 3,
           "explanation": "Teacher = authority, and they did something significant. 'Maraming salamat po!' and 'Thanks po' both work. Taglish is natural.",
           "shuffle_options": true
@@ -375,8 +449,16 @@
           "character": "tita",
           "prompt": "Reply to Tita",
           "source_text": "Salamat for bringing the leche flan, anak!",
-          "correct_order": ["Walang", "anuman", "po"],
-          "distractors": ["Maraming", "salamat", "hindi"],
+          "correct_order": [
+            "Walang",
+            "anuman",
+            "po"
+          ],
+          "distractors": [
+            "Maraming",
+            "salamat",
+            "hindi"
+          ],
           "explanation": "'Walang anuman po.' Po at the end for respect."
         },
         {
@@ -384,14 +466,18 @@
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "prompt": "Which of these is a natural response when someone says 'Salamat!'?",
-          "options": ["Opo.", "Walang anuman!", "Salamat din.", "Kumusta?"],
+          "options": [
+            "Opo.",
+            "Walang anuman!",
+            "Salamat din.",
+            "Kumusta?"
+          ],
           "correct_answer": 1,
           "explanation": "'Walang anuman!' = You're welcome! The natural response to salamat.",
           "shuffle_options": true
         }
       ]
     },
-
     {
       "session_id": "003_s5",
       "session_number": 5,
@@ -404,28 +490,39 @@
           "quiz_type": "multiple_choice",
           "character": "pare",
           "prompt": "How do you say 'yes' to a friend?",
-          "options": ["Opo.", "Oo!", "Oo po.", "Sige po."],
+          "options": [
+            "Opo.",
+            "Oo!",
+            "Oo po.",
+            "Sige po."
+          ],
           "correct_answer": 1,
           "explanation": "Friend = casual. 'Oo!' is the natural yes. Opo is for elders.",
-          "shuffle_options": true
+          "shuffle_options": true,
+          "source_text": "Sige na, pare!"
         },
         {
           "card_id": "003_s5_q2",
           "type": "quiz",
           "quiz_type": "fill_in_blank",
-          "character": "bunso",
           "prompt": "Thank you very much: '___ salamat!'",
-          "correct_answers": ["Maraming", "maraming"],
-          "hint": "Marami (many) + ng = ???",
+          "correct_answers": [
+            "Maraming",
+            "maraming"
+          ],
           "explanation": "Maraming salamat! Marami + ng = maraming."
         },
         {
           "card_id": "003_s5_q3",
           "type": "quiz",
           "quiz_type": "multiple_choice",
-          "character": "bunso",
           "prompt": "What does 'walang anuman' literally mean?",
-          "options": ["You're welcome", "It was nothing", "Thank you", "No problem"],
+          "options": [
+            "You're welcome",
+            "It was nothing",
+            "Thank you",
+            "No problem"
+          ],
           "correct_answer": 1,
           "explanation": "Wala (nothing) + anuman (anything) = 'it was nothing.' Used as 'you're welcome.'",
           "shuffle_options": true
@@ -436,10 +533,16 @@
           "quiz_type": "multiple_choice",
           "character": "lolo",
           "prompt": "Your lolo gives you money for your birthday. How do you thank him?",
-          "options": ["Salamat!", "Maraming salamat po!", "Thanks, Lolo!", "Walang anuman po."],
+          "options": [
+            "Salamat!",
+            "Maraming salamat po!",
+            "Thanks, Lolo!",
+            "Walang anuman po."
+          ],
           "correct_answer": 1,
           "explanation": "Lolo = elder, significant gift. 'Maraming salamat po!' shows maximum gratitude and respect.",
-          "shuffle_options": true
+          "shuffle_options": true,
+          "source_text": "Here, anak. For your birthday."
         },
         {
           "card_id": "003_s5_q5",
@@ -448,17 +551,30 @@
           "character": "lolo",
           "prompt": "Reply to Lolo",
           "source_text": "Here, anak. This is for your birthday.",
-          "correct_order": ["Maraming", "salamat", "po"],
-          "distractors": ["Walang", "anuman", "hindi", "na"],
+          "correct_order": [
+            "Maraming",
+            "salamat",
+            "po"
+          ],
+          "distractors": [
+            "Walang",
+            "anuman",
+            "hindi",
+            "na"
+          ],
           "explanation": "'Maraming salamat po!' Po at the end for respect."
         },
         {
           "card_id": "003_s5_q6",
           "type": "quiz",
           "quiz_type": "multiple_choice",
-          "character": "bunso",
           "prompt": "What's the difference between 'hindi po' and 'hindi pa po'?",
-          "options": ["No difference", "'Hindi po' = no. 'Hindi pa po' = not yet.", "'Hindi pa po' is less respectful", "'Hindi po' is for friends"],
+          "options": [
+            "No difference",
+            "'Hindi po' = no. 'Hindi pa po' = not yet.",
+            "'Hindi pa po' is less respectful",
+            "'Hindi po' is for friends"
+          ],
           "correct_answer": 1,
           "explanation": "'Hindi po' = no (respectful). 'Hindi pa po' = not yet (respectful). 'Pa' adds 'yet.'",
           "shuffle_options": true
@@ -467,10 +583,11 @@
           "card_id": "003_s5_q7",
           "type": "quiz",
           "quiz_type": "fill_in_blank",
-          "character": "bunso",
           "prompt": "You're welcome (respectful): 'Walang ___ po.'",
-          "correct_answers": ["anuman", "Anuman"],
-          "hint": "'Anuman' means 'anything.'",
+          "correct_answers": [
+            "anuman",
+            "Anuman"
+          ],
           "explanation": "Walang anuman po. It was nothing."
         },
         {
@@ -479,10 +596,16 @@
           "quiz_type": "multiple_choice",
           "character": "mare",
           "prompt": "Your mare says 'Salamat!' after you lend her your umbrella. What do you say?",
-          "options": ["Walang anuman po.", "Walang anuman!", "Okay lang, mare!", "Either 'Walang anuman' or 'Okay lang, mare' works."],
+          "options": [
+            "Walang anuman po.",
+            "Walang anuman!",
+            "Okay lang, mare!",
+            "Either 'Walang anuman' or 'Okay lang, mare' works."
+          ],
           "correct_answer": 3,
           "explanation": "Close female friend. Both 'Walang anuman!' and 'Okay lang, mare!' work. No po needed.",
-          "shuffle_options": true
+          "shuffle_options": true,
+          "source_text": "Salamat, mare! You saved me!"
         },
         {
           "card_id": "003_s5_q9",
@@ -490,35 +613,93 @@
           "quiz_type": "multiple_choice",
           "character": "tita",
           "prompt": "Your tita offers more food. You're full but want to be polite. Best response?",
-          "options": ["Hindi.", "Hindi po, busog na po ako. Salamat po.", "No thanks po.", "Hindi na."],
+          "options": [
+            "Hindi.",
+            "Hindi po, busog na po ako. Salamat po.",
+            "No thanks po.",
+            "Hindi na."
+          ],
           "correct_answer": 1,
           "explanation": "Decline with a reason and thank her. Softens the 'no' and shows respect.",
-          "shuffle_options": true
+          "shuffle_options": true,
+          "source_text": "Have some more, anak! You're so thin!"
         }
       ]
     }
   ],
-
   "vocabulary": [
-    { "word": "oo", "meaning": "yes", "pronunciation": "OH-oh", "type": "particle" },
-    { "word": "hindi", "meaning": "no / not", "pronunciation": "HIN-dee", "type": "particle" },
-    { "word": "hindi pa", "meaning": "not yet", "pronunciation": "HIN-dee pah", "type": "phrase" },
-    { "word": "salamat", "meaning": "thank you", "pronunciation": "sah-LAH-mat", "type": "word" },
-    { "word": "maraming salamat", "meaning": "thank you very much", "pronunciation": "mah-RAH-ming sah-LAH-mat", "type": "phrase" },
-    { "word": "marami", "meaning": "many / a lot", "pronunciation": "mah-RAH-mee", "type": "adjective" },
-    { "word": "walang anuman", "meaning": "you're welcome (it was nothing)", "pronunciation": "wah-LANG ah-NOO-man", "type": "phrase" },
-    { "word": "wala", "meaning": "nothing / none", "pronunciation": "wah-LAH", "type": "word" },
-    { "word": "anuman", "meaning": "anything", "pronunciation": "ah-NOO-man", "type": "word" },
-    { "word": "busog", "meaning": "full (from eating)", "pronunciation": "BOO-sog", "type": "adjective" },
-    { "word": "anak", "meaning": "child / dear (term of endearment)", "pronunciation": "ah-NAK", "type": "noun" }
+    {
+      "word": "oo",
+      "meaning": "yes",
+      "pronunciation": "OH-oh",
+      "type": "particle"
+    },
+    {
+      "word": "hindi",
+      "meaning": "no / not",
+      "pronunciation": "HIN-dee",
+      "type": "particle"
+    },
+    {
+      "word": "hindi pa",
+      "meaning": "not yet",
+      "pronunciation": "HIN-dee pah",
+      "type": "phrase"
+    },
+    {
+      "word": "salamat",
+      "meaning": "thank you",
+      "pronunciation": "sah-LAH-mat",
+      "type": "word"
+    },
+    {
+      "word": "maraming salamat",
+      "meaning": "thank you very much",
+      "pronunciation": "mah-RAH-ming sah-LAH-mat",
+      "type": "phrase"
+    },
+    {
+      "word": "marami",
+      "meaning": "many / a lot",
+      "pronunciation": "mah-RAH-mee",
+      "type": "adjective"
+    },
+    {
+      "word": "walang anuman",
+      "meaning": "you're welcome (it was nothing)",
+      "pronunciation": "wah-LANG ah-NOO-man",
+      "type": "phrase"
+    },
+    {
+      "word": "wala",
+      "meaning": "nothing / none",
+      "pronunciation": "wah-LAH",
+      "type": "word"
+    },
+    {
+      "word": "anuman",
+      "meaning": "anything",
+      "pronunciation": "ah-NOO-man",
+      "type": "word"
+    },
+    {
+      "word": "busog",
+      "meaning": "full (from eating)",
+      "pronunciation": "BOO-sog",
+      "type": "adjective"
+    },
+    {
+      "word": "anak",
+      "meaning": "child / dear (term of endearment)",
+      "pronunciation": "ah-NAK",
+      "type": "noun"
+    }
   ],
-
   "wrong_answer_tracking": {
     "behaviour": "Wrong answers go to back of current session queue. User must get ALL questions right to complete session. Cannot finish lesson with outstanding wrong answers.",
     "track_wrong_count": true,
     "wrong_count_usage": "Feed to Gemini system prompt for AI Practice. E.g., 'User confused hindi po vs hindi pa po (2 wrong attempts). Focus practice on the difference between flat no and not yet.'"
   },
-
   "completion_reward": {
     "xp": 15,
     "alam_mo_ba": [
@@ -530,9 +711,7 @@
     ],
     "alam_mo_ba_display": "Show 1 random fun fact on lesson completion screen. On replay, show a different one."
   },
-
   "ai_practice": null,
-
   "gamification": {
     "xp_per_lesson": 15,
     "hearts_per_wrong_answer": 1,

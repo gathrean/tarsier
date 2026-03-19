@@ -28,15 +28,39 @@ struct WordsView: View {
     }
 
     var body: some View {
-        VStack(spacing: 0) {
-            if words.isEmpty {
-                emptyState
-            } else {
-                wordList
+        ZStack(alignment: .top) {
+            VStack(spacing: 0) {
+                // Spacer for gradient header
+                Color.clear.frame(height: 52)
+
+                if words.isEmpty {
+                    emptyState
+                } else {
+                    wordList
+                }
             }
+
+            // Purple gradient header
+            VStack(spacing: 0) {
+                Text("Words")
+                    .font(TarsierFonts.heading(22))
+                    .foregroundStyle(.white)
+                    .frame(maxWidth: .infinity)
+                    .padding(.bottom, 12)
+            }
+            .allowsHitTesting(false)
+            .background(
+                LinearGradient(
+                    colors: [Color(hex: "#5B48E0"), Color(hex: "#5B48E0").opacity(0)],
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                .padding(.top, -200)
+                .padding(.bottom, -40)
+            )
         }
         .background(TarsierColors.warmWhite)
-        .navigationTitle("Words")
+        .toolbar(.hidden, for: .navigationBar)
         .onAppear {
             chapters = LessonService.shared.loadChapters()
         }
@@ -119,7 +143,7 @@ struct WordsView: View {
                     }
                 }
                 .padding(.horizontal, TarsierSpacing.screenPadding)
-                .padding(.bottom, 20)
+                .padding(.bottom, 100) // Extra bottom clearance for tab bar
             }
         }
     }

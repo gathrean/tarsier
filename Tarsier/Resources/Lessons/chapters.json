@@ -5,6 +5,8 @@
     "subtitle": "Abakada",
     "icon": "textformat.abc",
     "accent_color": "#2AA198",
+    "description": "Learn how Tagalog sounds and discover words you already know.",
+    "has_practice": false,
     "rows": [
       { "row": 1, "lessons": ["000"] }
     ]
@@ -15,6 +17,7 @@
     "subtitle": "Magalang",
     "icon": "🙏",
     "accent_color": "#5B48E0",
+    "description": "Master po, opo, and the respect system that's at the heart of every Filipino conversation.",
     "rows": [
       { "row": 1, "lessons": ["001"] },
       { "row": 2, "lessons": ["002", "003"] },
@@ -27,6 +30,7 @@
     "subtitle": "Taglish",
     "icon": "🔀",
     "accent_color": "#FF6B6B",
+    "description": "Discover how Filipinos actually speak — mixing Tagalog and English in everyday life.",
     "rows": [
       { "row": 1, "lessons": ["005"] },
       { "row": 2, "lessons": ["006"] }
@@ -38,6 +42,7 @@
     "subtitle": "Kain!",
     "icon": "🍽️",
     "accent_color": "#F5A100",
+    "description": "Learn essential food words and how to talk about eating — the most important activity in Filipino culture.",
     "rows": [
       { "row": 1, "lessons": ["007"] },
       { "row": 2, "lessons": ["008", "009"] },
@@ -50,6 +55,7 @@
     "subtitle": "Pamilya",
     "icon": "👨‍👩‍👧",
     "accent_color": "#E8577D",
+    "description": "Meet the Filipino family tree and learn the titles that define every relationship.",
     "rows": [
       { "row": 1, "lessons": ["011", "012"] },
       { "row": 2, "lessons": ["013", "014"] }
@@ -61,6 +67,7 @@
     "subtitle": "Bilang",
     "icon": "🔢",
     "accent_color": "#38BDF8",
+    "description": "Count in Tagalog, handle everyday prices, and navigate the market like a local.",
     "rows": [
       { "row": 1, "lessons": ["015"] },
       { "row": 2, "lessons": ["016"] }
@@ -72,6 +79,7 @@
     "subtitle": "Araw-araw",
     "icon": "🌅",
     "accent_color": "#34D399",
+    "description": "Talk about your day from morning to night using common verbs and time expressions.",
     "rows": [
       { "row": 1, "lessons": ["017"] },
       { "row": 2, "lessons": ["018", "019"] },
@@ -84,6 +92,7 @@
     "subtitle": "Damdamin",
     "icon": "😊",
     "accent_color": "#C47A2B",
+    "description": "Express how you feel and describe the world around you with adjectives and ma- words.",
     "rows": [
       { "row": 1, "lessons": ["021"] },
       { "row": 2, "lessons": ["022", "023"] },
@@ -96,6 +105,7 @@
     "subtitle": "Lugar",
     "icon": "📍",
     "accent_color": "#A78BFA",
+    "description": "Navigate directions, ask where things are, and talk about the places you visit.",
     "rows": [
       { "row": 1, "lessons": ["025"] },
       { "row": 2, "lessons": ["026", "027"] },
@@ -108,6 +118,7 @@
     "subtitle": "Oras",
     "icon": "📅",
     "accent_color": "#0D9488",
+    "description": "Tell time, make plans, and understand the Filipino sense of scheduling.",
     "rows": [
       { "row": 1, "lessons": ["029"] },
       { "row": 2, "lessons": ["030"] }
@@ -119,6 +130,7 @@
     "subtitle": "Salita",
     "icon": "🧩",
     "accent_color": "#6366F1",
+    "description": "Unlock the affix system — the engine that builds thousands of Tagalog words from simple roots.",
     "rows": [
       { "row": 1, "lessons": ["031"] },
       { "row": 2, "lessons": ["032"] }

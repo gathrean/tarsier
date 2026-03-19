@@ -8,6 +8,7 @@ struct LessonContainerView: View {
     let isReplay: Bool
     var hideCloseButton: Bool = false
     var onSessionComplete: (() -> Void)? = nil
+    var chapterAccentColor: Color = Color(hex: "#5B48E0")
 
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
@@ -149,20 +150,22 @@ struct LessonContainerView: View {
             .padding(.top, 8)
             .padding(.bottom, 4)
 
-            // Session title
+            // Session title chip
             if let session {
                 Text(session.title)
-                    .font(TarsierFonts.caption())
-                    .foregroundStyle(TarsierColors.textSecondary)
+                    .font(TarsierFonts.caption(13))
+                    .fontWeight(.semibold)
+                    .foregroundStyle(chapterAccentColor)
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 4)
+                    .background(
+                        Capsule()
+                            .fill(chapterAccentColor.opacity(0.12))
+                    )
                     .padding(.bottom, 4)
             }
 
-            // Alam Mo Ba collapsible button (below progress bar, above card content)
-            if let inline = currentCard?.alamMoBaInline {
-                alamMoBaCollapsible(inline)
-                    .padding(.horizontal, TarsierSpacing.screenPadding)
-                    .padding(.bottom, 4)
-            }
+            // (Alam Mo Ba is now a floating lightbulb above the bottom button)
 
             // Card content
             if let card = currentCard {
@@ -178,8 +181,15 @@ struct LessonContainerView: View {
 
             Spacer(minLength: 0)
 
-            // Bottom button
-            bottomButton
+            // Floating Alam Mo Ba card + Bottom button
+            VStack(spacing: 0) {
+                if let inline = currentCard?.alamMoBaInline {
+                    alamMoBaFloatingCard(inline)
+                        .padding(.horizontal, TarsierSpacing.screenPadding)
+                        .padding(.bottom, 8)
+                }
+                bottomButton
+            }
         }
         .coordinateSpace(name: "sessionContent")
         .overlay {
@@ -205,48 +215,72 @@ struct LessonContainerView: View {
         }
     }
 
-    // MARK: - Alam Mo Ba Collapsible Button
+    // MARK: - Alam Mo Ba Floating Card
 
     @ViewBuilder
-    private func alamMoBaCollapsible(_ inline: AlamMoBaInline) -> some View {
-        VStack(spacing: 0) {
-            // Tappable button
-            Button {
-                withAnimation(.easeOut(duration: 0.25)) {
-                    showAlamMoBa.toggle()
-                }
-            } label: {
-                HStack(spacing: 6) {
-                    Image(systemName: "questionmark.circle")
-                        .font(.system(size: 13, weight: .medium))
-                    Text("Alam Mo Ba?")
-                        .font(.system(size: 13, weight: .medium, design: .rounded))
-                }
-                .foregroundStyle(Color(hex: "#F5A100"))
+    private func alamMoBaFloatingCard(_ inline: AlamMoBaInline) -> some View {
+        Button {
+            withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
+                showAlamMoBa.toggle()
             }
-            .buttonStyle(.plain)
-
-            // Expandable card
+        } label: {
             if showAlamMoBa {
-                HStack(alignment: .top, spacing: 8) {
-                    Text(inline.emoji ?? "?")
-                        .font(.system(size: 14))
+                // Expanded: horizontal card with fact text
+                HStack(alignment: .top, spacing: 10) {
+                    Text(inline.emoji ?? "💡")
+                        .font(.system(size: 18))
 
-                    Text(inline.fact)
-                        .font(.system(size: 14, weight: .regular, design: .rounded))
-                        .foregroundStyle(TarsierColors.textPrimary)
-                        .fixedSize(horizontal: false, vertical: true)
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Alam Mo Ba?")
+                            .font(.system(size: 13, weight: .bold, design: .rounded))
+                            .foregroundStyle(Color(hex: "#F5A100"))
+                        Text(inline.fact)
+                            .font(.system(size: 14, weight: .regular, design: .rounded))
+                            .foregroundStyle(TarsierColors.textPrimary)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .multilineTextAlignment(.leading)
+                    }
+
+                    Spacer(minLength: 0)
+
+                    Image(systemName: "xmark")
+                        .font(.system(size: 11, weight: .bold))
+                        .foregroundStyle(TarsierColors.textSecondary)
+                        .frame(width: 20, height: 20)
                 }
-                .padding(12)
+                .padding(14)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .background(
-                    RoundedRectangle(cornerRadius: 12)
+                    RoundedRectangle(cornerRadius: 14)
                         .fill(Color(hex: "#F5A100").opacity(0.08))
                 )
-                .transition(.opacity.combined(with: .move(edge: .top)))
-                .padding(.top, 6)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 14)
+                        .stroke(Color(hex: "#F5A100").opacity(0.2), lineWidth: 1)
+                )
+            } else {
+                // Collapsed: lightbulb button (right-aligned)
+                HStack {
+                    Spacer()
+                    HStack(spacing: 6) {
+                        Image(systemName: "lightbulb.fill")
+                            .font(.system(size: 18, weight: .medium))
+                            .foregroundStyle(Color(hex: "#F5A100"))
+                        Text("Alam Mo Ba?")
+                            .font(.system(size: 13, weight: .semibold, design: .rounded))
+                            .foregroundStyle(Color(hex: "#F5A100"))
+                    }
+                    .padding(.horizontal, 14)
+                    .padding(.vertical, 10)
+                    .background(
+                        Capsule()
+                            .fill(Color(hex: "#F5A100").opacity(0.10))
+                    )
+                    .shadow(color: .black.opacity(0.06), radius: 4, y: 2)
+                }
             }
         }
+        .buttonStyle(.plain)
     }
 
     // MARK: - Card Router

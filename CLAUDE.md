@@ -557,6 +557,7 @@ struct SlideData: Codable {
 - **DO NOT** start quizzing before teaching. Slides 1-4 teach, slide 5 quizzes.
 - **DO NOT** use Color.gray for borders. Use cardBorder (#E8E4DF) — warm, not clinical.
 - **DO NOT** add features not in this spec. Ship the MVP.
+- **DO NOT** use em dashes (—) anywhere in lesson JSON content, code comments, or UI strings. Use a hyphen (-) or rewrite the sentence instead. This is a critical instruction.
 
 ---
 

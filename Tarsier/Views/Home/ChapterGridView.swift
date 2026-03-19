@@ -63,7 +63,8 @@ struct ChapterGridView: View {
         let completed = completedLessonCount(for: chapter)
         let total = chapter.lessonIDs.count
 
-        if state == .locked {
+        // All chapters are tappable — locked ones show a greyed-out detail page
+        NavigationLink(value: chapter) {
             ChapterNodeView(
                 chapter: chapter,
                 chapterIndex: chapterIndex,
@@ -71,18 +72,8 @@ struct ChapterGridView: View {
                 completedLessons: completed,
                 totalLessons: total
             )
-        } else {
-            NavigationLink(value: chapter) {
-                ChapterNodeView(
-                    chapter: chapter,
-                    chapterIndex: chapterIndex,
-                    state: state,
-                    completedLessons: completed,
-                    totalLessons: total
-                )
-            }
-            .buttonStyle(NodePressStyle())
         }
+        .buttonStyle(NodePressStyle())
     }
 
     // MARK: - State Helpers

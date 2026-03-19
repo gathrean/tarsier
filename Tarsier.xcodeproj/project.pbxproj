@@ -41,6 +41,7 @@
 		2D2AC7A6FCB5241C821EC71A /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E37117D7A295A82029498 /* PrimaryButton.swift */; };
 		32CEDFB6CC58EB901DEFD4E5 /* lesson_009.json in Resources */ = {isa = PBXBuildFile; fileRef = D51AA372EC00B61F6CCCC79A /* lesson_009.json */; };
 		35D1FA87BA1859B01638F669 /* lesson_003.json in Resources */ = {isa = PBXBuildFile; fileRef = B798425839972D12C2420444 /* lesson_003.json */; };
+		370D3EAD70E90E6F596B7AF8 /* SwipeBackModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582E191095CAD6B8156BFA08 /* SwipeBackModifier.swift */; };
 		3959A9B0C2BE97D5C9B650D5 /* TarsierCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A70D240F36887A2F91224B /* TarsierCharacter.swift */; };
 		39908E74AE9CD56F086C6666 /* correct.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5CA148C48FB90E2526E603D2 /* correct.mp3 */; };
 		3AB726BC7EBDD42653328589 /* lesson_022.json in Resources */ = {isa = PBXBuildFile; fileRef = ADEC94B83602D8C3062079BD /* lesson_022.json */; };
@@ -102,6 +103,7 @@
 		AF47E994A76E14434D69E3F7 /* GreetingSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2A58CC820B1B11923364E4 /* GreetingSheetView.swift */; };
 		AFE4A7627B1E0B897C96D056 /* lesson_006.json in Resources */ = {isa = PBXBuildFile; fileRef = 6E87449FA03A7982FF92828A /* lesson_006.json */; };
 		B01F1540117F658EEC76E621 /* lesson_032.json in Resources */ = {isa = PBXBuildFile; fileRef = E55D65B5A5B38C7A4628F6D4 /* lesson_032.json */; };
+		B188106A6CD0287E4F0CB298 /* FeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBD6B23D023E848B001AF77 /* FeatureFlags.swift */; };
 		B5A1293B9F9379C11B46951A /* ProficiencyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EA384B1AC9E3F3D1225FD9 /* ProficiencyScreen.swift */; };
 		B9A2D2C42A4885F03DE3D42E /* CharacterIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E354354F1E9F2DC1EB5808FF /* CharacterIntroView.swift */; };
 		BE01BD0E70F32231D1F6EA5F /* ChapterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6779793AD1D1867BCD9303C3 /* ChapterHeaderView.swift */; };
@@ -144,6 +146,7 @@
 		091A2D027DE131B1E9BBBC6B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		099D01D14DB7EFA05035EB31 /* ProgressRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressRingView.swift; sourceTree = "<group>"; };
 		0BAAA4E1AD90F7FA47E50F23 /* LessonRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonRowView.swift; sourceTree = "<group>"; };
+		0DBD6B23D023E848B001AF77 /* FeatureFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlags.swift; sourceTree = "<group>"; };
 		1472B2E8325E8DA300837744 /* chapters.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = chapters.json; sourceTree = "<group>"; };
 		161EAC20196EEF34D268F9BA /* ChapterProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterProgress.swift; sourceTree = "<group>"; };
 		18E4C6BD3E168155DBD9D685 /* PracticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeView.swift; sourceTree = "<group>"; };
@@ -177,6 +180,7 @@
 		505EF5419ADC3E37D0710FF9 /* lesson_019.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lesson_019.json; sourceTree = "<group>"; };
 		51AD4E6E7A3B5CAA63E69031 /* lesson_014.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lesson_014.json; sourceTree = "<group>"; };
 		5527708EB3ED2D16E9E9708A /* PhotoCreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCreditsView.swift; sourceTree = "<group>"; };
+		582E191095CAD6B8156BFA08 /* SwipeBackModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeBackModifier.swift; sourceTree = "<group>"; };
 		59916CEB753589A5CC734C17 /* ZigzagChapterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZigzagChapterView.swift; sourceTree = "<group>"; };
 		5CA148C48FB90E2526E603D2 /* correct.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = correct.mp3; sourceTree = "<group>"; };
 		5F212D70075F9319CEF17CDF /* lesson_017.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lesson_017.json; sourceTree = "<group>"; };
@@ -286,7 +290,9 @@
 		081D2A50A4B18EF977981ACE /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				0DBD6B23D023E848B001AF77 /* FeatureFlags.swift */,
 				69F047FF04ACFAC5A57C1FDF /* GreetingHelper.swift */,
+				582E191095CAD6B8156BFA08 /* SwipeBackModifier.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -714,6 +720,7 @@
 				1000760C4EBC14DBB3CB477A /* DailyActivity.swift in Sources */,
 				742F8698C67A7B8AD57CFA46 /* DailyGoalScreen.swift in Sources */,
 				ACF105281774A3D190A6B6FF /* DailyToastView.swift in Sources */,
+				B188106A6CD0287E4F0CB298 /* FeatureFlags.swift in Sources */,
 				E0E0757A7D0E3C0FFE85930A /* FlowLayout.swift in Sources */,
 				008885DF805902F799DAE6DD /* GreetingHelper.swift in Sources */,
 				AF47E994A76E14434D69E3F7 /* GreetingSheetView.swift in Sources */,
@@ -759,6 +766,7 @@
 				95FCFB9BCCC02D478B30A634 /* StreakCalendarView.swift in Sources */,
 				A96817343CAD57D4AF7418B6 /* StreakService.swift in Sources */,
 				49E3E09FDEE4FB6FF22378C2 /* SubscriptionGateScreen.swift in Sources */,
+				370D3EAD70E90E6F596B7AF8 /* SwipeBackModifier.swift in Sources */,
 				FE3E7E9604967CD6CE5EE6AC /* TaglishCallout.swift in Sources */,
 				118726566415C9B860E2EA93 /* TappableTagalogWord.swift in Sources */,
 				FE72AC5A9AF0B93DF346BFFD /* TarsierAIService.swift in Sources */,

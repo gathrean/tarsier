@@ -107,7 +107,8 @@ struct QuizSlideView: View {
         VStack(spacing: 20) {
             // Character bubble (if character present) replaces plain prompt
             if let character = card.character {
-                if let prompt = card.prompt {
+                // Hide raw prompt for fill-in-blank with inline context (shown inline instead)
+                if let prompt = card.prompt, !(card.quizType == .fillInBlank && blankContext != nil) {
                     Text(prompt)
                         .font(TarsierFonts.caption(14))
                         .foregroundStyle(TarsierColors.textSecondary)
@@ -119,22 +120,32 @@ struct QuizSlideView: View {
                     showMeaning: showCharacterMeaning
                 )
             } else if let prompt = card.prompt {
-                HStack(spacing: 10) {
-                    Text(prompt)
-                        .font(TarsierFonts.heading(20))
-                        .foregroundStyle(TarsierColors.textPrimary)
-                        .multilineTextAlignment(.center)
+                // For fill-in-blank with inline context: show question prefix only, not the full prompt
+                if card.quizType == .fillInBlank && blankContext != nil {
+                    if let questionPrefix = blankQuestionPrefix {
+                        Text(questionPrefix)
+                            .font(TarsierFonts.heading(18))
+                            .foregroundStyle(TarsierColors.textPrimary)
+                            .multilineTextAlignment(.center)
+                    }
+                } else {
+                    HStack(spacing: 10) {
+                        Text(prompt)
+                            .font(TarsierFonts.heading(20))
+                            .foregroundStyle(TarsierColors.textPrimary)
+                            .multilineTextAlignment(.center)
 
-                    // Speaker icon for Tagalog prompts (no auto-play on quiz cards)
-                    if let audioPath = card.audio, AudioPlayerService.shared.hasAudio(relativePath: audioPath) {
-                        Button {
-                            AudioPlayerService.shared.play(relativePath: audioPath)
-                        } label: {
-                            Image(systemName: "speaker.wave.2.fill")
-                                .font(.system(size: 18))
-                                .foregroundStyle(TarsierColors.functionalPurple)
+                        // Speaker icon for Tagalog prompts (no auto-play on quiz cards)
+                        if let audioPath = card.audio, AudioPlayerService.shared.hasAudio(relativePath: audioPath) {
+                            Button {
+                                AudioPlayerService.shared.play(relativePath: audioPath)
+                            } label: {
+                                Image(systemName: "speaker.wave.2.fill")
+                                    .font(.system(size: 18))
+                                    .foregroundStyle(TarsierColors.functionalPurple)
+                            }
+                            .buttonStyle(.plain)
                         }
-                        .buttonStyle(.plain)
                     }
                 }
             }
@@ -166,7 +177,8 @@ struct QuizSlideView: View {
                         allWords: sentenceBuildWords,
                         correctOrder: correctOrder,
                         state: state,
-                        audioBasePath: card.audio.flatMap { ($0 as NSString).deletingLastPathComponent + "/" }
+                        audioBasePath: card.audio.flatMap { ($0 as NSString).deletingLastPathComponent + "/" },
+                        hideSourceText: card.character != nil
                     )
                 }
             case .none:
@@ -238,28 +250,119 @@ struct QuizSlideView: View {
 
     // MARK: - Fill in Blank
 
+    /// Parses prompt like "It's evening. How do you greet? 'Magandang ___ po.'"
+    /// Returns (prefix, suffix) of words around the blank, or nil if no inline context found.
+    private var blankContext: (prefix: String, suffix: String)? {
+        guard let prompt = card.prompt, prompt.contains("___") else { return nil }
+
+        // Extract the part containing ___ (prefer quoted portion, fall back to full prompt)
+        let content: String
+        if let singleQuoteRange = extractQuoted(from: prompt, open: "'", close: "'") {
+            content = singleQuoteRange
+        } else if let colonIdx = prompt.firstIndex(of: ":") {
+            content = String(prompt[prompt.index(after: colonIdx)...]).trimmingCharacters(in: .whitespaces)
+        } else {
+            content = prompt
+        }
+
+        let parts = content.components(separatedBy: "___")
+        guard parts.count == 2 else { return nil }
+
+        let cleanChars = CharacterSet.whitespaces.union(.init(charactersIn: "'\""))
+        let prefix = parts[0].trimmingCharacters(in: cleanChars)
+        let suffix = parts[1].trimmingCharacters(in: cleanChars.union(.punctuationCharacters))
+
+        guard !prefix.isEmpty || !suffix.isEmpty else { return nil }
+        return (prefix, suffix)
+    }
+
+    /// Extracts the question text before the quoted blank pattern.
+    /// e.g. "It's evening. How do you greet? 'Magandang ___ po.'" -> "It's evening. How do you greet?"
+    private var blankQuestionPrefix: String? {
+        guard let prompt = card.prompt, prompt.contains("___") else { return nil }
+        // If there's a quoted portion, the question is everything before the first quote
+        if let quoteIdx = prompt.firstIndex(of: "'") {
+            let before = String(prompt[prompt.startIndex..<quoteIdx]).trimmingCharacters(in: .whitespaces)
+            return before.isEmpty ? nil : before
+        }
+        return nil
+    }
+
+    private func extractQuoted(from text: String, open: Character, close: Character) -> String? {
+        guard let openIdx = text.firstIndex(of: open) else { return nil }
+        let afterOpen = text.index(after: openIdx)
+        guard afterOpen < text.endIndex else { return nil }
+        // Find the LAST occurrence of close quote
+        guard let closeIdx = text.lastIndex(of: close), closeIdx > afterOpen else { return nil }
+        let inner = String(text[afterOpen..<closeIdx])
+        return inner.contains("___") ? inner : nil
+    }
+
     private var fillInBlankInput: some View {
         VStack(spacing: 12) {
-            TextField("Type your answer", text: $state.textAnswer)
-                .font(TarsierFonts.body())
-                .padding(TarsierSpacing.cardPadding)
-                .background(
-                    RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
-                        .fill(TarsierColors.cream)
-                )
-                .overlay(
-                    RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
-                        .stroke(TarsierColors.cardBorder, lineWidth: 1)
-                )
-                .focused($isTextFieldFocused)
-                .disabled(state.isChecked)
-                .autocorrectionDisabled()
-                .textInputAutocapitalization(.never)
+            if let context = blankContext {
+                // Inline layout: prefix + text field + suffix
+                HStack(spacing: 8) {
+                    if !context.prefix.isEmpty {
+                        Text(context.prefix)
+                            .font(TarsierFonts.tagalogWord(22))
+                            .foregroundStyle(TarsierColors.textPrimary)
+                    }
+
+                    TextField("___", text: $state.textAnswer)
+                        .font(TarsierFonts.tagalogWord(22))
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 10)
+                        .frame(minWidth: 80)
+                        .background(
+                            RoundedRectangle(cornerRadius: 12)
+                                .fill(TarsierColors.cream)
+                        )
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(isTextFieldFocused ? TarsierColors.functionalPurple : TarsierColors.cardBorder, lineWidth: isTextFieldFocused ? 2 : 1)
+                        )
+                        .fixedSize(horizontal: false, vertical: true)
+                        .focused($isTextFieldFocused)
+                        .disabled(state.isChecked)
+                        .autocorrectionDisabled()
+                        .textInputAutocapitalization(.never)
+
+                    if !context.suffix.isEmpty {
+                        Text(context.suffix)
+                            .font(TarsierFonts.tagalogWord(22))
+                            .foregroundStyle(TarsierColors.textPrimary)
+                    }
+                }
                 .onAppear {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                         isTextFieldFocused = true
                     }
                 }
+            } else {
+                // Fallback: standalone text field (no inline context)
+                TextField("Type your answer", text: $state.textAnswer)
+                    .font(TarsierFonts.body())
+                    .padding(TarsierSpacing.cardPadding)
+                    .background(
+                        RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
+                            .fill(TarsierColors.cream)
+                    )
+                    .overlay(
+                        RoundedRectangle(cornerRadius: TarsierSpacing.cardCornerRadius)
+                            .stroke(TarsierColors.cardBorder, lineWidth: 1)
+                    )
+                    .focused($isTextFieldFocused)
+                    .disabled(state.isChecked)
+                    .autocorrectionDisabled()
+                    .textInputAutocapitalization(.never)
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                            isTextFieldFocused = true
+                        }
+                    }
+            }
 
             if let hint = card.hint, !state.isChecked {
                 Text("Hint: \(hint)")
@@ -284,7 +387,7 @@ struct WordOrderQuizView: View {
         VStack(alignment: .leading, spacing: 16) {
             // Builder row — fixed slots, each sized to its word
             VStack(alignment: .leading, spacing: 8) {
-                Text("Your sentence:")
+                Text("You say:")
                     .font(TarsierFonts.caption())
                     .foregroundStyle(TarsierColors.textSecondary)
 

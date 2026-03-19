@@ -1,7 +1,7 @@
 import SwiftUI
 import SwiftData
 
-/// Plays the first lesson (Po & Opo) after onboarding completes.
+/// Plays the Introduction lesson (Abakada, lesson 0) after onboarding completes.
 /// On session complete, marks onboarding as done → ContentView routes to MainTabView.
 struct OnboardingLessonView: View {
     @Environment(\.modelContext) private var modelContext
@@ -10,7 +10,8 @@ struct OnboardingLessonView: View {
     private var profile: UserProfile? { profiles.first }
 
     var body: some View {
-        if let lesson = LessonService.shared.lesson(for: 1) {
+        // Load Introduction (lesson 0) first; fall back to lesson 1 if missing
+        if let lesson = LessonService.shared.lesson(for: 0) ?? LessonService.shared.lesson(for: 1) {
             LessonContainerView(
                 lesson: lesson,
                 sessionNumber: 1,

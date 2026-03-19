@@ -4,16 +4,14 @@
     "last_updated": "2026-03-17",
     "notes": "v0.7: Added character fields to quiz cards. Added sentence_build quiz type. Added image fields to teach cards. Added character_intro cards for Lola and Lolo. Builds on v0.6."
   },
-
   "lesson_id": "001",
   "title": "Po & Opo",
   "subtitle": "The Heart of Filipino Respect",
   "chapter_id": "ch01",
-  "chapter_title": "Respect & Greetings — Magalang",
+  "chapter_title": "Respect & Greetings - Magalang",
   "position_in_chapter": 1,
   "difficulty": "beginner",
   "total_sessions": 5,
-
   "sessions": [
     {
       "session_id": "001_s1",
@@ -56,8 +54,13 @@
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "bunso",
-          "prompt": "Which sentence is respectful?",
-          "options": ["Thank you.", "Thank you po.", "Thanks naman.", "Salamat lang."],
+          "source_text": "Which of these sounds respectful?",
+          "options": [
+            "Thank you.",
+            "Thank you po.",
+            "Thanks naman.",
+            "Salamat lang."
+          ],
           "correct_answer": 1,
           "explanation": "Adding po makes it respectful. 'Thank you po' is natural Taglish.",
           "shuffle_options": true
@@ -78,9 +81,12 @@
           "type": "quiz",
           "quiz_type": "fill_in_blank",
           "character": "bunso",
+          "source_text": "Quick - Lola asked if you want rice. What do you say?",
           "prompt": "How would you say yes respectfully?",
-          "correct_answers": ["Opo", "opo"],
-          "hint": "Oo (yes) + po (respect) = ?",
+          "correct_answers": [
+            "Opo",
+            "opo"
+          ],
           "explanation": "Oo + po = opo."
         },
         {
@@ -90,13 +96,21 @@
           "character": "bunso",
           "prompt": "Reply to Bunso",
           "source_text": "Have you eaten yet?",
-          "correct_order": ["I", "didn't", "eat", "yet", "po"],
-          "distractors": ["na", "opo"],
+          "correct_order": [
+            "I",
+            "didn't",
+            "eat",
+            "yet",
+            "po"
+          ],
+          "distractors": [
+            "na",
+            "opo"
+          ],
           "explanation": "Just add po at the end. 'I didn't eat yet po' is how Filipinos actually say this in Taglish."
         }
       ]
     },
-
     {
       "session_id": "001_s2",
       "session_number": 2,
@@ -153,8 +167,14 @@
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "lola",
+          "source_text": "Anak, you need to ask that person for directions.",
           "prompt": "You're asking a stranger where the bathroom is. Which is more appropriate?",
-          "options": ["Where's the CR?", "Excuse me po, where is the CR?", "Hey, where's the CR?", "Where CR?"],
+          "options": [
+            "Where's the CR?",
+            "Excuse me po, where is the CR?",
+            "Hey, where's the CR?",
+            "Where CR?"
+          ],
           "correct_answer": 1,
           "explanation": "With strangers, po shows respect and politeness.",
           "shuffle_options": true,
@@ -207,8 +227,14 @@
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "pare",
-          "prompt": "Your coworker (same age, close friend) asks if you want coffee. How do you say yes?",
-          "options": ["Sige po.", "Sige, pare!", "Yes po.", "Siyempre po."],
+          "source_text": "Uy, want some coffee?",
+          "prompt": "Your close friend offers you coffee. How do you say yes?",
+          "options": [
+            "Sige po.",
+            "Sige, pare!",
+            "Yes po.",
+            "Siyempre po."
+          ],
           "correct_answer": 1,
           "explanation": "With a close friend your age, po isn't needed. 'Sige, pare!' is casual and enthusiastic.",
           "shuffle_options": true,
@@ -223,8 +249,14 @@
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "lola",
+          "source_text": "Here, anak, I made you some merienda!",
           "prompt": "You're meeting your friend's lola for the first time. How do you say 'thank you'?",
-          "options": ["Salamat.", "Salamat po.", "Thanks!", "Salamat naman."],
+          "options": [
+            "Salamat.",
+            "Salamat po.",
+            "Thanks!",
+            "Salamat naman."
+          ],
           "correct_answer": 1,
           "explanation": "When speaking to an elder you've just met, po is essential. Without it, too casual for a lola.",
           "shuffle_options": true
@@ -234,8 +266,14 @@
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "ate",
+          "source_text": "Ate, what's for dinner?",
           "prompt": "Your little sister asks what's for dinner. Which is natural?",
-          "options": ["Adobo po.", "Adobo!", "Adobo ho.", "Adobo naman po."],
+          "options": [
+            "Adobo po.",
+            "Adobo!",
+            "Adobo ho.",
+            "Adobo naman po."
+          ],
           "correct_answer": 1,
           "explanation": "No po needed with younger siblings. Just 'Adobo!' is direct and natural.",
           "shuffle_options": true,
@@ -247,7 +285,6 @@
         }
       ]
     },
-
     {
       "session_id": "001_s3",
       "session_number": 3,
@@ -281,12 +318,32 @@
           "prompt": "Reply to Lola",
           "given_sentence": "Kumain na ako.",
           "source_text": "Have you eaten already, anak?",
-          "word_pieces": ["Kumain", "na", "po", "ako"],
-          "correct_orders": [
-            ["Kumain", "na", "po", "ako"],
-            ["Kumain", "na", "ako", "po"]
+          "word_pieces": [
+            "Kumain",
+            "na",
+            "po",
+            "ako"
           ],
-          "best_order": ["Kumain", "na", "po", "ako"],
+          "correct_orders": [
+            [
+              "Kumain",
+              "na",
+              "po",
+              "ako"
+            ],
+            [
+              "Kumain",
+              "na",
+              "ako",
+              "po"
+            ]
+          ],
+          "best_order": [
+            "Kumain",
+            "na",
+            "po",
+            "ako"
+          ],
           "explanation": "'Kumain na po ako' is the most natural placement. 'Kumain na ako po' also works but sounds slightly stiff."
         },
         {
@@ -321,8 +378,15 @@
           "character": "lolo",
           "prompt": "Reply to Lolo",
           "source_text": "Do you want the leftover adobo?",
-          "correct_order": ["Gusto", "ko", "po"],
-          "distractors": ["ako", "na"],
+          "correct_order": [
+            "Gusto",
+            "ko",
+            "po"
+          ],
+          "distractors": [
+            "ako",
+            "na"
+          ],
           "explanation": "Po goes after 'ko.' 'Gusto ko po' is clean and natural."
         },
         {
@@ -332,13 +396,19 @@
           "character": "bunso",
           "prompt": "Ask Lolo where this is",
           "source_text": "You're at a family gathering. Ask where the bathroom is.",
-          "correct_order": ["Saan", "po", "ito"],
-          "distractors": ["ko", "na"],
+          "correct_order": [
+            "Saan",
+            "po",
+            "ito"
+          ],
+          "distractors": [
+            "ko",
+            "na"
+          ],
           "explanation": "Po goes after the question word. 'Saan po ito?' is the natural placement."
         }
       ]
     },
-
     {
       "session_id": "001_s4",
       "session_number": 4,
@@ -348,7 +418,9 @@
           "card_id": "001_s4_c1",
           "type": "teach",
           "body": "Mano po is a gesture, not just words. You take an elder's hand and press the back of it to your forehead.",
-          "image": { "filename": "mano_po_gesture.jpg" }
+          "image": {
+            "filename": "mano_po_gesture.jpg"
+          }
         },
         {
           "card_id": "001_s4_c2",
@@ -358,7 +430,9 @@
             "sentence": "Mano po, Lola.",
             "translation": "Bless me, Grandmother."
           },
-          "image": { "filename": "filipino_family_gathering.jpg" },
+          "image": {
+            "filename": "filipino_family_gathering.jpg"
+          },
           "alam_mo_ba_inline": {
             "term": "mano",
             "fact": "'Mano' comes from Spanish 'mano' (hand). The gesture predates Spanish colonisation, but the word stuck.",
@@ -370,8 +444,14 @@
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "lola",
+          "source_text": "Come here, anak. Show me your mano.",
           "prompt": "What is 'mano po'?",
-          "options": ["A greeting you say on the phone", "A gesture where you press an elder's hand to your forehead", "A way to say goodbye", "A formal handshake"],
+          "options": [
+            "A greeting you say on the phone",
+            "A gesture where you press an elder's hand to your forehead",
+            "A way to say goodbye",
+            "A formal handshake"
+          ],
           "correct_answer": 1,
           "explanation": "You take an elder's hand and press the back of it to your forehead as a sign of respect.",
           "shuffle_options": true
@@ -436,8 +516,14 @@
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "lolo",
+          "source_text": "Do you want more rice, anak?",
           "prompt": "How do you say 'no' respectfully?",
-          "options": ["Hindi.", "Hindi po.", "No po.", "Ayaw."],
+          "options": [
+            "Hindi.",
+            "Hindi po.",
+            "No po.",
+            "Ayaw."
+          ],
           "correct_answer": 1,
           "explanation": "'Hindi po' is the respectful way to say no.",
           "shuffle_options": true
@@ -447,8 +533,14 @@
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "tita",
-          "prompt": "You're late to your tita's house. What do you say?",
-          "options": ["Sorry, late ako.", "Pasensya na po, late po ako.", "Late na po.", "Sorry tita."],
+          "source_text": "You're late! What do you say to me?",
+          "prompt": "How do you apologize respectfully?",
+          "options": [
+            "Sorry, late ako.",
+            "Pasensya na po, late po ako.",
+            "Late na po.",
+            "Sorry tita."
+          ],
           "correct_answer": 1,
           "explanation": "'Pasensya na po' asks for patience respectfully. Adding po to 'late po ako' doubles down on the respect.",
           "shuffle_options": true,
@@ -465,8 +557,16 @@
           "character": "lola",
           "prompt": "Reply to Lola",
           "source_text": "I saved you some sinigang, anak. Want me to heat it up?",
-          "correct_order": ["Sige", "po", "salamat", "po"],
-          "distractors": ["naman", "na"],
+          "correct_order": [
+            "Sige",
+            "po",
+            "salamat",
+            "po"
+          ],
+          "distractors": [
+            "naman",
+            "na"
+          ],
           "explanation": "'Sige po, salamat po.' Two natural uses of po in one sentence."
         },
         {
@@ -474,15 +574,20 @@
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "pare",
-          "prompt": "Your friend asks 'Want to get food?' and the answer is obviously yes. What do you say?",
-          "options": ["Opo.", "Siyempre!", "Siyempre po.", "Sige po."],
+          "source_text": "Pare, want to get food?",
+          "prompt": "The answer is obviously yes. What do you say?",
+          "options": [
+            "Opo.",
+            "Siyempre!",
+            "Siyempre po.",
+            "Sige po."
+          ],
           "correct_answer": 1,
           "explanation": "'Siyempre!' means 'of course!' Casual, enthusiastic, no po needed with a friend.",
           "shuffle_options": true
         }
       ]
     },
-
     {
       "session_id": "001_s5",
       "session_number": 5,
@@ -494,8 +599,14 @@
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "lola",
-          "prompt": "You arrive at a family gathering. What's the first thing you do with your lola?",
-          "options": ["Say 'Hi lola!'", "Mano po", "Wave from across the room", "Say 'Kumusta'"],
+          "source_text": "Anak! You're here! Come, come.",
+          "prompt": "What's the most respectful gesture you can do?",
+          "options": [
+            "Say 'Hi lola!'",
+            "Mano po",
+            "Wave from across the room",
+            "Say 'Kumusta'"
+          ],
           "correct_answer": 1,
           "explanation": "Mano po first. You take her hand and press it to your forehead. Then you can greet and chat.",
           "shuffle_options": true
@@ -504,10 +615,11 @@
           "card_id": "001_s5_q2",
           "type": "quiz",
           "quiz_type": "fill_in_blank",
-          "character": "bunso",
           "prompt": "Complete: 'Salamat ___.'",
-          "correct_answers": ["po", "Po"],
-          "hint": "One word that makes it respectful.",
+          "correct_answers": [
+            "po",
+            "Po"
+          ],
           "explanation": "Salamat po. One word changes the whole tone."
         },
         {
@@ -515,8 +627,14 @@
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "pare",
-          "prompt": "Your friend (same age) offers you food. How do you say yes?",
-          "options": ["Opo.", "Sige po.", "Sige, pare!", "Siyempre po."],
+          "source_text": "Uy, I got extra lumpia. Want some?",
+          "prompt": "How do you say yes to your friend?",
+          "options": [
+            "Opo.",
+            "Sige po.",
+            "Sige, pare!",
+            "Siyempre po."
+          ],
           "correct_answer": 2,
           "explanation": "Same-age close friend = no po needed. 'Sige, pare!' is casual and natural.",
           "shuffle_options": true
@@ -527,18 +645,30 @@
           "quiz_type": "sentence_build",
           "character": "lolo",
           "prompt": "Reply to Lolo",
-          "source_text": "Are you looking for the CR, anak?",
-          "correct_order": ["Saan", "po", "ito"],
-          "distractors": ["ko", "na", "ba"],
-          "explanation": "Po after the question word. 'Saan po ito?'"
+          "source_text": "Did you eat already, anak?",
+          "correct_order": [
+            "Kumain",
+            "na",
+            "po"
+          ],
+          "distractors": [
+            "ko",
+            "ito",
+            "ba"
+          ],
+          "explanation": "'Kumain na po' - yes, I already ate. Respectful and natural."
         },
         {
           "card_id": "001_s5_q5",
           "type": "quiz",
           "quiz_type": "multiple_choice",
-          "character": "bunso",
           "prompt": "What does 'pasensya na po' mean?",
-          "options": ["Thank you", "Sorry / excuse me", "Goodbye", "Of course"],
+          "options": [
+            "Thank you",
+            "Sorry / excuse me",
+            "Goodbye",
+            "Of course"
+          ],
           "correct_answer": 1,
           "explanation": "'Pasensya na po' asks for patience. It's the respectful way to say sorry or excuse me.",
           "shuffle_options": true
@@ -548,9 +678,12 @@
           "type": "quiz",
           "quiz_type": "fill_in_blank",
           "character": "lola",
+          "source_text": "Did you eat already, anak?",
           "prompt": "Respectful yes: '___'",
-          "correct_answers": ["Opo", "opo"],
-          "hint": "Oo + po = ?",
+          "correct_answers": [
+            "Opo",
+            "opo"
+          ],
           "explanation": "Opo. The one-word respectful yes."
         },
         {
@@ -560,8 +693,16 @@
           "character": "bunso",
           "prompt": "Reply to your boss",
           "source_text": "Would you like me to grab you lunch?",
-          "correct_order": ["Gusto", "ko", "po"],
-          "distractors": ["ako", "na", "ito"],
+          "correct_order": [
+            "Gusto",
+            "ko",
+            "po"
+          ],
+          "distractors": [
+            "ako",
+            "na",
+            "ito"
+          ],
           "explanation": "'Gusto ko po.' Po after 'ko.'"
         },
         {
@@ -569,8 +710,14 @@
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "tita",
-          "prompt": "You're late to your boss's meeting. What do you say?",
-          "options": ["Sorry, late.", "Pasensya na po, late po ako.", "Late na po.", "Sorry boss."],
+          "source_text": "You're late to my meeting. What do you say?",
+          "prompt": "How do you apologize to your boss?",
+          "options": [
+            "Sorry, late.",
+            "Pasensya na po, late po ako.",
+            "Late na po.",
+            "Sorry boss."
+          ],
           "correct_answer": 1,
           "explanation": "'Pasensya na po, late po ako.' Full respect for authority.",
           "shuffle_options": true
@@ -580,8 +727,14 @@
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "mare",
-          "prompt": "Your mare asks if you're coming to her birthday. It's obvious you are. What do you say?",
-          "options": ["Opo.", "Siyempre!", "Sige po.", "Siyempre po."],
+          "source_text": "Mare! Are you coming to my birthday?",
+          "prompt": "It's obvious you're going. What do you say?",
+          "options": [
+            "Opo.",
+            "Siyempre!",
+            "Sige po.",
+            "Siyempre po."
+          ],
           "correct_answer": 1,
           "explanation": "'Siyempre!' means 'of course!' Casual with a close friend (mare = female friend), no po needed.",
           "shuffle_options": true,
@@ -594,26 +747,73 @@
       ]
     }
   ],
-
   "vocabulary": [
-    { "word": "po", "meaning": "politeness marker", "pronunciation": "poh", "type": "particle" },
-    { "word": "opo", "meaning": "yes (respectful)", "pronunciation": "OH-poh", "type": "particle" },
-    { "word": "hindi po", "meaning": "no (respectful)", "pronunciation": "HIN-dee poh", "type": "phrase" },
-    { "word": "mano po", "meaning": "hand blessing gesture", "pronunciation": "MAH-noh poh", "type": "phrase" },
-    { "word": "pasensya na po", "meaning": "sorry / excuse me", "pronunciation": "pah-SEN-sha nah poh", "type": "phrase" },
-    { "word": "sige", "meaning": "okay / sure / let's go / go ahead", "pronunciation": "SEE-geh", "type": "word" },
-    { "word": "sige po", "meaning": "okay / alright (respectful)", "pronunciation": "SEE-geh poh", "type": "phrase" },
-    { "word": "siyempre", "meaning": "of course / certainly", "pronunciation": "shem-PREH", "type": "word" },
-    { "word": "pare", "meaning": "male friend / bro", "pronunciation": "PAH-reh", "type": "word" },
-    { "word": "mare", "meaning": "female friend / sis", "pronunciation": "MAH-reh", "type": "word" }
+    {
+      "word": "po",
+      "meaning": "politeness marker",
+      "pronunciation": "poh",
+      "type": "particle"
+    },
+    {
+      "word": "opo",
+      "meaning": "yes (respectful)",
+      "pronunciation": "OH-poh",
+      "type": "particle"
+    },
+    {
+      "word": "hindi po",
+      "meaning": "no (respectful)",
+      "pronunciation": "HIN-dee poh",
+      "type": "phrase"
+    },
+    {
+      "word": "mano po",
+      "meaning": "hand blessing gesture",
+      "pronunciation": "MAH-noh poh",
+      "type": "phrase"
+    },
+    {
+      "word": "pasensya na po",
+      "meaning": "sorry / excuse me",
+      "pronunciation": "pah-SEN-sha nah poh",
+      "type": "phrase"
+    },
+    {
+      "word": "sige",
+      "meaning": "okay / sure / let's go / go ahead",
+      "pronunciation": "SEE-geh",
+      "type": "word"
+    },
+    {
+      "word": "sige po",
+      "meaning": "okay / alright (respectful)",
+      "pronunciation": "SEE-geh poh",
+      "type": "phrase"
+    },
+    {
+      "word": "siyempre",
+      "meaning": "of course / certainly",
+      "pronunciation": "shem-PREH",
+      "type": "word"
+    },
+    {
+      "word": "pare",
+      "meaning": "male friend / bro",
+      "pronunciation": "PAH-reh",
+      "type": "word"
+    },
+    {
+      "word": "mare",
+      "meaning": "female friend / sis",
+      "pronunciation": "MAH-reh",
+      "type": "word"
+    }
   ],
-
   "wrong_answer_tracking": {
     "behaviour": "Wrong answers go to back of current session queue. User must get ALL questions right to complete session. Cannot finish lesson with outstanding wrong answers.",
     "track_wrong_count": true,
     "wrong_count_usage": "Feed to Gemini system prompt for AI Practice. E.g., 'User struggled with po placement (3 wrong attempts). Focus practice on sentence construction with po.'"
   },
-
   "completion_reward": {
     "xp": 15,
     "alam_mo_ba": [
@@ -625,7 +825,6 @@
     ],
     "alam_mo_ba_display": "Show 1 random fun fact on lesson completion screen. On replay, show a different one."
   },
-
   "ai_practice": {
     "description": "End-of-chapter AI practice. Appears after all Chapter 1 lessons are complete.",
     "availability": {
@@ -636,7 +835,6 @@
     "wrong_answer_context_example": "The user struggled with po placement in sentences (got it wrong 3 times). Gently practice sentence construction with po in natural positions.",
     "max_turns": 6
   },
-
   "gamification": {
     "xp_per_lesson": 15,
     "hearts_per_wrong_answer": 1,
