@@ -160,7 +160,13 @@ struct HomeView: View {
         }
         .background(
             LinearGradient(
-                colors: [Color(hex: "#5B48E0"), Color(hex: "#5B48E0").opacity(0)],
+                stops: [
+                    .init(color: Color(hex: "#5B48E0"), location: 0),
+                    .init(color: Color(hex: "#5B48E0"), location: 0.35),
+                    .init(color: Color(hex: "#5B48E0").opacity(0.6), location: 0.55),
+                    .init(color: Color(hex: "#5B48E0").opacity(0.2), location: 0.75),
+                    .init(color: Color(hex: "#5B48E0").opacity(0), location: 1.0)
+                ],
                 startPoint: .top,
                 endPoint: .bottom
             )

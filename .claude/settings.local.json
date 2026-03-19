@@ -61,7 +61,25 @@
       "Bash(/usr/bin/tail -3)",
       "Bash(mkdir -p \"/Users/ean/Developer/tarsier/Tarsier/Assets.xcassets/philippine-flag.imageset\")",
       "Bash(cp \"/Users/ean/Developer/tarsier/images/Icons/philippine-flag.png\" \"/Users/ean/Developer/tarsier/Tarsier/Assets.xcassets/philippine-flag.imageset/philippine-flag.png\")",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Read(//opt/homebrew/**)",
+      "Read(//usr/local/**)",
+      "Bash(/opt/homebrew/bin/xcodegen generate:*)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "Bash(export PATH=\"/opt/homebrew/bin:/usr/local/bin:$PATH\")",
+      "Bash(xargs -I {} basename {})",
+      "Bash(rm -rf ~/Library/Developer/Xcode/DerivedData/Tarsier-*)",
+      "Bash(rm -rf ~/Library/Caches/org.swift.swiftpm/repositories/Superscript-iOS-*)",
+      "Bash(xcodebuild -scheme Tarsier -destination 'platform=iOS Simulator,name=iPhone 17 Pro' -resolvePackageDependencies)",
+      "Bash(echo -e \"Pillow>=10.0\\\\nrequests>=2.28\")",
+      "Bash(python3 -m json.tool Tarsier/Resources/Lessons/lesson_002.json)",
+      "Bash(python3 -m json.tool Tarsier/Resources/Lessons/lesson_003.json)",
+      "Bash(python3 -c \"import json; d=json.load\\(open\\(''Tarsier/Resources/Lessons/lesson_002.json''\\)\\); print\\(''002 title:'', d[''title''], ''| subtitle:'', d.get\\(''subtitle'',''N/A''\\)\\)\")",
+      "Bash(python3 -c \"import json; d=json.load\\(open\\(''Tarsier/Resources/Lessons/lesson_003.json''\\)\\); print\\(''003 title:'', d[''title''], ''| subtitle:'', d.get\\(''subtitle'',''N/A''\\)\\)\")",
+      "Bash(ls Tarsier/Resources/Lessons/lesson_*.json)",
+      "Bash(python3:*)",
+      "Bash(grep -E \"\\\\.swift$\")"
     ]
   }
 }
