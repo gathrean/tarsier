@@ -8,7 +8,7 @@
   "title": "Po & Opo",
   "subtitle": "The Heart of Filipino Respect",
   "chapter_id": "ch01",
-  "chapter_title": "Respect & Greetings - Magalang",
+  "chapter_title": "Hello",
   "position_in_chapter": 1,
   "difficulty": "beginner",
   "total_sessions": 5,
@@ -21,8 +21,8 @@
         {
           "card_id": "001_s1_c1",
           "type": "teach",
-          "body": "There's one word in Tagalog you can start using right now. Even in English sentences.",
-          "highlight": "That word is po."
+          "highlight": "Po",
+          "body": "There's one word in Tagalog you can start using right now. Even in English sentences. That word is po."
         },
         {
           "card_id": "001_s1_c2",

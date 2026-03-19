@@ -13,7 +13,7 @@
   },
   {
     "chapter_id": "ch01",
-    "title": "Respect & Greetings",
+    "title": "Hello",
     "subtitle": "Magalang",
     "icon": "🙏",
     "accent_color": "#5B48E0",
@@ -38,7 +38,7 @@
   },
   {
     "chapter_id": "ch03",
-    "title": "Food & Basic Verbs",
+    "title": "Food",
     "subtitle": "Kain!",
     "icon": "🍽️",
     "accent_color": "#F5A100",
@@ -51,7 +51,7 @@
   },
   {
     "chapter_id": "ch04",
-    "title": "Family & Relationships",
+    "title": "Family",
     "subtitle": "Pamilya",
     "icon": "👨‍👩‍👧",
     "accent_color": "#E8577D",
@@ -88,7 +88,7 @@
   },
   {
     "chapter_id": "ch07",
-    "title": "Feelings & Descriptions",
+    "title": "Feelings",
     "subtitle": "Damdamin",
     "icon": "😊",
     "accent_color": "#C47A2B",
@@ -101,7 +101,7 @@
   },
   {
     "chapter_id": "ch08",
-    "title": "Places & Getting Around",
+    "title": "Travel",
     "subtitle": "Lugar",
     "icon": "📍",
     "accent_color": "#A78BFA",
@@ -114,7 +114,7 @@
   },
   {
     "chapter_id": "ch09",
-    "title": "Time & Planning",
+    "title": "Plans",
     "subtitle": "Oras",
     "icon": "📅",
     "accent_color": "#0D9488",
@@ -126,7 +126,7 @@
   },
   {
     "chapter_id": "ch10",
-    "title": "The Word Machine",
+    "title": "Affixes",
     "subtitle": "Salita",
     "icon": "🧩",
     "accent_color": "#6366F1",
