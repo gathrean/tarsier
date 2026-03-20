@@ -1,0 +1,189 @@
+{
+  "_meta": {
+    "schema_version": "0.7",
+    "last_updated": "2026-03-19",
+    "notes": "Chapter 1 Lesson 1. First teaching lesson. No prior Tagalog vocabulary assumed."
+  },
+  "lesson_id": "001",
+  "title": "How Are You?",
+  "subtitle": "Your First Filipino Greeting",
+  "chapter_id": "ch01",
+  "chapter_title": "Hello",
+  "position_in_chapter": 1,
+  "difficulty": "beginner",
+  "lesson_type": "teaching",
+  "total_sessions": 1,
+  "sessions": [
+    {
+      "session_id": "001_s1",
+      "session_number": 1,
+      "title": "How Are You?",
+      "cards": [
+        {
+          "card_id": "001_s1_c1",
+          "type": "teach",
+          "highlight": "Kumusta?",
+          "body": "The most common Filipino greeting isn't 'hello.' It's a question."
+        },
+        {
+          "card_id": "001_s1_c2",
+          "type": "teach",
+          "highlight": "Kumusta",
+          "body": "Kumusta means 'how are you?' You'll hear it everywhere.",
+          "example": {
+            "tagalog": "Kumusta?",
+            "english": "How are you?",
+            "note": "Works on its own as a complete greeting."
+          },
+          "alam_mo_ba_inline": {
+            "term": "Kumusta",
+            "fact": "Kumusta comes from the Spanish '¿Cómo está?' Over centuries it became its own word.",
+            "emoji": "🇪🇸"
+          }
+        },
+        {
+          "card_id": "001_s1_c3",
+          "type": "teach",
+          "highlight": "Mabuti",
+          "body": "Mabuti means 'good' or 'fine.' It's the standard reply to kumusta.",
+          "example": {
+            "tagalog": "Mabuti.",
+            "english": "I'm good.",
+            "note": "Simple and natural."
+          }
+        },
+        {
+          "card_id": "001_s1_q1",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "character": "stranger",
+          "source_text": "A coworker walks up to you and says: Kumusta?",
+          "prompt": "What does that mean?",
+          "options": [
+            "Hello!",
+            "How are you?",
+            "Goodbye!",
+            "Thank you!"
+          ],
+          "correct_answer": 1,
+          "explanation": "Kumusta means 'how are you?' It's the go-to Filipino greeting.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "001_s1_c4",
+          "type": "teach",
+          "highlight": "Ikaw",
+          "body": "Ikaw means 'you.' Add it to bounce the question back.",
+          "example": {
+            "tagalog": "Mabuti, ikaw?",
+            "english": "I'm good, you?",
+            "note": "The most natural way to keep the greeting going."
+          }
+        },
+        {
+          "card_id": "001_s1_q2",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "character": "stranger",
+          "source_text": "Your neighbour says: Kumusta?",
+          "prompt": "How do you reply?",
+          "options": [
+            "Kumusta!",
+            "Ikaw?",
+            "Mabuti, ikaw?",
+            "Mabuti kumusta."
+          ],
+          "correct_answer": 2,
+          "explanation": "Mabuti, ikaw? = I'm good, you? Natural and complete.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "001_s1_c5",
+          "type": "teach",
+          "highlight": "The full flow",
+          "body": "A typical greeting goes like this:",
+          "example": {
+            "line_1": "Kumusta?",
+            "line_1_en": "How are you?",
+            "line_2": "Mabuti, ikaw?",
+            "line_2_en": "Good, you?",
+            "line_3": "Mabuti!",
+            "line_3_en": "Good!"
+          }
+        },
+        {
+          "card_id": "001_s1_q3",
+          "type": "quiz",
+          "quiz_type": "fill_in_blank",
+          "character": "stranger",
+          "source_text": "Kumusta?",
+          "prompt": "You're good. Say it in Tagalog:",
+          "correct_answers": [
+            "Mabuti",
+            "mabuti"
+          ],
+          "explanation": "Mabuti = good/fine. The standard reply to kumusta."
+        },
+        {
+          "card_id": "001_s1_q4",
+          "type": "quiz",
+          "quiz_type": "sentence_build",
+          "character": "stranger",
+          "prompt": "Your coworker greets you. Reply and ask them back.",
+          "source_text": "Kumusta?",
+          "correct_order": [
+            "Mabuti",
+            "ikaw"
+          ],
+          "distractors": [
+            "kumusta",
+            "good"
+          ],
+          "explanation": "Mabuti, ikaw? = I'm good, you?"
+        }
+      ]
+    }
+  ],
+  "vocabulary": [
+    {
+      "word": "kumusta",
+      "meaning": "how are you",
+      "pronunciation": "koo-MOOS-tah",
+      "type": "greeting"
+    },
+    {
+      "word": "mabuti",
+      "meaning": "good / fine",
+      "pronunciation": "mah-BOO-tee",
+      "type": "word"
+    },
+    {
+      "word": "ikaw",
+      "meaning": "you",
+      "pronunciation": "ee-KOW",
+      "type": "pronoun"
+    }
+  ],
+  "wrong_answer_tracking": {
+    "behaviour": "Wrong answers go to back of current session queue. User must get ALL questions right to complete. Cannot finish lesson with outstanding wrong answers.",
+    "track_wrong_count": true,
+    "wrong_count_usage": "Feed to Gemini system prompt for AI Practice."
+  },
+  "completion_reward": {
+    "xp": 15,
+    "alam_mo_ba": [
+      "Kumusta isn't just for strangers. Filipinos say it to family, coworkers, even people they just saw an hour ago.",
+      "In the Philippines, asking 'Kumusta?' is often followed by 'Kumain ka na ba?' (Have you eaten yet?). Food is love.",
+      "The reply 'Mabuti' is almost always positive. Even on a bad day, most Filipinos will say mabuti first."
+    ]
+  },
+  "gamification": {
+    "xp_per_lesson": 15,
+    "hearts_per_wrong_answer": 1,
+    "streak_eligible": true,
+    "replay": {
+      "allowed": true,
+      "xp_on_replay": 0
+    }
+  }
+}

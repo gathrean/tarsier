@@ -1,0 +1,198 @@
+{
+  "_meta": {
+    "schema_version": "0.7",
+    "last_updated": "2026-03-19",
+    "notes": "Chapter 1 Lesson 10. 4 words instead of 3 (tayo/kami are a paired concept). Previously taught: kumusta, mabuti, ikaw, magandang, umaga, gabi, po, naman, sige, oo, hindi, opo, salamat, walang anuman, pasensya na, siyempre, pare, mare, ako, ka, siya."
+  },
+  "lesson_id": "010",
+  "title": "Us and Them",
+  "subtitle": "Tagalog Has Two Words for 'We'",
+  "chapter_id": "ch01",
+  "chapter_title": "Hello",
+  "position_in_chapter": 10,
+  "difficulty": "beginner",
+  "lesson_type": "teaching",
+  "total_sessions": 1,
+  "sessions": [
+    {
+      "session_id": "010_s1",
+      "session_number": 1,
+      "title": "Us and Them",
+      "cards": [
+        {
+          "card_id": "010_s1_c1",
+          "type": "teach",
+          "highlight": "Two kinds of 'we'",
+          "body": "Tagalog makes a distinction that English doesn't. There are two words for 'we,' and using the wrong one changes the meaning."
+        },
+        {
+          "card_id": "010_s1_c2",
+          "type": "teach",
+          "highlight": "Tayo",
+          "body": "Tayo means 'we' including the person you're talking to.",
+          "example": {
+            "tagalog": "Kumusta tayo?",
+            "english": "How are we doing? (you and me, together)",
+            "note": "Use tayo when the listener is part of the group."
+          }
+        },
+        {
+          "card_id": "010_s1_c3",
+          "type": "teach",
+          "highlight": "Kami",
+          "body": "Kami also means 'we,' but it excludes the person you're talking to.",
+          "example": {
+            "context": "Telling a friend about your weekend with other friends",
+            "tagalog": "Mabuti naman kami.",
+            "english": "We're doing good. (me and others, not you)",
+            "note": "Use kami when the listener is NOT part of the group."
+          },
+          "alam_mo_ba_inline": {
+            "term": "Tayo vs Kami",
+            "fact": "This inclusive/exclusive 'we' distinction exists in many Asian and Pacific languages but not in European ones. English speakers often find it the trickiest Tagalog concept.",
+            "emoji": "🧠"
+          }
+        },
+        {
+          "card_id": "010_s1_q1",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "character": "stranger",
+          "source_text": "You're inviting your friend Jun to eat. You want Jun to come with you.",
+          "prompt": "Which 'we' do you use?",
+          "options": [
+            "Tayo (including Jun)",
+            "Kami (excluding Jun)",
+            "Siya (he/she)",
+            "Ako (just me)"
+          ],
+          "correct_answer": 0,
+          "explanation": "Tayo, because you're including Jun. Kami would mean 'we, but not you.'",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "010_s1_c4",
+          "type": "teach",
+          "highlight": "Kayo",
+          "body": "Kayo means 'you all.' It's also the formal/respectful 'you' for one person.",
+          "example": {
+            "plural": "Kumusta kayo? = How are you all?",
+            "formal": "Kumusta po kayo? = How are you? (respectful, to one elder)",
+            "note": "Like 'vous' in French. Plural or formal singular."
+          }
+        },
+        {
+          "card_id": "010_s1_q2",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "character": "stranger",
+          "source_text": "You're greeting your grandmother respectfully.",
+          "prompt": "Which is the most respectful way to ask how she is?",
+          "options": [
+            "Kumusta ka?",
+            "Kumusta siya?",
+            "Kumusta po kayo?",
+            "Kumusta po tayo?"
+          ],
+          "correct_answer": 2,
+          "explanation": "Kumusta po kayo? uses both po (respect) and kayo (formal you). The most respectful greeting.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "010_s1_c5",
+          "type": "teach",
+          "highlight": "Sila",
+          "body": "Sila means 'they' or 'them.' The plural of siya.",
+          "example": {
+            "tagalog": "Mabuti naman sila.",
+            "english": "They're doing good.",
+            "note": "Siya = one person. Sila = multiple people."
+          }
+        },
+        {
+          "card_id": "010_s1_q3",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "character": "stranger",
+          "source_text": "You went on a trip with friends. Your coworker (who didn't go) asks how it was.",
+          "prompt": "You say: Mabuti naman ___.",
+          "options": [
+            "tayo (we, including coworker)",
+            "kami (we, not including coworker)",
+            "sila (they)",
+            "kayo (you all)"
+          ],
+          "correct_answer": 1,
+          "explanation": "Kami, because your coworker wasn't on the trip. Tayo would include them.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "010_s1_q4",
+          "type": "quiz",
+          "quiz_type": "sentence_build",
+          "character": "stranger",
+          "prompt": "Ask a group of friends: How are you all?",
+          "source_text": "",
+          "correct_order": [
+            "Kumusta",
+            "kayo"
+          ],
+          "distractors": [
+            "tayo",
+            "kami",
+            "sila"
+          ],
+          "explanation": "Kumusta kayo? = How are you all?"
+        }
+      ]
+    }
+  ],
+  "vocabulary": [
+    {
+      "word": "tayo",
+      "meaning": "we (including the listener)",
+      "pronunciation": "TAH-yoh",
+      "type": "pronoun"
+    },
+    {
+      "word": "kami",
+      "meaning": "we (excluding the listener)",
+      "pronunciation": "kah-MEE",
+      "type": "pronoun"
+    },
+    {
+      "word": "kayo",
+      "meaning": "you all / you (formal)",
+      "pronunciation": "kah-YOH",
+      "type": "pronoun"
+    },
+    {
+      "word": "sila",
+      "meaning": "they / them",
+      "pronunciation": "see-LAH",
+      "type": "pronoun"
+    }
+  ],
+  "wrong_answer_tracking": {
+    "behaviour": "Wrong answers go to back of current session queue. User must get ALL questions right to complete. Cannot finish lesson with outstanding wrong answers.",
+    "track_wrong_count": true,
+    "wrong_count_usage": "Feed to Gemini system prompt for AI Practice."
+  },
+  "completion_reward": {
+    "xp": 15,
+    "alam_mo_ba": [
+      "The tayo/kami distinction prevents a real ambiguity that English has. 'We went to the beach' in English leaves you guessing whether the listener was there.",
+      "Kayo as a formal 'you' for one person works just like 'vous' in French or 'usted' in Spanish.",
+      "You now know all the Tagalog pronouns: ako, ka/ikaw, siya, tayo, kami, kayo, sila. That's the full set."
+    ]
+  },
+  "gamification": {
+    "xp_per_lesson": 15,
+    "hearts_per_wrong_answer": 1,
+    "streak_eligible": true,
+    "replay": {
+      "allowed": true,
+      "xp_on_replay": 0
+    }
+  }
+}

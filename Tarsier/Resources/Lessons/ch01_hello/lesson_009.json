@@ -1,0 +1,183 @@
+{
+  "_meta": {
+    "schema_version": "0.7",
+    "last_updated": "2026-03-19",
+    "notes": "Chapter 1 Lesson 9. Previously taught: kumusta, mabuti, ikaw, magandang, umaga, gabi, po, naman, sige, oo, hindi, opo, salamat, walang anuman, pasensya na, siyempre, pare, mare."
+  },
+  "lesson_id": "009",
+  "title": "Me and You",
+  "subtitle": "Your First Pronouns",
+  "chapter_id": "ch01",
+  "chapter_title": "Hello",
+  "position_in_chapter": 9,
+  "difficulty": "beginner",
+  "lesson_type": "teaching",
+  "total_sessions": 1,
+  "sessions": [
+    {
+      "session_id": "009_s1",
+      "session_number": 1,
+      "title": "Me and You",
+      "cards": [
+        {
+          "card_id": "009_s1_c1",
+          "type": "teach",
+          "highlight": "Ako, ikaw, siya",
+          "body": "Time to talk about people. Tagalog pronouns are simpler than you'd expect."
+        },
+        {
+          "card_id": "009_s1_c2",
+          "type": "teach",
+          "highlight": "Ako",
+          "body": "Ako means 'I' or 'me.'",
+          "example": {
+            "tagalog": "Mabuti naman ako.",
+            "english": "I'm doing good.",
+            "note": "Ako can go at the start or end of a sentence."
+          }
+        },
+        {
+          "card_id": "009_s1_c3",
+          "type": "teach",
+          "highlight": "Ka",
+          "body": "Ka means 'you.' It's the short, casual form of ikaw.",
+          "example": {
+            "with_ikaw": "Kumusta ikaw?",
+            "with_ka": "Kumusta ka?",
+            "note": "Both mean 'how are you?' Ka is more common in everyday speech."
+          }
+        },
+        {
+          "card_id": "009_s1_q1",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "character": "stranger",
+          "source_text": "What does ako mean?",
+          "options": [
+            "You",
+            "I / me",
+            "They",
+            "We"
+          ],
+          "correct_answer": 1,
+          "explanation": "Ako = I / me.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "009_s1_c4",
+          "type": "teach",
+          "highlight": "Siya",
+          "body": "Siya means 'he,' 'she,' or 'they.' Tagalog doesn't distinguish gender in pronouns.",
+          "example": {
+            "tagalog": "Mabuti naman siya.",
+            "english": "He's/She's doing good.",
+            "note": "One word for everyone. No guessing."
+          },
+          "alam_mo_ba_inline": {
+            "term": "No gendered pronouns",
+            "fact": "Tagalog has never had separate words for he and she. Filipino speakers sometimes mix up 'he' and 'she' in English because of this.",
+            "emoji": "🤷"
+          }
+        },
+        {
+          "card_id": "009_s1_q2",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "character": "stranger",
+          "source_text": "Your friend asks about Maria. Kumusta siya?",
+          "prompt": "What is your friend asking?",
+          "options": [
+            "How am I?",
+            "How are you?",
+            "How is she?",
+            "How are they? (group)"
+          ],
+          "correct_answer": 2,
+          "explanation": "Kumusta siya = How is he/she? Siya refers to Maria here.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "009_s1_c5",
+          "type": "teach",
+          "highlight": "Quick reference",
+          "body": "Ako = I/me. Ka (or ikaw) = you. Siya = he/she/they."
+        },
+        {
+          "card_id": "009_s1_q3",
+          "type": "quiz",
+          "quiz_type": "fill_in_blank",
+          "character": "stranger",
+          "source_text": "Someone asks how you are: Kumusta ka?",
+          "prompt": "Say: I'm good.",
+          "correct_answers": [
+            "Mabuti naman ako",
+            "mabuti naman ako",
+            "Mabuti ako",
+            "mabuti ako"
+          ],
+          "explanation": "Mabuti naman ako = I'm good. Ako = I/me."
+        },
+        {
+          "card_id": "009_s1_q4",
+          "type": "quiz",
+          "quiz_type": "sentence_build",
+          "character": "stranger",
+          "prompt": "Ask your friend how Jun is doing.",
+          "source_text": "",
+          "correct_order": [
+            "Kumusta",
+            "siya"
+          ],
+          "distractors": [
+            "ako",
+            "ka",
+            "po"
+          ],
+          "explanation": "Kumusta siya? = How is he/she?"
+        }
+      ]
+    }
+  ],
+  "vocabulary": [
+    {
+      "word": "ako",
+      "meaning": "I / me",
+      "pronunciation": "ah-KOH",
+      "type": "pronoun"
+    },
+    {
+      "word": "ka",
+      "meaning": "you (casual, short form of ikaw)",
+      "pronunciation": "kah",
+      "type": "pronoun"
+    },
+    {
+      "word": "siya",
+      "meaning": "he / she / they (singular)",
+      "pronunciation": "SHAH",
+      "type": "pronoun"
+    }
+  ],
+  "wrong_answer_tracking": {
+    "behaviour": "Wrong answers go to back of current session queue. User must get ALL questions right to complete. Cannot finish lesson with outstanding wrong answers.",
+    "track_wrong_count": true,
+    "wrong_count_usage": "Feed to Gemini system prompt for AI Practice."
+  },
+  "completion_reward": {
+    "xp": 15,
+    "alam_mo_ba": [
+      "Many Filipino speakers accidentally swap 'he' and 'she' in English. It's not a mistake in Tagalog because siya covers both.",
+      "Ikaw and ka both mean 'you,' but ikaw is used at the start of a sentence or for emphasis. Ka is used everywhere else.",
+      "Tagalog pronouns don't change based on subject or object like English (I vs me). Ako is always ako."
+    ]
+  },
+  "gamification": {
+    "xp_per_lesson": 15,
+    "hearts_per_wrong_answer": 1,
+    "streak_eligible": true,
+    "replay": {
+      "allowed": true,
+      "xp_on_replay": 0
+    }
+  }
+}

@@ -3,10 +3,12 @@
     "chapter_id": "ch00",
     "title": "Introduction",
     "subtitle": "Abakada",
+    "directory": "ch00_introduction",
     "icon": "textformat.abc",
     "accent_color": "#2AA198",
     "description": "Learn how Tagalog sounds and discover words you already know.",
     "has_practice": false,
+    "total_lessons": 1,
     "rows": [
       { "row": 1, "lessons": ["000"] }
     ]
@@ -15,125 +17,110 @@
     "chapter_id": "ch01",
     "title": "Hello",
     "subtitle": "Magalang",
+    "directory": "ch01_hello",
     "icon": "🙏",
     "accent_color": "#5B48E0",
     "description": "Master po, opo, and the respect system that's at the heart of every Filipino conversation.",
+    "total_lessons": 12,
+    "total_words": 25,
     "rows": [
       { "row": 1, "lessons": ["001"] },
       { "row": 2, "lessons": ["002", "003"] },
-      { "row": 3, "lessons": ["004"] }
+      { "row": 3, "lessons": ["004", "005"] },
+      { "row": 4, "lessons": ["006", "007"] },
+      { "row": 5, "lessons": ["008", "009"] },
+      { "row": 6, "lessons": ["010", "011"] },
+      { "row": 7, "lessons": ["012"] }
     ]
   },
   {
     "chapter_id": "ch02",
     "title": "Modern Tagalog",
     "subtitle": "Taglish",
+    "directory": "ch02_modern_tagalog",
     "icon": "🔀",
     "accent_color": "#FF6B6B",
-    "description": "Discover how Filipinos actually speak — mixing Tagalog and English in everyday life.",
-    "rows": [
-      { "row": 1, "lessons": ["005"] },
-      { "row": 2, "lessons": ["006"] }
-    ]
+    "description": "Discover how Filipinos actually speak - mixing Tagalog and English in everyday life.",
+    "rows": []
   },
   {
     "chapter_id": "ch03",
     "title": "Food",
     "subtitle": "Kain!",
+    "directory": "ch03_food",
     "icon": "🍽️",
     "accent_color": "#F5A100",
-    "description": "Learn essential food words and how to talk about eating — the most important activity in Filipino culture.",
-    "rows": [
-      { "row": 1, "lessons": ["007"] },
-      { "row": 2, "lessons": ["008", "009"] },
-      { "row": 3, "lessons": ["010"] }
-    ]
+    "description": "Learn essential food words and how to talk about eating - the most important activity in Filipino culture.",
+    "rows": []
   },
   {
     "chapter_id": "ch04",
     "title": "Family",
     "subtitle": "Pamilya",
+    "directory": "ch04_family",
     "icon": "👨‍👩‍👧",
     "accent_color": "#E8577D",
     "description": "Meet the Filipino family tree and learn the titles that define every relationship.",
-    "rows": [
-      { "row": 1, "lessons": ["011", "012"] },
-      { "row": 2, "lessons": ["013", "014"] }
-    ]
+    "rows": []
   },
   {
     "chapter_id": "ch05",
     "title": "Counting & Money",
     "subtitle": "Bilang",
+    "directory": "ch05_counting",
     "icon": "🔢",
     "accent_color": "#38BDF8",
     "description": "Count in Tagalog, handle everyday prices, and navigate the market like a local.",
-    "rows": [
-      { "row": 1, "lessons": ["015"] },
-      { "row": 2, "lessons": ["016"] }
-    ]
+    "rows": []
   },
   {
     "chapter_id": "ch06",
     "title": "Daily Routines",
     "subtitle": "Araw-araw",
+    "directory": "ch06_daily_routines",
     "icon": "🌅",
     "accent_color": "#34D399",
     "description": "Talk about your day from morning to night using common verbs and time expressions.",
-    "rows": [
-      { "row": 1, "lessons": ["017"] },
-      { "row": 2, "lessons": ["018", "019"] },
-      { "row": 3, "lessons": ["020"] }
-    ]
+    "rows": []
   },
   {
     "chapter_id": "ch07",
     "title": "Feelings",
     "subtitle": "Damdamin",
+    "directory": "ch07_feelings",
     "icon": "😊",
     "accent_color": "#C47A2B",
     "description": "Express how you feel and describe the world around you with adjectives and ma- words.",
-    "rows": [
-      { "row": 1, "lessons": ["021"] },
-      { "row": 2, "lessons": ["022", "023"] },
-      { "row": 3, "lessons": ["024"] }
-    ]
+    "rows": []
   },
   {
     "chapter_id": "ch08",
     "title": "Travel",
     "subtitle": "Lugar",
+    "directory": "ch08_travel",
     "icon": "📍",
     "accent_color": "#A78BFA",
     "description": "Navigate directions, ask where things are, and talk about the places you visit.",
-    "rows": [
-      { "row": 1, "lessons": ["025"] },
-      { "row": 2, "lessons": ["026", "027"] },
-      { "row": 3, "lessons": ["028"] }
-    ]
+    "rows": []
   },
   {
     "chapter_id": "ch09",
     "title": "Plans",
     "subtitle": "Oras",
+    "directory": "ch09_plans",
     "icon": "📅",
     "accent_color": "#0D9488",
     "description": "Tell time, make plans, and understand the Filipino sense of scheduling.",
-    "rows": [
-      { "row": 1, "lessons": ["029"] },
-      { "row": 2, "lessons": ["030"] }
-    ]
+    "rows": []
   },
   {
     "chapter_id": "ch10",
     "title": "Affixes",
     "subtitle": "Salita",
+    "directory": "ch10_affixes",
     "icon": "🧩",
     "accent_color": "#6366F1",
-    "description": "Unlock the affix system — the engine that builds thousands of Tagalog words from simple roots.",
-    "rows": [
-      { "row": 1, "lessons": ["031"] },
-      { "row": 2, "lessons": ["032"] }
-    ]
+    "description": "Unlock the affix system - the engine that builds thousands of Tagalog words from simple roots.",
+    "rows": []
   }
 ]

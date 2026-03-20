@@ -1,0 +1,182 @@
+{
+  "_meta": {
+    "schema_version": "0.7",
+    "last_updated": "2026-03-19",
+    "notes": "Chapter 1 Lesson 2. Previously taught: kumusta, mabuti, ikaw."
+  },
+  "lesson_id": "002",
+  "title": "Good Morning!",
+  "subtitle": "Greetings by Time of Day",
+  "chapter_id": "ch01",
+  "chapter_title": "Hello",
+  "position_in_chapter": 2,
+  "difficulty": "beginner",
+  "lesson_type": "teaching",
+  "total_sessions": 1,
+  "sessions": [
+    {
+      "session_id": "002_s1",
+      "session_number": 1,
+      "title": "Good Morning!",
+      "cards": [
+        {
+          "card_id": "002_s1_c1",
+          "type": "teach",
+          "highlight": "Magandang umaga!",
+          "body": "Filipinos greet differently depending on the time of day. And every greeting starts with beauty."
+        },
+        {
+          "card_id": "002_s1_c2",
+          "type": "teach",
+          "highlight": "Magandang",
+          "body": "Magandang means 'beautiful.' Filipino time-of-day greetings all start with this word.",
+          "example": {
+            "tagalog": "Magandang...",
+            "english": "Beautiful...",
+            "note": "Add the time of day after it."
+          }
+        },
+        {
+          "card_id": "002_s1_c3",
+          "type": "teach",
+          "highlight": "Umaga",
+          "body": "Umaga means 'morning.' Magandang umaga = beautiful morning = good morning.",
+          "example": {
+            "tagalog": "Magandang umaga!",
+            "english": "Good morning!",
+            "note": "Literally: beautiful morning."
+          }
+        },
+        {
+          "card_id": "002_s1_q1",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "character": "stranger",
+          "source_text": "It's 8am. You walk into the office.",
+          "prompt": "How do you greet your coworker?",
+          "options": [
+            "Kumusta umaga!",
+            "Magandang umaga!",
+            "Mabuti umaga!",
+            "Umaga magandang!"
+          ],
+          "correct_answer": 1,
+          "explanation": "Magandang umaga! = Good morning. Magandang always comes first.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "002_s1_c4",
+          "type": "teach",
+          "highlight": "Gabi",
+          "body": "Gabi means 'evening' or 'night.' Same pattern: magandang gabi.",
+          "example": {
+            "tagalog": "Magandang gabi!",
+            "english": "Good evening!",
+            "note": "Use this from sundown onward."
+          }
+        },
+        {
+          "card_id": "002_s1_q2",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "character": "stranger",
+          "source_text": "It's 9pm. You arrive at a dinner party.",
+          "prompt": "How do you greet the host?",
+          "options": [
+            "Magandang umaga!",
+            "Magandang gabi!",
+            "Kumusta gabi!",
+            "Mabuti gabi!"
+          ],
+          "correct_answer": 1,
+          "explanation": "Magandang gabi! = Good evening. Gabi is for evening and night.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "002_s1_c5",
+          "type": "teach",
+          "highlight": "Combine them",
+          "body": "You can add kumusta after the time greeting for a longer, warmer hello.",
+          "example": {
+            "tagalog": "Magandang umaga! Kumusta?",
+            "english": "Good morning! How are you?",
+            "note": "Natural and friendly."
+          }
+        },
+        {
+          "card_id": "002_s1_q3",
+          "type": "quiz",
+          "quiz_type": "fill_in_blank",
+          "character": "stranger",
+          "source_text": "It's morning. Greet your neighbour.",
+          "prompt": "Magandang ___!",
+          "correct_answers": [
+            "umaga",
+            "Umaga"
+          ],
+          "explanation": "Umaga = morning. Magandang umaga = good morning."
+        },
+        {
+          "card_id": "002_s1_q4",
+          "type": "quiz",
+          "quiz_type": "sentence_build",
+          "character": "stranger",
+          "prompt": "It's evening. Greet your friend, then ask how they are.",
+          "source_text": "",
+          "correct_order": [
+            "Magandang",
+            "gabi",
+            "Kumusta"
+          ],
+          "distractors": [
+            "umaga",
+            "mabuti"
+          ],
+          "explanation": "Magandang gabi! Kumusta? = Good evening! How are you?"
+        }
+      ]
+    }
+  ],
+  "vocabulary": [
+    {
+      "word": "magandang",
+      "meaning": "beautiful (used in greetings)",
+      "pronunciation": "mah-gahn-DAHNG",
+      "type": "word"
+    },
+    {
+      "word": "umaga",
+      "meaning": "morning",
+      "pronunciation": "oo-MAH-gah",
+      "type": "word"
+    },
+    {
+      "word": "gabi",
+      "meaning": "evening / night",
+      "pronunciation": "GAH-bee",
+      "type": "word"
+    }
+  ],
+  "wrong_answer_tracking": {
+    "behaviour": "Wrong answers go to back of current session queue. User must get ALL questions right to complete. Cannot finish lesson with outstanding wrong answers.",
+    "track_wrong_count": true,
+    "wrong_count_usage": "Feed to Gemini system prompt for AI Practice."
+  },
+  "completion_reward": {
+    "xp": 15,
+    "alam_mo_ba": [
+      "Magandang literally means 'beautiful.' Filipinos start every time-of-day greeting by calling that time beautiful.",
+      "There's also 'magandang hapon' (good afternoon) and 'magandang tanghali' (good noon). You'll learn those later.",
+      "In casual texts, some Filipinos shorten it to just 'morning!' or 'evening!' in Taglish."
+    ]
+  },
+  "gamification": {
+    "xp_per_lesson": 15,
+    "hearts_per_wrong_answer": 1,
+    "streak_eligible": true,
+    "replay": {
+      "allowed": true,
+      "xp_on_replay": 0
+    }
+  }
+}

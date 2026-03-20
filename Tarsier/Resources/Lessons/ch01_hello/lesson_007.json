@@ -1,0 +1,181 @@
+{
+  "_meta": {
+    "schema_version": "0.7",
+    "last_updated": "2026-03-19",
+    "notes": "Review covering lessons 005-006. All quiz. Previously taught: kumusta, mabuti, ikaw, magandang, umaga, gabi, po, naman, sige, oo, hindi, opo, salamat, walang anuman, pasensya na."
+  },
+  "lesson_id": "007",
+  "title": "Review",
+  "subtitle": "Yes, No, Thanks, and Sorry",
+  "chapter_id": "ch01",
+  "chapter_title": "Hello",
+  "position_in_chapter": 7,
+  "difficulty": "beginner",
+  "lesson_type": "review",
+  "total_sessions": 1,
+  "sessions": [
+    {
+      "session_id": "007_s1",
+      "session_number": 1,
+      "title": "Review",
+      "cards": [
+        {
+          "card_id": "007_s1_q1",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "character": "stranger",
+          "source_text": "Your grandmother offers you food.",
+          "prompt": "You want it. What do you say?",
+          "options": [
+            "Oo!",
+            "Opo!",
+            "Sige!",
+            "Salamat!"
+          ],
+          "correct_answer": 1,
+          "explanation": "Opo = yes (respectful). Use with grandparents and elders.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "007_s1_q2",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "character": "stranger",
+          "source_text": "Your boss asks: Can you stay late tonight?",
+          "prompt": "You can't. How do you decline respectfully?",
+          "options": [
+            "Hindi.",
+            "Hindi po.",
+            "Oo.",
+            "Pasensya na."
+          ],
+          "correct_answer": 1,
+          "explanation": "Hindi po = no (respectful). Clean and polite.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "007_s1_q3",
+          "type": "quiz",
+          "quiz_type": "fill_in_blank",
+          "character": "stranger",
+          "source_text": "Your coworker brings you coffee.",
+          "prompt": "Say thank you respectfully:",
+          "correct_answers": [
+            "Salamat po",
+            "salamat po",
+            "Salamat po!",
+            "salamat po!"
+          ],
+          "explanation": "Salamat po = thank you (respectful)."
+        },
+        {
+          "card_id": "007_s1_q4",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "character": "stranger",
+          "source_text": "Someone says salamat to you.",
+          "prompt": "How do you reply?",
+          "options": [
+            "Salamat!",
+            "Sige!",
+            "Walang anuman!",
+            "Mabuti!"
+          ],
+          "correct_answer": 2,
+          "explanation": "Walang anuman = you're welcome. Literally 'it's nothing.'",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "007_s1_q5",
+          "type": "quiz",
+          "quiz_type": "sentence_build",
+          "character": "stranger",
+          "prompt": "You step on someone's foot on the bus. Apologize respectfully.",
+          "source_text": "",
+          "correct_order": [
+            "Pasensya",
+            "na",
+            "po"
+          ],
+          "distractors": [
+            "salamat",
+            "hindi",
+            "oo"
+          ],
+          "explanation": "Pasensya na po = sorry (respectful)."
+        },
+        {
+          "card_id": "007_s1_q6",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "character": "stranger",
+          "source_text": "Which pair is correct?",
+          "options": [
+            "Oo (casual yes) / Opo (respectful yes)",
+            "Oo (respectful yes) / Opo (casual yes)",
+            "Oo (no) / Opo (yes)",
+            "Oo (maybe) / Opo (definitely)"
+          ],
+          "correct_answer": 0,
+          "explanation": "Oo = casual yes. Opo = oo + po = respectful yes.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "007_s1_q7",
+          "type": "quiz",
+          "quiz_type": "fill_in_blank",
+          "character": "stranger",
+          "source_text": "Your friend asks if you're coming to their party.",
+          "prompt": "Casual yes:",
+          "correct_answers": [
+            "Oo",
+            "oo",
+            "Oo!",
+            "oo!"
+          ],
+          "explanation": "Oo = yes. Casual, for friends."
+        },
+        {
+          "card_id": "007_s1_q8",
+          "type": "quiz",
+          "quiz_type": "sentence_build",
+          "character": "stranger",
+          "prompt": "Your grandmother gave you a gift. Thank her respectfully.",
+          "source_text": "Here, this is for you.",
+          "correct_order": [
+            "Salamat",
+            "po"
+          ],
+          "distractors": [
+            "walang",
+            "anuman",
+            "opo"
+          ],
+          "explanation": "Salamat po = thank you (respectful)."
+        }
+      ]
+    }
+  ],
+  "vocabulary": [],
+  "wrong_answer_tracking": {
+    "behaviour": "Wrong answers go to back of current session queue. User must get ALL questions right to complete. Cannot finish lesson with outstanding wrong answers.",
+    "track_wrong_count": true,
+    "wrong_count_usage": "Feed to Gemini system prompt for AI Practice."
+  },
+  "completion_reward": {
+    "xp": 20,
+    "alam_mo_ba": [
+      "In Filipino culture, refusing food from an elder is considered rude. If your grandmother offers, the answer is always opo.",
+      "Filipinos often combine salamat with po even when speaking mostly English: 'Thanks, salamat po!'"
+    ]
+  },
+  "gamification": {
+    "xp_per_lesson": 20,
+    "hearts_per_wrong_answer": 1,
+    "streak_eligible": true,
+    "replay": {
+      "allowed": true,
+      "xp_on_replay": 0
+    }
+  }
+}

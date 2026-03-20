@@ -1,0 +1,184 @@
+{
+  "_meta": {
+    "schema_version": "0.7",
+    "last_updated": "2026-03-19",
+    "notes": "Review lesson covering lessons 001-003. All quiz. Previously taught: kumusta, mabuti, ikaw, magandang, umaga, gabi, po, naman, sige."
+  },
+  "lesson_id": "004",
+  "title": "Review",
+  "subtitle": "Greetings and Po",
+  "chapter_id": "ch01",
+  "chapter_title": "Hello",
+  "position_in_chapter": 4,
+  "difficulty": "beginner",
+  "lesson_type": "review",
+  "total_sessions": 1,
+  "sessions": [
+    {
+      "session_id": "004_s1",
+      "session_number": 1,
+      "title": "Review",
+      "cards": [
+        {
+          "card_id": "004_s1_q1",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "character": "stranger",
+          "source_text": "What does kumusta mean?",
+          "options": [
+            "Good morning",
+            "How are you?",
+            "Thank you",
+            "Okay"
+          ],
+          "correct_answer": 1,
+          "explanation": "Kumusta = how are you?",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "004_s1_q2",
+          "type": "quiz",
+          "quiz_type": "fill_in_blank",
+          "character": "stranger",
+          "source_text": "Someone asks: Kumusta?",
+          "prompt": "You're doing well. Reply naturally:",
+          "correct_answers": [
+            "Mabuti",
+            "mabuti",
+            "Mabuti naman",
+            "mabuti naman",
+            "Mabuti naman, ikaw?",
+            "mabuti naman, ikaw?"
+          ],
+          "explanation": "Mabuti = good. Mabuti naman, ikaw? is the most natural full reply."
+        },
+        {
+          "card_id": "004_s1_q3",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "character": "stranger",
+          "source_text": "It's 7am. You see your neighbour outside.",
+          "prompt": "What do you say?",
+          "options": [
+            "Magandang gabi!",
+            "Magandang umaga!",
+            "Kumusta gabi!",
+            "Mabuti umaga!"
+          ],
+          "correct_answer": 1,
+          "explanation": "Magandang umaga = good morning. Umaga = morning.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "004_s1_q4",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "character": "stranger",
+          "source_text": "It's 8pm. You arrive at your friend's house.",
+          "prompt": "What do you say?",
+          "options": [
+            "Magandang umaga!",
+            "Magandang gabi!",
+            "Kumusta umaga!",
+            "Sige gabi!"
+          ],
+          "correct_answer": 1,
+          "explanation": "Magandang gabi = good evening. Gabi = evening/night.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "004_s1_q5",
+          "type": "quiz",
+          "quiz_type": "sentence_build",
+          "character": "stranger",
+          "prompt": "Greet your boss respectfully in the morning.",
+          "source_text": "",
+          "correct_order": [
+            "Magandang",
+            "umaga",
+            "po"
+          ],
+          "distractors": [
+            "gabi",
+            "naman"
+          ],
+          "explanation": "Magandang umaga po! = Good morning (respectful)."
+        },
+        {
+          "card_id": "004_s1_q6",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "character": "stranger",
+          "source_text": "What does naman do in a sentence?",
+          "options": [
+            "Makes it a question",
+            "Makes it respectful",
+            "Softens the tone",
+            "Makes it past tense"
+          ],
+          "correct_answer": 2,
+          "explanation": "Naman is a softener. It makes sentences sound friendlier and more natural.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "004_s1_q7",
+          "type": "quiz",
+          "quiz_type": "fill_in_blank",
+          "character": "stranger",
+          "source_text": "Your teacher says: See you tomorrow.",
+          "prompt": "Reply with 'okay' respectfully:",
+          "correct_answers": [
+            "Sige po",
+            "sige po",
+            "Sige po.",
+            "sige po."
+          ],
+          "explanation": "Sige po = okay/sure (respectful)."
+        },
+        {
+          "card_id": "004_s1_q8",
+          "type": "quiz",
+          "quiz_type": "sentence_build",
+          "character": "stranger",
+          "prompt": "Your grandmother asks kumusta. Reply respectfully, softly, and ask her back.",
+          "source_text": "Kumusta?",
+          "correct_order": [
+            "Mabuti",
+            "naman",
+            "po",
+            "ikaw",
+            "po"
+          ],
+          "distractors": [
+            "sige",
+            "umaga",
+            "gabi"
+          ],
+          "explanation": "Mabuti naman po, ikaw po? The full respectful reply with the softener."
+        }
+      ]
+    }
+  ],
+  "vocabulary": [],
+  "wrong_answer_tracking": {
+    "behaviour": "Wrong answers go to back of current session queue. User must get ALL questions right to complete. Cannot finish lesson with outstanding wrong answers.",
+    "track_wrong_count": true,
+    "wrong_count_usage": "Feed to Gemini system prompt for AI Practice."
+  },
+  "completion_reward": {
+    "xp": 20,
+    "alam_mo_ba": [
+      "In the Philippines, 'Kumusta?' is often followed by 'Kumain ka na ba?' (Have you eaten yet?). Food is love.",
+      "Some Filipino families use 'ho' instead of 'po' in certain regions. Same function, softer sound."
+    ]
+  },
+  "gamification": {
+    "xp_per_lesson": 20,
+    "hearts_per_wrong_answer": 1,
+    "streak_eligible": true,
+    "replay": {
+      "allowed": true,
+      "xp_on_replay": 0
+    }
+  }
+}

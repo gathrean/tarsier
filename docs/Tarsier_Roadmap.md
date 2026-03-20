@@ -1,581 +1,286 @@
-# Tarsier Lesson Roadmap
+# Tarsier Full Roadmap
 
-> **Last updated:** 2026-03-11  
-> **Status:** Approved by Ean  
-> **Structure:** Two-level hierarchy. Chapters → Lessons. Each lesson has 5 sessions internally (progress ring). Roadmap shows lessons as circles in rows of 1-2.
+Version 3.0 | 2026-03-19
 
----
+All chapters broken into bite-sized single-session lessons. Three lesson types: Teaching (T), Review (R), Chapter Review (CR). Max 3 new words per teaching lesson. Reviews every 2-3 teaching lessons. Chapter Review at end of each chapter.
 
-## Versioning
-
-- **v1.0** — App Store launch. Chapters 1-10 (32 lessons). Full app: hearts, XP, streaks, AI practice, AdMob, Superwall, RevenueCat.
-- **v1.1, v1.2** — Bug fixes, onboarding iteration, analytics-driven tweaks.
-- **v2.0** — Content expansion: Tanong, Hugis ng Salita, Kultura.
-- **v3.0** — Content expansion: Kalye, Trabaho, Kwento.
-- **v4.0** — Content expansion: Malalim, Baybayin.
-
-Users never see version numbers. The roadmap just grows. No "coming soon" placeholders. It ends where the content ends.
+MVP launch = Chapters 0-3 written and QA'd.
 
 ---
 
-## Minimum Viable Launch (v1.0 App Store submission)
+## Chapter 0: Introduction (Abakada)
+**Directory:** ch00_introduction/
+**Lessons:** 1 | **Words:** 0
 
-Ship when Chapters 1-3 are fully written and QA'd (Magalang, Taglish, Kain = 10 lessons). Everything else:
-- Roadmap shows all v1.0 chapters but locks content past what's written
-- Keep writing lessons 11-32 while app is in review and post-launch
-- Real user data from first 10 lessons informs how remaining 22 are written
-
----
-
-## Onboarding Flow (Mau's Playbook)
-
-The user should complete their first lesson BEFORE seeing the home screen. Onboarding IS the first lesson.
-
-1. **Open app** → Tarsier mascot, "Learn Tagalog," Get Started button
-2. **"How much Tagalog do you know?"** → three cards (None / Some — I understand but can't speak / Conversational)
-3. **"Why are you learning?"** → pills (Connect with family / Cultural pride / Travel / Partner / Just curious)
-4. **Straight into Po & Opo Session 1** → no home screen yet. User goes directly from motivation picker into the first teach card. They learn po, answer their first quiz, feel progress.
-5. **Session 1 complete** → progress ring animates 0/5 → 1/5, Alam Mo Ba fun fact, +15 XP. User feels accomplished.
-6. **NOW show the home screen** → roadmap appears with Po & Opo showing 1/5 progress. User sees the whole journey ahead. This is the "wow" moment.
-7. **Paywall triggers on a natural gate** → NOT after session 1. Wait until AI Practice node (end of Chapter 1) or when hearts run out. User has experienced value before being asked for money.
-
-**Target metric:** 10% download-to-trial conversion. Iterate onboarding until this is hit. Below 10%, don't spend on paid ads. Above 10%, start $20/day TikTok.
+| # | ID | Title | Type | New Words | Notes |
+|---|-----|-------|------|-----------|-------|
+| 1 | 000 | The Abakada | T (intro) | - | Teach-only orientation. No quizzes. Phonetics, "words you already know." |
 
 ---
 
-## Marketing Timeline
+## Chapter 1: Hello (Kumusta)
+**Directory:** ch01_hello/
+**Lessons:** 12 | **Words:** 25
 
-### Now (while building)
-- Build in public on TikTok/Instagram Reels
-- "I'm building the Tagalog Duolingo that Duolingo won't make"
-- Pacquiao verb example as a standalone video (test the hook)
-- "Did you know Filipinos count in three languages?" (Alam Mo Ba as content)
-- Screen recordings of the app as dev journey content
-- Post in r/Tagalog, r/languagelearning, r/Filipino
+| # | ID | Title | Type | New Words | Cumulative |
+|---|-----|-------|------|-----------|------------|
+| 1 | 001 | How Are You? | T | kumusta, mabuti, ikaw | 3 |
+| 2 | 002 | Good Morning! | T | magandang, umaga, gabi | 6 |
+| 3 | 003 | Po | T | po, naman, sige | 9 |
+| 4 | 004 | Review | R | - | 9 |
+| 5 | 005 | Yes and No | T | oo, hindi, opo | 12 |
+| 6 | 006 | Salamat | T | salamat, walang anuman, pasensya na | 15 |
+| 7 | 007 | Review | R | - | 15 |
+| 8 | 008 | Siyempre! | T | siyempre, pare, mare | 18 |
+| 9 | 009 | Me and You | T | ako, ka, siya | 21 |
+| 10 | 010 | Us and Them | T | tayo, kami, kayo, sila | 25 |
+| 11 | 011 | Review | R | - | 25 |
+| 12 | 012 | Chapter Review | CR | - | 25 |
 
-### Launch week (v1.0 on App Store)
-- "It's live. Link in bio."
-- Contact ScheDue survey respondents (9 emails, 12 Instagram handles)
-- Rye reviews launch post for maximum impact
-
-### Post-launch (organic grind)
-- One platform (TikTok), one format, high volume
-- **Reaction hook:** "Wait, you can turn Pacquiao into a VERB?!" + screen recording
-- **Heritage hook:** "POV: you finally understand why your nanay says po"
-- **Education hook:** Alam Mo Ba facts as standalone videos
-- Target: 10k views/day → 200-300 downloads/day
-- Once 10% conversion hit: $20/day TikTok ads, broad US targeting
+**Status:** Written, pending QA.
 
 ---
 
-## Recurring Lesson Elements
+## Chapter 2: Family (Pamilya)
+**Directory:** ch02_pamilya/
+**Lessons:** 11 | **Words:** ~22
+**Theme:** Family vocabulary and possessives. Emotional core for heritage learners. No verb affixes needed. Introduces ko/mo naturally through possession. Characters from Ch1 ("your grandmother") get their real names here.
 
-### Colour-Coding System
-- New words/affixes highlighted on first appearance
-- Affixes: **#6B5B9A** (functional ube purple)
-- Root words: **#302B27** (tarsier dark)
-- Subsequent appearances fade to normal text
+| # | ID | Title | Type | New Words | Cumulative |
+|---|-----|-------|------|-----------|------------|
+| 1 | 013 | Nanay and Tatay | T | nanay, tatay, anak | 28 |
+| 2 | 014 | Ate and Kuya | T | ate, kuya, bunso | 31 |
+| 3 | 015 | Kapatid | T | kapatid, ko, mo | 34 |
+| 4 | 016 | Review | R | - | 34 |
+| 5 | 017 | Lola and Lolo | T | lola, lolo, mano po | 37 |
+| 6 | 018 | Tita and Tito | T | tita, tito, ninong/ninang | 40 |
+| 7 | 019 | Review | R | - | 40 |
+| 8 | 020 | Mahal Kita | T | mahal, kita, mahal kita | 43 |
+| 9 | 021 | Tahanan | T | bahay, tahanan, pamilya | 46 |
+| 10 | 022 | Review | R | - | 46 |
+| 11 | 023 | Chapter Review | CR | - | 46 |
 
-### "Alam Mo Ba?" — Two Types
-1. **Inline** (during lessons): contextual tooltip explaining Filipino-specific terms for non-Filipino users. Small ube-tinted row above Check/Continue button. Optional `emoji` field.
-2. **Completion reward** (end of lesson): 1 random fun fact shown when progress ring fills. Different fact on replay. 3-5 facts per lesson.
-
-### Taglish Reality Notes
-- Every lesson includes natural Taglish variants
-- Rule: affixes are always Tagalog, roots/nouns can be English
-- Register awareness taught organically
-
-### Quiz Types
-1. **Multiple choice** — 4 options, shuffle on display
-2. **Fill in blank** — text input, case-insensitive match
-3. **Translate** — text input, multiple accepted answers
-4. **Root pattern** — multiple choice testing affix understanding
-5. **Word order** — drag/tap word pieces to build a sentence. Wrong = shake + rearrange.
-
-### Session Structure
-- Each lesson = 5 sessions, shown as a progress ring
-- Each session = teach small → quiz → teach small → quiz (interleaved)
-- Wrong answers go to back of current session queue
-- User must get ALL right to complete session
-- Wrong count tracked per question for Gemini AI practice prompting
-- Replay allowed (0 XP)
+**Notes:** Pure nouns and possessives. Users can say "nanay ko" (my mom), "kapatid mo" (your sibling), "mahal kita" (I love you). Verbs come in Ch3. The limitation is intentional: learning family names is emotionally satisfying even without full sentences.
 
 ---
 
-## Roadmap Layout
+## Chapter 3: Food (Kain!)
+**Directory:** ch03_kain/
+**Lessons:** 13 | **Words:** ~25
+**Theme:** Food vocabulary AND first verbs. mag-/nag- and um- taught through food roots, not abstractly. ba/na/lang introduced naturally. ang/ng/sa get a light first touch. This is where sentence building begins.
 
-```
-MAGALANG — Respect & Greetings
-  [Po & Opo]                              ← row of 1
-  [Kumusta]  [Oo, Hindi, Salamat]         ← row of 2
-  [Ako, Ikaw, Siya]                       ← row of 1
-  (Practice)
+| # | ID | Title | Type | New Words | Cumulative |
+|---|-----|-------|------|-----------|------------|
+| 1 | 024 | Kain | T | kain, kumain, ba | Root "kain" (eat), um- infix through kumain. ba = question marker. "Kumain ka na ba?" |
+| 2 | 025 | Luto | T | luto, magluto, nagluto | Root "luto" (cook). mag- = doing it, nag- = did it. First verb affixes. |
+| 3 | 026 | Inom | T | inom, uminom, tubig | Root "inom" (drink). um- reinforced. tubig (water). |
+| 4 | 027 | Review | R | - | |
+| 5 | 028 | Masarap! | T | masarap, pagkain, busog | Delicious, food (noun from kain), full/satisfied. ma- prefix preview. |
+| 6 | 029 | Filipino Food | T | adobo, sinigang, kare-kare | Dish names with cultural context. |
+| 7 | 030 | Drinks | T | kape, gatas, inumin | Coffee, milk, beverage (-in suffix preview through inumin). |
+| 8 | 031 | Review | R | - | |
+| 9 | 032 | Gusto | T | gusto, na, lang | I want. na (already), lang (just/only). "Gusto ko na lang ng tubig." |
+| 10 | 033 | Ayaw | T | ayaw, gusto kong, ayaw kong | I don't want. Combining with verbs: gusto kong kumain, ayaw kong magluto. |
+| 11 | 034 | Review | R | - | |
+| 12 | 035 | Magkano? | T | magkano, isa, dalawa | How much? + first numbers. "Isa po." / "Dalawa po." |
+| 13 | 036 | Chapter Review | CR | - | ~71 |
 
-TAGLISH — How Filipinos Actually Talk
-  [The Mix]                               ← row of 1
-  [Any Word Is a Verb]                    ← row of 1
-  (Practice)
-
-KAIN! — Food & Basic Verbs
-  [Kain]                                  ← row of 1
-  [Luto]  [Inom]                          ← row of 2
-  [Gusto & Ayaw]                          ← row of 1
-  (Practice)
-
-PAMILYA — Family & Relationships
-  [Nanay & Tatay]  [Lola & Lolo]          ← row of 2
-  [Mahal]  [Tahanan]                      ← row of 2
-  (Practice)
-
-BILANG — Counting & Money
-  [Filipino Numbers]                       ← row of 1
-  [Money & Spanish Numbers]                ← row of 1
-  (Practice)
-
-ARAW-ARAW — Daily Routines
-  [Umaga]                                 ← row of 1
-  [Trabaho]  [Linis & Ayos]               ← row of 2
-  [Pahinga]                               ← row of 1
-  (Practice)
-
-DAMDAMIN — Feelings & Descriptions
-  [Masaya & Malungkot]                    ← row of 1
-  [Maganda & Gwapo]  [Mainit & Malamig]   ← row of 2
-  [Pagod & Gutom]                         ← row of 1
-  (Practice)
-
-LUGAR — Places & Getting Around
-  [Saan]                                  ← row of 1
-  [Punta]  [Palengke & Tindahan]          ← row of 2
-  [Sakay]                                 ← row of 1
-  (Practice)
-
-ORAS — Time & Planning
-  [Kahapon, Ngayon, Bukas]                ← row of 1
-  [Plano]                                 ← row of 1
-  (Practice)
-
-SALITA — The Word Machine
-  [Affixes Unlocked]                      ← row of 1
-  [Build Any Word]                        ← row of 1
-  (Practice)
-```
-
-**v1.0 total: 32 lessons across 10 chapters**
+**Notes:** MVP launch ends here. Total across Ch0-3: ~36 lessons, ~71 words. The ang/ng/sa markers appear naturally in example sentences ("Kumain ako ng adobo") with brief teach cards, not as a standalone grammar lesson. Users absorb them through pattern, not theory.
 
 ---
 
-## Chapter Details
+## Chapter 4: Feelings (Damdamin)
+**Directory:** ch04_damdamin/
+**Lessons:** 12 | **Words:** ~24
+**Theme:** Emotions, descriptions, ma- adjective prefix. Immediately personal. "Masaya ako," "Pagod ako." Combines with family and food vocab for richer sentences.
 
-### Chapter 1: MAGALANG — Respect & Greetings (4 lessons)
-
-**Lesson 1: Po & Opo** (row of 1)
-- Session 1: What is po? Po in English, Taglish, Tagalog. Oo + po = opo.
-- Session 2: Who to use po with. Elders, strangers, authority. Drop with friends, kids.
-- Session 3: Po placement in sentences. Word order quiz type.
-- Session 4: Mano po gesture. Hindi po, pasensya na po, sige po, siyempre. Pare/mare.
-- Session 5: Review (all quiz, shuffled).
-- Vocabulary: po, opo, hindi po, mano po, pasensya na po, sige, sige po, siyempre, pare, mare
-
-**Lesson 2: Kumusta** (row of 2 with Lesson 3)
-- Kumusta po?, magandang umaga/tanghali/hapon/gabi po
-- "Kumain ka na ba?" as a greeting, not a literal question
-- Casual vs respectful greetings
-- Alam Mo Ba: kumusta from Spanish "¿Cómo está?"
-
-**Lesson 3: Oo, Hindi, Salamat** (row of 2 with Lesson 2)
-- Oo / opo, hindi / hindi po, salamat / salamat po / maraming salamat po
-- Walang anuman (you're welcome)
-- Sige as goodbye ("Sige, bye!")
-- Alam Mo Ba: salamat may come from Arabic "salaam"
-
-**Lesson 4: Ako, Ikaw, Siya** (row of 1)
-- Personal pronouns: ako, ikaw/ka, siya (gender-neutral!)
-- Plural: tayo, kami, kayo, sila
-- Ko/mo/niya possessives
-- Kayo as formal "you" (like French "vous"), kayo + po = very formal
-- Alam Mo Ba: Tagalog has no gendered pronouns
-
-### Chapter 2: TAGLISH — How Filipinos Actually Talk (2 lessons)
-
-**Lesson 5: The Mix** (row of 1)
-- Taglish is the default spoken language, not slang
-- Code-switching examples: when English words replace Tagalog, when Tagalog grammar wraps English words
-- The rule: affixes are always Tagalog, roots can be English
-- "nag-cook ako ng adobo yesterday" is natural. "I nagluto ng adobo yesterday" is NOT.
-- Register spectrum: pure Tagalog (formal/old), Taglish (normal), heavy English (conyo)
-- Alam Mo Ba: class dimension of Taglish, "conyo" speech
-
-**Lesson 6: Any Word Is a Verb** (row of 1)
-- THE hook lesson. Concept only, not mechanical affix teaching.
-- nag-shopping, na-traffic, nag-Netflix, nag-gym, nag-grocery
-- pinacquiao, pine-friendzone, na-late
-- Quiz: "Which of these is a real Taglish verb?" (all of them)
-- Teaser: "The rest of this app teaches you exactly how this works."
-- Alam Mo Ba: "This is why Duolingo hasn't added Tagalog. The grammar is too different from European languages for their template."
-
-### Chapter 3: KAIN! — Food & Basic Verbs (4 lessons)
-
-**Lesson 7: Kain** (row of 1)
-- Root "kain" (eat), kumain (um- infix, first formal affix teach)
-- "Kumain ka na ba?" deep dive with cultural weight
-- pagkain (food, pag- prefix), masarap (delicious, ma- preview)
-- Colour-coded affix breakdown: k[um]ain
-- Alam Mo Ba: "Kanin (cooked rice) comes from the same root as kain. Eating IS rice."
-
-**Lesson 8: Luto** (row of 2 with Lesson 9)
-- Root "luto" (cook), magluto/nagluto (mag-/nag-, first proper teach)
-- Filipino dish vocabulary: adobo, sinigang, tinola, kare-kare
-- Taglish: "Si Nanay nag-cook ng sinigang"
-- Alam Mo Ba: adobo from Spanish "adobar"
-
-**Lesson 9: Inom** (row of 2 with Lesson 8)
-- Root "inom" (drink), uminom (um- reinforced)
-- inumin (beverage, -in suffix preview)
-- kape, tubig, juice. Ordering at a carinderia.
-- Counting preview: isa, dalawa, tatlo (ordering context)
-- Alam Mo Ba: "Tindahan from Spanish 'tienda.' Baso from 'vaso.' Your kitchen is full of Spanish."
-
-**Lesson 10: Gusto & Ayaw** (row of 1)
-- Gusto ko (I want) / ayaw ko (I don't want)
-- Combining with verbs: "Gusto kong kumain" / "Ayaw kong magluto"
-- Po placement: "Gusto ko pong kumain" (po after ko, not at end)
-- Alam Mo Ba: gusto from Spanish, pure Tagalog is "ibig" but nobody says it
-
-### Chapter 4: PAMILYA — Family & Relationships (4 lessons)
-
-**Lesson 11: Nanay & Tatay** (row of 2 with Lesson 12)
-- Nanay/Tatay, kapatid, anak, asawa
-- Ate/kuya/bunso beyond family (respect for anyone older)
-- Age sensitivity: kuya/ate vs tito/tita, the grey zone
-- Parents calling kids "Kuya" and "Ate" so siblings learn
-- Alam Mo Ba: ate/kuya from Hokkien Chinese
-
-**Lesson 12: Lola & Lolo** (row of 2 with Lesson 11)
-- Lola/lolo, tita/tito, ninong/ninang
-- Tito/tita for any older adult a generation above
-- Mano po revisited in family gathering context
-- Alam Mo Ba: tita/tito from Spanish "tia/tio"
-
-**Lesson 13: Mahal** (row of 2 with Lesson 14)
-- Root "mahal" = love AND expensive
-- Mahal kita (I love you)
-- i- prefix introduction: imahal (to love, directing the action)
-- How Filipinos express affection (acts of service, "Kumain ka na ba?" IS love)
-- Alam Mo Ba: "Mahal meaning both 'love' and 'expensive' isn't coincidence"
-
-**Lesson 14: Tahanan** (row of 2 with Lesson 13)
-- Root "bahay" (house) / "tahanan" (home)
-- Household vocabulary: kusina, kwarto, banyo, bintana
-- i- prefix reinforced: "Iluto mo ang adobo"
-- pa- prefix introduction: "Paluto" (have someone cook for you)
-- Alam Mo Ba: "Kusina = cocina, kwarto = cuarto, banyo = baño, bintana = ventana"
-
-### Chapter 5: BILANG — Counting & Money (2 lessons)
-
-**Lesson 15: Filipino Numbers** (row of 1)
-- Filipino numbers 1-10: isa, dalawa, tatlo, apat, lima, anim, pito, walo, siyam, sampu
-- 11-20 and round numbers (honest about the struggle past 10)
-- Alam Mo Ba: "Ask any Filipino to count past 10 in Tagalog and watch them struggle"
-
-**Lesson 16: Money & Spanish Numbers** (row of 1)
-- Spanish numbers for money: bente, trenta, singkwenta, benchingko
-- English for complex amounts: "one-twenty" not "isang daan at dalawampu"
-- Filipino for coins and round hundreds: isa, lima, sampu, isang daan
-- "Magkano po?" (how much?)
-- Filipino time: alas-otso, alas-dose ng tanghali, alas tres y medya
-- Alam Mo Ba: "Filipinos count in three languages depending on the situation"
-
-### Chapter 6: ARAW-ARAW — Daily Routines (4 lessons)
-
-**Lesson 17: Umaga** (row of 1)
-- Morning routine: gising, ligo, bihis, kain
-- mag- reinforced with new roots: magligo, magbihis
-- Time vocabulary: umaga, tanghali, hapon, gabi
-- Time-telling: alas-otso ng umaga, alas dose ng tanghali
-- Alam Mo Ba: "Filipinos tell time in Spanish numbers with Filipino time-of-day words"
-
-**Lesson 18: Trabaho** (row of 2 with Lesson 19)
-- Root "trabaho" (work) / "aral" (study)
-- mag-aral / nag-aral reinforced
-- nag- with English roots: "nagta-trabaho," "nag-shopping" (callback to Taglish chapter)
-- Alam Mo Ba: "Trabaho from Spanish 'trabajo.' Eskwela from 'escuela.'"
-
-**Lesson 19: Linis & Ayos** (row of 2 with Lesson 18)
-- Root "linis" (clean) / "ayos" (fix)
-- -in suffix: linisin (clean THE THING)
-- -an suffix: linisan (clean THE PLACE)
-- Object-focus system introduction
-- Alam Mo Ba: "-in and -an are the suffixes that make Tagalog genuinely different from English"
-
-**Lesson 20: Pahinga** (row of 1)
-- Root "pahinga" (rest) / "tulog" (sleep) / "laro" (play)
-- pa- prefix reinforced: papahinga (about to rest)
-- naka- prefix: nakatulog (fell asleep accidentally)
-- "Nag-mall kami kahapon" (Taglish callback)
-- Alam Mo Ba: "'Malling' is Filipino English. Also: nag-grocery, nag-gym, nag-Netflix."
-
-### Chapter 7: DAMDAMIN — Feelings & Descriptions (4 lessons)
-
-**Lesson 21: Masaya & Malungkot** (row of 1)
-- ma- prefix for adjectives (formally taught, callback to "maganda" from Lesson 2)
-- masaya/malungkot/magalit/matakot
-- Root extraction: lungkot = sadness, takot = fear
-- "Okay ka lang po?"
-- Alam Mo Ba: "kilig, gigil, tampo — emotions English can't capture"
-
-**Lesson 22: Maganda & Gwapo** (row of 2 with Lesson 23)
-- maganda/gwapo/mabait/matalino
-- Describing people respectfully with po
-- napa- prefix: "Napangiti ako" (involuntary smile)
-- Alam Mo Ba: "Gwapo from Spanish 'guapo'"
-
-**Lesson 23: Mainit & Malamig** (row of 2 with Lesson 22)
-- mainit/malamig/maulan/mahangin
-- Same ma- pattern, root extraction reinforced
-- Philippine seasons: tag-ulan (rainy), tag-init (dry/hot)
-- Alam Mo Ba: "Tag- means 'season of.' Tag-gutom = season of hunger (slang for broke before payday)"
-
-**Lesson 24: Pagod & Gutom** (row of 1)
-- pagod/gutom/uhaw/antok
-- Intensifiers: "Pagod na pagod na ako," "sobrang gutom," "grabe"
-- These don't use ma- (exception to the pattern)
-- Alam Mo Ba: "Grabe from Spanish 'grave' (serious). Evolved into a general intensifier."
-
-### Chapter 8: LUGAR — Places & Getting Around (4 lessons)
-
-**Lesson 25: Saan** (row of 1)
-- saan/dito/diyan/doon, nasa, nasaan
-- "Saan po ito?" (word order callback)
-- Alam Mo Ba: "Tagalog has THREE words for 'there': dito (near me), diyan (near you), doon (far from both)"
-
-**Lesson 26: Punta** (row of 2 with Lesson 27)
-- Root "punta" / "lakad"
-- pumunta/pupunta (um- reinforced), papunta (pa- directional)
-- Pauwi (heading home), palabas (heading out)
-- Alam Mo Ba: "'Lakad' means both 'walk' and 'errand.' 'May lakad ako' = 'I have somewhere to be.'"
-
-**Lesson 27: Palengke & Tindahan** (row of 2 with Lesson 26)
-- Market/store vocabulary, numbers for prices
-- "Magkano po?" (callback to counting chapter)
-- "Mura" (cheap) / "Mahal" (expensive — callback to Chapter 4 double meaning)
-- "Tawad po" (discount please)
-- Alam Mo Ba: "Palengke from Spanish 'palenque'"
-
-**Lesson 28: Sakay** (row of 1)
-- Jeepney/tricycle/bus/MRT vocabulary
-- "Para po!" (the most iconic po usage)
-- sakay/baba, "Bayad po" (passing money in a jeepney)
-- Alam Mo Ba: "Jeepney comes from American military jeeps left after WWII"
-
-### Chapter 9: ORAS — Time & Planning (2 lessons)
-
-**Lesson 29: Kahapon, Ngayon, Bukas** (row of 1)
-- Time markers and tense consolidation
-- How tense prefixes map: nag- = kahapon, nag-_-_ = ngayon, mag- = bukas
-- Tense table for all familiar roots
-- Taglish tense: "Kahapon nag-cook ako, ngayon nagluluto ako, bukas mag-cook ulit ako"
-
-**Lesson 30: Plano** (row of 1)
-- "Tara!" (let's go), "Sama ka?" (wanna come?)
-- "Pwede po ba...?" (asking permission politely)
-- "Free ka ba this Saturday?" (Taglish scheduling)
-- How Filipinos say no without saying no: "Sige, tignan ko," "Baka pwede next time"
-- Alam Mo Ba: "Pwede from Spanish 'puede.' Sige from 'sigue.'"
-
-### Chapter 10: SALITA — The Word Machine (2 lessons)
-
-**Lesson 31: Affixes Unlocked** (row of 1)
-- The formal framework for everything Taglish chapter teased
-- Full affix table: mag-, nag-, um-, i-, pa-, -in, -an, ma-, naka-, napa-, pag-
-- How to decode any unfamiliar Tagalog word: strip affix → find root → understand meaning
-- This is the moment the system "clicks"
-
-**Lesson 32: Build Any Word** (row of 1)
-- Stacking affixes: pina- + luto = pinaluto (had someone cook, past tense)
-- magpa- + luto = magpaluto (to have someone cook, future)
-- Creative stacking: pinag-aralan (studied intensively), nakapagpapagaling (able to heal)
-- Build-your-own-sentence exercise
-- Heritage moment: "You now have the tools to understand words you've never studied. Next time you hear your lola speak, listen for the roots."
+| # | ID | Title | Type | New Words | Cumulative |
+|---|-----|-------|------|-----------|------------|
+| 1 | 037 | Masaya | T | masaya, malungkot, galit | Happy, sad, angry. ma- prefix for adjectives introduced properly. |
+| 2 | 038 | Takot and Gulat | T | takot, gulat, hiya | Scared, surprised, shy/shame. Hiya = core Filipino concept. |
+| 3 | 039 | Okay Ka Lang? | T | okay lang, ayos lang, bahala na | "Are you okay?", "it's fine", "whatever happens." Filipino resilience phrases. |
+| 4 | 040 | Review | R | - | |
+| 5 | 041 | Maganda and Gwapo | T | maganda, gwapo, pangit | Beautiful, handsome, ugly. Describing people. |
+| 6 | 042 | Mainit and Malamig | T | mainit, malamig, maulan | Hot, cold, rainy. Weather and temperature. |
+| 7 | 043 | Review | R | - | |
+| 8 | 044 | Pagod and Gutom | T | pagod, gutom, uhaw | Tired, hungry, thirsty. Physical states. |
+| 9 | 045 | Malaki and Maliit | T | malaki, maliit, marami | Big, small, many/much. |
+| 10 | 046 | Review | R | - | |
+| 11 | 047 | Colours | T | pula, asul, puti | Red, blue, white. |
+| 12 | 048 | Chapter Review | CR | - | ~95 |
 
 ---
 
-## Future Content (v2.0+)
+## Chapter 5: Daily Life (Araw-araw)
+**Directory:** ch05_araw_araw/
+**Lessons:** 12 | **Words:** ~24
+**Theme:** Daily routines, work, chores. Builds -in and -an suffixes through practical actions. Introduces i- prefix for commands. "Iluto mo ang adobo."
 
-### v2.0: TANONG, HUGIS NG SALITA, KULTURA
+| # | ID | Title | Type | New Words | Cumulative |
+|---|-----|-------|------|-----------|------------|
+| 1 | 049 | Umaga Routine | T | gising, ligo, almusal | Wake up, bathe, breakfast. |
+| 2 | 050 | Tanghali and Hapon | T | tanghali, hapon, merienda | Noon, afternoon, snack. Completes time-of-day greetings. |
+| 3 | 051 | Gabi Routine | T | hapunan, tulog, pahinga | Dinner, sleep, rest. |
+| 4 | 052 | Review | R | - | |
+| 5 | 053 | Trabaho | T | trabaho, opisina, papasok | Work, office, going in. nag- with borrowed words: "nagta-trabaho." |
+| 6 | 054 | Aral | T | aral, mag-aral, eskwelahan | Study, to study, school. |
+| 7 | 055 | Review | R | - | |
+| 8 | 056 | Linis | T | linis, linisin, malinis | Clean (root), clean it (-in suffix), clean (adj). |
+| 9 | 057 | Ayos | T | ayos, ayusin, i- (prefix) | Fix/arrange (root), fix it (-in suffix). i- prefix intro: ilagay (put it), iluto (cook it). |
+| 10 | 058 | Review | R | - | |
+| 11 | 059 | Weekend | T | Sabado, Linggo, din/rin | Saturday, Sunday. din/rin = also/too. |
+| 12 | 060 | Chapter Review | CR | - | ~119 |
 
-**TANONG — Questions & Conversations**
-  [Ano, Sino, Bakit]                      ← row of 1
-  [Paano & Kailan]  [Conversations]       ← row of 2
-  (Practice)
-
-**HUGIS NG SALITA — Sentence Shape**
-  [Ang, Ng, Sa]                           ← row of 1
-  [Focus System]                          ← row of 1
-  [Connectors]                            ← row of 1
-  (Practice)
-
-**KULTURA — Culture & Social Rules**
-  [Kuya, Ate, Tito, Tita]                ← row of 1
-  [Filipino Time]  [Pakikisama]           ← row of 2
-  [Fiestas & Holidays]                    ← row of 1
-  (Practice)
-
-### v3.0: KALYE, TRABAHO, KWENTO
-
-**KALYE — Street Tagalog**
-  [Slang & Shortcuts]                     ← row of 1
-  [Text Speak]  [Beki Speak]              ← row of 2
-  (Practice)
-
-**TRABAHO — Professional Filipino**
-  [Office Taglish]                        ← row of 1
-  [Emails & Messages]  [Meetings]         ← row of 2
-  (Practice)
-
-**KWENTO — Storytelling**
-  [Noong, Bigla, Kaya Naman]             ← row of 1
-  [Proverbs & Sayings]                    ← row of 1
-  [Jokes & Wordplay]                      ← row of 1
-  (Practice)
-
-### v4.0: MALALIM, BAYBAYIN
-
-**MALALIM — Deep Tagalog**
-  [Formal Register]                       ← row of 1
-  [Regional Words]  [Poetry & Literature] ← row of 2
-  (Practice)
-
-**BAYBAYIN — The Ancient Script**
-  [The 17 Characters]                     ← row of 1
-  [Write Your Name]                       ← row of 1
-  [Read & Write]                          ← row of 1
-  (Practice)
+**Notes:** i- prefix introduced in lesson 057 through daily commands ("Ilagay mo sa mesa" = put it on the table). din/rin taught in weekend context ("Pahinga din ako" = I'm also resting). Taglish code-switching rules (affixes always Tagalog, roots can be English) taught naturally through work/school context: "nag-study," "mag-meeting."
 
 ---
 
-## Affix Introduction Order (Organic)
+## Chapter 6: Places (Lugar)
+**Directory:** ch06_lugar/
+**Lessons:** 12 | **Words:** ~24
+**Theme:** Location, directions, transport, shopping. "Para po!" moment.
 
-| Lesson | Affix | Context | Type |
-|--------|-------|---------|------|
-| 2 (Kumusta) | ma- | "maganda" in greetings | Preview |
-| 6 (Any Word Is a Verb) | nag-, na-, pine- | Taglish verbs | Concept only |
-| 7 (Kain) | um- | "kumain" — eating | First proper teach |
-| 7 (Kain) | pag- | "pagkain" — food as noun | Organic |
-| 8 (Luto) | mag- / nag- | "magluto/nagluto" — cooking | First proper teach |
-| 9 (Inom) | -in (noun) | "inumin" — beverage | Preview |
-| 13 (Mahal) | i- | "imahal" — directing love | First proper teach |
-| 14 (Tahanan) | pa- | "paluto" — causative | First proper teach |
-| 19 (Linis & Ayos) | -in (verb) | "linisin" — clean the thing | First proper teach |
-| 19 (Linis & Ayos) | -an | "linisan" — clean the place | First proper teach |
-| 20 (Pahinga) | naka- | "nakatulog" — fell asleep | Organic |
-| 21 (Masaya) | ma- (adj) | "masaya/malungkot" | First proper teach |
-| 22 (Maganda) | napa- | "napangiti" — involuntary | Organic |
-| 26 (Punta) | pa- (directional) | "pauwi" — heading home | Reinforcement |
-| 29 (Kahapon) | Full tense table | Consolidation | Review |
-| 31 (Affixes Unlocked) | All affixes | Complete framework | Formal teach |
-| 32 (Build Any Word) | pina- / magpa- | Stacking affixes | Advanced teach |
+| # | ID | Title | Type | New Words | Cumulative |
+|---|-----|-------|------|-----------|------------|
+| 1 | 061 | Saan? | T | saan, dito, doon | Where?, here, there. |
+| 2 | 062 | Punta | T | punta, pupunta, galing | Go, will go, coming from. |
+| 3 | 063 | Kanan and Kaliwa | T | kanan, kaliwa, diretso | Right, left, straight. |
+| 4 | 064 | Review | R | - | |
+| 5 | 065 | Palengke | T | palengke, tindahan, bili | Market, store, buy. |
+| 6 | 066 | Kainan | T | kainan, carinderia, order | Restaurant, street food stall, order. -an suffix: kainan = place to eat. |
+| 7 | 067 | Review | R | - | |
+| 8 | 068 | Sakay | T | sakay, jeep, tricycle | Ride, jeepney, tricycle. |
+| 9 | 069 | Para Po! | T | para, baba, bayad | Stop, get off, pay. "Para po!" = stop here please. |
+| 10 | 070 | Review | R | - | |
+| 11 | 071 | Labas and Loob | T | labas, loob, tabi | Outside, inside, beside. |
+| 12 | 072 | Chapter Review | CR | - | ~143 |
 
 ---
 
-## chapters.json Reference
+## Chapter 7: Numbers (Bilang)
+**Directory:** ch07_bilang/
+**Lessons:** 10 | **Words:** ~18
+**Theme:** Numbers beyond isa/dalawa (taught in Ch3), Spanish numbers for money, counting things. Leaner chapter since context was pre-built.
 
-```json
-[
-  {
-    "chapter_id": "ch01",
-    "title": "Magalang",
-    "subtitle": "Respect & Greetings",
-    "rows": [
-      { "row": 1, "lessons": ["001"] },
-      { "row": 2, "lessons": ["002", "003"] },
-      { "row": 3, "lessons": ["004"] }
-    ]
-  },
-  {
-    "chapter_id": "ch02",
-    "title": "Taglish",
-    "subtitle": "How Filipinos Actually Talk",
-    "rows": [
-      { "row": 1, "lessons": ["005"] },
-      { "row": 2, "lessons": ["006"] }
-    ]
-  },
-  {
-    "chapter_id": "ch03",
-    "title": "Kain!",
-    "subtitle": "Food & Basic Verbs",
-    "rows": [
-      { "row": 1, "lessons": ["007"] },
-      { "row": 2, "lessons": ["008", "009"] },
-      { "row": 3, "lessons": ["010"] }
-    ]
-  },
-  {
-    "chapter_id": "ch04",
-    "title": "Pamilya",
-    "subtitle": "Family & Relationships",
-    "rows": [
-      { "row": 1, "lessons": ["011", "012"] },
-      { "row": 2, "lessons": ["013", "014"] }
-    ]
-  },
-  {
-    "chapter_id": "ch05",
-    "title": "Bilang",
-    "subtitle": "Counting & Money",
-    "rows": [
-      { "row": 1, "lessons": ["015"] },
-      { "row": 2, "lessons": ["016"] }
-    ]
-  },
-  {
-    "chapter_id": "ch06",
-    "title": "Araw-araw",
-    "subtitle": "Daily Routines",
-    "rows": [
-      { "row": 1, "lessons": ["017"] },
-      { "row": 2, "lessons": ["018", "019"] },
-      { "row": 3, "lessons": ["020"] }
-    ]
-  },
-  {
-    "chapter_id": "ch07",
-    "title": "Damdamin",
-    "subtitle": "Feelings & Descriptions",
-    "rows": [
-      { "row": 1, "lessons": ["021"] },
-      { "row": 2, "lessons": ["022", "023"] },
-      { "row": 3, "lessons": ["024"] }
-    ]
-  },
-  {
-    "chapter_id": "ch08",
-    "title": "Lugar",
-    "subtitle": "Places & Getting Around",
-    "rows": [
-      { "row": 1, "lessons": ["025"] },
-      { "row": 2, "lessons": ["026", "027"] },
-      { "row": 3, "lessons": ["028"] }
-    ]
-  },
-  {
-    "chapter_id": "ch09",
-    "title": "Oras",
-    "subtitle": "Time & Planning",
-    "rows": [
-      { "row": 1, "lessons": ["029"] },
-      { "row": 2, "lessons": ["030"] }
-    ]
-  },
-  {
-    "chapter_id": "ch10",
-    "title": "Salita",
-    "subtitle": "The Word Machine",
-    "rows": [
-      { "row": 1, "lessons": ["031"] },
-      { "row": 2, "lessons": ["032"] }
-    ]
-  }
-]
-```
+| # | ID | Title | Type | New Words | Cumulative |
+|---|-----|-------|------|-----------|------------|
+| 1 | 073 | Tatlo to Lima | T | tatlo, apat, lima | 3, 4, 5. |
+| 2 | 074 | Anim to Sampu | T | anim, pito, walo | 6, 7, 8. |
+| 3 | 075 | Siyam and Sampu | T | siyam, sampu, ilan | 9, 10, how many? |
+| 4 | 076 | Review | R | - | |
+| 5 | 077 | Big Numbers | T | daan, libo, milyon | Hundred, thousand, million. |
+| 6 | 078 | Spanish Numbers | T | bente, trenta, singkwenta | 20, 30, 50. Used for money and ages. |
+| 7 | 079 | Review | R | - | |
+| 8 | 080 | Pera | T | pera, piso, barya | Money, peso, coins. |
+| 9 | 081 | Review | R | - | |
+| 10 | 082 | Chapter Review | CR | - | ~161 |
+
+---
+
+## Chapter 8: Time (Oras)
+**Directory:** ch08_oras/
+**Lessons:** 10 | **Words:** ~18
+**Theme:** Past/present/future, telling time, making plans. Needs numbers from Ch7.
+
+| # | ID | Title | Type | New Words | Cumulative |
+|---|-----|-------|------|-----------|------------|
+| 1 | 083 | Kahapon | T | kahapon, ngayon, bukas | Yesterday, today, tomorrow. |
+| 2 | 084 | Kanina and Mamaya | T | kanina, mamaya, mamayang gabi | Earlier, later, later tonight. |
+| 3 | 085 | Alas | T | alas, oras, minuto | O'clock, hour, minute. Telling time. |
+| 4 | 086 | Review | R | - | |
+| 5 | 087 | Tara! | T | tara, punta tayo, sama | Let's go!, let's go (to), join/come with. |
+| 6 | 088 | Pwede Po Ba? | T | pwede, pwede po ba, bawal | Can/allowed, "may I?", forbidden. |
+| 7 | 089 | Review | R | - | |
+| 8 | 090 | Lagi and Minsan | T | lagi, minsan, daw/raw | Always, sometimes. daw/raw = "they said" / reportedly. |
+| 9 | 091 | Review | R | - | |
+| 10 | 092 | Chapter Review | CR | - | ~179 |
+
+**Notes:** daw/raw (originally from dissolved Taglish chapter) fits naturally here when talking about plans and hearsay: "Pupunta raw siya bukas" = "She's reportedly going tomorrow."
+
+---
+
+## Chapter 9: Roots (Salita)
+**Directory:** ch09_salita/
+**Lessons:** 10 | **Words:** ~10 (focus is pattern consolidation, not new vocab)
+**Theme:** Pulling together all affixes encountered across 8 chapters. Root extraction, affix stacking, building new words. The Pacquiao lesson. Not a climax, just a useful tool that makes everything after this easier.
+
+| # | ID | Title | Type | New Words | Cumulative |
+|---|-----|-------|------|-----------|------------|
+| 1 | 093 | What's a Root? | T | ugat, salita, wika | Root, word, language. Reviewing all roots learned so far. |
+| 2 | 094 | mag- and nag- | T | (review) | Pattern consolidation applied to 5+ roots from prior chapters. |
+| 3 | 095 | um- and -in | T | (review) | um- infix and -in suffix. Object focus vs actor focus. |
+| 4 | 096 | Review | R | - | |
+| 5 | 097 | i- and pa- | T | pa-, paluto, pabili | pa- prefix: having someone do it. paluto, pabili. |
+| 6 | 098 | -an | T | -an, lutuan, bilhan | -an suffix: the place/person. |
+| 7 | 099 | Review | R | - | |
+| 8 | 100 | Stack Them Up | T | pinag-, naka-, maka- | Affix stacking. The Pacquiao lesson lives here. |
+| 9 | 101 | Review | R | - | |
+| 10 | 102 | Chapter Review | CR | - | ~189 |
+
+---
+
+## Summary
+
+| Ch | Title | Subtitle | Directory | Lessons | Words | Cumulative |
+|----|-------|----------|-----------|---------|-------|------------|
+| 0 | Introduction | Abakada | ch00_introduction | 1 | 0 | 0 |
+| 1 | Hello | Kumusta | ch01_hello | 12 | 25 | 25 |
+| 2 | Family | Pamilya | ch02_pamilya | 11 | ~22 | ~46 |
+| 3 | Food | Kain! | ch03_kain | 13 | ~25 | ~71 |
+| 4 | Feelings | Damdamin | ch04_damdamin | 12 | ~24 | ~95 |
+| 5 | Daily Life | Araw-araw | ch05_araw_araw | 12 | ~24 | ~119 |
+| 6 | Places | Lugar | ch06_lugar | 12 | ~24 | ~143 |
+| 7 | Numbers | Bilang | ch07_bilang | 10 | ~18 | ~161 |
+| 8 | Time | Oras | ch08_oras | 10 | ~18 | ~179 |
+| 9 | Roots | Salita | ch09_salita | 10 | ~10 | ~189 |
+| **TOTAL** | | | | **103** | **~189** | |
+
+---
+
+## Dissolved Taglish Chapter: Where Each Word Went
+
+| Word/Concept | Original Ch | New Home | Context |
+|--------------|-------------|----------|---------|
+| na (already) | Ch2 Taglish | Ch3 Food (lesson 032) | "Kumain ka na?" / "Gusto ko na lang" |
+| lang (just/only) | Ch2 Taglish | Ch3 Food (lesson 032) | "Gusto ko na lang ng tubig" |
+| ba (question marker) | Ch2 Taglish | Ch3 Food (lesson 024) | "Kumain ka na ba?" |
+| kain, luto, inom (roots) | Ch2 Taglish | Ch3 Food (lessons 024-026) | Taught as food vocab, not abstract grammar |
+| mag-, nag- | Ch2 Taglish | Ch3 Food (lesson 025) | Through magluto/nagluto |
+| um- (kumain) | Ch2 Taglish | Ch3 Food (lesson 024) | Through kumain |
+| ang, ng, sa | Ch2 Taglish | Ch3 Food (natural appearance) | "Kumain ako ng adobo" teaches ng through use |
+| din/rin (also) | Ch2 Taglish | Ch5 Daily Life (lesson 059) | "Pahinga din ako" |
+| daw/raw (reportedly) | Ch2 Taglish | Ch8 Time (lesson 090) | "Pupunta raw siya bukas" |
+| Taglish rules | Ch2 Taglish | Ch5 Daily Life (work context) | "nag-study," "mag-meeting" taught as natural Taglish |
+| Pacquiao hook | Ch2 Taglish | Ch9 Roots (lesson 100) | Full impact after 8 chapters of pattern building |
+
+---
+
+## Launch Strategy
+
+**MVP (v1.0):** Chapters 0-3 written and QA'd (37 lessons, ~71 words). Submit to App Store.
+
+**v1.1:** Chapter 4 (Feelings). Write during review / first month post-launch. Quick emotional chapter.
+
+**v1.2:** Chapter 5 (Daily Life). Uses real user data from Ch1-3 to refine format.
+
+**v1.3:** Chapters 6-7 (Places + Numbers). Marketing moment: "Two new chapters dropped."
+
+**v2.0:** Chapters 8-9 (Time + Roots). Pacquiao viral push lives here.
+
+**Future expansions (v3.0+):** Tanong (question words), Kultura (deeper cultural chapter), Kalye (street/slang), Baybayin (writing system module). These are full new chapters, not a conclusion.
+
+---
+
+## Progressive Substitution Checkpoints
+
+| After | Users Can... |
+|-------|-------------|
+| Ch1 | Greet, thank, apologize, use pronouns. All in Taglish. |
+| Ch2 | Name family members, express possession (nanay ko, kapatid mo). Say "mahal kita." |
+| Ch3 | Talk about food, form first Tagalog verbs, express wants. "Gusto kong kumain ng adobo." |
+| Ch4 | Express feelings, describe people and weather. "Masaya ako." "Maganda siya." |
+| Ch5 | Describe daily routine, give commands, talk about work/school. "Iluto mo ang adobo." |
+| Ch6 | Navigate, shop, take transport. "Para po!" "Saan ang palengke?" |
+| Ch7 | Count, handle money, ask prices. "Magkano po? Bente piso." |
+| Ch8 | Talk about time, make plans, ask permission. "Tara! Punta tayo bukas." |
+| Ch9 | Understand the affix system, build new words from roots, stack affixes. |

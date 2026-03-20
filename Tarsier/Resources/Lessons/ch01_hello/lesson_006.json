@@ -1,0 +1,179 @@
+{
+  "_meta": {
+    "schema_version": "0.7",
+    "last_updated": "2026-03-19",
+    "notes": "Chapter 1 Lesson 6. Previously taught: kumusta, mabuti, ikaw, magandang, umaga, gabi, po, naman, sige, oo, hindi, opo."
+  },
+  "lesson_id": "006",
+  "title": "Salamat",
+  "subtitle": "Saying Thanks and Sorry",
+  "chapter_id": "ch01",
+  "chapter_title": "Hello",
+  "position_in_chapter": 6,
+  "difficulty": "beginner",
+  "lesson_type": "teaching",
+  "total_sessions": 1,
+  "sessions": [
+    {
+      "session_id": "006_s1",
+      "session_number": 1,
+      "title": "Salamat",
+      "cards": [
+        {
+          "card_id": "006_s1_c1",
+          "type": "teach",
+          "highlight": "Salamat",
+          "body": "Gratitude is a big deal in Filipino culture. This is the word you'll need most."
+        },
+        {
+          "card_id": "006_s1_c2",
+          "type": "teach",
+          "highlight": "Salamat",
+          "body": "Salamat means 'thank you.'",
+          "example": {
+            "casual": "Salamat!",
+            "respectful": "Salamat po!",
+            "note": "Add po when thanking someone older or in authority."
+          }
+        },
+        {
+          "card_id": "006_s1_c3",
+          "type": "teach",
+          "highlight": "Walang anuman",
+          "body": "Walang anuman means 'you're welcome.' Literally: 'it's nothing.'",
+          "example": {
+            "context": "Someone says salamat to you.",
+            "reply": "Walang anuman!",
+            "note": "Like saying 'no problem' or 'don't mention it.'"
+          },
+          "alam_mo_ba_inline": {
+            "term": "Walang anuman",
+            "fact": "Walang anuman literally translates to 'there is nothing' (walang = none, anuman = anything). Filipinos downplay their generosity.",
+            "emoji": "🤲"
+          }
+        },
+        {
+          "card_id": "006_s1_q1",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "character": "stranger",
+          "source_text": "Someone holds the door for you.",
+          "prompt": "What do you say?",
+          "options": [
+            "Sige!",
+            "Mabuti!",
+            "Salamat!",
+            "Walang anuman!"
+          ],
+          "correct_answer": 2,
+          "explanation": "Salamat = thank you. Use it whenever someone helps you.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "006_s1_c4",
+          "type": "teach",
+          "highlight": "Pasensya na",
+          "body": "Pasensya na means 'sorry' or 'excuse me.' It's asking for patience.",
+          "example": {
+            "casual": "Pasensya na!",
+            "respectful": "Pasensya na po!",
+            "note": "Works for bumping into someone, being late, or any small apology."
+          }
+        },
+        {
+          "card_id": "006_s1_q2",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "character": "stranger",
+          "source_text": "You accidentally bump into someone at the store.",
+          "prompt": "What do you say?",
+          "options": [
+            "Salamat po!",
+            "Pasensya na po!",
+            "Sige po!",
+            "Mabuti po!"
+          ],
+          "correct_answer": 1,
+          "explanation": "Pasensya na po = sorry/excuse me (respectful). Perfect for small apologies.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "006_s1_q3",
+          "type": "quiz",
+          "quiz_type": "fill_in_blank",
+          "character": "stranger",
+          "source_text": "A coworker says: Salamat!",
+          "prompt": "Reply with 'you're welcome':",
+          "correct_answers": [
+            "Walang anuman",
+            "walang anuman",
+            "Walang anuman!",
+            "walang anuman!"
+          ],
+          "explanation": "Walang anuman = you're welcome. Literally 'it's nothing.'"
+        },
+        {
+          "card_id": "006_s1_q4",
+          "type": "quiz",
+          "quiz_type": "sentence_build",
+          "character": "stranger",
+          "prompt": "You're late to a meeting with your boss. Apologize respectfully.",
+          "source_text": "You're 10 minutes late.",
+          "correct_order": [
+            "Pasensya",
+            "na",
+            "po"
+          ],
+          "distractors": [
+            "salamat",
+            "oo",
+            "sige"
+          ],
+          "explanation": "Pasensya na po = sorry (respectful). The go-to apology for authority figures."
+        }
+      ]
+    }
+  ],
+  "vocabulary": [
+    {
+      "word": "salamat",
+      "meaning": "thank you",
+      "pronunciation": "sah-LAH-maht",
+      "type": "expression"
+    },
+    {
+      "word": "walang anuman",
+      "meaning": "you're welcome / it's nothing",
+      "pronunciation": "wah-LAHNG ah-NOO-mahn",
+      "type": "phrase"
+    },
+    {
+      "word": "pasensya na",
+      "meaning": "sorry / excuse me",
+      "pronunciation": "pah-SEN-shah nah",
+      "type": "phrase"
+    }
+  ],
+  "wrong_answer_tracking": {
+    "behaviour": "Wrong answers go to back of current session queue. User must get ALL questions right to complete. Cannot finish lesson with outstanding wrong answers.",
+    "track_wrong_count": true,
+    "wrong_count_usage": "Feed to Gemini system prompt for AI Practice."
+  },
+  "completion_reward": {
+    "xp": 15,
+    "alam_mo_ba": [
+      "Salamat may come from the Arabic 'salaam' (peace), brought by Muslim traders centuries before the Spanish arrived.",
+      "Pasensya comes from the Spanish 'paciencia' (patience). You're literally asking someone to be patient with you.",
+      "Many Filipinos also say 'thank you' in English even in full Tagalog conversations. Both are completely natural."
+    ]
+  },
+  "gamification": {
+    "xp_per_lesson": 15,
+    "hearts_per_wrong_answer": 1,
+    "streak_eligible": true,
+    "replay": {
+      "allowed": true,
+      "xp_on_replay": 0
+    }
+  }
+}

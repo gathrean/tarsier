@@ -1,0 +1,258 @@
+{
+  "_meta": {
+    "schema_version": "0.7",
+    "last_updated": "2026-03-19",
+    "notes": "Chapter Review for Chapter 1. Optional. 1-2 connection teach cards + quiz covering all chapter material. Full vocab: kumusta, mabuti, ikaw, magandang, umaga, gabi, po, naman, sige, oo, hindi, opo, salamat, walang anuman, pasensya na, siyempre, pare, mare, ako, ka, siya, tayo, kami, kayo, sila."
+  },
+  "lesson_id": "012",
+  "title": "Chapter Review",
+  "subtitle": "Everything from Chapter 1",
+  "chapter_id": "ch01",
+  "chapter_title": "Hello",
+  "position_in_chapter": 12,
+  "difficulty": "beginner",
+  "lesson_type": "chapter_review",
+  "total_sessions": 1,
+  "sessions": [
+    {
+      "session_id": "012_s1",
+      "session_number": 1,
+      "title": "Chapter Review",
+      "cards": [
+        {
+          "card_id": "012_s1_conn_1",
+          "type": "teach",
+          "subtype": "connection",
+          "highlight": "Two modes",
+          "body": "Everything you've learned has two modes: casual (with friends) and respectful (with elders and authority). The same words, different endings."
+        },
+        {
+          "card_id": "012_s1_q1",
+          "type": "quiz",
+          "quiz_type": "sentence_build",
+          "character": "stranger",
+          "prompt": "It's morning. Greet your boss respectfully and ask how they are.",
+          "source_text": "",
+          "correct_order": [
+            "Magandang",
+            "umaga",
+            "po",
+            "Kumusta",
+            "po",
+            "kayo"
+          ],
+          "distractors": [
+            "gabi",
+            "ka",
+            "naman"
+          ],
+          "explanation": "Magandang umaga po! Kumusta po kayo? Full respectful morning greeting."
+        },
+        {
+          "card_id": "012_s1_q2",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "character": "stranger",
+          "source_text": "Your grandmother asks: Kumusta ka?",
+          "prompt": "Reply respectfully, naturally, and ask her back.",
+          "options": [
+            "Mabuti, ikaw?",
+            "Mabuti naman po, kumusta po kayo?",
+            "Oo po.",
+            "Sige po."
+          ],
+          "correct_answer": 1,
+          "explanation": "Mabuti naman po (I'm good, respectfully) + kumusta po kayo? (how are you, formal). Full respectful exchange.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "012_s1_q3",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "character": "stranger",
+          "source_text": "Match the casual word with its respectful version.",
+          "prompt": "Oo → ___",
+          "options": [
+            "Hindi po",
+            "Opo",
+            "Sige po",
+            "Salamat po"
+          ],
+          "correct_answer": 1,
+          "explanation": "Oo (casual yes) → Opo (respectful yes). Oo + po = opo.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "012_s1_q4",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "character": "stranger",
+          "source_text": "Your friend Jun asks: Are you free Saturday?",
+          "prompt": "Obviously yes. What do you say?",
+          "options": [
+            "Opo, pare!",
+            "Siyempre, pare!",
+            "Siyempre po!",
+            "Hindi, pare."
+          ],
+          "correct_answer": 1,
+          "explanation": "Siyempre, pare! = Of course, bro! Casual and enthusiastic with a male friend.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "012_s1_conn_2",
+          "type": "teach",
+          "subtype": "connection",
+          "highlight": "Pronouns unlock sentences",
+          "body": "Notice how every greeting changes meaning with a different pronoun. Kumusta ka? Kumusta siya? Kumusta kayo? Same structure, different people."
+        },
+        {
+          "card_id": "012_s1_q5",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "character": "stranger",
+          "source_text": "You and Maria went to a party. Your coworker (who wasn't there) asks how it was.",
+          "prompt": "You say: Mabuti naman ___.",
+          "options": [
+            "tayo",
+            "kami",
+            "kayo",
+            "sila"
+          ],
+          "correct_answer": 1,
+          "explanation": "Kami = we (excluding the listener). Your coworker wasn't at the party.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "012_s1_q6",
+          "type": "quiz",
+          "quiz_type": "fill_in_blank",
+          "character": "stranger",
+          "source_text": "Someone gives you directions to the CR.",
+          "prompt": "Say thank you respectfully:",
+          "correct_answers": [
+            "Salamat po",
+            "salamat po",
+            "Salamat po!",
+            "salamat po!"
+          ],
+          "explanation": "Salamat po = thank you (respectful)."
+        },
+        {
+          "card_id": "012_s1_q7",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "character": "stranger",
+          "source_text": "You arrive late to dinner with your boss.",
+          "prompt": "What do you say first?",
+          "options": [
+            "Magandang gabi!",
+            "Pasensya na po!",
+            "Salamat po!",
+            "Sige po!"
+          ],
+          "correct_answer": 1,
+          "explanation": "Pasensya na po = sorry (respectful). Apologize first when you're late.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "012_s1_q8",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "character": "stranger",
+          "source_text": "What does naman do?",
+          "options": [
+            "Makes a sentence respectful",
+            "Makes a sentence negative",
+            "Softens the tone",
+            "Makes it a question"
+          ],
+          "correct_answer": 2,
+          "explanation": "Naman is a softener. It makes things sound friendlier and more natural.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "012_s1_q9",
+          "type": "quiz",
+          "quiz_type": "sentence_build",
+          "character": "stranger",
+          "prompt": "It's evening. You run into your friend Maria. Greet her casually and ask how she is.",
+          "source_text": "",
+          "correct_order": [
+            "Magandang",
+            "gabi",
+            "Kumusta",
+            "ka"
+          ],
+          "distractors": [
+            "po",
+            "kayo",
+            "umaga"
+          ],
+          "explanation": "Magandang gabi! Kumusta ka? Casual evening greeting with a friend."
+        },
+        {
+          "card_id": "012_s1_q10",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "character": "stranger",
+          "source_text": "Someone says walang anuman to you.",
+          "prompt": "What did you probably say right before?",
+          "options": [
+            "Kumusta?",
+            "Pasensya na!",
+            "Salamat!",
+            "Magandang umaga!"
+          ],
+          "correct_answer": 2,
+          "explanation": "Walang anuman = you're welcome. They're responding to your salamat (thank you).",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "012_s1_q11",
+          "type": "quiz",
+          "quiz_type": "sentence_build",
+          "character": "stranger",
+          "prompt": "Your grandmother offers you food. Say yes respectfully and thank her.",
+          "source_text": "Do you want some?",
+          "correct_order": [
+            "Opo",
+            "Salamat",
+            "po"
+          ],
+          "distractors": [
+            "hindi",
+            "sige",
+            "naman",
+            "oo"
+          ],
+          "explanation": "Opo, salamat po! Yes (respectful) + thank you (respectful). Perfect for elders."
+        }
+      ]
+    }
+  ],
+  "vocabulary": [],
+  "wrong_answer_tracking": {
+    "behaviour": "Wrong answers go to back of current session queue. User must get ALL questions right to complete. Cannot finish lesson with outstanding wrong answers.",
+    "track_wrong_count": true,
+    "wrong_count_usage": "Feed to Gemini system prompt for AI Practice."
+  },
+  "completion_reward": {
+    "xp": 30,
+    "alam_mo_ba": [
+      "You just learned 25 Tagalog words. That's enough to greet anyone, thank anyone, apologize to anyone, and talk about anyone. Not bad.",
+      "The respect system (po, opo, kayo) you learned is uniquely Filipino. No other language in Southeast Asia handles respect in quite the same way.",
+      "Everything in Chapter 1 works in real life right now. Try saying 'Kumusta po?' to a Filipino family member today.",
+      "The Spanish influence on Tagalog (kumusta, sige, siyempre, pare, mare, pasensya) comes from 333 years of colonisation (1565-1898). You'll keep noticing it."
+    ]
+  },
+  "gamification": {
+    "xp_per_lesson": 30,
+    "hearts_per_wrong_answer": 1,
+    "streak_eligible": true,
+    "replay": {
+      "allowed": true,
+      "xp_on_replay": 0
+    }
+  }
+}

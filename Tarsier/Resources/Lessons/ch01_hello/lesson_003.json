@@ -1,0 +1,191 @@
+{
+  "_meta": {
+    "schema_version": "0.7",
+    "last_updated": "2026-03-19",
+    "notes": "Chapter 1 Lesson 3. Previously taught: kumusta, mabuti, ikaw, magandang, umaga, gabi."
+  },
+  "lesson_id": "003",
+  "title": "Po",
+  "subtitle": "The Word That Changes Everything",
+  "chapter_id": "ch01",
+  "chapter_title": "Hello",
+  "position_in_chapter": 3,
+  "difficulty": "beginner",
+  "lesson_type": "teaching",
+  "total_sessions": 1,
+  "sessions": [
+    {
+      "session_id": "003_s1",
+      "session_number": 1,
+      "title": "Po",
+      "cards": [
+        {
+          "card_id": "003_s1_c1",
+          "type": "teach",
+          "highlight": "Po",
+          "body": "There's one word in Tagalog you can start using right now. Even in English sentences. That word is po."
+        },
+        {
+          "card_id": "003_s1_c2",
+          "type": "teach",
+          "highlight": "Po = respect",
+          "body": "Po makes any sentence respectful. There's no English equivalent.",
+          "example": {
+            "casual": "Thank you.",
+            "with_po": "Thank you po.",
+            "note": "Po works even in full English. Filipinos do this all the time."
+          }
+        },
+        {
+          "card_id": "003_s1_c3",
+          "type": "teach",
+          "highlight": "Po + what you know",
+          "body": "Add po to your greetings and they become respectful.",
+          "example": {
+            "casual": "Kumusta?",
+            "with_po": "Kumusta po?",
+            "note": "Use this with anyone older or in authority."
+          }
+        },
+        {
+          "card_id": "003_s1_q1",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "character": "stranger",
+          "source_text": "You're greeting your boss in the morning.",
+          "prompt": "Which is the respectful greeting?",
+          "options": [
+            "Magandang umaga!",
+            "Magandang umaga po!",
+            "Po magandang umaga!",
+            "Magandang po umaga!"
+          ],
+          "correct_answer": 1,
+          "explanation": "Magandang umaga po! Po goes at the end or after the key phrase.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "003_s1_c4",
+          "type": "teach",
+          "highlight": "Naman",
+          "body": "Naman is a softener. It makes things sound friendlier and more natural.",
+          "example": {
+            "without": "Mabuti, ikaw?",
+            "with_naman": "Mabuti naman, ikaw?",
+            "note": "Naman here means 'also' or 'on my part.' It softens the reply."
+          }
+        },
+        {
+          "card_id": "003_s1_q2",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "character": "stranger",
+          "source_text": "Your coworker asks: Kumusta?",
+          "prompt": "Which reply sounds the most natural?",
+          "options": [
+            "Mabuti.",
+            "Mabuti naman, ikaw?",
+            "Naman mabuti.",
+            "Ikaw naman mabuti."
+          ],
+          "correct_answer": 1,
+          "explanation": "Mabuti naman, ikaw? Naman softens it and makes it conversational.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "003_s1_c5",
+          "type": "teach",
+          "highlight": "Sige",
+          "body": "Sige means 'okay,' 'sure,' or 'go ahead.' One of the most versatile words in Tagalog.",
+          "example": {
+            "casual": "Sige!",
+            "with_po": "Sige po.",
+            "note": "Sige po = okay/sure (respectful). You'll use this constantly."
+          },
+          "alam_mo_ba_inline": {
+            "term": "Sige",
+            "fact": "Sige comes from the Spanish 'sigue' (continue/go on). Filipinos use it for everything: agreeing, saying goodbye, even ending phone calls.",
+            "emoji": "👋"
+          }
+        },
+        {
+          "card_id": "003_s1_q3",
+          "type": "quiz",
+          "quiz_type": "fill_in_blank",
+          "character": "stranger",
+          "source_text": "Your teacher says: See you tomorrow.",
+          "prompt": "You reply respectfully with 'okay':",
+          "correct_answers": [
+            "Sige po",
+            "sige po",
+            "Sige po.",
+            "sige po."
+          ],
+          "explanation": "Sige po = okay (respectful). Perfect for responding to someone in authority."
+        },
+        {
+          "card_id": "003_s1_q4",
+          "type": "quiz",
+          "quiz_type": "sentence_build",
+          "character": "stranger",
+          "prompt": "Your grandmother asks how you are. Reply respectfully and ask her back.",
+          "source_text": "Kumusta?",
+          "correct_order": [
+            "Mabuti",
+            "naman",
+            "po",
+            "ikaw",
+            "po"
+          ],
+          "distractors": [
+            "sige",
+            "umaga"
+          ],
+          "explanation": "Mabuti naman po, ikaw po? = I'm good, and you? (respectful)"
+        }
+      ]
+    }
+  ],
+  "vocabulary": [
+    {
+      "word": "po",
+      "meaning": "politeness/respect marker",
+      "pronunciation": "poh",
+      "type": "particle"
+    },
+    {
+      "word": "naman",
+      "meaning": "also / on my part / softener",
+      "pronunciation": "nah-MAHN",
+      "type": "particle"
+    },
+    {
+      "word": "sige",
+      "meaning": "okay / sure / go ahead",
+      "pronunciation": "SEE-geh",
+      "type": "expression"
+    }
+  ],
+  "wrong_answer_tracking": {
+    "behaviour": "Wrong answers go to back of current session queue. User must get ALL questions right to complete. Cannot finish lesson with outstanding wrong answers.",
+    "track_wrong_count": true,
+    "wrong_count_usage": "Feed to Gemini system prompt for AI Practice."
+  },
+  "completion_reward": {
+    "xp": 15,
+    "alam_mo_ba": [
+      "Po has no direct English translation. It changes the entire tone of a sentence without changing its meaning.",
+      "Kids are taught to say po from the moment they can speak. It's one of the first social rules Filipino children learn.",
+      "Forgetting po with an elder isn't like cursing. It's more like forgetting to say 'please.' People notice, but they won't get angry."
+    ]
+  },
+  "gamification": {
+    "xp_per_lesson": 15,
+    "hearts_per_wrong_answer": 1,
+    "streak_eligible": true,
+    "replay": {
+      "allowed": true,
+      "xp_on_replay": 0
+    }
+  }
+}

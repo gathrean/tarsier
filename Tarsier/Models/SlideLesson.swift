@@ -8,6 +8,8 @@ struct SlideLesson: Codable, Identifiable {
     let subtitle: String?
     let chapterId: String
     let chapterTitle: String
+    let positionInChapter: Int?
+    let lessonType: String?
     let totalSessions: Int
     let sessions: [LessonSession]
     let vocabulary: [LessonVocabulary]
@@ -24,6 +26,8 @@ struct SlideLesson: Codable, Identifiable {
         case title, subtitle, sessions, vocabulary, gamification
         case chapterId = "chapter_id"
         case chapterTitle = "chapter_title"
+        case positionInChapter = "position_in_chapter"
+        case lessonType = "lesson_type"
         case totalSessions = "total_sessions"
         case completionReward = "completion_reward"
         case wrongAnswerTracking = "wrong_answer_tracking"

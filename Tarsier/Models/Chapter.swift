@@ -10,11 +10,14 @@ struct Chapter: Codable, Identifiable, Hashable {
     let chapterId: String
     let title: String
     let subtitle: String
+    let directory: String?
     let icon: String?
     let accentColor: String?
     let rows: [ChapterRow]
     let description: String?
     let hasPractice: Bool?
+    let totalLessons: Int?
+    let totalWords: Int?
 
     var id: String { chapterId }
 
@@ -37,8 +40,10 @@ struct Chapter: Codable, Identifiable, Hashable {
 
     enum CodingKeys: String, CodingKey {
         case chapterId = "chapter_id"
-        case title, subtitle, icon, rows, description
+        case title, subtitle, directory, icon, rows, description
         case accentColor = "accent_color"
         case hasPractice = "has_practice"
+        case totalLessons = "total_lessons"
+        case totalWords = "total_words"
     }
 }

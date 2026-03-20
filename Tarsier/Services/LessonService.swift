@@ -12,25 +12,35 @@ final class LessonService {
     func loadAllLessons() -> [SlideLesson] {
         if let cached = cachedLessons { return cached }
 
-        guard let urls = Bundle.main.urls(forResourcesWithExtension: "json", subdirectory: nil) else {
-            return []
-        }
-
+        let chapters = loadChapters()
         let decoder = JSONDecoder()
         var lessons: [SlideLesson] = []
 
-        for url in urls {
-            guard url.lastPathComponent.hasPrefix("lesson_") else { continue }
-            do {
-                let data = try Data(contentsOf: url)
-                let lesson = try decoder.decode(SlideLesson.self, from: data)
-                lessons.append(lesson)
-            } catch {
-                print("Failed to load lesson from \(url.lastPathComponent): \(error)")
+        for chapter in chapters {
+            guard let directory = chapter.directory else { continue }
+            guard let urls = Bundle.main.urls(forResourcesWithExtension: "json", subdirectory: directory) else {
+                continue
+            }
+
+            for url in urls {
+                guard url.lastPathComponent.hasPrefix("lesson_") else { continue }
+                do {
+                    let data = try Data(contentsOf: url)
+                    let lesson = try decoder.decode(SlideLesson.self, from: data)
+                    lessons.append(lesson)
+                } catch {
+                    print("Failed to load lesson from \(directory)/\(url.lastPathComponent): \(error)")
+                }
             }
         }
 
-        lessons.sort { $0.id < $1.id }
+        lessons.sort {
+            if $0.chapterId != $1.chapterId {
+                return $0.chapterId < $1.chapterId
+            }
+            return ($0.positionInChapter ?? 0) < ($1.positionInChapter ?? 0)
+        }
+
         cachedLessons = lessons
         return lessons
     }

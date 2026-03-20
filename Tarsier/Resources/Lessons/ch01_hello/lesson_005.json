@@ -1,0 +1,185 @@
+{
+  "_meta": {
+    "schema_version": "0.7",
+    "last_updated": "2026-03-19",
+    "notes": "Chapter 1 Lesson 5. Previously taught: kumusta, mabuti, ikaw, magandang, umaga, gabi, po, naman, sige."
+  },
+  "lesson_id": "005",
+  "title": "Yes and No",
+  "subtitle": "The Basics of Agreeing and Disagreeing",
+  "chapter_id": "ch01",
+  "chapter_title": "Hello",
+  "position_in_chapter": 5,
+  "difficulty": "beginner",
+  "lesson_type": "teaching",
+  "total_sessions": 1,
+  "sessions": [
+    {
+      "session_id": "005_s1",
+      "session_number": 1,
+      "title": "Yes and No",
+      "cards": [
+        {
+          "card_id": "005_s1_c1",
+          "type": "teach",
+          "highlight": "Oo and Hindi",
+          "body": "Two of the most important words in any language. Let's learn how to say yes and no."
+        },
+        {
+          "card_id": "005_s1_c2",
+          "type": "teach",
+          "highlight": "Oo",
+          "body": "Oo means 'yes.' Short, simple, and you'll use it constantly.",
+          "example": {
+            "question": "Are you coming?",
+            "answer": "Oo!",
+            "note": "Casual yes. Use with friends."
+          }
+        },
+        {
+          "card_id": "005_s1_c3",
+          "type": "teach",
+          "highlight": "Hindi",
+          "body": "Hindi means 'no.' Also used to negate things, like 'not' in English.",
+          "example": {
+            "question": "Do you want coffee?",
+            "answer": "Hindi.",
+            "note": "Casual no."
+          }
+        },
+        {
+          "card_id": "005_s1_q1",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "character": "stranger",
+          "source_text": "Your friend asks: Do you want to come?",
+          "prompt": "You want to go. What do you say?",
+          "options": [
+            "Hindi!",
+            "Oo!",
+            "Sige hindi!",
+            "Mabuti!"
+          ],
+          "correct_answer": 1,
+          "explanation": "Oo = yes. Simple and direct.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "005_s1_c4",
+          "type": "teach",
+          "highlight": "Oo + Po = Opo",
+          "body": "Remember po? Add it to oo and it becomes opo. The respectful yes.",
+          "example": {
+            "casual": "Oo.",
+            "respectful": "Opo.",
+            "note": "Oo + po = opo. The most respectful way to say yes."
+          }
+        },
+        {
+          "card_id": "005_s1_q2",
+          "type": "quiz",
+          "quiz_type": "fill_in_blank",
+          "character": "stranger",
+          "source_text": "Your grandmother asks: Have you eaten?",
+          "prompt": "Say yes respectfully:",
+          "correct_answers": [
+            "Opo",
+            "opo"
+          ],
+          "explanation": "Opo = yes (respectful). Oo + po merged into one word."
+        },
+        {
+          "card_id": "005_s1_c5",
+          "type": "teach",
+          "highlight": "Hindi po",
+          "body": "For a respectful no, just add po after hindi. They stay as two words.",
+          "example": {
+            "casual": "Hindi.",
+            "respectful": "Hindi po.",
+            "note": "Unlike oo/opo, hindi and po don't merge."
+          },
+          "alam_mo_ba_inline": {
+            "term": "Hindi",
+            "fact": "Hindi the Tagalog word and Hindi the Indian language are completely unrelated. Just a coincidence.",
+            "emoji": "🤯"
+          }
+        },
+        {
+          "card_id": "005_s1_q3",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "character": "stranger",
+          "source_text": "Your boss asks: Can you work this Saturday?",
+          "prompt": "You can't. How do you say no respectfully?",
+          "options": [
+            "Hindi.",
+            "Hindi po.",
+            "Hindipo.",
+            "Opo hindi."
+          ],
+          "correct_answer": 1,
+          "explanation": "Hindi po = no (respectful). Two separate words, unlike opo.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "005_s1_q4",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "character": "stranger",
+          "source_text": "What is opo?",
+          "options": [
+            "No (respectful)",
+            "Yes (respectful)",
+            "Maybe",
+            "Okay (respectful)"
+          ],
+          "correct_answer": 1,
+          "explanation": "Opo = oo + po = yes (respectful).",
+          "shuffle_options": true
+        }
+      ]
+    }
+  ],
+  "vocabulary": [
+    {
+      "word": "oo",
+      "meaning": "yes",
+      "pronunciation": "oh-OH",
+      "type": "word"
+    },
+    {
+      "word": "hindi",
+      "meaning": "no / not",
+      "pronunciation": "HIN-dee",
+      "type": "word"
+    },
+    {
+      "word": "opo",
+      "meaning": "yes (respectful)",
+      "pronunciation": "OH-poh",
+      "type": "word"
+    }
+  ],
+  "wrong_answer_tracking": {
+    "behaviour": "Wrong answers go to back of current session queue. User must get ALL questions right to complete. Cannot finish lesson with outstanding wrong answers.",
+    "track_wrong_count": true,
+    "wrong_count_usage": "Feed to Gemini system prompt for AI Practice."
+  },
+  "completion_reward": {
+    "xp": 15,
+    "alam_mo_ba": [
+      "Filipinos sometimes say 'oo' multiple times for emphasis: 'Oo, oo, oo!' means a very enthusiastic yes.",
+      "Hindi is also used like 'not' in sentences. 'Hindi mabuti' = not good. You'll learn more about this later.",
+      "Some regions say 'oho' instead of 'opo.' Same meaning, just a regional flavour."
+    ]
+  },
+  "gamification": {
+    "xp_per_lesson": 15,
+    "hearts_per_wrong_answer": 1,
+    "streak_eligible": true,
+    "replay": {
+      "allowed": true,
+      "xp_on_replay": 0
+    }
+  }
+}

@@ -1,0 +1,185 @@
+{
+  "_meta": {
+    "schema_version": "0.7",
+    "last_updated": "2026-03-19",
+    "notes": "Chapter 1 Lesson 8. Previously taught: kumusta, mabuti, ikaw, magandang, umaga, gabi, po, naman, sige, oo, hindi, opo, salamat, walang anuman, pasensya na."
+  },
+  "lesson_id": "008",
+  "title": "Siyempre!",
+  "subtitle": "Talking Like Friends",
+  "chapter_id": "ch01",
+  "chapter_title": "Hello",
+  "position_in_chapter": 8,
+  "difficulty": "beginner",
+  "lesson_type": "teaching",
+  "total_sessions": 1,
+  "sessions": [
+    {
+      "session_id": "008_s1",
+      "session_number": 1,
+      "title": "Siyempre!",
+      "cards": [
+        {
+          "card_id": "008_s1_c1",
+          "type": "teach",
+          "highlight": "Casual mode",
+          "body": "So far you've learned to be polite. Now let's talk like friends. No po needed here."
+        },
+        {
+          "card_id": "008_s1_c2",
+          "type": "teach",
+          "highlight": "Siyempre",
+          "body": "Siyempre means 'of course!' Use it when the answer is obvious.",
+          "example": {
+            "question": "Are you coming to the party?",
+            "answer": "Siyempre!",
+            "note": "Enthusiastic and casual. Only with friends."
+          },
+          "alam_mo_ba_inline": {
+            "term": "Siyempre",
+            "fact": "Siyempre comes from the Spanish 'siempre' (always). Filipinos turned it into 'of course!'",
+            "emoji": "🇪🇸"
+          }
+        },
+        {
+          "card_id": "008_s1_c3",
+          "type": "teach",
+          "highlight": "Pare",
+          "body": "Pare means 'bro' or 'dude.' It's what you call a close male friend.",
+          "example": {
+            "tagalog": "Oo, pare!",
+            "english": "Yeah, bro!",
+            "note": "Casual and friendly. Never use pare with elders."
+          }
+        },
+        {
+          "card_id": "008_s1_q1",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "character": "stranger",
+          "source_text": "Your friend Jun asks: Want to grab food?",
+          "prompt": "Obviously yes. What do you say?",
+          "options": [
+            "Opo!",
+            "Sige po!",
+            "Siyempre, pare!",
+            "Siyempre po!"
+          ],
+          "correct_answer": 2,
+          "explanation": "Siyempre, pare! = Of course, bro! Casual, friendly, no po.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "008_s1_c4",
+          "type": "teach",
+          "highlight": "Mare",
+          "body": "Mare is the same as pare but for a close female friend.",
+          "example": {
+            "tagalog": "Sige, mare!",
+            "english": "Sure, sis!",
+            "note": "Pare = male friend. Mare = female friend."
+          }
+        },
+        {
+          "card_id": "008_s1_q2",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "character": "stranger",
+          "source_text": "Your friend Maria asks: Did you like the food?",
+          "prompt": "It was amazing. What do you say?",
+          "options": [
+            "Siyempre, mare!",
+            "Siyempre po, mare!",
+            "Opo, mare!",
+            "Sige po, mare!"
+          ],
+          "correct_answer": 0,
+          "explanation": "Siyempre, mare! = Of course, sis! Casual with a close female friend.",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "008_s1_c5",
+          "type": "teach",
+          "highlight": "Know when to switch",
+          "body": "With friends: siyempre, pare, mare, no po. With elders and authority: po, opo, sige po. Mixing them up sounds either too stiff or disrespectful."
+        },
+        {
+          "card_id": "008_s1_q3",
+          "type": "quiz",
+          "quiz_type": "multiple_choice",
+          "character": "stranger",
+          "source_text": "Two people ask if you're coming. Your friend Jun and your boss.",
+          "prompt": "Which pair of replies is correct?",
+          "options": [
+            "To Jun: Siyempre, pare! / To boss: Opo!",
+            "To Jun: Opo! / To boss: Siyempre, pare!",
+            "To Jun: Sige po! / To boss: Sige, pare!",
+            "To both: Siyempre po, pare!"
+          ],
+          "correct_answer": 0,
+          "explanation": "Casual with friends (siyempre, pare), respectful with authority (opo).",
+          "shuffle_options": true
+        },
+        {
+          "card_id": "008_s1_q4",
+          "type": "quiz",
+          "quiz_type": "fill_in_blank",
+          "character": "stranger",
+          "source_text": "Your friend Maria invites you to karaoke. Obviously you're going.",
+          "prompt": "Reply casually:",
+          "correct_answers": [
+            "Siyempre",
+            "siyempre",
+            "Siyempre!",
+            "siyempre!",
+            "Siyempre, mare!",
+            "siyempre, mare!"
+          ],
+          "explanation": "Siyempre = of course! Add mare for extra friendliness."
+        }
+      ]
+    }
+  ],
+  "vocabulary": [
+    {
+      "word": "siyempre",
+      "meaning": "of course",
+      "pronunciation": "shem-PREH",
+      "type": "expression"
+    },
+    {
+      "word": "pare",
+      "meaning": "bro / male friend",
+      "pronunciation": "PAH-reh",
+      "type": "word"
+    },
+    {
+      "word": "mare",
+      "meaning": "sis / female friend",
+      "pronunciation": "MAH-reh",
+      "type": "word"
+    }
+  ],
+  "wrong_answer_tracking": {
+    "behaviour": "Wrong answers go to back of current session queue. User must get ALL questions right to complete. Cannot finish lesson with outstanding wrong answers.",
+    "track_wrong_count": true,
+    "wrong_count_usage": "Feed to Gemini system prompt for AI Practice."
+  },
+  "completion_reward": {
+    "xp": 15,
+    "alam_mo_ba": [
+      "Pare comes from the Spanish 'compadre' and mare from 'comadre.' Originally godparent terms, now they just mean close friend.",
+      "Using po with a close friend your age can actually sound sarcastic. Context matters.",
+      "Some friend groups use 'pre' (shortened pare) or 'mars' (shortened mare) in text messages."
+    ]
+  },
+  "gamification": {
+    "xp_per_lesson": 15,
+    "hearts_per_wrong_answer": 1,
+    "streak_eligible": true,
+    "replay": {
+      "allowed": true,
+      "xp_on_replay": 0
+    }
+  }
+}
