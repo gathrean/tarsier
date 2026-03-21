@@ -11,7 +11,7 @@ struct OnboardingLessonView: View {
 
     var body: some View {
         // Load Introduction (lesson 0) first; fall back to lesson 1 if missing
-        if let lesson = LessonService.shared.lesson(for: 0) ?? LessonService.shared.lesson(for: 1) {
+        if let lesson = LessonService.shared.lesson(for: "ch00_000") ?? LessonService.shared.lesson(for: "ch01_001") {
             LessonContainerView(
                 lesson: lesson,
                 sessionNumber: 1,

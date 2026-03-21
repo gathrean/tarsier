@@ -4,10 +4,10 @@ struct ChapterDetailView: View {
     let chapter: Chapter
     let chapterIndex: Int
     let lessons: [SlideLesson]
-    let completedIDs: [Int]
-    let completedSessionCount: (Int) -> Int
-    let totalSessions: (Int) -> Int
-    let nextSessionNumber: (Int) -> Int
+    let completedIDs: [String]
+    let completedSessionCount: (String) -> Int
+    let totalSessions: (String) -> Int
+    let nextSessionNumber: (String) -> Int
     let isPremium: Bool
     var isChapterLocked: Bool = false
 
@@ -136,7 +136,7 @@ struct ChapterDetailView: View {
 
     // MARK: - Unlock Logic
 
-    private func isLessonUnlocked(_ lessonID: Int) -> Bool {
+    private func isLessonUnlocked(_ lessonID: String) -> Bool {
         let allIDs = chapter.lessonIDs
         guard let posInChapter = allIDs.firstIndex(of: lessonID) else { return false }
 

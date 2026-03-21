@@ -27,6 +27,7 @@ struct OnboardingFlow: View {
 
     // Screen 9: motivation response → routine transition (shows continue after delay)
     @State private var motivationResponseReady = false
+    @State private var createdProfile: UserProfile?
 
     private let totalScreens = 16 // last index
 
@@ -94,20 +95,24 @@ struct OnboardingFlow: View {
             return (pose, text, 100)
         case 6: return (.waving, "What should I call you?", 70)
         case 7: return (.celebrating, nameGreeting, 100)
-        case 8: return (.heartEyes, "Why are you learning Tagalog?", 70)
+        case 8: // Motivation picker — bubble reacts live to selection
+            if selectedMotivations.isEmpty {
+                return (.heartEyes, "Why are you learning Tagalog?", 70)
+            }
+            let (pose, text) = motivationLiveReaction
+            return (pose, text, 70)
         case 9: // Motivation response → routine transition
             if motivationResponseReady {
                 return (.tappingWrist, "Let's set up a learning routine!", 100)
             }
-            let (pose, text) = motivationResponse
-            return (pose, text, 100)
+            return (.celebrating, motivationEncouragement, 100)
         case 10: return (.tappingWrist, "What's your daily learning goal?", 70)
         case 11: // Goal confirmation (dynamic)
             let resolvedGoal = dailyGoalMinutes > 0 ? dailyGoalMinutes : 10
             let words = [5: 15, 10: 30, 15: 50, 20: 70][resolvedGoal] ?? 30
-            return (.celebrating, "That's about \(words) new words in your first week!", 100)
+            return (.celebrating, "\(resolvedGoal) minutes a day? That's about \(words) new words in your first week!", 100)
         case 12: return (.flexing, "Here's what you can achieve in 3 months", 70)
-        case 13: return (.tappingWrist, "I'll remind you to practice so it becomes a habit!", 100)
+        case 13: return (.tappingWrist, "A quick daily reminder keeps your streak alive!", 100)
         case 14: return (.celebrating, "I'll cheer you on from your home screen!", 100)
         default: return nil // Subscription (15), Loading (16)
         }
@@ -136,6 +141,9 @@ struct OnboardingFlow: View {
                     .padding(.horizontal, TarsierSpacing.screenPadding)
                     .padding(.top, 8)
                     .padding(.bottom, 24)
+                } else {
+                    // Match the progress bar area height so content doesn't hug the top
+                    Spacer().frame(height: 56)
                 }
 
                 // Persistent Bunso + speech bubble (NOT animated with screen transitions)
@@ -143,6 +151,7 @@ struct OnboardingFlow: View {
                     BunsoSpeechBubble(pose: config.pose, text: config.text, bunsoSize: config.size)
                         .animation(.easeInOut(duration: 0.3), value: currentScreen)
                         .animation(.easeInOut(duration: 0.3), value: motivationResponseReady)
+                        .animation(.easeInOut(duration: 0.3), value: selectedMotivations)
                         .padding(.bottom, 16)
                 }
 
@@ -210,8 +219,11 @@ struct OnboardingFlow: View {
         case 15: // Subscription gate
             SubscriptionGateScreen { advance() }
         case 16: // Loading
-            LoadingScreen(profile: createProfile()) {
-                // Profile is saved by LoadingScreen; ContentView will re-route
+            if let profile = createdProfile {
+                LoadingScreen(profile: profile) {
+                    modelContext.insert(profile)
+                    try? modelContext.save()
+                }
             }
         default:
             EmptyView()
@@ -244,20 +256,44 @@ struct OnboardingFlow: View {
         }
     }
 
-    private var motivationResponse: (BunsoPose, String) {
+    /// Live reaction on screen 8 as user taps motivations
+    private var motivationLiveReaction: (BunsoPose, String) {
         if selectedMotivations.contains("Connect with my family better") {
-            return (.heartEyes, "That's the best reason. Let's make it happen!")
+            return (.heartEyes, "Family is everything. I love that!")
         }
         if selectedMotivations.contains("Impress my partner") {
-            return (.blushing, "Kilig! They're going to love this.")
+            return (.blushing, "Kilig! They'll love this.")
         }
         if selectedMotivations.contains("Just for fun") {
-            return (.excited, "The best way to learn! Let's go!")
+            return (.excited, "The best way to learn!")
+        }
+        if selectedMotivations.contains("Prepare for travel") {
+            return (.excited, "The Philippines is beautiful!")
         }
         if selectedMotivations.contains("Connect with people who speak Tagalog") {
-            return (.waving, "Filipinos are the friendliest. You'll fit right in.")
+            return (.waving, "Filipinos are the friendliest!")
         }
-        return (.thumbsUp, "Great reasons. Let's get started!")
+        if selectedMotivations.contains("Understand Filipino media/music") {
+            return (.celebrating, "OPM hits different when you understand the lyrics!")
+        }
+        if selectedMotivations.contains("For my career") {
+            return (.flexing, "That's a smart move!")
+        }
+        if selectedMotivations.contains("Other") {
+            return (.curious, "I like the mystery!")
+        }
+        return (.thumbsUp, "Great choice!")
+    }
+
+    /// Encouragement shown on screen 9 (response slide)
+    private var motivationEncouragement: String {
+        if selectedMotivations == ["Other"] {
+            return "I like the mystery! Let's get you speaking Tagalog."
+        }
+        if selectedMotivations.count == 1 {
+            return "That's a great reason! Let's make it happen."
+        }
+        return "Those are great reasons! Let's make it happen."
     }
 
     // MARK: - Navigation
@@ -268,6 +304,11 @@ struct OnboardingFlow: View {
         isGoingForward = true
         if playSound {
             UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+        }
+        // Pre-create profile before entering loading screen to avoid
+        // modifying @State during body evaluation.
+        if currentScreen + 1 == 16, createdProfile == nil {
+            createdProfile = createProfile()
         }
         withAnimation {
             currentScreen += 1
@@ -291,7 +332,9 @@ struct OnboardingFlow: View {
         advance(playSound: false)
     }
 
-    /// Creates and inserts UserProfile from collected onboarding data.
+    /// Creates UserProfile from collected onboarding data (does NOT insert yet).
+    /// Insertion happens when the loading screen completes, so @Query in ContentView
+    /// doesn't prematurely route away from OnboardingFlow.
     private func createProfile() -> UserProfile {
         let resolvedGoal = dailyGoalMinutes > 0 ? dailyGoalMinutes : 10
         let profile = UserProfile(
@@ -306,7 +349,6 @@ struct OnboardingFlow: View {
         profile.attributionSource = attributionSources.joined(separator: ", ")
         profile.proficiencyLevel = max(proficiencyLevel, 0)
 
-        modelContext.insert(profile)
         return profile
     }
 

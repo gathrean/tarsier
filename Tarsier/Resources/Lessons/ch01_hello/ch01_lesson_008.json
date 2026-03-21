@@ -4,7 +4,7 @@
     "last_updated": "2026-03-19",
     "notes": "Chapter 1 Lesson 8. Previously taught: kumusta, mabuti, ikaw, magandang, umaga, gabi, po, naman, sige, oo, hindi, opo, salamat, walang anuman, pasensya na."
   },
-  "lesson_id": "008",
+  "lesson_id": "ch01_008",
   "title": "Siyempre!",
   "subtitle": "Talking Like Friends",
   "chapter_id": "ch01",
@@ -15,18 +15,18 @@
   "total_sessions": 1,
   "sessions": [
     {
-      "session_id": "008_s1",
+      "session_id": "ch01_008_s1",
       "session_number": 1,
       "title": "Siyempre!",
       "cards": [
         {
-          "card_id": "008_s1_c1",
+          "card_id": "ch01_008_s1_c1",
           "type": "teach",
           "highlight": "Casual mode",
           "body": "So far you've learned to be polite. Now let's talk like friends. No po needed here."
         },
         {
-          "card_id": "008_s1_c2",
+          "card_id": "ch01_008_s1_c2",
           "type": "teach",
           "highlight": "Siyempre",
           "body": "Siyempre means 'of course!' Use it when the answer is obvious.",
@@ -42,7 +42,7 @@
           }
         },
         {
-          "card_id": "008_s1_c3",
+          "card_id": "ch01_008_s1_c3",
           "type": "teach",
           "highlight": "Pare",
           "body": "Pare means 'bro' or 'dude.' It's what you call a close male friend.",
@@ -53,7 +53,7 @@
           }
         },
         {
-          "card_id": "008_s1_q1",
+          "card_id": "ch01_008_s1_q1",
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "stranger",
@@ -70,7 +70,7 @@
           "shuffle_options": true
         },
         {
-          "card_id": "008_s1_c4",
+          "card_id": "ch01_008_s1_c4",
           "type": "teach",
           "highlight": "Mare",
           "body": "Mare is the same as pare but for a close female friend.",
@@ -81,7 +81,7 @@
           }
         },
         {
-          "card_id": "008_s1_q2",
+          "card_id": "ch01_008_s1_q2",
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "stranger",
@@ -98,13 +98,13 @@
           "shuffle_options": true
         },
         {
-          "card_id": "008_s1_c5",
+          "card_id": "ch01_008_s1_c5",
           "type": "teach",
           "highlight": "Know when to switch",
           "body": "With friends: siyempre, pare, mare, no po. With elders and authority: po, opo, sige po. Mixing them up sounds either too stiff or disrespectful."
         },
         {
-          "card_id": "008_s1_q3",
+          "card_id": "ch01_008_s1_q3",
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "stranger",
@@ -121,7 +121,7 @@
           "shuffle_options": true
         },
         {
-          "card_id": "008_s1_q4",
+          "card_id": "ch01_008_s1_q4",
           "type": "quiz",
           "quiz_type": "fill_in_blank",
           "character": "stranger",

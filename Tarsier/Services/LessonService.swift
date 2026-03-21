@@ -12,24 +12,35 @@ final class LessonService {
     func loadAllLessons() -> [SlideLesson] {
         if let cached = cachedLessons { return cached }
 
-        let chapters = loadChapters()
         let decoder = JSONDecoder()
         var lessons: [SlideLesson] = []
 
-        for chapter in chapters {
-            guard let directory = chapter.directory else { continue }
-            guard let urls = Bundle.main.urls(forResourcesWithExtension: "json", subdirectory: directory) else {
-                continue
-            }
+        // Load all chapter lesson IDs, then find each file by resource name
+        let chapters = loadChapters()
 
-            for url in urls {
-                guard url.lastPathComponent.hasPrefix("lesson_") else { continue }
+        for chapter in chapters {
+            for lessonID in chapter.lessonIDs {
+                // Bundle filename: ch01_lesson_001 for lesson ID ch01_001
+                let parts = lessonID.split(separator: "_", maxSplits: 1)
+                guard parts.count == 2 else { continue }
+                let resourceName = "\(parts[0])_lesson_\(parts[1])"
+
+                // Try multiple lookup strategies (subdirectory vs flat bundle)
+                let url: URL? =
+                    Bundle.main.url(forResource: resourceName, withExtension: "json", subdirectory: chapter.directory)
+                    ?? Bundle.main.url(forResource: resourceName, withExtension: "json", subdirectory: "Lessons/\(chapter.directory ?? "")")
+                    ?? Bundle.main.url(forResource: resourceName, withExtension: "json")
+
+                guard let url else {
+                    print("Could not find \(resourceName).json (dir: \(chapter.directory ?? "nil"))")
+                    continue
+                }
                 do {
                     let data = try Data(contentsOf: url)
                     let lesson = try decoder.decode(SlideLesson.self, from: data)
                     lessons.append(lesson)
                 } catch {
-                    print("Failed to load lesson from \(directory)/\(url.lastPathComponent): \(error)")
+                    print("Failed to load \(resourceName).json: \(error)")
                 }
             }
         }
@@ -45,14 +56,19 @@ final class LessonService {
         return lessons
     }
 
-    func lesson(for id: Int) -> SlideLesson? {
+    func lesson(for id: String) -> SlideLesson? {
         loadAllLessons().first { $0.id == id }
     }
 
     func loadChapters() -> [Chapter] {
         if let cached = cachedChapters { return cached }
 
-        guard let url = Bundle.main.url(forResource: "chapters", withExtension: "json") else {
+        let url: URL? =
+            Bundle.main.url(forResource: "chapters", withExtension: "json")
+            ?? Bundle.main.url(forResource: "chapters", withExtension: "json", subdirectory: "Lessons")
+
+        guard let url else {
+            print("Could not find chapters.json in bundle")
             return []
         }
 

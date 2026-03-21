@@ -14,6 +14,7 @@
 > **Repo structure:**
 > ```
 > tarsier/                    ← repo root (CLAUDE.md lives here)
+> ├── .claude/agents/         ← subagents (lesson-validator, code-reviewer, content-qa, aso-writer, social-content, onboarding-reviewer)
 > ├── CLAUDE.md
 > ├── docs/
 > │   ├── Claude/v0/          ← per-phase build tasks

@@ -4,7 +4,7 @@
     "last_updated": "2026-03-19",
     "notes": "Chapter 1 Lesson 5. Previously taught: kumusta, mabuti, ikaw, magandang, umaga, gabi, po, naman, sige."
   },
-  "lesson_id": "005",
+  "lesson_id": "ch01_005",
   "title": "Yes and No",
   "subtitle": "The Basics of Agreeing and Disagreeing",
   "chapter_id": "ch01",
@@ -15,18 +15,18 @@
   "total_sessions": 1,
   "sessions": [
     {
-      "session_id": "005_s1",
+      "session_id": "ch01_005_s1",
       "session_number": 1,
       "title": "Yes and No",
       "cards": [
         {
-          "card_id": "005_s1_c1",
+          "card_id": "ch01_005_s1_c1",
           "type": "teach",
           "highlight": "Oo and Hindi",
           "body": "Two of the most important words in any language. Let's learn how to say yes and no."
         },
         {
-          "card_id": "005_s1_c2",
+          "card_id": "ch01_005_s1_c2",
           "type": "teach",
           "highlight": "Oo",
           "body": "Oo means 'yes.' Short, simple, and you'll use it constantly.",
@@ -37,7 +37,7 @@
           }
         },
         {
-          "card_id": "005_s1_c3",
+          "card_id": "ch01_005_s1_c3",
           "type": "teach",
           "highlight": "Hindi",
           "body": "Hindi means 'no.' Also used to negate things, like 'not' in English.",
@@ -48,7 +48,7 @@
           }
         },
         {
-          "card_id": "005_s1_q1",
+          "card_id": "ch01_005_s1_q1",
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "stranger",
@@ -65,7 +65,7 @@
           "shuffle_options": true
         },
         {
-          "card_id": "005_s1_c4",
+          "card_id": "ch01_005_s1_c4",
           "type": "teach",
           "highlight": "Oo + Po = Opo",
           "body": "Remember po? Add it to oo and it becomes opo. The respectful yes.",
@@ -76,7 +76,7 @@
           }
         },
         {
-          "card_id": "005_s1_q2",
+          "card_id": "ch01_005_s1_q2",
           "type": "quiz",
           "quiz_type": "fill_in_blank",
           "character": "stranger",
@@ -89,7 +89,7 @@
           "explanation": "Opo = yes (respectful). Oo + po merged into one word."
         },
         {
-          "card_id": "005_s1_c5",
+          "card_id": "ch01_005_s1_c5",
           "type": "teach",
           "highlight": "Hindi po",
           "body": "For a respectful no, just add po after hindi. They stay as two words.",
@@ -105,7 +105,7 @@
           }
         },
         {
-          "card_id": "005_s1_q3",
+          "card_id": "ch01_005_s1_q3",
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "stranger",
@@ -122,7 +122,7 @@
           "shuffle_options": true
         },
         {
-          "card_id": "005_s1_q4",
+          "card_id": "ch01_005_s1_q4",
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "stranger",

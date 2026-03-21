@@ -724,9 +724,8 @@ struct LessonContainerView: View {
             profile.completedLessonIDs.append(lesson.id)
         }
 
-        if lesson.id >= profile.currentLessonIndex {
-            profile.currentLessonIndex = lesson.id + 1
-        }
+        // currentLessonIndex is no longer meaningful with chapter-scoped IDs
+        // Progress is tracked via completedLessonIDs array instead
 
         StreakService.updateStreak(for: profile)
 

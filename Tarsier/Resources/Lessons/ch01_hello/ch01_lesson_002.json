@@ -4,7 +4,7 @@
     "last_updated": "2026-03-19",
     "notes": "Chapter 1 Lesson 2. Previously taught: kumusta, mabuti, ikaw."
   },
-  "lesson_id": "002",
+  "lesson_id": "ch01_002",
   "title": "Good Morning!",
   "subtitle": "Greetings by Time of Day",
   "chapter_id": "ch01",
@@ -15,18 +15,18 @@
   "total_sessions": 1,
   "sessions": [
     {
-      "session_id": "002_s1",
+      "session_id": "ch01_002_s1",
       "session_number": 1,
       "title": "Good Morning!",
       "cards": [
         {
-          "card_id": "002_s1_c1",
+          "card_id": "ch01_002_s1_c1",
           "type": "teach",
           "highlight": "Magandang umaga!",
           "body": "Filipinos greet differently depending on the time of day. And every greeting starts with beauty."
         },
         {
-          "card_id": "002_s1_c2",
+          "card_id": "ch01_002_s1_c2",
           "type": "teach",
           "highlight": "Magandang",
           "body": "Magandang means 'beautiful.' Filipino time-of-day greetings all start with this word.",
@@ -37,7 +37,7 @@
           }
         },
         {
-          "card_id": "002_s1_c3",
+          "card_id": "ch01_002_s1_c3",
           "type": "teach",
           "highlight": "Umaga",
           "body": "Umaga means 'morning.' Magandang umaga = beautiful morning = good morning.",
@@ -48,7 +48,7 @@
           }
         },
         {
-          "card_id": "002_s1_q1",
+          "card_id": "ch01_002_s1_q1",
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "stranger",
@@ -65,7 +65,7 @@
           "shuffle_options": true
         },
         {
-          "card_id": "002_s1_c4",
+          "card_id": "ch01_002_s1_c4",
           "type": "teach",
           "highlight": "Gabi",
           "body": "Gabi means 'evening' or 'night.' Same pattern: magandang gabi.",
@@ -76,7 +76,7 @@
           }
         },
         {
-          "card_id": "002_s1_q2",
+          "card_id": "ch01_002_s1_q2",
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "stranger",
@@ -93,7 +93,7 @@
           "shuffle_options": true
         },
         {
-          "card_id": "002_s1_c5",
+          "card_id": "ch01_002_s1_c5",
           "type": "teach",
           "highlight": "Combine them",
           "body": "You can add kumusta after the time greeting for a longer, warmer hello.",
@@ -104,7 +104,7 @@
           }
         },
         {
-          "card_id": "002_s1_q3",
+          "card_id": "ch01_002_s1_q3",
           "type": "quiz",
           "quiz_type": "fill_in_blank",
           "character": "stranger",
@@ -117,7 +117,7 @@
           "explanation": "Umaga = morning. Magandang umaga = good morning."
         },
         {
-          "card_id": "002_s1_q4",
+          "card_id": "ch01_002_s1_q4",
           "type": "quiz",
           "quiz_type": "sentence_build",
           "character": "stranger",

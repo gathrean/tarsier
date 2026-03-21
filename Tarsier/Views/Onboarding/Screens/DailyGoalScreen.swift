@@ -74,13 +74,7 @@ struct DailyGoalScreen: View {
     }
 
     private var confirmationView: some View {
-        let resolvedGoal = dailyGoalMinutes > 0 ? dailyGoalMinutes : 10
-
-        return VStack(spacing: 32) {
-            Text("\(resolvedGoal) minutes a day")
-                .font(TarsierFonts.body())
-                .foregroundStyle(TarsierColors.textSecondary)
-
+        VStack(spacing: 32) {
             Spacer()
         }
     }

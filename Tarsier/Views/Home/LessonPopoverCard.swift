@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct LessonPopoverCard: View {
-    let lessonID: Int
+    let lessonID: String
     let title: String
     let chapterNumber: Int
     let unitNumber: Int

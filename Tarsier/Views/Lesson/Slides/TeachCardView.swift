@@ -9,10 +9,203 @@ struct TeachCardView: View {
     /// Total number of blocks for this card.
     @Binding var totalBlockCount: Int
 
+    private var isIntroLayout: Bool { card.introLayout == true }
+
     var body: some View {
+        if isIntroLayout {
+            introBody
+        } else {
+            standardBody
+        }
+    }
+
+    // MARK: - Intro Layout (HelloChinese-style centered, visual-heavy)
+
+    // MARK: - Intro Block Model
+
+    private enum IntroBlock {
+        case emojiAndHighlight(emoji: String, text: String)
+        case highlight(String)
+        case callout(String)
+        case body(String)
+        case bulletPoint(String)
+    }
+
+    private func buildIntroBlocks() -> [IntroBlock] {
+        var blocks: [IntroBlock] = []
+        let hasCallout = card.callout != nil
+
+        // Cards with callout: callout first, then highlight below it (no emoji)
+        // Cards without callout: emoji + highlight together as first block
+        if hasCallout {
+            if let callout = card.callout {
+                blocks.append(.callout(callout))
+            }
+            if let highlight = card.highlight {
+                blocks.append(.highlight(highlight))
+            }
+        } else {
+            if let highlight = card.highlight {
+                if let emoji = card.emoji {
+                    blocks.append(.emojiAndHighlight(emoji: emoji, text: highlight))
+                } else {
+                    blocks.append(.highlight(highlight))
+                }
+            }
+        }
+
+        // Body text: split on bullet points for individual reveal
+        if let body = card.body {
+            let parts = splitBodyIntoParts(body)
+            for part in parts {
+                if part.hasPrefix("\u{2022}") {
+                    blocks.append(.bulletPoint(part))
+                } else {
+                    blocks.append(.body(part))
+                }
+            }
+        }
+
+        return blocks
+    }
+
+    /// Splits body text into separate parts: paragraphs and individual bullet points.
+    /// Each bullet point becomes its own reveal block.
+    private func splitBodyIntoParts(_ text: String) -> [String] {
+        // Split on double newlines to get paragraphs
+        let paragraphs = text.components(separatedBy: "\n\n")
+        var parts: [String] = []
+
+        for paragraph in paragraphs {
+            let trimmed = paragraph.trimmingCharacters(in: .whitespacesAndNewlines)
+            guard !trimmed.isEmpty else { continue }
+
+            if trimmed.hasPrefix("\u{2022}") {
+                // This paragraph contains bullet points - split each line
+                let lines = trimmed.components(separatedBy: "\n")
+                for line in lines {
+                    let lineTrimmed = line.trimmingCharacters(in: .whitespacesAndNewlines)
+                    if !lineTrimmed.isEmpty {
+                        parts.append(lineTrimmed)
+                    }
+                }
+            } else {
+                parts.append(trimmed)
+            }
+        }
+
+        return parts
+    }
+
+    private var introBody: some View {
+        let blocks = buildIntroBlocks()
+
+        return VStack(alignment: .leading, spacing: 0) {
+            Spacer(minLength: 20)
+
+            ForEach(Array(blocks.prefix(visibleBlockCount).enumerated()), id: \.offset) { _, block in
+                introBlockView(for: block)
+                    .transition(.opacity.combined(with: .move(edge: .bottom)))
+                    .animation(.easeOut(duration: 0.3), value: visibleBlockCount)
+            }
+
+            Spacer(minLength: 20)
+        }
+        .padding(.horizontal, 4)
+        .onAppear {
+            let blocks = buildIntroBlocks()
+            totalBlockCount = blocks.count
+            visibleBlockCount = min(1, blocks.count)
+
+            if let audioPath = card.audio {
+                AudioPlayerService.shared.play(relativePath: audioPath)
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func introBlockView(for block: IntroBlock) -> some View {
+        switch block {
+        case .emojiAndHighlight(let emoji, let text):
+            VStack(spacing: 12) {
+                if emoji == "bunso" {
+                    BunsoView(pose: .celebrating, size: 120)
+                } else {
+                    Text(emoji)
+                        .font(.system(size: 80))
+                }
+                HighlightedPoText(
+                    text: text,
+                    font: .system(size: 28, weight: .bold, design: .rounded),
+                    baseColor: TarsierColors.textPrimary
+                )
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity)
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.horizontal, 8)
+            .padding(.bottom, 20)
+
+        case .highlight(let text):
+            HighlightedPoText(
+                text: text,
+                font: .system(size: 28, weight: .bold, design: .rounded),
+                baseColor: TarsierColors.textPrimary
+            )
+            .multilineTextAlignment(.center)
+            .frame(maxWidth: .infinity)
+            .padding(.horizontal, 8)
+            .padding(.bottom, 16)
+
+        case .callout(let text):
+            Text(text)
+                .font(.system(size: 26, weight: .semibold, design: .rounded))
+                .foregroundStyle(TarsierColors.textSecondary)
+                .tracking(2)
+                .lineSpacing(10)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 20)
+                .padding(.horizontal, 16)
+                .background(
+                    RoundedRectangle(cornerRadius: 14)
+                        .fill(TarsierColors.cream)
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 14)
+                        .stroke(TarsierColors.cardBorder, lineWidth: 1)
+                )
+                .padding(.horizontal, 8)
+                .padding(.bottom, 8)
+
+        case .body(let text):
+            HighlightedPoText(
+                text: text,
+                font: .system(size: 17, weight: .regular, design: .rounded),
+                baseColor: TarsierColors.textSecondary
+            )
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal, 8)
+            .padding(.bottom, 8)
+
+        case .bulletPoint(let text):
+            HighlightedPoText(
+                text: text,
+                font: .system(size: 17, weight: .regular, design: .rounded),
+                baseColor: TarsierColors.textSecondary
+            )
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal, 8)
+            .padding(.bottom, 4)
+        }
+    }
+
+    // MARK: - Standard Layout (progressive reveal)
+
+    private var standardBody: some View {
         let blocks = buildBlocks()
 
-        VStack(alignment: .leading, spacing: 16) {
+        return VStack(alignment: .leading, spacing: 16) {
             ForEach(Array(blocks.prefix(visibleBlockCount).enumerated()), id: \.offset) { index, block in
                 blockView(for: block)
                     .transition(.opacity.combined(with: .move(edge: .bottom)))
@@ -39,6 +232,7 @@ struct TeachCardView: View {
         case image(UIImage, alt: String?)
         case highlight(String, audioPath: String?)
         case body(String)
+        case callout(String)
         case example(CardExample)
     }
 
@@ -63,6 +257,10 @@ struct TeachCardView: View {
             blocks.append(.body(body))
         }
 
+        if let callout = card.callout {
+            blocks.append(.callout(callout))
+        }
+
         if let example = card.example {
             blocks.append(.example(example))
         }
@@ -73,8 +271,6 @@ struct TeachCardView: View {
                 blocks.append(.example(ex))
             }
         }
-
-        // Alam Mo Ba is no longer rendered inline - it's in the collapsible button above
 
         return blocks
     }
@@ -133,6 +329,25 @@ struct TeachCardView: View {
 
         case .body(let text):
             HighlightedPoText(text: text, font: .system(size: 18, weight: .regular, design: .rounded), baseColor: TarsierColors.textPrimary)
+
+        case .callout(let text):
+            Text(text)
+                .font(.system(size: 28, weight: .bold, design: .rounded))
+                .foregroundStyle(TarsierColors.functionalPurple)
+                .tracking(2)
+                .lineSpacing(12)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 20)
+                .padding(.horizontal, 16)
+                .background(
+                    RoundedRectangle(cornerRadius: 14)
+                        .fill(TarsierColors.functionalPurple.opacity(0.06))
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 14)
+                        .stroke(TarsierColors.functionalPurple.opacity(0.15), lineWidth: 1)
+                )
 
         case .example(let example):
             exampleCard(example)

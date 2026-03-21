@@ -4,7 +4,7 @@
     "last_updated": "2026-03-19",
     "notes": "Review covering lessons 008-010. All quiz. Full vocab list available: kumusta, mabuti, ikaw, magandang, umaga, gabi, po, naman, sige, oo, hindi, opo, salamat, walang anuman, pasensya na, siyempre, pare, mare, ako, ka, siya, tayo, kami, kayo, sila."
   },
-  "lesson_id": "011",
+  "lesson_id": "ch01_011",
   "title": "Review",
   "subtitle": "Friends and Pronouns",
   "chapter_id": "ch01",
@@ -15,12 +15,12 @@
   "total_sessions": 1,
   "sessions": [
     {
-      "session_id": "011_s1",
+      "session_id": "ch01_011_s1",
       "session_number": 1,
       "title": "Review",
       "cards": [
         {
-          "card_id": "011_s1_q1",
+          "card_id": "ch01_011_s1_q1",
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "stranger",
@@ -37,7 +37,7 @@
           "shuffle_options": true
         },
         {
-          "card_id": "011_s1_q2",
+          "card_id": "ch01_011_s1_q2",
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "stranger",
@@ -53,7 +53,7 @@
           "shuffle_options": true
         },
         {
-          "card_id": "011_s1_q3",
+          "card_id": "ch01_011_s1_q3",
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "stranger",
@@ -70,7 +70,7 @@
           "shuffle_options": true
         },
         {
-          "card_id": "011_s1_q4",
+          "card_id": "ch01_011_s1_q4",
           "type": "quiz",
           "quiz_type": "fill_in_blank",
           "character": "stranger",
@@ -83,7 +83,7 @@
           "explanation": "Siya = he/she/they (one person)."
         },
         {
-          "card_id": "011_s1_q5",
+          "card_id": "ch01_011_s1_q5",
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "stranger",
@@ -100,7 +100,7 @@
           "shuffle_options": true
         },
         {
-          "card_id": "011_s1_q6",
+          "card_id": "ch01_011_s1_q6",
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "stranger",
@@ -116,7 +116,7 @@
           "shuffle_options": true
         },
         {
-          "card_id": "011_s1_q7",
+          "card_id": "ch01_011_s1_q7",
           "type": "quiz",
           "quiz_type": "sentence_build",
           "character": "stranger",
@@ -135,7 +135,7 @@
           "explanation": "Kumusta kayo? = How are you all?"
         },
         {
-          "card_id": "011_s1_q8",
+          "card_id": "ch01_011_s1_q8",
           "type": "quiz",
           "quiz_type": "fill_in_blank",
           "character": "stranger",

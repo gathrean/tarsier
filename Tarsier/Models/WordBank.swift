@@ -8,7 +8,7 @@ final class WordBankEntry {
     var root: String
     var meaning: String
     var affix: String?
-    var lessonId: Int
+    var lessonId: String
     var chapterId: String
     var pronunciationGuide: String?
     var exampleSentence: String?
@@ -23,7 +23,7 @@ final class WordBankEntry {
         root: String,
         meaning: String,
         affix: String? = nil,
-        lessonId: Int,
+        lessonId: String,
         chapterId: String,
         pronunciationGuide: String? = nil,
         exampleSentence: String? = nil,

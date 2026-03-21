@@ -4,7 +4,7 @@
     "last_updated": "2026-03-19",
     "notes": "Chapter 1 Lesson 1. First teaching lesson. No prior Tagalog vocabulary assumed."
   },
-  "lesson_id": "001",
+  "lesson_id": "ch01_001",
   "title": "How Are You?",
   "subtitle": "Your First Filipino Greeting",
   "chapter_id": "ch01",
@@ -15,18 +15,18 @@
   "total_sessions": 1,
   "sessions": [
     {
-      "session_id": "001_s1",
+      "session_id": "ch01_001_s1",
       "session_number": 1,
       "title": "How Are You?",
       "cards": [
         {
-          "card_id": "001_s1_c1",
+          "card_id": "ch01_001_s1_c1",
           "type": "teach",
           "highlight": "Kumusta?",
           "body": "The most common Filipino greeting isn't 'hello.' It's a question."
         },
         {
-          "card_id": "001_s1_c2",
+          "card_id": "ch01_001_s1_c2",
           "type": "teach",
           "highlight": "Kumusta",
           "body": "Kumusta means 'how are you?' You'll hear it everywhere.",
@@ -42,7 +42,7 @@
           }
         },
         {
-          "card_id": "001_s1_c3",
+          "card_id": "ch01_001_s1_c3",
           "type": "teach",
           "highlight": "Mabuti",
           "body": "Mabuti means 'good' or 'fine.' It's the standard reply to kumusta.",
@@ -53,7 +53,7 @@
           }
         },
         {
-          "card_id": "001_s1_q1",
+          "card_id": "ch01_001_s1_q1",
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "stranger",
@@ -70,7 +70,7 @@
           "shuffle_options": true
         },
         {
-          "card_id": "001_s1_c4",
+          "card_id": "ch01_001_s1_c4",
           "type": "teach",
           "highlight": "Ikaw",
           "body": "Ikaw means 'you.' Add it to bounce the question back.",
@@ -81,7 +81,7 @@
           }
         },
         {
-          "card_id": "001_s1_q2",
+          "card_id": "ch01_001_s1_q2",
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "stranger",
@@ -98,7 +98,7 @@
           "shuffle_options": true
         },
         {
-          "card_id": "001_s1_c5",
+          "card_id": "ch01_001_s1_c5",
           "type": "teach",
           "highlight": "The full flow",
           "body": "A typical greeting goes like this:",
@@ -112,7 +112,7 @@
           }
         },
         {
-          "card_id": "001_s1_q3",
+          "card_id": "ch01_001_s1_q3",
           "type": "quiz",
           "quiz_type": "fill_in_blank",
           "character": "stranger",
@@ -125,7 +125,7 @@
           "explanation": "Mabuti = good/fine. The standard reply to kumusta."
         },
         {
-          "card_id": "001_s1_q4",
+          "card_id": "ch01_001_s1_q4",
           "type": "quiz",
           "quiz_type": "sentence_build",
           "character": "stranger",

@@ -4,7 +4,7 @@
     "last_updated": "2026-03-19",
     "notes": "Chapter 1 Lesson 9. Previously taught: kumusta, mabuti, ikaw, magandang, umaga, gabi, po, naman, sige, oo, hindi, opo, salamat, walang anuman, pasensya na, siyempre, pare, mare."
   },
-  "lesson_id": "009",
+  "lesson_id": "ch01_009",
   "title": "Me and You",
   "subtitle": "Your First Pronouns",
   "chapter_id": "ch01",
@@ -15,18 +15,18 @@
   "total_sessions": 1,
   "sessions": [
     {
-      "session_id": "009_s1",
+      "session_id": "ch01_009_s1",
       "session_number": 1,
       "title": "Me and You",
       "cards": [
         {
-          "card_id": "009_s1_c1",
+          "card_id": "ch01_009_s1_c1",
           "type": "teach",
           "highlight": "Ako, ikaw, siya",
           "body": "Time to talk about people. Tagalog pronouns are simpler than you'd expect."
         },
         {
-          "card_id": "009_s1_c2",
+          "card_id": "ch01_009_s1_c2",
           "type": "teach",
           "highlight": "Ako",
           "body": "Ako means 'I' or 'me.'",
@@ -37,7 +37,7 @@
           }
         },
         {
-          "card_id": "009_s1_c3",
+          "card_id": "ch01_009_s1_c3",
           "type": "teach",
           "highlight": "Ka",
           "body": "Ka means 'you.' It's the short, casual form of ikaw.",
@@ -48,7 +48,7 @@
           }
         },
         {
-          "card_id": "009_s1_q1",
+          "card_id": "ch01_009_s1_q1",
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "stranger",
@@ -64,7 +64,7 @@
           "shuffle_options": true
         },
         {
-          "card_id": "009_s1_c4",
+          "card_id": "ch01_009_s1_c4",
           "type": "teach",
           "highlight": "Siya",
           "body": "Siya means 'he,' 'she,' or 'they.' Tagalog doesn't distinguish gender in pronouns.",
@@ -80,7 +80,7 @@
           }
         },
         {
-          "card_id": "009_s1_q2",
+          "card_id": "ch01_009_s1_q2",
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "stranger",
@@ -97,13 +97,13 @@
           "shuffle_options": true
         },
         {
-          "card_id": "009_s1_c5",
+          "card_id": "ch01_009_s1_c5",
           "type": "teach",
           "highlight": "Quick reference",
           "body": "Ako = I/me. Ka (or ikaw) = you. Siya = he/she/they."
         },
         {
-          "card_id": "009_s1_q3",
+          "card_id": "ch01_009_s1_q3",
           "type": "quiz",
           "quiz_type": "fill_in_blank",
           "character": "stranger",
@@ -118,7 +118,7 @@
           "explanation": "Mabuti naman ako = I'm good. Ako = I/me."
         },
         {
-          "card_id": "009_s1_q4",
+          "card_id": "ch01_009_s1_q4",
           "type": "quiz",
           "quiz_type": "sentence_build",
           "character": "stranger",

@@ -18,12 +18,13 @@ struct Chapter: Codable, Identifiable, Hashable {
     let hasPractice: Bool?
     let totalLessons: Int?
     let totalWords: Int?
+    let pairWithNext: Bool?
 
     var id: String { chapterId }
 
-    /// Flat list of all lesson IDs as Ints (backward compat with existing Int-based system)
-    var lessonIDs: [Int] {
-        rows.flatMap { $0.lessons }.compactMap { Int($0) }
+    /// Flat list of all lesson IDs as strings (chapter-scoped, e.g. "ch01_001")
+    var lessonIDs: [String] {
+        rows.flatMap { $0.lessons }
     }
 
     /// Resolved accent colour from hex string, with fallback.
@@ -45,5 +46,6 @@ struct Chapter: Codable, Identifiable, Hashable {
         case hasPractice = "has_practice"
         case totalLessons = "total_lessons"
         case totalWords = "total_words"
+        case pairWithNext = "pair_with_next"
     }
 }

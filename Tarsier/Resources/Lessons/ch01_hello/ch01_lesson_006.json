@@ -4,7 +4,7 @@
     "last_updated": "2026-03-19",
     "notes": "Chapter 1 Lesson 6. Previously taught: kumusta, mabuti, ikaw, magandang, umaga, gabi, po, naman, sige, oo, hindi, opo."
   },
-  "lesson_id": "006",
+  "lesson_id": "ch01_006",
   "title": "Salamat",
   "subtitle": "Saying Thanks and Sorry",
   "chapter_id": "ch01",
@@ -15,18 +15,18 @@
   "total_sessions": 1,
   "sessions": [
     {
-      "session_id": "006_s1",
+      "session_id": "ch01_006_s1",
       "session_number": 1,
       "title": "Salamat",
       "cards": [
         {
-          "card_id": "006_s1_c1",
+          "card_id": "ch01_006_s1_c1",
           "type": "teach",
           "highlight": "Salamat",
           "body": "Gratitude is a big deal in Filipino culture. This is the word you'll need most."
         },
         {
-          "card_id": "006_s1_c2",
+          "card_id": "ch01_006_s1_c2",
           "type": "teach",
           "highlight": "Salamat",
           "body": "Salamat means 'thank you.'",
@@ -37,7 +37,7 @@
           }
         },
         {
-          "card_id": "006_s1_c3",
+          "card_id": "ch01_006_s1_c3",
           "type": "teach",
           "highlight": "Walang anuman",
           "body": "Walang anuman means 'you're welcome.' Literally: 'it's nothing.'",
@@ -53,7 +53,7 @@
           }
         },
         {
-          "card_id": "006_s1_q1",
+          "card_id": "ch01_006_s1_q1",
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "stranger",
@@ -70,7 +70,7 @@
           "shuffle_options": true
         },
         {
-          "card_id": "006_s1_c4",
+          "card_id": "ch01_006_s1_c4",
           "type": "teach",
           "highlight": "Pasensya na",
           "body": "Pasensya na means 'sorry' or 'excuse me.' It's asking for patience.",
@@ -81,7 +81,7 @@
           }
         },
         {
-          "card_id": "006_s1_q2",
+          "card_id": "ch01_006_s1_q2",
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "stranger",
@@ -98,7 +98,7 @@
           "shuffle_options": true
         },
         {
-          "card_id": "006_s1_q3",
+          "card_id": "ch01_006_s1_q3",
           "type": "quiz",
           "quiz_type": "fill_in_blank",
           "character": "stranger",
@@ -113,7 +113,7 @@
           "explanation": "Walang anuman = you're welcome. Literally 'it's nothing.'"
         },
         {
-          "card_id": "006_s1_q4",
+          "card_id": "ch01_006_s1_q4",
           "type": "quiz",
           "quiz_type": "sentence_build",
           "character": "stranger",

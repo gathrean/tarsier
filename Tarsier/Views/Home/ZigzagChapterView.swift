@@ -7,15 +7,15 @@ struct ZigzagChapterView: View {
     let isChapterUnlocked: Bool
 
     // Closures that call back into HomeView's existing logic
-    let isLessonUnlocked: (Int) -> Bool
-    let completedIDs: [Int]
-    let completedSessionCount: (Int) -> Int
-    let totalSessions: (Int) -> Int
-    let nextSessionNumber: (Int) -> Int
-    let lessonTitle: (Int) -> String
+    let isLessonUnlocked: (String) -> Bool
+    let completedIDs: [String]
+    let completedSessionCount: (String) -> Int
+    let totalSessions: (String) -> Int
+    let nextSessionNumber: (String) -> Int
+    let lessonTitle: (String) -> String
     let isPremium: Bool
 
-    @Binding var selectedLessonID: Int?
+    @Binding var selectedLessonID: String?
     @Binding var showPremiumGate: Bool
 
     // MARK: - Layout Constants

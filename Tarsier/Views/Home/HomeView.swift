@@ -15,7 +15,7 @@ struct HomeView: View {
     nonisolated(unsafe) private static var hasShownGreetingThisLaunch = false
 
     private var profile: UserProfile? { profiles.first }
-    private var completedIDs: [Int] { profile?.completedLessonIDs ?? [] }
+    private var completedIDs: [String] { profile?.completedLessonIDs ?? [] }
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -44,7 +44,8 @@ struct HomeView: View {
         .toolbar(.hidden, for: .navigationBar)
         .navigationDestination(for: Chapter.self) { chapter in
             let idx = chapters.firstIndex(where: { $0.id == chapter.id }) ?? 0
-            let locked = idx > 0 && !chapters[idx - 1].lessonIDs.allSatisfy({ completedIDs.contains($0) })
+            let prevIDs = idx > 0 ? chapters[idx - 1].lessonIDs : []
+            let locked = idx > 0 && (prevIDs.isEmpty || !prevIDs.allSatisfy({ completedIDs.contains($0) }))
             ChapterDetailView(
                 chapter: chapter,
                 chapterIndex: idx,
@@ -190,20 +191,18 @@ struct HomeView: View {
 
     // MARK: - Session Progress Helpers
 
-    private func completedSessionCount(for lessonId: Int) -> Int {
-        let lessonIdStr = String(format: "%03d", lessonId)
-        return sessionProgresses.filter { $0.lessonId == lessonIdStr && $0.isCompleted }.count
+    private func completedSessionCount(for lessonId: String) -> Int {
+        sessionProgresses.filter { $0.lessonId == lessonId && $0.isCompleted }.count
     }
 
-    private func totalSessions(for lessonId: Int) -> Int {
-        lessons.first { $0.id == lessonId }?.totalSessions ?? 5
+    private func totalSessions(for lessonId: String) -> Int {
+        lessons.first { $0.id == lessonId }?.totalSessions ?? 1
     }
 
-    private func nextSessionNumber(for lessonId: Int) -> Int {
-        let lessonIdStr = String(format: "%03d", lessonId)
+    private func nextSessionNumber(for lessonId: String) -> Int {
         let completedNumbers = Set(
             sessionProgresses
-                .filter { $0.lessonId == lessonIdStr && $0.isCompleted }
+                .filter { $0.lessonId == lessonId && $0.isCompleted }
                 .map { $0.sessionNumber }
         )
         let total = totalSessions(for: lessonId)

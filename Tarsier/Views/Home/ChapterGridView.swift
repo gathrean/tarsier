@@ -2,9 +2,9 @@ import SwiftUI
 
 struct ChapterGridView: View {
     let chapters: [Chapter]
-    let completedIDs: [Int]
-    let completedSessionCount: (Int) -> Int
-    let totalSessions: (Int) -> Int
+    let completedIDs: [String]
+    let completedSessionCount: (String) -> Int
+    let totalSessions: (String) -> Int
 
     var body: some View {
         VStack(spacing: 28) {
@@ -27,27 +27,20 @@ struct ChapterGridView: View {
         .padding(.horizontal, TarsierSpacing.screenPadding)
     }
 
-    // MARK: - Grid Layout (alternating 1-2-1-2)
+    // MARK: - Grid Layout (driven by pair_with_next in chapters.json)
 
     private var gridRows: [[(chapter: Chapter, index: Int)]] {
         var rows: [[(chapter: Chapter, index: Int)]] = []
         var i = 0
-        var isSingleRow = true
 
         while i < chapters.count {
-            if isSingleRow {
+            if chapters[i].pairWithNext == true, i + 1 < chapters.count {
+                rows.append([(chapters[i], i), (chapters[i + 1], i + 1)])
+                i += 2
+            } else {
                 rows.append([(chapters[i], i)])
                 i += 1
-            } else {
-                if i + 1 < chapters.count {
-                    rows.append([(chapters[i], i), (chapters[i + 1], i + 1)])
-                    i += 2
-                } else {
-                    rows.append([(chapters[i], i)])
-                    i += 1
-                }
             }
-            isSingleRow.toggle()
         }
 
         return rows
@@ -79,15 +72,16 @@ struct ChapterGridView: View {
     // MARK: - State Helpers
 
     private func chapterState(for chapter: Chapter, at index: Int) -> ChapterNodeState {
+        let prevIDs = index > 0 ? chapters[index - 1].lessonIDs : []
         let isUnlocked = index == 0
-            || chapters[index - 1].lessonIDs.allSatisfy { completedIDs.contains($0) }
+            || (!prevIDs.isEmpty && prevIDs.allSatisfy { completedIDs.contains($0) })
 
         guard isUnlocked else { return .locked }
 
         let completed = completedLessonCount(for: chapter)
         let total = chapter.lessonIDs.count
 
-        if completed >= total {
+        if total > 0 && completed >= total {
             return .completed
         } else if completed > 0 {
             return .inProgress

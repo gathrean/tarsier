@@ -4,7 +4,7 @@
     "last_updated": "2026-03-19",
     "notes": "Chapter 1 Lesson 10. 4 words instead of 3 (tayo/kami are a paired concept). Previously taught: kumusta, mabuti, ikaw, magandang, umaga, gabi, po, naman, sige, oo, hindi, opo, salamat, walang anuman, pasensya na, siyempre, pare, mare, ako, ka, siya."
   },
-  "lesson_id": "010",
+  "lesson_id": "ch01_010",
   "title": "Us and Them",
   "subtitle": "Tagalog Has Two Words for 'We'",
   "chapter_id": "ch01",
@@ -15,18 +15,18 @@
   "total_sessions": 1,
   "sessions": [
     {
-      "session_id": "010_s1",
+      "session_id": "ch01_010_s1",
       "session_number": 1,
       "title": "Us and Them",
       "cards": [
         {
-          "card_id": "010_s1_c1",
+          "card_id": "ch01_010_s1_c1",
           "type": "teach",
           "highlight": "Two kinds of 'we'",
           "body": "Tagalog makes a distinction that English doesn't. There are two words for 'we,' and using the wrong one changes the meaning."
         },
         {
-          "card_id": "010_s1_c2",
+          "card_id": "ch01_010_s1_c2",
           "type": "teach",
           "highlight": "Tayo",
           "body": "Tayo means 'we' including the person you're talking to.",
@@ -37,7 +37,7 @@
           }
         },
         {
-          "card_id": "010_s1_c3",
+          "card_id": "ch01_010_s1_c3",
           "type": "teach",
           "highlight": "Kami",
           "body": "Kami also means 'we,' but it excludes the person you're talking to.",
@@ -54,7 +54,7 @@
           }
         },
         {
-          "card_id": "010_s1_q1",
+          "card_id": "ch01_010_s1_q1",
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "stranger",
@@ -71,7 +71,7 @@
           "shuffle_options": true
         },
         {
-          "card_id": "010_s1_c4",
+          "card_id": "ch01_010_s1_c4",
           "type": "teach",
           "highlight": "Kayo",
           "body": "Kayo means 'you all.' It's also the formal/respectful 'you' for one person.",
@@ -82,7 +82,7 @@
           }
         },
         {
-          "card_id": "010_s1_q2",
+          "card_id": "ch01_010_s1_q2",
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "stranger",
@@ -99,7 +99,7 @@
           "shuffle_options": true
         },
         {
-          "card_id": "010_s1_c5",
+          "card_id": "ch01_010_s1_c5",
           "type": "teach",
           "highlight": "Sila",
           "body": "Sila means 'they' or 'them.' The plural of siya.",
@@ -110,7 +110,7 @@
           }
         },
         {
-          "card_id": "010_s1_q3",
+          "card_id": "ch01_010_s1_q3",
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "stranger",
@@ -127,7 +127,7 @@
           "shuffle_options": true
         },
         {
-          "card_id": "010_s1_q4",
+          "card_id": "ch01_010_s1_q4",
           "type": "quiz",
           "quiz_type": "sentence_build",
           "character": "stranger",

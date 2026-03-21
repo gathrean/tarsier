@@ -25,6 +25,14 @@ struct ChapterHeaderView: View {
                     Text(chapter.subtitle)
                         .font(.system(size: 16, weight: .medium, design: .rounded))
                         .foregroundStyle(.white.opacity(0.8))
+
+                    // Lesson + word count
+                    if let totalLessons = chapter.totalLessons {
+                        let wordsPart = chapter.totalWords.map { ", \($0) words" } ?? ""
+                        Text("\(totalLessons) lessons\(wordsPart)")
+                            .font(.system(size: 13, weight: .regular, design: .rounded))
+                            .foregroundStyle(.white.opacity(0.6))
+                    }
                 }
 
                 Spacer()

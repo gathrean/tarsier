@@ -4,14 +4,14 @@ import SwiftData
 @Model
 final class LessonResult {
     var id: UUID
-    var lessonID: Int
+    var lessonID: String
     var chapterId: String
     var score: Int
     var totalQuestions: Int
     var xpEarned: Int
     var completedAt: Date
 
-    init(lessonID: Int, chapterId: String = "", score: Int, totalQuestions: Int, xpEarned: Int = 15) {
+    init(lessonID: String, chapterId: String = "", score: Int, totalQuestions: Int, xpEarned: Int = 15) {
         self.id = UUID()
         self.lessonID = lessonID
         self.chapterId = chapterId

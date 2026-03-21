@@ -18,7 +18,7 @@ struct SlideLesson: Codable, Identifiable {
     let wrongAnswerTracking: WrongAnswerTracking?
     let aiPractice: AIPracticeConfig?
 
-    var id: Int { Int(lessonId) ?? 0 }
+    var id: String { lessonId }
     var topic: String { title }
 
     enum CodingKeys: String, CodingKey {
@@ -79,6 +79,9 @@ struct SessionCard: Codable, Identifiable {
     // Teach fields
     let body: String?
     let highlight: String?
+    let callout: String?
+    let introLayout: Bool?
+    let emoji: String?
     let usePo: Bool?
     let example: CardExample?
     let examples: [CardExample]?
@@ -115,7 +118,8 @@ struct SessionCard: Codable, Identifiable {
 
     enum CodingKeys: String, CodingKey {
         case cardId = "card_id"
-        case type, body, highlight, image, example, examples, audio, character
+        case type, body, highlight, callout, image, example, examples, audio, character, emoji
+        case introLayout = "intro_layout"
         case alamMoBaInline = "alam_mo_ba_inline"
         case usePo = "use_po"
         case quizType = "quiz_type"
@@ -277,7 +281,7 @@ struct AIPracticeConfig: Codable {
 // MARK: - Navigation
 
 struct LessonNavigation: Hashable {
-    let lessonId: Int
+    let lessonId: String
     let sessionNumber: Int
     let isReplay: Bool
 }

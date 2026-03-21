@@ -1,10 +1,10 @@
 {
   "_meta": {
-    "schema_version": "0.7",
-    "last_updated": "2026-03-18",
-    "notes": "Chapter 0: Introduction / Abakada. Teach-only orientation session (no quizzes). Content to be filled in by Ean."
+    "schema_version": "0.8",
+    "last_updated": "2026-03-20",
+    "notes": "Chapter 0: Introduction / Abakada. Teach-only orientation. HelloChinese-style centered layout with large emoji visuals."
   },
-  "lesson_id": "000",
+  "lesson_id": "ch00_000",
   "title": "The Abakada",
   "subtitle": "How Tagalog Sounds",
   "chapter_id": "ch00",
@@ -14,39 +14,50 @@
   "total_sessions": 1,
   "sessions": [
     {
-      "session_id": "000_s1",
+      "session_id": "ch00_000_s1",
       "session_number": 1,
       "title": "How Tagalog Works",
       "cards": [
         {
-          "card_id": "000_s1_c1",
+          "card_id": "ch00_000_s1_c1",
           "type": "teach",
+          "intro_layout": true,
+          "emoji": "🇵🇭",
           "highlight": "Welcome!",
-          "body": "Tagalog uses the Latin alphabet. No new script to learn!"
+          "body": "Tagalog uses the Latin alphabet.\nNo new script to learn!"
         },
         {
-          "card_id": "000_s1_c2",
+          "card_id": "ch00_000_s1_c2",
           "type": "teach",
+          "intro_layout": true,
+          "emoji": "🔤",
           "highlight": "The Abakada",
-          "body": "The traditional Filipino alphabet has 20 letters: A Ba Ka Da E Ga Ha I La Ma Na Ng O Pa Ra Sa Ta U Wa Ya."
+          "body": "The traditional Filipino alphabet has 20 letters.",
+          "callout": "A  Ba  Ka  Da\nE  Ga  Ha  I\nLa  Ma  Na  Ng\nO  Pa  Ra  Sa\nTa  U  Wa  Ya"
         },
         {
-          "card_id": "000_s1_c3",
+          "card_id": "ch00_000_s1_c3",
           "type": "teach",
+          "intro_layout": true,
+          "emoji": "👁️",
           "highlight": "What you see is what you say",
-          "body": "Tagalog is mostly phonetic. Unlike English where 'tough', 'through', and 'though' all sound different, Tagalog letters have consistent sounds."
+          "body": "Tagalog is mostly phonetic.\n\nUnlike English where 'tough', 'through', and 'though' all sound different, Tagalog letters have consistent sounds."
         },
         {
-          "card_id": "000_s1_c4",
+          "card_id": "ch00_000_s1_c4",
           "type": "teach",
+          "intro_layout": true,
+          "emoji": "👂",
           "highlight": "Key sounds",
-          "body": "Three things to know: the rolled R, 'ng' is its own letter (like in 'singing'), and the glottal stop (a quick pause, like 'uh-oh')."
+          "body": "Three things to know:\n\n\u2022 The rolled R\n\u2022 'Ng' is its own letter (like in 'singing')\n\u2022 The glottal stop (a quick pause, like 'uh-oh')"
         },
         {
-          "card_id": "000_s1_c5",
+          "card_id": "ch00_000_s1_c5",
           "type": "teach",
+          "intro_layout": true,
+          "emoji": "💡",
           "highlight": "Words you already know",
-          "body": "Karaoke, boondocks (from bundok - mountain), and sari-sari (variety store) are all Tagalog words that made it into English.",
+          "body": "These Tagalog words made it into English:\n\n\u2022 *Karaoke*\n\u2022 *Boondocks* (from bundok - mountain)\n\u2022 *Sari-sari* (variety store)",
           "alam_mo_ba_inline": {
             "term": "Boondocks",
             "fact": "American soldiers in the Philippines borrowed 'bundok' (mountain) - it became 'boondocks' meaning a remote area.",
@@ -54,16 +65,19 @@
           }
         },
         {
-          "card_id": "000_s1_c6",
+          "card_id": "ch00_000_s1_c6",
           "type": "teach",
+          "intro_layout": true,
+          "emoji": "🤝",
           "highlight": "No gendered pronouns",
-          "body": "Tagalog has no he/she distinction. 'Siya' means he, she, or they. One word for everyone."
+          "body": "Tagalog has no he/she distinction.\n\n*Siya* means he, she, or they.\n\nOne word for everyone."
         },
         {
-          "card_id": "000_s1_c7",
+          "card_id": "ch00_000_s1_c7",
           "type": "teach",
-          "highlight": "Ready?",
-          "body": "You're about to learn your first Tagalog. Let's go!"
+          "intro_layout": true,
+          "emoji": "bunso",
+          "highlight": "You're about to learn your first Tagalog words. Let's go!"
         }
       ]
     }

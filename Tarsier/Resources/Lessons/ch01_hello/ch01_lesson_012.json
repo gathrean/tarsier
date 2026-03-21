@@ -4,7 +4,7 @@
     "last_updated": "2026-03-19",
     "notes": "Chapter Review for Chapter 1. Optional. 1-2 connection teach cards + quiz covering all chapter material. Full vocab: kumusta, mabuti, ikaw, magandang, umaga, gabi, po, naman, sige, oo, hindi, opo, salamat, walang anuman, pasensya na, siyempre, pare, mare, ako, ka, siya, tayo, kami, kayo, sila."
   },
-  "lesson_id": "012",
+  "lesson_id": "ch01_012",
   "title": "Chapter Review",
   "subtitle": "Everything from Chapter 1",
   "chapter_id": "ch01",
@@ -15,19 +15,19 @@
   "total_sessions": 1,
   "sessions": [
     {
-      "session_id": "012_s1",
+      "session_id": "ch01_012_s1",
       "session_number": 1,
       "title": "Chapter Review",
       "cards": [
         {
-          "card_id": "012_s1_conn_1",
+          "card_id": "ch01_012_s1_conn_1",
           "type": "teach",
           "subtype": "connection",
           "highlight": "Two modes",
           "body": "Everything you've learned has two modes: casual (with friends) and respectful (with elders and authority). The same words, different endings."
         },
         {
-          "card_id": "012_s1_q1",
+          "card_id": "ch01_012_s1_q1",
           "type": "quiz",
           "quiz_type": "sentence_build",
           "character": "stranger",
@@ -49,7 +49,7 @@
           "explanation": "Magandang umaga po! Kumusta po kayo? Full respectful morning greeting."
         },
         {
-          "card_id": "012_s1_q2",
+          "card_id": "ch01_012_s1_q2",
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "stranger",
@@ -66,7 +66,7 @@
           "shuffle_options": true
         },
         {
-          "card_id": "012_s1_q3",
+          "card_id": "ch01_012_s1_q3",
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "stranger",
@@ -83,7 +83,7 @@
           "shuffle_options": true
         },
         {
-          "card_id": "012_s1_q4",
+          "card_id": "ch01_012_s1_q4",
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "stranger",
@@ -100,14 +100,14 @@
           "shuffle_options": true
         },
         {
-          "card_id": "012_s1_conn_2",
+          "card_id": "ch01_012_s1_conn_2",
           "type": "teach",
           "subtype": "connection",
           "highlight": "Pronouns unlock sentences",
           "body": "Notice how every greeting changes meaning with a different pronoun. Kumusta ka? Kumusta siya? Kumusta kayo? Same structure, different people."
         },
         {
-          "card_id": "012_s1_q5",
+          "card_id": "ch01_012_s1_q5",
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "stranger",
@@ -124,7 +124,7 @@
           "shuffle_options": true
         },
         {
-          "card_id": "012_s1_q6",
+          "card_id": "ch01_012_s1_q6",
           "type": "quiz",
           "quiz_type": "fill_in_blank",
           "character": "stranger",
@@ -139,7 +139,7 @@
           "explanation": "Salamat po = thank you (respectful)."
         },
         {
-          "card_id": "012_s1_q7",
+          "card_id": "ch01_012_s1_q7",
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "stranger",
@@ -156,7 +156,7 @@
           "shuffle_options": true
         },
         {
-          "card_id": "012_s1_q8",
+          "card_id": "ch01_012_s1_q8",
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "stranger",
@@ -172,7 +172,7 @@
           "shuffle_options": true
         },
         {
-          "card_id": "012_s1_q9",
+          "card_id": "ch01_012_s1_q9",
           "type": "quiz",
           "quiz_type": "sentence_build",
           "character": "stranger",
@@ -192,7 +192,7 @@
           "explanation": "Magandang gabi! Kumusta ka? Casual evening greeting with a friend."
         },
         {
-          "card_id": "012_s1_q10",
+          "card_id": "ch01_012_s1_q10",
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "stranger",
@@ -209,7 +209,7 @@
           "shuffle_options": true
         },
         {
-          "card_id": "012_s1_q11",
+          "card_id": "ch01_012_s1_q11",
           "type": "quiz",
           "quiz_type": "sentence_build",
           "character": "stranger",

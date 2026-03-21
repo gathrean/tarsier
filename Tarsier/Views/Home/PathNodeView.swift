@@ -3,7 +3,7 @@ import SwiftUI
 // MARK: - Path Node Data
 
 enum PathNodeKind {
-    case lesson(id: Int)
+    case lesson(id: String)
     case practice(chapterId: String)
 }
 
@@ -27,16 +27,21 @@ struct PathNode: Identifiable {
     let isPracticeUnlocked: Bool  // Only used for practice nodes
 
     /// Emoji mapping by lesson ID. 💬 is the default.
-    static func emoji(for lessonID: Int) -> String {
-        let map: [Int: String] = [
-            1: "🙏", 2: "👋", 3: "🤝", 4: "👤",
-            5: "🔀", 6: "✨", 7: "🍽️", 8: "🍳",
-            9: "🥤", 10: "👍", 11: "👨‍👩‍👧", 12: "👴",
-            13: "❤️", 14: "🏠", 15: "🔢", 16: "💰",
-            17: "🌅", 18: "💼", 19: "🧹", 20: "😴",
-            21: "😊", 22: "💅", 23: "🌡️", 24: "😩",
-            25: "📍", 26: "🚶", 27: "🛒", 28: "🚌",
-            29: "📅", 30: "📝", 31: "🔓", 32: "🧩",
+    static func emoji(for lessonID: String) -> String {
+        let map: [String: String] = [
+            // Ch01 Hello
+            "ch01_001": "🙏", "ch01_002": "👋", "ch01_003": "🤝", "ch01_004": "👤",
+            "ch01_005": "🔀", "ch01_006": "✨", "ch01_007": "🗣️", "ch01_008": "👥",
+            "ch01_009": "🤗", "ch01_010": "📝", "ch01_011": "📝", "ch01_012": "🎓",
+            // Ch02 Family
+            "ch02_001": "👨‍👩‍👧", "ch02_002": "👫", "ch02_003": "🧒", "ch02_004": "👴",
+            "ch02_005": "👩‍👧", "ch02_006": "❤️", "ch02_007": "🏠", "ch02_008": "📝",
+            "ch02_009": "📝", "ch02_010": "📝", "ch02_011": "🎓",
+            // Ch03 Food
+            "ch03_001": "🍽️", "ch03_002": "🍳", "ch03_003": "🥤", "ch03_004": "👍",
+            "ch03_005": "🥘", "ch03_006": "☕", "ch03_007": "👌", "ch03_008": "🚫",
+            "ch03_009": "💰", "ch03_010": "📝", "ch03_011": "📝", "ch03_012": "📝",
+            "ch03_013": "🎓",
         ]
         return map[lessonID] ?? "💬"
     }
@@ -55,10 +60,10 @@ struct PathNodeView: View {
         return false
     }
 
-    /// Asset name for the lesson icon, e.g. "lesson_001"
+    /// Asset name for the lesson icon, e.g. "lesson_ch01_001"
     private var lessonIconName: String? {
         if case .lesson(let id) = node.kind {
-            return String(format: "lesson_%03d", id)
+            return "lesson_\(id)"
         }
         return nil
     }

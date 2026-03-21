@@ -4,7 +4,7 @@
     "last_updated": "2026-03-19",
     "notes": "Chapter 1 Lesson 3. Previously taught: kumusta, mabuti, ikaw, magandang, umaga, gabi."
   },
-  "lesson_id": "003",
+  "lesson_id": "ch01_003",
   "title": "Po",
   "subtitle": "The Word That Changes Everything",
   "chapter_id": "ch01",
@@ -15,18 +15,18 @@
   "total_sessions": 1,
   "sessions": [
     {
-      "session_id": "003_s1",
+      "session_id": "ch01_003_s1",
       "session_number": 1,
       "title": "Po",
       "cards": [
         {
-          "card_id": "003_s1_c1",
+          "card_id": "ch01_003_s1_c1",
           "type": "teach",
           "highlight": "Po",
           "body": "There's one word in Tagalog you can start using right now. Even in English sentences. That word is po."
         },
         {
-          "card_id": "003_s1_c2",
+          "card_id": "ch01_003_s1_c2",
           "type": "teach",
           "highlight": "Po = respect",
           "body": "Po makes any sentence respectful. There's no English equivalent.",
@@ -37,7 +37,7 @@
           }
         },
         {
-          "card_id": "003_s1_c3",
+          "card_id": "ch01_003_s1_c3",
           "type": "teach",
           "highlight": "Po + what you know",
           "body": "Add po to your greetings and they become respectful.",
@@ -48,7 +48,7 @@
           }
         },
         {
-          "card_id": "003_s1_q1",
+          "card_id": "ch01_003_s1_q1",
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "stranger",
@@ -65,7 +65,7 @@
           "shuffle_options": true
         },
         {
-          "card_id": "003_s1_c4",
+          "card_id": "ch01_003_s1_c4",
           "type": "teach",
           "highlight": "Naman",
           "body": "Naman is a softener. It makes things sound friendlier and more natural.",
@@ -76,7 +76,7 @@
           }
         },
         {
-          "card_id": "003_s1_q2",
+          "card_id": "ch01_003_s1_q2",
           "type": "quiz",
           "quiz_type": "multiple_choice",
           "character": "stranger",
@@ -93,7 +93,7 @@
           "shuffle_options": true
         },
         {
-          "card_id": "003_s1_c5",
+          "card_id": "ch01_003_s1_c5",
           "type": "teach",
           "highlight": "Sige",
           "body": "Sige means 'okay,' 'sure,' or 'go ahead.' One of the most versatile words in Tagalog.",
@@ -109,7 +109,7 @@
           }
         },
         {
-          "card_id": "003_s1_q3",
+          "card_id": "ch01_003_s1_q3",
           "type": "quiz",
           "quiz_type": "fill_in_blank",
           "character": "stranger",
@@ -124,7 +124,7 @@
           "explanation": "Sige po = okay (respectful). Perfect for responding to someone in authority."
         },
         {
-          "card_id": "003_s1_q4",
+          "card_id": "ch01_003_s1_q4",
           "type": "quiz",
           "quiz_type": "sentence_build",
           "character": "stranger",

@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct LessonRowView: View {
-    let lessonID: Int
+    let lessonID: String
     let title: String
     let vocabularyPreview: String
     let isCompleted: Bool

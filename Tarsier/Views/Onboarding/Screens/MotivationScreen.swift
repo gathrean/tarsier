@@ -27,8 +27,8 @@ struct MotivationScreen: View {
     }
 
     private var pickerView: some View {
-        VStack(spacing: 20) {
-            FlowLayout(spacing: 8) {
+        VStack(spacing: 24) {
+            VStack(spacing: 10) {
                 ForEach(motivations, id: \.self) { motivation in
                     let isSelected = selectedMotivations.contains(motivation)
                     Button {
@@ -38,22 +38,28 @@ struct MotivationScreen: View {
                             selectedMotivations.insert(motivation)
                         }
                     } label: {
-                        Text(motivation)
-                            .font(TarsierFonts.body(15))
-                            .foregroundStyle(isSelected ? .white : TarsierColors.textPrimary)
-                            .padding(.horizontal, 16)
-                            .padding(.vertical, 10)
-                            .background(
-                                Capsule()
-                                    .fill(isSelected ? TarsierColors.functionalPurple : .white)
-                            )
-                            .overlay(
-                                Capsule()
-                                    .stroke(
-                                        isSelected ? TarsierColors.functionalPurple : TarsierColors.cardBorder,
-                                        lineWidth: isSelected ? 2 : 1
-                                    )
-                            )
+                        HStack {
+                            Text(motivation)
+                                .font(TarsierFonts.body())
+                                .foregroundStyle(TarsierColors.textPrimary)
+                            Spacer()
+                            if isSelected {
+                                Image(systemName: "checkmark")
+                                    .foregroundStyle(TarsierColors.functionalPurple)
+                            }
+                        }
+                        .padding(TarsierSpacing.cardPadding)
+                        .background(
+                            RoundedRectangle(cornerRadius: 14)
+                                .fill(isSelected ? TarsierColors.primaryLight : .white)
+                        )
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 14)
+                                .stroke(
+                                    isSelected ? TarsierColors.functionalPurple : TarsierColors.cardBorder,
+                                    lineWidth: isSelected ? 2 : 1
+                                )
+                        )
                     }
                     .buttonStyle(.plain)
                 }

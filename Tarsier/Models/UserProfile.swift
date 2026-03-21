@@ -28,7 +28,7 @@ final class UserProfile {
     var id: UUID
     var skillLevel: SkillLevel
     var currentLessonIndex: Int
-    var completedLessonIDs: [Int]
+    var completedLessonIDs: [String]
     var currentStreak: Int
     var longestStreak: Int
     var lastCompletedDate: Date?
@@ -59,7 +59,7 @@ final class UserProfile {
     init(
         skillLevel: SkillLevel = .beginner,
         currentLessonIndex: Int = 1,
-        completedLessonIDs: [Int] = [],
+        completedLessonIDs: [String] = [],
         currentStreak: Int = 0,
         longestStreak: Int = 0,
         lastCompletedDate: Date? = nil,

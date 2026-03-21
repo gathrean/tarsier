@@ -9,12 +9,6 @@ struct OnboardingNotificationScreen: View {
 
     var body: some View {
         VStack(spacing: 32) {
-            Text("A quick daily reminder keeps your streak alive")
-                .font(TarsierFonts.body())
-                .foregroundStyle(TarsierColors.textSecondary)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 32)
-
             Spacer()
         }
         .onAppear {
