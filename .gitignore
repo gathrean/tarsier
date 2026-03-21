@@ -60,3 +60,8 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+
+# Ignore local Claude settings
+.claude/settings.local.json
+# But keep agents
+!.claude/agents/
